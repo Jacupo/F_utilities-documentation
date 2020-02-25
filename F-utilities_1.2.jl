@@ -1,5 +1,5 @@
-using PyPlot; #Or import?
-using LinearAlgebra;
+using PyPlot;
+#using LinearAlgebra;
 
 function Print_matrix(title, matrix)
  figure(title)
@@ -10,20 +10,20 @@ end
 
 function Build_Omega(N)
 #Build the matrix omega of dimension 2*N, that is for N sites.
-  eye                 = Matrix{Float64}(I, N, N);
-  Ω                   = zeros(Complex{Float64}, 2*N, 2*N);
-  Ω[1:N,1:N]          = (1/(sqrt(2)))*eye;
-  Ω[1:N,(1:N).+N]      = (1/(sqrt(2)))*eye;
-  Ω[(1:N).+N,1:N]      = im*(1/(sqrt(2)))*eye;
-  Ω[(1:N).+N,(1:N).+N]  = -im*(1/(sqrt(2)))*eye;
+  Ω                     = zeros(Complex{Float64}, 2*N, 2*N);
+  ν                     = (1/(sqrt(2)));
+  Ω[1:N,1:N]            = Diagonal(ν*ones(N));
+  Ω[1:N,(1:N).+N]       = Diagonal(ν*ones(N));
+  Ω[(1:N).+N,1:N]       = Diagonal(im*ν*ones(N));
+  Ω[(1:N).+N,(1:N).+N]  = Diagonal(-im*ν*ones(N));
   return Ω;
 end
 
 function Build_FxxTxp(N)
  FxxTxp = zeros(Int64, 2*N, 2*N);
  for iiter=1:N
-   FxxTxp[2*iiter-1,iiter]   = 1;
-   FxxTxp[2*iiter, iiter+N] = 1;
+   FxxTxp[2*iiter-1,iiter]    = 1;
+   FxxTxp[2*iiter, iiter+N]   = 1;
  end
  return FxxTxp;
 end
@@ -32,38 +32,40 @@ function Build_FxpTxx(N)
  FxpTxx = zeros(Int64, 2*N, 2*N)
  for iiter=1:N
    FxpTxx[iiter,2*iiter-1]    = 1;
-   FxpTxx[iiter+N, 2*iiter] = 1;
+   FxpTxx[iiter+N, 2*iiter]   = 1;
  end
  return FxpTxx;
 end
 
 function Diag_real_skew(M, rand_perturbation::Int64=0)
-  #rand_perturbation: 0 do nothing,
-  #                   1 add random eps() perturbation to the diagonal,
-  #                   2 add random eps() perturbation to the whole matrix.
-  #                   Default: default_perturbation=0 -> do nothing.
-
  N = div(size(M,1),2);
 
- M = real((M-M')/2.); #Force skew-symmetry
+ #Random perturbation before forcing skew symmetrisation
  if (rand_perturbation != 0)
    if (rand_perturbation == 1)
-     M += diagm(rand(2*N_f)*eps()) #Se la diagonale è proprio zero ho problemi di convergenza
-   end
-   if (rand_perturbation == 2)
-     random_M = 1*rand(2*N_f,2*N_f)*eps();#Per SETTORI MOMENTO questo bastava 10 e non 100
+     random_M = 1*rand(2*N_f,2*N_f)*eps();
      random_M = (random_M-random_M')/2.;
      M += random_M;
    end
  end
+
+ M = real((M-M')/2.); #Force skew-symmetry
+ #Random pertubation after the skew symmetrization
+ if (rand_perturbation != 0)
+   if (rand_perturbation == 2)    #Perturb the diagonal elements (loose perfect skew-symmetry)
+     M += diagm(rand(2*N_f)*eps())
+   end
+   if (rand_perturbation == 3)  #Perturb the whole matrix (loose perfect skew-symmetry)
+     random_M = 1*rand(2*N_f,2*N_f)*eps();
+     random_M = (random_M-random_M')/2.;
+     M += random_M;
+   end
+ end
+
  Schur_object   = LinearAlgebra.schur(M);
- #Per non avere errori di convergenza
- # Schur_object   = schurfact(M);
- #Forse questo risolve dei problemi numerici
+
  Schur_ort_i    = Schur_object.vectors;
  Schur_blocks_i = Schur_object.Schur;
-
-
 
  Schur_adjust = zeros(Int64, 2*N, 2*N);
  for iiter=1:N
@@ -79,7 +81,7 @@ function Diag_real_skew(M, rand_perturbation::Int64=0)
  M_temp   = Schur_adjust*Schur_blocks_i*Schur_adjust';
  O_temp   = (Schur_ort_i*Schur_adjust);
 
-
+ #Sort the blocks, λ_1>=λ_2>=...>=λ_N with λ_1 the coefficient in the upper left block
  not_sorted = true;
  while not_sorted
      not_sorted = false;
@@ -101,12 +103,16 @@ function Diag_real_skew(M, rand_perturbation::Int64=0)
      end
      N = N-1;
  end
-
    M_f = M_temp;
    O_f = real.(O_temp);
 
  return M_f, O_f;
 end
+
+
+
+###################################################################################
+
 
 function Diag_ferm(M,rand_perturbation::Int64=0)
     N = div(size(M,1),2);
@@ -128,13 +134,13 @@ function Diag_ferm(M,rand_perturbation::Int64=0)
     return real(M_f), U_f;
 end
 
-function Diag_gamma(Γ)
+function Diag_gamma(Γ,rand_perturbation::Int64=0)
  #Diagonalizzo cosi' invece che con eig cosi' ottengo gli autovettori a coppie
  #ordinate come voglio.
  #La generica unitaria tra Fermioni di Dirac e' fatta come
  #Ω*O*Ω', con O una generica ortogonale NxN specificata da N(N-1)/2 angoli
  Γ = (Γ+Γ')/2.;
- γ, U = Diag_ferm(Γ-0.5*I);
+ γ, U = Diag_ferm(Γ-0.5*I,rand_perturbation);
 
  return U'*Γ*U,U;#real(γ+0.5*eye(size(Γ,1))),U
 end
@@ -406,19 +412,19 @@ function VN_entropy(M)
    #Forzo la Hermitianità, se ho risultati strani controlla QUA
    #che M sia abbastanza vicina all'hermitiana prima.
    # M   = (M+M')/2.
-   # D,U = Diag_gamma(M);
+   # D,U = gamma(M);
    S = 0;
 
    for iiter=1:N
-       if (round.(D[iiter,iiter];digits=18)<-0.0000000000001)
-        De,Ue = LinerAlgebra.eigen((M+M')/2.);
+       if (round.(D[iiter,iiter];digits=14)<-0.0000000000001)
+        De,Ue = LinearAlgebra.eigen((M+M')/2.);
         for iiter=1:N
          println("DG: ", D[iiter,iiter]);
         end
         for iiter=1:N
          println("DE: ", De[iiter]);
         end
-        error = string("Eigenvalue in VE not in [0,1]: ",round(D[iiter,iiter],18))
+        error = string("Eigenvalue in VE not in [0,1]: ",round(D[iiter,iiter];digits=18))
         throw(ArgumentError(error))
        end
        nu = abs(round.(D[iiter,iiter];digits=18))
@@ -715,4 +721,341 @@ function Energy_fermions(Mat,D,U)
    end
 
    return real(energy);
+end
+
+
+
+function Build_thermal_gamma_fixed_beta(Diag_H, U_H, beta)
+ N_f   = convert(Int64, size(Diag_H,1)/2.);
+
+ gamma = zeros(Complex{Float64}, size(Diag_H,1),size(Diag_H,1))
+ for kiter=1:N_f
+   e_k = Diag_H[kiter+N_f,kiter+N_f];
+   gamma[kiter,kiter] = 1/(1+exp(beta*e_k));
+   gamma[kiter+N_f,kiter+N_f] = 1/(1+exp(-beta*e_k))
+ end
+
+ gamma = U_H*gamma*U_H';
+
+ return gamma;
+end
+
+
+function Build_thermal_gamma(Diag_H, U_H, conserved_energy)
+ N_f   = convert(Int64, size(Diag_H,1)/2.);
+ a     = 0;
+ b     = 100;
+ beta = 0;
+
+
+ temp_energy = 0;
+ for iiter=1:1000
+     beta  = (a+b)/2;
+     temp_energy = 0
+     for kiter=1:N_f
+       e_k = Diag_H[kiter+N_f,kiter+N_f];
+       temp_energy += e_k*(1/(1+exp(beta*e_k))-1/(1+exp(-beta*e_k)));
+     end
+     if (temp_energy > conserved_energy)
+       a = beta;
+       else
+       b = beta;
+     end
+ end
+
+ println("Thermal state with energy precision of:", abs(temp_energy-conserved_energy)," and beta: ", beta);
+
+ gamma = zeros(Complex{Float64}, size(Diag_H,1),size(Diag_H,1))
+ for kiter=1:N_f
+   e_k = Diag_H[kiter+N_f,kiter+N_f];
+   gamma[kiter,kiter] = 1/(1+exp(beta*e_k));
+   gamma[kiter+N_f,kiter+N_f] = 1/(1+exp(-beta*e_k))
+ end
+
+ gamma = U_H*gamma*U_H';
+
+ return beta, gamma;
+end
+
+function Project_diagonals(M4,off_diagonals)
+ #Return a 4-blocks matrix, in wich in each block only
+ #the first off_diagonals diagonal off diagonal are manteined
+ #the rest is set to 0.
+ #If off_diagonals=0 then it mantains only the diagonal of each block
+ N_f = convert(Int64, size(M4,1)/2.)
+ M_finale = zeros(Complex{Float64}, 2*N_f, 2*N_f)
+
+ for iiter=1:N_f
+   M_finale[iiter, iiter]          = M4[iiter, iiter]
+   M_finale[iiter+N_f, iiter]      = M4[iiter+N_f, iiter]
+   M_finale[iiter, iiter+N_f]      = M4[iiter, iiter+N_f]
+   M_finale[iiter+N_f, iiter+N_f]  = M4[iiter+N_f, iiter+N_f]
+   for jiter=1:off_diagonals
+     M_finale[iiter, mod(iiter+jiter-1,N_f)+1]          = M4[iiter, mod(iiter+jiter-1,N_f)+1]
+     M_finale[iiter+N_f, mod(iiter+jiter-1,N_f)+1]      = M4[iiter+N_f, mod(iiter+jiter-1,N_f)+1]
+     M_finale[iiter, mod(iiter+jiter-1,N_f)+1+N_f]      = M4[iiter, mod(iiter+jiter-1,N_f)+1+N_f]
+     M_finale[iiter+N_f, mod(iiter+jiter-1,N_f)+1+N_f]  = M4[iiter+N_f, mod(iiter+jiter-1,N_f)+1+N_f]
+
+     M_finale[iiter, mod(iiter-jiter-1,N_f)+1]          = M4[iiter, mod(iiter-jiter-1,N_f)+1]
+     M_finale[iiter+N_f, mod(iiter-jiter-1,N_f)+1]      = M4[iiter+N_f, mod(iiter-jiter-1,N_f)+1]
+     M_finale[iiter, mod(iiter-jiter-1,N_f)+1+N_f]      = M4[iiter, mod(iiter-jiter-1,N_f)+1+N_f]
+     M_finale[iiter+N_f, mod(iiter-jiter-1,N_f)+1+N_f]  = M4[iiter+N_f, mod(iiter-jiter-1,N_f)+1+N_f]
+   end
+ end
+ return M_finale
+end
+
+function Build_GDE(g_ferm_i,U_diag_f_Q)
+  return (U_diag_f_Q*Project_diagonals(U_diag_f_Q'*g_ferm_i*U_diag_f_Q,0)*U_diag_f_Q');;
+end
+
+
+function Entanglement_Hamiltonian(Γ)
+  ΓD, U = Diag_gamma(Γ,0);
+  N     = size(ΓD,1);
+  H_e   = zeros(Float64, N,N);
+  for i=1:N
+    ν = real(ΓD[i,i])
+    if ((abs(ν)>10^-12) && (abs((abs(ν)-1))>10^-12))
+      H_e[i,i] = log((1-ν)/ν);
+    elseif (abs((abs(ν)-1))>10^-14)
+      println("--> 0");
+      H_e[i,i] = 99999999999;
+    else
+      println("--> 1");
+      H_e[i,i] = -99999999999;
+    end
+    # H_e[i,i] = -2*ν+1
+  end
+
+  return U*H_e*U', U'*H_e*U;
+end
+
+
+
+  function Ent_cont(Λ)
+    dim_Λ   = size(Λ,1);
+    N       = div(dim_Λ,2);
+
+    F_xxtxp = Build_FxxTxp(N);
+    Ω       = Build_Omega(N);
+    eye       = Matrix{Float64}(I, dim_Λ, dim_Λ);
+
+    #### Build the Majorana correlation matrix M ####
+    γ = Λ-0.5*eye;
+    γ = real(-im*Ω*γ*Ω');
+    γ = F_xxtxp*γ*F_xxtxp';
+    γ = (γ-γ')/2.;
+    #########
+
+    M,O = Diag_real_skew(γ);
+
+    p = zeros(Float64,N,N);
+
+    for i=1:N
+      for k=1:N
+        p[i,k] = 0.5*((O[2*i-1,2*k-1]*conj(O[2*i-1,2*k-1]))+(O[2*i,2*k-1]*conj(O[2*i,2*k-1]))
+        +(O[2*i-1,2*k]*conj(O[2*i-1,2*k]))+(O[2*i,2*k]*conj(O[2*i,2*k])))
+      end
+    end
+
+    #### start debug ####
+    # println("--> Devono esserci solo 1:")
+    # for i=1:N
+    #   print("- ",sum(p[i,:]));
+    # end
+    #### end debug ####
+
+    Saffi = zeros(Float64, N);
+    for i=1:N
+      for k=1:N
+        ν = 0.5+M[2*k-1,2*k];
+        if (ν<0.)
+          # println("ν < ZERO!!!! ", ν)
+          ν = 0;
+        end
+        if (ν>1.)
+          # println("ν > UNO!!!!", ν)
+          ν = 1;
+        end
+        if (ν!=0.0 && ν!=1.0)
+          Saffi[i] -= p[i,k]*(ν*log2(ν)+(1-ν)*log2(1-ν));
+        end
+      end
+    end
+
+    return Saffi;
+  end
+
+
+
+function Ent_cont_basse_energie(Λ,χ)
+  dim_Λ   = size(Λ,1);
+  N       = div(dim_Λ,2);
+
+  F_xxtxp = Build_FxxTxp(N);
+  Ω       = Build_Omega(N);
+  eye       = Matrix{Float64}(I, dim_Λ, dim_Λ);
+
+  #### Build the Majorana correlation matrix M ####
+  γ = Λ-0.5*eye;
+  γ = real(-im*Ω*γ*Ω');
+  γ = F_xxtxp*γ*F_xxtxp';
+  γ = (γ-γ')/2.;
+  #########
+
+  M,O = Diag_real_skew(γ);
+
+  p = zeros(Float64,N,N);
+
+  for i=1:N
+    for k=1:N
+      p[i,k] = 0.5*((O[2*i-1,2*k-1]*conj(O[2*i-1,2*k-1]))+(O[2*i,2*k-1]*conj(O[2*i,2*k-1]))
+      +(O[2*i-1,2*k]*conj(O[2*i-1,2*k]))+(O[2*i,2*k]*conj(O[2*i,2*k])))
+    end
+  end
+
+  #### start debug ####
+  # println("--> Devono esserci solo 1:")
+  # for i=1:N
+  #   print("- ",sum(p[i,:]));
+  # end
+  #### end debug ####
+
+  Saffi = zeros(Float64, N);
+  for i=1:N
+    for s=1:χ
+      k = N-s+1;
+      ν = 0.5+M[2*k-1,2*k];
+      if (ν<0.)
+        # println("ν < ZERO!!!! ", ν)
+        ν = 0;
+      end
+      if (ν>1.)
+        # println("ν > UNO!!!!", ν)
+        ν = 1;
+      end
+      if (ν!=0.0 && ν!=1.0)
+        Saffi[i] -= p[i,k]*(ν*log2(ν)+(1-ν)*log2(1-ν));
+      end
+    end
+  end
+
+  return Saffi;
+end
+
+
+
+
+function Ent_cont_alte_energie(Λ,χ)
+  dim_Λ   = size(Λ,1);
+  N       = div(dim_Λ,2);
+
+  F_xxtxp = Build_FxxTxp(N);
+  Ω       = Build_Omega(N);
+  eye       = Matrix{Float64}(I, dim_Λ, dim_Λ);
+
+  #### Build the Majorana correlation matrix M ####
+  γ = Λ-0.5*eye;
+  γ = real(-im*Ω*γ*Ω');
+  γ = F_xxtxp*γ*F_xxtxp';
+  γ = (γ-γ')/2.;
+  #########
+
+  M,O = Diag_real_skew(γ);
+
+  p = zeros(Float64,N,N);
+
+  for i=1:N
+    for k=1:N
+      p[i,k] = 0.5*((O[2*i-1,2*k-1]*conj(O[2*i-1,2*k-1]))+(O[2*i,2*k-1]*conj(O[2*i,2*k-1]))
+      +(O[2*i-1,2*k]*conj(O[2*i-1,2*k]))+(O[2*i,2*k]*conj(O[2*i,2*k])))
+    end
+  end
+
+  #### start debug ####
+  # println("--> Devono esserci solo 1:")
+  # for i=1:N
+  #   print("- ",sum(p[i,:]));
+  # end
+  #### end debug ####
+
+  Saffi = zeros(Float64, N);
+  for i=1:N
+    for s=(N-χ+1):N
+      k = N-s+1;
+      ν = 0.5+M[2*k-1,2*k];
+      if (ν<0.)
+        # println("ν < ZERO!!!! ", ν)
+        ν = 0;
+      end
+      if (ν>1.)
+        # println("ν > UNO!!!!", ν)
+        ν = 1;
+      end
+      if (ν!=0.0 && ν!=1.0)
+        Saffi[i] -= p[i,k]*(ν*log2(ν)+(1-ν)*log2(1-ν));
+      end
+    end
+  end
+
+  return Saffi;
+end
+
+
+
+
+function Ent_cont_selez_energie(Λ,χ)
+  dim_Λ   = size(Λ,1);
+  N       = div(dim_Λ,2);
+
+  F_xxtxp = Build_FxxTxp(N);
+  Ω       = Build_Omega(N);
+  eye       = Matrix{Float64}(I, dim_Λ, dim_Λ);
+
+  #### Build the Majorana correlation matrix M ####
+  γ = Λ-0.5*eye;
+  γ = real(-im*Ω*γ*Ω');
+  γ = F_xxtxp*γ*F_xxtxp';
+  γ = (γ-γ')/2.;
+  #########
+
+  M,O = Diag_real_skew(γ);
+
+  p = zeros(Float64,N,N);
+
+  for i=1:N
+    for k=1:N
+      p[i,k] = 0.5*((O[2*i-1,2*k-1]*conj(O[2*i-1,2*k-1]))+(O[2*i,2*k-1]*conj(O[2*i,2*k-1]))
+      +(O[2*i-1,2*k]*conj(O[2*i-1,2*k]))+(O[2*i,2*k]*conj(O[2*i,2*k])))
+    end
+  end
+
+  #### start debug ####
+  # println("--> Devono esserci solo 1:")
+  # for i=1:N
+  #   print("- ",sum(p[i,:]));
+  # end
+  #### end debug ####
+
+  Saffi = zeros(Float64, N);
+  for i=1:N
+    for s=χ
+      k = N-s+1;
+      ν = 0.5+M[2*k-1,2*k];
+      if (ν<0.)
+        # println("ν < ZERO!!!! ", ν)
+        ν = 0;
+      end
+      if (ν>1.)
+        # println("ν > UNO!!!!", ν)
+        ν = 1;
+      end
+      if (ν!=0.0 && ν!=1.0)
+        Saffi[i] -= p[i,k]*(ν*log2(ν)+(1-ν)*log2(1-ν));
+      end
+    end
+  end
+
+  return Saffi;
 end
