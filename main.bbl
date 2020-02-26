@@ -1,0 +1,24 @@
+\ifx\undefined\bysame
+\newcommand{\bysame}{\leavevmode\hbox to\leftmargin{\hrulefill\,\,}}
+\fi
+\begin{thebibliography}{xx}
+
+\harvarditem[Horn and Johnson]{Horn and Johnson}{1985}{horn1985}
+{\bf Horn, Roger~A. and Charles~R. Johnson}, ``Matrix {{Analysis}} by {{Roger
+  A}}. {{Horn}},'' /core/books/matrix-analysis/9CF2CB491C9E97948B15FAD835EF9A8B
+  December 1985.
+
+\harvarditem[Lieb et al.]{Lieb, Schultz and Mattis}{1961}{lieb1961}
+{\bf Lieb, Elliott, Theodore Schultz, and Daniel Mattis}, ``Two Soluble Models
+  of an Antiferromagnetic Chain,'' {\it Annals of Physics}, December 1961, {\it
+  16} (3), 407--466.
+
+\harvarditem[Nielsen]{Nielsen}{n.d.}{nielsen}
+{\bf Nielsen, Michael~A}, ``The {{Fermionic}} Canonical Commutation Relations
+  and the {{Jordan}}-{{Wigner}} Transform,'' p.~8.
+
+\harvarditem[Zumino]{Zumino}{1962}{zumino1962}
+{\bf Zumino, Bruno}, ``Normal {{Forms}} of {{Complex Matrices}},'' {\it Journal
+  of Mathematical Physics}, September 1962, {\it 3} (5), 1055--1057.
+
+\end{thebibliography}
