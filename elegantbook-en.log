@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.28)  26 FEB 2020 10:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.28)  24 FEB 2020 10:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**main.tex
-(./main.tex
+**elegantbook-en.tex
+(./elegantbook-en.tex
 LaTeX2e <2018-12-01>
 (./elegantbook.cls
 Document Class: elegantbook 2019/05/26 v3.08 ElegantBook document class
@@ -1882,132 +1882,136 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen313
 \l_MT_below_shortintertext_sep=\dimen314
 )
-LaTeX Font Info:    Try loading font information for T1+ntxtlf on input line 86
+LaTeX Font Info:    Try loading font information for T1+ntxtlf on input line 83
 .
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/t1ntxtlf.fd
 File: t1ntxtlf.fd 2015/01/17 v1.0 font definition file for T1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 86.
+(Font)              scaled to size 10.95pt on input line 83.
 
-No file main.aux.
-\openout1 = `main.aux'.
+(./elegantbook-en.aux
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 86.
-LaTeX Font Info:    Try loading font information for OML+ntxmi on input line 86
+LaTeX Warning: Label `eq:MCAR' multiply defined.
+
+)
+\openout1 = `elegantbook-en.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 83.
+LaTeX Font Info:    Try loading font information for OML+ntxmi on input line 83
 .
-(/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/omlntxmi.fd
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 86.
-LaTeX Font Info:    Try loading font information for U+ntxexa on input line 86.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 83.
+LaTeX Font Info:    Try loading font information for U+ntxexa on input line 83.
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 86.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 86.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 83.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 83.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 86.
-LaTeX Font Info:    Try loading font information for LMS+ntxsy on input line 86
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 83.
+LaTeX Font Info:    Try loading font information for LMS+ntxsy on input line 83
 .
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 83.
 LaTeX Font Info:    Try loading font information for LMX+ntxexx on input line 8
-6.
+3.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
-LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 86.
-LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
 \c@mv@tabular=\count369
 \c@mv@boldtabular=\count370
 
@@ -2083,7 +2087,7 @@ ABD: EveryShipout initializing macros
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box110
-Package hyperref Info: Link coloring ON on input line 86.
+Package hyperref Info: Link coloring ON on input line 83.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -2092,17 +2096,19 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count377
 )
-LaTeX Info: Redefining \ref on input line 86.
-LaTeX Info: Redefining \pageref on input line 86.
-LaTeX Info: Redefining \nameref on input line 86.
+LaTeX Info: Redefining \ref on input line 83.
+LaTeX Info: Redefining \pageref on input line 83.
+LaTeX Info: Redefining \nameref on input line 83.
+
+(./elegantbook-en.out) (./elegantbook-en.out)
 \@outlinefile=\write8
-\openout8 = `main.out'.
+\openout8 = `elegantbook-en.out'.
 
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 86.
+(lastpage)             ! on input line 83.
 \c@lstlisting=\count378
-Package hyperref Info: Option `pageanchor' set `false' on input line 88.
+Package hyperref Info: Option `pageanchor' set `false' on input line 85.
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -2135,81 +2141,81 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 88.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./figure/cover.jpg, id=31, 1086.0575pt x 925.4575pt>
+<./figure/cover.jpg, id=131, 1086.0575pt x 925.4575pt>
 File: ./figure/cover.jpg Graphic file (type jpg)
 <use ./figure/cover.jpg>
-Package pdftex.def Info: ./figure/cover.jpg  used on input line 88.
+Package pdftex.def Info: ./figure/cover.jpg  used on input line 85.
 (pdftex.def)             Requested size: 597.50787pt x 509.17265pt.
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 88.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 85.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.95pt on input line 88.
+(Font)              scaled to size 10.95pt on input line 85.
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 88.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 85.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 24.88pt on input line 88.
+(Font)              scaled to size 24.88pt on input line 85.
 LaTeX Font Info:    Try loading font information for OT1+ntxtlf on input line 8
-8.
+5.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
 File: ot1ntxtlf.fd 2015/01/17 v1.0 font definition file for OT1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 88.
+(Font)              scaled to size 10.95pt on input line 85.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 88.
+(Font)              scaled to size 8.0pt on input line 85.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.1pt on input line 88.
-LaTeX Font Info:    Try loading font information for U+ntxmia on input line 88.
+(Font)              scaled to size 6.1pt on input line 85.
+LaTeX Font Info:    Try loading font information for U+ntxmia on input line 85.
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsym on input line 88.
+LaTeX Font Info:    Try loading font information for U+ntxsym on input line 85.
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 88.
+LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 85.
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 88.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 85.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 88.
+LaTeX Font Info:    Try loading font information for U+msa on input line 85.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 88.
+LaTeX Font Info:    Try loading font information for U+msb on input line 85.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.95pt on input line 88.
+(Font)              scaled to size 10.95pt on input line 85.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.0pt on input line 88.
+(Font)              scaled to size 8.0pt on input line 85.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 6.1pt on input line 88.
+(Font)              scaled to size 6.1pt on input line 85.
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 88.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 85.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 14.4pt on input line 88.
-<./figure/logo.png, id=32, 309.3156pt x 184.0476pt>
+(Font)              scaled to size 14.4pt on input line 85.
+<./figure/logo.png, id=132, 309.3156pt x 184.0476pt>
 File: ./figure/logo.png Graphic file (type png)
 <use ./figure/logo.png>
-Package pdftex.def Info: ./figure/logo.png  used on input line 88.
+Package pdftex.def Info: ./figure/logo.png  used on input line 85.
 (pdftex.def)             Requested size: 119.50148pt x 71.10426pt.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.95pt on input line 88.
+(Font)              scaled to size 10.95pt on input line 85.
  [1
 
 
@@ -2217,344 +2223,324 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./figur
 e/cover.jpg> <./figure/logo.png>]
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 89.
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 86.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 17.28pt on input line 89.
+(Font)              scaled to size 17.28pt on input line 86.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf)
+88.pgf) (./elegantbook-en.toc)
 \tf@toc=\write9
-\openout9 = `main.toc'.
+\openout9 = `elegantbook-en.toc'.
 
  [1
 
 
 ]
 Package marginnote Info: Using workaround for absolute page number on input lin
-e 90.
-Package hyperref Info: Option `pageanchor' set `true' on input line 93.
+e 87.
+Package hyperref Info: Option `pageanchor' set `true' on input line 90.
 
 Chapter 1 1.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf)
-
-Package natbib Warning: Citation `nielsen' on page 1 undefined on input line 10
-3.
-
-LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 124.
-LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.1pt on input line 124.
-
-LaTeX Warning: Reference `appendix:fermionic_operators' on page 1 undefined on 
-input line 127.
-
-[1
+88.pgf) [1
 
 
 
 ]
 Package marginnote Info: Using workaround for absolute page number on input lin
-e 131.
-
-Underfull \hbox (badness 10000) in paragraph at lines 150--152
-
- []
-
-LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <12> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 157.
-
-LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 157.
-
-LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 200.
-
+e 159.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [2]
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <12> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 241.
 
-LaTeX Warning: Reference `eq:MCAR' on page 3 undefined on input line 208.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 241.
 
+Underfull \hbox (badness 10000) in paragraph at lines 281--284
 
-LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 225.
+ []
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [3]
-Chapter 2 2.
-
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf)
-
-LaTeX Warning: Reference `eq:Dirac-QFH' on page 4 undefined on input line 244.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 266--270
-
- []
-
-
-LaTeX Warning: Reference `eq:Dirac-QFH' on page 4 undefined on input line 275.
-
-[4
-
-]
-
-Package natbib Warning: Citation `lieb1961' on page 5 undefined on input line 2
-80.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 317--320
-
- []
-
-
-LaTeX Warning: Reference `eq:diagonal-Majorana-h' on page 5 undefined on input 
-line 321.
-
-
-Package natbib Warning: Citation `lieb1961' on page 5 undefined on input line 3
-22.
-
-
-Package natbib Warning: Citation `zumino1962' on page 5 undefined on input line
- 324.
-
-
-Package natbib Warning: Citation `horn1985' on page 5 undefined on input line 3
-24.
-
-
-LaTeX Warning: Reference `LastPage' on page 5 undefined on input line 338.
-
-
+88.pgf) [4]
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [5]
-
-LaTeX Warning: Reference `eq:Majorana-QFH' on page 6 undefined on input line 34
-0.
-
-
-LaTeX Warning: Reference `eq:Schur-Decomposition' on page 6 undefined on input 
-line 340.
-
-
-LaTeX Warning: Reference `eq:Schur-Decomposition' on page 6 undefined on input 
-line 370.
-
-
-LaTeX Warning: Reference `thm:Block-Matrix' on page 6 undefined on input line 3
-70.
-
-
-Package natbib Warning: Citation `horn1985' on page 6 undefined on input line 3
-74.
-
-
-LaTeX Warning: Reference `LastPage' on page 6 undefined on input line 380.
-
-
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [6]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 403.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 384.
 
  (/usr/local/texlive/2019/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 403.
-
-
-LaTeX Warning: Reference `eq:Schur-Decomposition' on page 7 undefined on input 
-line 404.
-
-
-LaTeX Warning: Reference `eq:Dirac-QFH' on page 7 undefined on input line 412.
-
-
-LaTeX Warning: Reference `eq:Dirac-QFH-FreeFree' on page 7 undefined on input l
-ine 413.
-
-
-LaTeX Warning: Reference `eq:Majorana-QFH-FreeFree' on page 7 undefined on inpu
-t line 414.
-
-
-LaTeX Warning: Reference `eq:Dirac-QFH-FreeFree' on page 7 undefined on input l
-ine 414.
-
-
-LaTeX Warning: Reference `Diag_Real_Skew' on page 7 undefined on input line 424
-.
-
-
-LaTeX Warning: Reference `eq:Majorana-s' on page 7 undefined on input line 426.
-
-
-
-LaTeX Warning: Reference `eq:Majorana-r' on page 7 undefined on input line 426.
-
-
-
-LaTeX Warning: Reference `LastPage' on page 7 undefined on input line 448.
-
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 384.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [7]
-
-LaTeX Warning: Reference `Dirac-Diagonalisation' on page 8 undefined on input l
-ine 495.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 495--496
+88.pgf) [6]
+Underfull \hbox (badness 10000) in paragraph at lines 469--470
 
  []
 
 
-LaTeX Warning: Reference `LastPage' on page 8 undefined on input line 1037.
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [7]
+Chapter 2 2.
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf)
+Underfull \hbox (badness 10000) in paragraph at lines 480--484
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 496--498
+
+ []
+
+[8
+
+]
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [9]
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 8.0pt on input line 590.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.1pt on input line 590.
+
+Underfull \hbox (badness 10000) in paragraph at lines 589--591
+
+ []
+
+
+LaTeX Warning: Reference `eq:Gamma-Dirac-Diagonal' on page 10 undefined on inpu
+t line 596.
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [8]
+88.pgf) [10]
+Overfull \hbox (2.93369pt too wide) in paragraph at lines 644--650
+\T1/ntxtlf/m/n/10.95 To ob-tain the re-duced cor-re-la-tion ma-trix of the con-
+tigu-ous sites $\LMS/ntxsy/m/n/10.95 f\OML/ntxmi/m/it/10.95 i[]; [] ; i[]\LMS/n
+txsy/m/n/10.95 g$ \T1/ntxtlf/m/n/10.95 with \T1/cmtt/m/n/10.95 F-utilities.jl
+ []
+
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 14.4pt on input line 657.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.5pt on input line 657.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 7.9pt on input line 657.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 14.4pt on input line 657.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.5pt on input line 657.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 7.9pt on input line 657.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 657.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\rho' on input line 657.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 657.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 657.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\Gamma' on input line 657.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 657.
+
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [11]
+Underfull \hbox (badness 10000) in paragraph at lines 684--690
+
+ []
+
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [12]
+Underfull \hbox (badness 10000) in paragraph at lines 755--761
+
+ []
+
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [13]
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [14]
+Chapter 3 3.
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [15
+
+]
+Chapter 4 4.
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [16
+
+]
+Chapter 5 5.
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf)
+Underfull \hbox (badness 10000) in paragraph at lines 795--802
+
+ []
+
+[17
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 805--811
+
+ []
+
+<figure/Gaussian-Projection.pdf, id=452, 596.10417pt x 288.15494pt>
+File: figure/Gaussian-Projection.pdf Graphic file (type pdf)
+<use figure/Gaussian-Projection.pdf>
+Package pdftex.def Info: figure/Gaussian-Projection.pdf  used on input line 821
+.
+(pdftex.def)             Requested size: 334.60422pt x 161.74818pt.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.0pt on input line 823.
+LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <10> not available
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 823.
+
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.0pt on input line 823.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.0pt on input line 823.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 7.3pt on input line 823.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.0pt on input line 823.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 7.3pt on input line 823.
+
+Underfull \hbox (badness 10000) in paragraph at lines 828--829
+
+ []
+
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [18]
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [19 <./figure/Gaussian-Projection.pdf>]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 921.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 8.8pt on input line 921.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.6pt on input line 921.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 921.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 8.8pt on input line 921.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 6.6pt on input line 921.
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [20]
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [21]
 Appendix A.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 1038.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.5pt on input line 1038.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.9pt on input line 1038.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 14.4pt on input line 1038.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.5pt on input line 1038.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 7.9pt on input line 1038.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1012.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1038.
+(hyperref)                removing `\Gamma' on input line 1012.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Gamma' on input line 1038.
+(hyperref)                removing `math shift' on input line 1012.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1038.
+(hyperref)                removing `math shift' on input line 1012.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1038.
+(hyperref)                removing `subscript' on input line 1012.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1038.
+(hyperref)                removing `\alpha' on input line 1012.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\alpha' on input line 1038.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1038.
+(hyperref)                removing `math shift' on input line 1012.
 
 LaTeX Font Info:    Try loading font information for TS1+ntxtlf on input line 1
-073.
+047.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1073.
- [9
+(Font)              scaled to size 10.95pt on input line 1047.
+ [22
 
 ]
-Overfull \hbox (50.70718pt too wide) detected at line 1094
+Overfull \hbox (50.70718pt too wide) detected at line 1068
 \U/ntxmia/m/it/10.95 = [] \OML/ntxmi/m/it/10.95 U[]U[]Tr [] \U/ntxmia/m/it/10.9
 5 ý [] \OML/ntxmi/m/it/10.95 U[]U[]Tr [] \U/ntxmia/m/it/10.95 =
  []
 
 
-LaTeX Warning: Reference `LastPage' on page 10 undefined on input line 1145.
-
-
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [10]
-
-LaTeX Warning: Reference `LastPage' on page 11 undefined on input line 1149.
-
-
+88.pgf) [23]
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [11]
+88.pgf) [24]
 Appendix B.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
 
-LaTeX Warning: Reference `eq:Omega' on page 12 undefined on input line 1153.
+LaTeX Warning: Reference `eq:Gamma-Dirac-Diagonal' on page 25 undefined on inpu
+t line 1138.
 
 
-LaTeX Warning: Reference `eq:FxxTxp' on page 12 undefined on input line 1155.
+LaTeX Warning: Reference `eq:Imaginary-Evolution' on page 25 undefined on input
+ line 1144.
 
-
-LaTeX Warning: Reference `eq:Schur-Decomposition' on page 12 undefined on input
- line 1159.
-
-
-LaTeX Warning: Reference `Dirac-Diagonalisation' on page 12 undefined on input 
-line 1161.
-
-
-LaTeX Warning: Reference `eq:Gamma-Dirac-Diagonal' on page 12 undefined on inpu
-t line 1164.
-
-
-LaTeX Warning: Reference `eq:Imaginary-Evolution' on page 12 undefined on input
- line 1170.
-
-[12
+[25
 
 ]
-Overfull \hbox (1.1841pt too wide) in paragraph at lines 1193--1194
+Overfull \hbox (1.1841pt too wide) in paragraph at lines 1167--1168
 []\T1/cmtt/m/n/10.95 Inject_gamma(gamma, injection, first_index)$\LMS/ntxsy/m/n
 /10.95 ! \OML/ntxmi/m/it/10.95 M[]$\T1/ntxtlf/m/n/10.95 :This func-tion over-wr
 ite the
  []
 
 
-LaTeX Warning: Reference `LastPage' on page 13 undefined on input line 1220.
-
-
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [13]
+88.pgf) [26]
 Appendix C.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf)
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 1258.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.8pt on input line 1258.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.6pt on input line 1258.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 1258.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.8pt on input line 1258.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 6.6pt on input line 1258.
- [14
+88.pgf) [27
 
-] (./main.bbl
-
-LaTeX Warning: Reference `LastPage' on page 15 undefined on input line 4.
-
-
+] (./elegantbook-en.bbl
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [15]
+88.pgf) [28]
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
@@ -2564,40 +2550,21 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <9> not available
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 9.0pt on input line 7.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 9.0pt on input line 13.
-)
-
-Package natbib Warning: There were undefined citations.
-
-
-Package lastpage Warning: Rerun to get the references right on input line 1319.
-
-
-
+(Font)              scaled to size 9.0pt on input line 11.
+) 
 AED: lastpage setting LastPage
-[16
+[29
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1319.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1319.
- (./main.aux
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1290.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1290.
+ (./elegantbook-en.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1290.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1290.
 
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
+Package rerunfilecheck Info: File `elegantbook-en.out' has not changed.
+(rerunfilecheck)             Checksum: 7BE53D20276CE7BBADF93F66EC8CDE62;4861.
 
-)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1319.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1319.
-
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  0F43EE3C7CF20A0E9FEBB9203692F8A4;3218.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -2605,17 +2572,17 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 44742 strings out of 492616
- 827350 string characters out of 6129481
- 1175081 words of memory out of 5000000
- 47642 multiletter control sequences out of 15000+600000
- 676581 words of font info for 325 fonts, out of 8000000 for 9000
+ 45018 strings out of 492616
+ 833642 string characters out of 6129481
+ 1175101 words of memory out of 5000000
+ 47779 multiletter control sequences out of 15000+600000
+ 698899 words of font info for 368 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,18n,124p,842b,1402s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,18n,124p,852b,1440s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/
 local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/lo
 cal/texlive/2019/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/local/t
@@ -2623,26 +2590,33 @@ exlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2019/tex
 mf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}</usr/local/texlive/2019/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist
 /fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2019/texmf-d
-ist/fonts/type1/public/tex-gyre/qtmb.pfb></usr/local/texlive/2019/texmf-dist/fo
-nts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
-pe1/public/tex-gyre/qtmri.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/p
-ublic/newtx/rntxmi.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/n
-ewtx/rntxmi5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/r
-ntxmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/txfonts/rtxmi
-.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/rtxmi5.pfb></
-usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/loc
-al/texlive/2019/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texliv
-e/2019/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2019/t
-exmf-dist/fonts/type1/public/txfonts/txmia.pfb></usr/local/texlive/2019/texmf-d
-ist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2019/texmf-dist/fo
-nts/type1/public/txfonts/txsyc.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
-pe1/public/newtx/txsys.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/
-times/utmri8a.pfb>
-Output written on main.pdf (18 pages, 395980 bytes).
+ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/font
+s/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2019/texmf-dist/
+fonts/type1/public/tex-gyre/qtmb.pfb></usr/local/texlive/2019/texmf-dist/fonts/
+type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/
+public/tex-gyre/qtmri.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publi
+c/newtx/rntxmi.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx
+/rntxmi5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/rntxm
+i7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb
+></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/rtxmi5.pfb></usr/
+local/texlive/2019/texmf-dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/local/t
+exlive/2019/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/
+2019/texmf-dist/fonts/type1/public/cm-super/sfit1095.pfb></usr/local/texlive/20
+19/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2019
+/texmf-dist/fonts/type1/public/newtx/txexas.pfb></usr/local/texlive/2019/texmf-
+dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2019/texmf-dist/fon
+ts/type1/public/txfonts/txmia.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
+e1/public/txfonts/txsyb.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pub
+lic/txfonts/txsyc.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/ne
+wtx/txsys.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a
+.pfb>
+Output written on elegantbook-en.pdf (31 pages, 1198579 bytes).
 PDF statistics:
- 379 PDF objects out of 1000 (max. 8388607)
- 315 compressed objects within 4 object streams
- 159 named destinations out of 1000 (max. 500000)
- 131 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 948 PDF objects out of 1000 (max. 8388607)
+ 813 compressed objects within 9 object streams
+ 250 named destinations out of 1000 (max. 500000)
+ 354 words of extra memory for PDF output out of 10000 (max. 10000000)
 

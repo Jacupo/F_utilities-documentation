@@ -1,0 +1,72 @@
+\ifx\undefined\bysame
+\newcommand{\bysame}{\leavevmode\hbox to\leftmargin{\hrulefill\,\,}}
+\fi
+\begin{thebibliography}{xx}
+
+\harvarditem[Bravyi]{Bravyi}{2004}{bravyi2004}
+{\bf Bravyi, Sergey}, ``Lagrangian Representation for Fermionic Linear
+  Optics,'' 2004.
+
+\harvarditem[Chen and Vidal]{Chen and Vidal}{2014}{chen2014}
+{\bf Chen, Yangang and Guifre Vidal}, ``Entanglement Contour,'' {\it Journal of
+  Statistical Mechanics: Theory and Experiment}, October 2014, {\it 2014} (10),
+  P10011.
+
+\harvarditem[Coser et al.]{Coser, Nobili and Tonni}{2017}{coser2017}
+{\bf Coser, Andrea, Cristiano~De Nobili, and Erik Tonni}, ``A Contour for the
+  Entanglement Entropies in Harmonic Lattices,'' {\it J. Phys. A: Math.
+  Theor.}, July 2017, {\it 50} (31), 314001.
+
+\harvarditem[{de Melo} et al.]{{de Melo}, {\'C}wikli{\'n}ski and
+  Terhal}{2013}{demelo2013}
+{\bf {de Melo}, Fernando, Piotr {\'C}wikli{\'n}ski, and Barbara~M. Terhal},
+  ``The {{Power}} of {{Noisy Fermionic Quantum Computation}},'' {\it New
+  Journal of Physics}, January 2013, {\it 15} (1), 013015.
+
+\harvarditem[Friis et al.]{Friis, Lee and Bruschi}{2013}{friis2013}
+{\bf Friis, Nicolai, Antony~R Lee, and David~Edward Bruschi}, ``Fermionic-Mode
+  Entanglement in Quantum Information,'' {\it Physical Review A}, February
+  2013, {\it 87} (2), 022338.
+
+\harvarditem[Gluza et al.]{Gluza, Krumnow, Friesdorf, Gogolin and
+  Eisert}{2016}{gluza2016}
+{\bf Gluza, M., C.~Krumnow, M.~Friesdorf, C.~Gogolin, and J.~Eisert},
+  ``Equilibration via {{Gaussification}} in {{Fermionic Lattice Systems}},''
+  {\it Phys. Rev. Lett.}, November 2016, {\it 117} (19), 190602.
+
+\harvarditem[Greplov{\'a}]{Greplov{\'a}}{2013}{greplova2013}
+{\bf Greplov{\'a}, Eliska}, ``Quantum {{Information}} with {{Fermionic Gaussian
+  States}},'' {\it Master Thesis}, 2013.
+
+\harvarditem[Horn and Johnson]{Horn and Johnson}{1985}{horn1985}
+{\bf Horn, Roger~A. and Charles~R. Johnson}, ``Matrix {{Analysis}} by {{Roger
+  A}}. {{Horn}},'' /core/books/matrix-analysis/9CF2CB491C9E97948B15FAD835EF9A8B
+  December 1985.
+
+\harvarditem[Kraus]{Kraus}{2009}{kraus2009}
+{\bf Kraus, Christina~V}, ``A {{Quantum Information Perspective}} of
+  {{Fermionic Quantum Many}}-{{Body Systems}},'' {\it PhD. Thesis}, 2009.
+
+\harvarditem[Kraus and Cirac]{Kraus and Cirac}{2010}{kraus2010}
+{\bf Kraus, Christina~V. and J.~Ignacio Cirac}, ``Generalized
+  {{Hartree}}\textendash{{Fock}} Theory for Interacting Fermions in Lattices:
+  Numerical Methods,'' {\it New J. Phys.}, November 2010, {\it 12} (11),
+  113004.
+
+\harvarditem[Peschel]{Peschel}{2003}{peschel2003}
+{\bf Peschel, Ingo}, ``Calculation of Reduced Density Matrices from Correlation
+  Functions,'' {\it J. Phys. A: Math. Gen.}, March 2003, {\it 36} (14),
+  L205--L208.
+
+\harvarditem[Tonni et al.]{Tonni, {Rodr{\'i}guez-Laguna} and
+  Sierra}{2018}{tonni2018}
+{\bf Tonni, Erik, Javier {Rodr{\'i}guez-Laguna}, and Germ{\'a}n Sierra},
+  ``Entanglement Hamiltonian and Entanglement Contour in Inhomogeneous {{1D}}
+  Critical Systems,'' {\it J. Stat. Mech.: Theory Exp.}, April 2018, {\it 2018}
+  (4), 043105.
+
+\harvarditem[Zumino]{Zumino}{1962}{zumino1962}
+{\bf Zumino, Bruno}, ``Normal {{Forms}} of {{Complex Matrices}},'' {\it Journal
+  of Mathematical Physics}, September 1962, {\it 3} (5), 1055--1057.
+
+\end{thebibliography}

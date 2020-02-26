@@ -1,0 +1,613 @@
+\documentclass[a4paper,oneside,11pt,citecolor=brown]{book}
+%\renewcommand{\baselinestretch}{1.05}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage{graphics}
+\usepackage{xfrac}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+%\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newcommand{\id}{\mathbb{I}}
+\newcommand{\im}{{i\mkern1mu}}
+\newcommand{\da}{^{\dag}}
+\newcommand{\sx}{\sigma^x}
+\newcommand{\sy}{\sigma^y}
+\newcommand{\sz}{\sigma^z}
+\newcommand{\ket}[1] {| #1 \rangle}
+ \newcommand{\bra}[1] {\langle #1 |}
+ 
+\newcount\colveccount
+\newcommand*\colvec[1]{
+        \global\colveccount#1
+        \begin{pmatrix}
+        \colvecnext
+}
+\def\colvecnext#1{
+        #1
+        \global\advance\colveccount-1
+        \ifnum\colveccount>0
+                \\
+                \expandafter\colvecnext
+        \else
+                \end{pmatrix}
+        \fi
+}
+\def\code#1{\texttt{#1}}
+\usepackage{colortbl}
+\definecolor{blue}{cmyk}{0.897, 0.393, 0, 0.0118}
+\definecolor{green}{cmyk}{0.835, 0, 0.395, 0.0275}
+\definecolor{red}{rgb}{0.992,0.498,0.486}
+
+%Strath Requirements
+%\usepackage[left=4cm,right=2.5cm,top=2cm,bottom=4cm,includehead,includefoot,headheight=15pt]{geometry}
+%% Line Spacing
+%%\def\baselinestretch{1.5} 
+%\usepackage{setspace}
+%\setstretch{1.5}
+
+\title{Quadratic Fermionic Hamiltonians}
+\author{Jacopo Surace}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+%%Quadratic Fermionic Hamiltonians
+\section{Quadratic Fermionic Hamiltonians}
+
+%%%%Representation of the generic Hamiltonian
+\subsection{Representation of the generic Hamiltonian}
+
+A possible representation of a generic Quadratic Fermionic Hamiltonian (QFH) is
+
+\begin{equation}
+	\label{eq:Dirac-QFH}
+	\hat{H}=\frac{1}{2}\sum_{i,j=1}^{N-1}\left(A_{i,j}a_{i}^{\dagger}a_{j}-\bar{A}_{i,j}a_{i}a_{j}			^{\dagger}+B_{i,j}a_{i}a_{j}-\bar{B}_{i,j}a_{i}^{\dagger}a_{j}^{\dagger}\right),
+\end{equation}
+
+with $A_{i,j},B_{i,j}\in\mathbb{C}$ and $A^{\dagger}=A$ (hermitian) and $B^{T}=-B$ (skew symmetric). \\
+
+This conditions on $A$ and $B$ come from the request for $ \hat{H} $ to be Hermitian and for the fermionic creation and annihilation operators ($a_i,a_j\da$) to obey the Canonical Anticomutation Relations (CAR) (see Appendix \ref{appendix:fermionic_operators})
+\begin{equation}
+	\begin{array}{ccc}
+	\left\{ a_{i},a_{j}\right\} =\left\{ a_{i}^{\dagger},a_{j}^{\dagger}\right\} =0 & \mbox{ , } & \left\{ a_{i}^{\dagger},a_{j}\right\} =\delta_{i,j}.\end{array}
+\end{equation}
+
+To simplify the notation we collect the fermionic operators in the vector
+\begin{equation}
+\label{eq:Vector-Alpha}
+\begin{array}{ccc}
+\vec{\alpha}=\left(\begin{array}{c}
+a_{0}^{\dagger}\\
+\vdots\\
+a_{N-1}^{\dagger}\\
+a_{0}\\
+\vdots\\
+a_{N-1}
+\end{array}\right) & \mbox{ , } & \vec{\alpha}^{\dagger}=\left(\begin{array}{cccccc}
+a_{0} & \dots & a_{N-1} & a_{0}^{\dagger} & \dots & a_{N-1}^{\dagger}\end{array}\right).\end{array}
+\end{equation}
+
+The Hamiltonian may then be written as
+
+\begin{equation}
+\label{eq:Dirac-QFH-h}
+\begin{array}{ccc}
+\hat{H}=\frac{1}{2}\vec{\alpha}^{\dagger}H_{a}\vec{\alpha} & \mbox{ , } & H_{a}=\left(\begin{array}{cc}
+-\bar{A} & B\\
+-\bar{B} & A
+\end{array}\right)\end{array}.
+\end{equation}
+
+The associated elements are:
+
+\begin{equation}
+H_{a}=\left(\begin{array}{cc}
+aa^{\dagger} & aa\\
+a^{\dagger}a^{\dagger} & a^{\dagger}a
+\end{array}\right).
+\end{equation}
+
+%%%%%%%%Majorana Operators
+\subsubsection{Majorana representation}
+
+Majorana operators are defined in term of Dirac operators as:
+\begin{equation}
+\label{eq:Majorana=Dirac}
+\begin{array}{ccc}
+x_{i}=\frac{a_{i}+a_{i}^{\dagger}}{\sqrt{2}} & \mbox{ , } & p_{i}=\frac{a_{i}-a_{i}^{\dagger}}{i\sqrt{2}}\end{array}.
+\end{equation}
+
+The inverse transformations are:
+
+\begin{equation}
+\label{eq:Dirac=Majorana}
+\begin{array}{ccc}
+a_{i}=\frac{x_{i}+ip_{i}}{\sqrt{2}} & \mbox{ , } & a_{i}^{\dagger}=\frac{x_{i}-ip_{i}}{\sqrt{2}}\end{array}.
+\end{equation}
+
+Majorana operators are hermitian so $x_{i}^{\dagger}=x_{i}$ and $p_{i}^{\dagger}=p_{i}$ and they obey the Majorana CAR (MCAR)
+
+\begin{equation}
+\begin{array}{ccc}
+\left\{ x_{i},x_{j}\right\} =\left\{ p_{i},p_{j}\right\} =\delta_{i,j} & \mbox{ , } & \left\{ x_{i},p_{j}\right\} =0.\end{array}
+\end{equation}
+
+We note here that in the Majorana representation the local structure is preserved. Majorana operators labelled by $i$ correspond fermionic operators labelled by $i$, so we still retain the physical space information. Moving to the Majorana representation is just a local (on each site) transformation.
+
+We define the unitary matrix
+
+\begin{equation}
+\label{eq:Omega}
+\begin{array}{ccc}
+\Omega=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}
+\mathbb{I} & \mathbb{I}\\
+i\mathbb{I} & -i\mathbb{I}
+\end{array}\right) & \mbox{ , } & \Omega^{\dagger}=\Omega^{-1}=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}
+\mathbb{I} & -i\mathbb{I}\\
+\mathbb{I} & i\mathbb{I}
+\end{array}\right)\end{array}
+\end{equation}
+
+such that $\vec{r}=\Omega\vec{\alpha}$ is the vector of the Majorana operators
+
+\begin{equation}
+\label{eq:Majorana-r}
+\vec{r}=\left(\begin{array}{c}
+x_{0}\\
+\vdots\\
+x_{N-1}\\
+p_{0}\\
+\vdots\\
+p_{N-1}
+\end{array}\right).
+\end{equation}
+
+In the Majorana representation the MCAR can be easily written as
+
+\begin{equation}
+\left\{ r_{i},r_{j}\right\} =\delta_{i,j},
+\end{equation}
+
+this is one of the advantage of using the Majorana representation.
+
+The Hamiltonian in term of the Majorana operators reads as
+\begin{equation}
+\label{eq:Majorana-QFH}
+\hat{H}=\frac{1}{2}\left(\vec{\alpha}^{\dagger}\Omega^{\dagger}\right)\Omega H_{a}\Omega^{\dagger}\left(\Omega\vec{\alpha}\right)=\frac{1}{2}\vec{r}^{\dagger}H\vec{r}
+\end{equation}
+
+with
+
+\begin{equation}
+\label{eq:Majorana-QFH-ih}
+H=\Omega H_{a}\Omega^{\dagger}=i\left(\begin{array}{cc}
+\Im\{A+B\} & \Re\{A+B\}\\
+\Re\{B-A\} & \Im\{A-B\}
+\end{array}\right)=ih.
+\end{equation}
+
+We note that $H$ is purely imaginary and hermitian (to see this just express the imaginary part and real part as the difference of the conjugates and use the properties of $A$ and $B$).
+
+The fact that $H$ is hermitian and purely imaginary imply that $H$ and $h$ are skew-symmetric.
+
+The associated elements are:
+
+\begin{equation}
+H=\left(\begin{array}{cc}
+xx & xp\\
+px & pp
+\end{array}\right).
+\end{equation}
+
+The following identities can be useful:
+
+\begin{enumerate}
+\item $x_{i}^{2}=p_{i}^{2}=\frac{1}{2}$
+
+\item $a^{\dagger}a=\frac{i}{2}\left(xp-px\right)+\frac{1}{2}=ixp+\frac{1}{2}$
+
+\item $aa^{\dagger}=\frac{i}{2}\left(px-xp\right)+\frac{1}{2}=ipx+\frac{1}{2}$
+
+\item $xp=-\frac{i}{2}\left(a^{\dagger}a-aa^{\dagger}\right)=-i\left(a^{\dagger}a-\frac{1}{2}\right)$
+\end{enumerate}
+
+
+%%%%Diagonalisation
+\subsection{Diagonalisation}
+
+In this section we will see how to diagonalise the Hamiltonian \eqref{eq:Dirac-QFH}. 
+
+To do so we will proceed by first diagonalising Hamiltonin \eqref{eq:Majorana-QFH}  and then moving back to the Dirac representation with \eqref{eq:Dirac=Majorana}.
+
+Diagonalising Hamiltonin \eqref{eq:Majorana-QFH} corresponds to finding a transformation $O$ that maps the set of Majorana opeartors $\vec{r}$ to a new set of Majorana operators $\vec{s}=O\vec{r}$ such that the Hamiltonian can be written as
+
+\begin{equation}
+\label{eq:Majorana-QFH-FreeFree}
+\hat{H}=\frac{i}{2}\sum_{i=0}^{N-1}\tilde{h}_{i}(\tilde{x}_{i}\tilde{p}_{i}-\tilde{p}_{i}\tilde{x}_{i}).
+\end{equation}
+
+The set of transformation $O$ that maps a set of Majorana operators to another set of Majorana operators is the set of orthogonal transformations:
+
+\begin{equation}
+\delta_{i,j}=\left\{ s_{i},s_{j}\right\} =\sum_{l,m}O_{i,l}O_{j,m}\left\{ r_{l},r_{m}\right\} =\sum_{l}O_{i,l}O_{l,j}^{T}=(OO^{T})_{i,j}.
+\end{equation}
+
+From the property of the skew-symmetric matrices \cite{zumino1962,horn1985} we know that exist a special orthogonal transformation $O$ such that $h$ of \eqref{eq:Majorana-QFH-ih} decompose as
+
+\begin{equation}
+\label{eq:Schur-Decomposition}
+\Lambda= O^{T}hO=\bigoplus_{i=1}^{\lfloor N/2\rfloor}\left(\begin{array}{cc}
+0 & \lambda_{i}\\
+-\lambda_{i} & 0
+\end{array}\right),
+\end{equation}
+
+with $\lambda_{i}=\tilde{h}_{i}$ real and positive such that $\pm i\lambda_{i}$ are the eigenvalues of h.
+
+The orthogonal transformation $\vec{s}=O\vec{r}$ defines the new collection of Majorana operators
+
+\begin{equation}
+\label{eq:Majorana-s}
+\vec{s}=\left(\begin{array}{c}
+\tilde{x}_{0}\\
+\tilde{p}_{0}\\
+\tilde{x}_{1}\\
+\tilde{p}_{1}\\
+\vdots\\
+\tilde{x}_{N-1}\\
+\tilde{p}_{N-1}
+\end{array}\right)
+\end{equation}
+
+Thus with transformation O we can express the Hamiltonian as
+\begin{equation}
+\hat{H} = \frac{1}{2}\vec{s}\da \Lambda \vec{s}
+\end{equation} 
+that is the desired form \eqref{eq:Majorana-QFH-FreeFree}.
+
+Considering the Dirac representation one is interested in a transformation from Dirac fermionic modes $\vec{\alpha}$ in Dirac fermionic modes $\vec{\beta}$ such that the generic quadratic Hamiltonian \eqref{eq:Dirac-QFH} is mapped to a free fermions Hamiltonian 
+\begin{equation}
+\label{eq:Dirac-QFH-FreeFree}
+\hat{H}=\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right).
+\end{equation}
+
+To do so it is sufficient to map the Majoranas $\vec{s}$ of the last back to Fermions and one should obtain \eqref{eq:Dirac-QFH-FreeFree}. 
+
+The values $\tilde{h}_i$ of  \eqref{eq:Majorana-QFH-FreeFree} and $\epsilon_k$ of  \eqref{eq:Dirac-QFH-FreeFree} are related by
+\begin{equation}
+\epsilon_{k}=\lambda_{k}=\tilde{h}_{k}.
+\end{equation}
+
+%%Numerical Methods
+\section{Numerical Methods}
+
+%%%%Diagonalisation of the Hamiltonian
+\subsection{Diagonalisation of the Hamiltonian}
+
+%%%%%%%%Block-diagonal form of real skew-symmetric matrices
+\subsubsection{Block-diagonal form of real skew-symmetric matrices}
+\label{Diag_Real_Skew}
+
+In order to obtain the decomposition of $h$ of  \eqref{eq:Schur-Decomposition} one can use the following algorithm
+
+\begin{enumerate}
+
+\item Compute numerically a Schur decomposition (or Schur triangularisation as called in  \cite{horn1985}) of the skew-symmetric matrix $h$ such that: $h=\tilde{O}\tilde{\Lambda}\tilde{O}^{T}$. The matrix $\tilde{\Lambda}$ should be a block-diagonal matrix with each block in the anti-diagonal form 
+\begin{equation}
+\left(\begin{array}{cc}
+0 & \tilde{\lambda_{i}}\\
+-\tilde{\lambda_{i}} & 0
+\end{array}\right),
+\end{equation}
+it is not guaranteed that $\tilde{\lambda_{i}}$ is positive for each $i$. It is necessary to reorder it.
+
+\item Build the ortogonal matrix $M=\bigoplus_{i=1}^{\lfloor N/2\rfloor}m{}_{i}$ with 
+\begin{equation}
+m_{i}=\left(\begin{array}{cc}
+0 & 1\\
+1 & 0
+\end{array}\right)
+\end{equation} 
+if $\tilde{\lambda_{i}}<0$ or 
+\begin{equation}
+m_{i}=\left(\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right),
+\end{equation} 
+if $\tilde{\lambda_{i}}>0$.
+
+\item The final orthogonal transformation is $O=\tilde{O}M$ such that $h=O\Lambda O^{T}$.
+
+\end{enumerate}
+
+Schur decomposition are usually standard decomposition already implemented in standard libraries. 
+In order to avoid numerical errors it is a good practice to forcefully skew-symmetryse  matrix passed to the Schur decomposition routine, thus Schur decompose $\frac{h-h^T}{2}$.
+
+In \code{F-utilities.jl} this is implemented with the function \code{Diag\_Real\_Skew(M) $\rightarrow M_{f},O_{f}$}.
+
+
+%%%%%%%%Dirac representation
+\subsubsection{Dirac representation}
+\label{Dirac-Diagonalisation}
+
+In order to obtain the decomposition of $H_{a}$ of \eqref{eq:Dirac-QFH-h} one can use the following algorithm:
+
+\begin{enumerate}
+\item Transform $H_{a}$ in $H$ of \eqref{eq:Majorana-QFH-ih} with the matrix $\Omega$ and consider only $h$.
+
+\item Apply the Majorana diagonalisation of section \ref{Diag_Real_Skew} to $h$ to obtain its block diagonal form and the orthogonal transformation $O$ such that $\vec{s}=O\vec{r}$
+
+\item  In order to move back to the Dirac representation one has to pay attention to how the Majorana operators are ordered in $\vec{s}$. In fact, in $\vec{s}$ the order is $xp$ (see \eqref{eq:Majorana-s}), so we cannot transform back to the Dirac representation simply applying $\Omega$ again. To reorder $\vec{s}$ to order $xx$ (see \eqref{eq:Majorana-r}) we define the $2N\times2N$ matrix 
+\begin{equation}
+\label{eq:FxxTxp}
+F_{xp\rightarrow xx}=\begin{array}{c}
+i=0\\
+i=1\\
+\vdots\\
+\vdots\\
+i=N\\
+i=N+1\\
+\vdots\\
+i=2N+1
+\end{array}\left(\begin{array}{cccccccc}
+1 & 0 & 0 & 0 & \dots & \dots & 0 & 0\\
+0 & \vdots & 1 & \vdots &  &  & \vdots & \vdots\\
+\vdots & \vdots & \vdots & \vdots &  &  & 0 & \vdots\\
+\vdots & 0 & 0 & 0 &  &  & 1 & \vdots\\
+\vdots & 1 & 0 & 0 &  &  & 0 & \vdots\\
+\vdots & 0 & \vdots & 1 &  &  & \vdots & \vdots\\
+\vdots & \vdots & \vdots & 0 &  &  & \vdots & 0\\
+0 & 0 & 0 & \vdots & \dots & \dots & 0 & 1
+\end{array}\right)
+\end{equation}
+so that $F_{xp\rightarrow xx}\vec{s}$ has the order $xx$ as $\vec{r}$ and we get 
+\begin{equation}
+\Lambda^{M}=F_{xp\rightarrow xx}\Lambda F_{xp\rightarrow xx}^{T}=\left(\begin{array}{cccccc}
+0 & \dots & 0 & \lambda_{0} & 0 & 0\\
+\vdots & \ddots & \vdots & 0 & \ddots & 0\\
+0 & \dots & 0 & 0 & 0 & \lambda_{\lfloor N/2\rfloor}\\
+-\lambda_{0} & 0 & 0 & 0 & \dots & 0\\
+0 & \ddots & 0 & \vdots & \ddots & \vdots\\
+0 & 0 & -\lambda_{\lfloor N/2\rfloor} & 0 & \dots & 0
+\end{array}\right)
+\end{equation}
+
+\item. Move from Majoranas to Dirac representation 
+\begin{equation}
+-i\epsilon=\Omega^{\dagger}\Lambda^{M}\Omega=\left(\begin{array}{cccccc}
+i\lambda_{0}\\
+ & \ddots\\
+ &  & i\lambda_{\lfloor N/2\rfloor}\\
+ &  &  & -i\lambda_{0}\\
+ &  &  &  & \ddots\\
+ &  &  &  &  & -i\lambda_{\lfloor N/2\rfloor}
+\end{array}\right)
+\end{equation}
+
+\item. The final unitary transformation $\vec{\alpha}=U\vec{\beta}$ read as 
+\begin{equation} 
+U=\Omega^{\dagger}\cdot O\cdot F_{xp\rightarrow xx}^{\dagger}\cdot\Omega
+\end{equation}
+
+\item. Finally we have $H_{a}=U\cdot H_{D}\cdot U^{\dagger}$, that is 
+\begin{equation}
+\hat{H}=\frac{1}{2}\vec{\beta}^{\dagger}H_{D}\vec{\beta}=\frac{1}{2}\vec{\beta}^{\dagger}\left(\begin{array}{cccccc}
+\epsilon_{1} & 0 & \dots &  & \dots & 0\\
+0 & \ddots & \ddots &  &  & \vdots\\
+\vdots & \ddots & \epsilon_{N}\\
+ &  &  & -\epsilon_{1} & \ddots & \vdots\\
+\vdots &  &  & \ddots & \ddots & 0\\
+0 & \dots &  &  & \dots0 & -\epsilon_{N}
+\end{array}\right)\vec{\beta}\
+\end{equation}
+
+\end{enumerate}
+
+In \code{F-utilities.jl} this is implemented with the function \code{Diag\_ferm(M)$\rightarrow  M_{f},U_{f}$}.
+
+
+
+
+
+
+
+
+%%Fermionic Gaussian States
+\section{Fermionic Gaussian States}
+
+%%%%Representation
+\subsection{Representations}
+
+%%%%%%%%Hilbert space representation
+\subsubsection{Hilbert space representation}
+Fermionic Gaussian states are represented by density operators that are exponentials of a QFH. A general Gaussian state is of the form
+\begin{equation}
+\label{eq:Gaussian_state_rho}
+\rho=\frac{e^{-\frac{1}{2}\vec{\alpha}^{\dagger}H_{\rho}\vec{\alpha}}}{Z}
+\end{equation}
+
+where $Z$ is a normalisation constant, and $H_{\rho}$ is a $2N\times2N$ matrix of the same form of \eqref{eq:Dirac-QFH} in which are encoded all the information about the state and $\vec{\alpha}$ is a collection of creation and annihilation operators as in \eqref{eq:Vector-alpha}.
+
+
+
+%%%%%%%%Correlation matrix
+\subsubsection{Correlation matrix}
+
+Gaussian states are Gibbs states of QFH. Since the matrix at the exponent can be diagonalised as in \eqref{eq:Dirac-QFH-FreeFree}, a Gaussian state has a normal-mode decomposition in terms of $N$ single-mode thermal states of the form $\sim e^{-\beta_{i}b_{i}^{\dagger}b_{i}}$. From this one can see that the state is fully determined by the expectation values of quadratic operators --Kraus--Peschel2002b (see Appendix subsec:correlation-and-parent).
+
+Thus, instead of using the $2^{N}\times2^{N}$ density matrix to describe the state, we are allowed to just consider the correlation matrix
+
+\begin{equation}
+\Gamma_{i,j}\equiv Tr\left[\rho\vec{\alpha}_{i}\vec{\alpha}_{j}^{\dagger}\right]=\left(\begin{array}{cc}
+a^{\dagger}a & a^{\dagger}a^{\dagger}\\
+aa & aa^{\dagger}
+\end{array}\right)=\left(\begin{array}{cc}
+\Gamma^{UL} & \Gamma^{UR}\\
+\Gamma^{BL} & \Gamma^{BR}
+\end{array}\right).
+\end{equation}
+
+Where $\Gamma$ is Hermitian, matrices $\Gamma^{BL}$ and $\Gamma^{UR}$ are skew-symmetric (note that their diagonal is always 0) and thus also $\Gamma^{BL}=-\overline{\Gamma^{UR}}$ and $\Gamma^{UL}$ and $\Gamma^{BR}$ are Hermitian. 
+
+The matrix $\tilde{\Gamma}=\Gamma-\frac{1}{2}\mathbb{I}$ has the same form of \eqref{eq:Dirac-QFH-h}, thus is it possible to diagonalise it with the same method used for the Hamiltonian and then add again $\frac{1}{2}\mathbb{I}$ to obtain the diagonal form of $\Gamma$
+
+
+\begin{equation}
+\Gamma^{D}=\left(\begin{array}{cccccc}
+\nu_{1} & 0 & \dots &  & \dots & 0\\
+0 & \ddots & \ddots &  &  & \vdots\\
+\vdots & \ddots & \nu_{N}\\
+ &  &  & 1-\nu_{1} & \ddots & \vdots\\
+\vdots &  &  & \ddots & \ddots & 0\\
+0 & \dots &  &  & \dots0 & 1-\nu_{N}
+\end{array}\right)
+\end{equation}
+
+with $\nu_{i}\text{\ensuremath{\in\left[0,1\right]}}$ (the diagonal elements of $\tilde{\Gamma}$ are $\tilde{\nu}_{i}\in\left[-\frac{1}{2},+\frac{1}{2}\right])$. 
+
+To obtain this diagonal form with \code{F-utilities.jl} from $\Gamma$ it's sufficient to write:
+
+
+
+%%%%%%%%%%Appendix
+\appendix
+\chapter{F-utilities}
+\begin{enumerate}
+\item \code{Print\_matrix(title, M)}: Print a graphical representation of matrix \code{M} in a figure called title.
+
+\item \code{Build\_Omega(N)$\rightarrow \Omega$}: This function return the $2N\times2N$ matrix $\Omega$ \eqref{eq:Omega}.
+
+\item \code{Build\_FxxTxp(N)$\rightarrow F_{xx\rightarrow xp}$}: This function return the $2N\times2N$ matrix $F_{xx\rightarrow xp}$ \eqref{eq:FxxTxp}.
+
+\item \code{Build\_FxpTxx(N)$\rightarrow F_{xp\rightarrow xx}$}: This function return the $2N\times2N$ matrix $F_{xx\rightarrow xp}^{T}$.
+
+\item \code{Diag\_Real\_Skew(M)$\rightarrow M_{f},O_{f}$}: This function implement the Majorana algorithm of section \ref{Diag_Real_Skew}  with $M=h$ a generic skew-symmetric real matrix. $M_{f}$ is the matrix we called $\Lambda$ in \eqref{eq:Schur-Decomposition} and has the following property: it is in the block diagonal form, each $2\times2$ block is skew-symmetric with the upper-right element positive and real and $M_{f}$ is in ascending order for the upper diagonal. $O_{f}$ is the orthogonal matrix that we called $O$ and it is an orthogonal matrix such that: $M=O_{f}M_{f}O_{f}^{T}$.
+
+\item \code{Diag\_ferm(M)$\rightarrow M_{f},U_{f}$}:This function implement the fermionic algorithm of  section \ref{Dirac-Diagonalisation} with $M=H_{a}$. $M_{f}$ is the matrix we called $H_{D}$ and it is in diagonal form with the first half diagonal negative and the second one positive. $U_{f}$ is the orthogonal matrix that we called $U$ and it is a unitary matrix such that: $M=U_{f}M_{f}U_{f}^{\dagger}$.
+
+\item \code{Purity(M)$\rightarrow p$}: This function takes as input the correlation matrix $\Gamma$ and return a Float $p$ from $0$ to $1$ that is the purity.
+
+\item \code{Evolve\_gamma(M,D,U,t)$\rightarrow M_{t}$}: This function evolve for a time \code{t} (last argument) the correlation matrix $\Gamma$ (first argument), \code{D} is the Dirac Hamiltonian diagonalised, $U$ is the unitary transformation that change basis from the diagonal one to the original one. e.g. If I want to evolve the correlation matrix $M$ with $H_{a}$ for a time $t$ I would write \code{M\_{t}=Evolve\_gamma(M,Diag\_ferm($H_{a}$),$t$)}.
+
+\item \code{Evolve\_gamma\_imag(M,D,U,t)$\rightarrow M_{t}$}: This function evolve for a time \code{t} (last argument) the pure state correlation matrix $\Gamma$ (first argument) with the evolution \ref{eq:Imaginary-Evolution}, \code{D} is the Dirac Hamiltonian diagonalised, $U$ is the unitary transformation that change basis from the diagonal one to the original one .N.B. \code{M} must be a pure state (Purity$(M)=1$), \code{Evolve\_gamma\_imag(M,D,U,t)} is a pure state.
+
+\item \code{Energy\_fermion(M,D,U)$\rightarrow e$}: This function return the energy of the correlation matrix $M$ with respect of the Hamiltonian in the diagonal form $M$ where $U$ is the change of basis from the diagonal one to the space one. e.g. If I want to compute the energy of the correlation matrix $\Gamma$ with respect to the generic quadratic Hamiltonian represented by $H$ I would write \code{Energy\_fermion($\Gamma$,Diag\_ferm($H$))}.
+
+\item \code{Reduce\_gamma(M,N\_partition,first\_index) $\rightarrow M_{r}$}: This function return the correlation matrix of a subsystem with \code{N\_partition} size starting from the site at \code{first\_index}. e.g. \code{Reduce\_gamma()} return the green the element of the matrix $M_{6\times6}$
+\begin{equation}
+\mbox{\mbox{Reduce\_gamma}(\ensuremath{M_{6\times6}},2,1)\ensuremath{\rightarrow}}\begin{array}{cccccc}
+\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}
+\end{array}\mbox{Reduce\_gamma(\ensuremath{M_{6\times6}},2,3)\ensuremath{\rightarrow}}\begin{array}{cccccc}
+\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
+\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}
+\end{array}
+\end{equation}
+
+\item \code{Inject\_gamma(gamma, injection, first\_index)$\rightarrow M_{T}$}:This function overwrite the subsystem of gamma starting at \code{first\_index} with the system with correlation matrix injection. The system of injection has to be smaller then the one of gamma. The returned system has same dimension of gamma. e.g. \code{Inject\_gamma()} return the red and blue matrix where the elements in red are the one of the matrix injection.
+\begin{equation}
+\mbox{Inject\_gamma(\ensuremath{M_{6\times6}},2,1)\ensuremath{\rightarrow}}\begin{array}{cccccc}
+\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}
+\end{array}\mbox{Inject\_gamma(\ensuremath{M_{6\times6}},2,3)\ensuremath{\rightarrow}}\begin{array}{cccccc}
+\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
+\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}
+\end{array}
+\end{equation}
+
+\item \code{Eigenvalues\_of\_rho(M)$\rightarrow \vec{e}$}: This function take as input a correlation matrix $\Gamma$ and return the vector with all its eigenvalues. N.B. The number of eigenvalues grows exponentially with the size of $\Gamma$.
+
+\item \code{VN\_entropy(M) $\rightarrow s$}: This function return the Von Neumann Entropy of the system described by the correlation matrix $M$ in the form of $\Gamma$.
+
+\end{enumerate}
+
+
+ \section{Useful relations}
+ \subsection{Pauli Matrices}
+ \begin{enumerate}
+  \item  $\sigma^+ = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$, $\sigma^-=\begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}$, $\sigma^z=\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$, $\sigma^y=\begin{pmatrix} 0 & -\im \\ \im & 0 \end{pmatrix}$, $\sigma^x=\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $\ket{+}_x= \frac{1}{\sqrt{2}}\colvec{2}{1}{1}$, $\ket{-}_x= \frac{1}{\sqrt{2}}\colvec{2}{1}{-1}$, $\ket{+}_y= \frac{1}{\sqrt{2}}\colvec{2}{1}{\im}$, $\ket{-}_y= \frac{1}{\sqrt{2}}\colvec{2}{1}{-\im}$, $\ket{0_{-}}_z= \colvec{2}{0}{1}$, $\ket{1_{+}}_z=\colvec{2}{1}{0}$
+ \item $\sigma^z \sigma^- = -\sigma^-$
+ \item $\sigma^z \sigma^+ = \sigma^+$
+ \item $\sigma^- \sigma^z = \sigma^-$
+ \item $\sigma^+ \sigma^z = -\sigma^+$
+ \item $\sigma^+ \sigma^- = \frac{\sigma^z+\id}{2}$
+  \item $\sigma^- \sigma^+ = \frac{\id-\sigma^z}{2}$
+ \end{enumerate}
+ \subsection{Fermionic operators}
+ \label{appendix:fermionic_operators}
+ \begin{enumerate}
+ \item $\left\{a_i,a_j \right\}=\left\{a_i^{\dagger},a_{j}^{\dagger} \right\} = 0$
+ \item $a_ia_j=-a_ja_i$; $a_i^{\dagger}a_j^{\dagger} = -a_{j}^{\dagger}a_i^{\dagger}$
+ \item $\left\{a_i,a_j^{\dagger}\right\}=\delta_{i,j}$
+ \item $a_ia_j^{\dagger}=\delta_{i,j}-a_j^{\dagger}a_i$
+ \item $a_ia_j=\frac{a_ia_j-a_ja_i}{2}$
+ \item $a_ia_j^{\dagger}=\frac{a_ia_j^{\dagger}-a_j^{\dagger}a_i}{2}+\frac{\delta_{i,j}}{2}$
+  \item $a_i^{\dagger}a_j=\frac{a_i^{\dagger}a_j-a_ja_i^{\dagger}}{2}+\frac{\delta_{i,j}}{2}$
+ \end{enumerate}
+The action on a state in the occupation basis (defined such that the Canonical Anticomutation Relations (relations $1$ and $3$)  are respected)
+ \begin{enumerate}
+ \item $a_i\ket{\vec{\alpha}}=-(-1)^{S_{\alpha}^j}\ket{\alpha'}$ if $\alpha_j=1$ with $\alpha_j'=0$ and $S_{\alpha}^j=\sum_{k=1}^{j-1}\alpha_k$ (if $\alpha_j=0$ then is $0$)
+ \item $a^{\dagger}_i\ket{\vec{\alpha}}=-(-1)^{S_{\alpha}^j}\ket{\alpha'}$ if $\alpha_j=0$ with $\alpha_j'=1$ and $S_{\alpha}^j=\sum_{k=1}^{j-1}\alpha_k$ (if $\alpha_j=1$ then is $0$)
+ \end{enumerate}
+Commutators
+ \begin{enumerate}
+  \item $[a_i^{\dagger},a_j]=\delta_{i,j}-2a_ja_i^{\dagger}=a_i^{\dagger}a_j-\delta_{i.j}$
+  \item $[a_i,a_j^\dagger]=\delta_{i,j}-2a_j^{\dagger}a_i=a_i a_j^{\dagger}-\delta_{i,j}$
+  \item $[a_i,a_j]=2a_i a_j$
+  \item $[a_i^{\dagger},a_j^{\dagger}]=2a_i^{\dagger}a_j^{\dagger}$
+ \end{enumerate}
+ \subsection{Jordan-Wigner Transformations}
+ \subsubsection{spinless fermions $\rightarrow$ spins}
+ \begin{enumerate}
+ \item $a_j=-\bigotimes_{k=1}^{j-1}\sigma_k^z\otimes\sigma_j^-\bigotimes_{k=j+1}^N\mathbb{I}_k$
+ \item $a_j^{\dag}=-\bigotimes_{k=1}^{j-1}\sigma_k^z\otimes\sigma_j^+\bigotimes_{k=j+1}^N\mathbb{I}_k$ 
+  \item $a_j^{\dag}a_j=\bigotimes_{k=1}^{j-1}\otimes \frac{\sigma_j^z+\id_j}{2} \bigotimes_{k=j+1}^N \id_k $
+ \end{enumerate}
+ \subsubsection{spins $\rightarrow$ spinless fermions}
+ \begin{enumerate}
+ \item $\sigma_j^z = a_j^{\dag} a_j-a_j a_j^{\dag}$
+ \item $\sigma_j^x = -\bigotimes_{k=1}^{j-1}\sigma_j^z\otimes(a_j+a_j^{\dag})\bigotimes_{k=j+1}^{N}\id_j$
+ \item $\sigma_j^x = \im \bigotimes_{k=1}^{j-1}\sigma_j^z\otimes(a_j^{\dag}-a_j)\bigotimes_{k=j+1}^{N}\id_j$
+ \item $\sigma_j^x\sigma_{j+1}^x = (a_j^{\dag}-a_j)(a_{j+1}+a_{j+1}^{\dag})$
+ \item $\sigma_j^y\sigma_{j+1}^y = -(a_j^{\dag}+a_j)(a_{j+1}^{\dag}-a_{j+1}) $
+ \item $\sigma_j^x\sigma_{j+1}^y = \im (a_j^{\dag}-a_j)(a_{j+1}^{\dag}+a_{j+1})$
+ \item $\sy_j\sx_{j+1} = \im (a_j\da+a_j)(a_{j+1}\da+a_{j+1})$
+ \end{enumerate}
+%\section{}
+%\subsection{}
+
+\bibliography{QFH} 
+\bibliographystyle{ieeetr}
+
+\end{document}  

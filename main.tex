@@ -16,6 +16,8 @@
 
 
 %%%%Inizio Miei
+%\usepackage{amsthm}
+
 \newcommand{\expv}[1]{\left\langle #1 \right\rangle}
 \newcommand{\floor}[1]{\lfloor #1 \rfloor}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
@@ -33,7 +35,7 @@
 
 \newcount\colveccount
 \newcommand*\colvec[1]{
-        \global\bcolveccount#1
+        \global\colveccount#1
         \begin{pmatrix}
         \colvecnext
 }
@@ -66,8 +68,8 @@
 %\usepackage{demonstration}
 \usepackage{mathtools}
 %\let\openbox\relax
-%\usepackage{amsthm}
-\usepackage[thref]{ntheorem}
+
+
 
 %\theoremstyle{definition}
 %\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
@@ -407,7 +409,6 @@ This function implements the algorithm for the block diagonalisation of $h$ a ge
 %%%%Dirac representation
 \subsection{Diagonalisation with Dirac operators}
 \label{Dirac-Diagonalisation}
-
 Considering the Dirac representation one is interested in a transformation from Dirac modes $\vec{\alpha}$ in Dirac modes $\vec{\beta}$ such that the generic quadratic Hamiltonian \eqref{eq:Dirac-QFH} is mapped to the free-free fermions Hamiltonian $ \hat{H}=\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right) $.\\
 To do so it is sufficient to map the Majoranas $\vec{s}$ back to Fermions to obtain \eqref{eq:Dirac-QFH-FreeFree}.
 The values $\tilde{h}_i$ of  \eqref{eq:Majorana-QFH-FreeFree} and $\epsilon_k$ of  \eqref{eq:Dirac-QFH-FreeFree} are related by
