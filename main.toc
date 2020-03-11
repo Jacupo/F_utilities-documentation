@@ -6,19 +6,19 @@
 \contentsline {chapter}{\numberline {2}Fermionic Quadratic Hamiltonians}{4}{chapter.2}% 
 \contentsline {section}{\numberline {2.1}Dirac Representation}{4}{section.2.1}% 
 \contentsline {section}{\numberline {2.2}Majorana Representation}{4}{section.2.2}% 
-\contentsline {section}{\numberline {2.3}Diagonalisation}{5}{section.2.3}% 
-\contentsline {subsection}{\numberline {2.3.1}Hamiltonian diagonal form with Dirac operators}{5}{subsection.2.3.1}% 
+\contentsline {section}{\numberline {2.3}Diagonalisation}{4}{section.2.3}% 
+\contentsline {subsection}{\numberline {2.3.1}Hamiltonian diagonal form with Dirac operators}{4}{subsection.2.3.1}% 
 \contentsline {subsection}{\numberline {2.3.2}Hamiltonian diagonal form with Majorana operators}{5}{subsection.2.3.2}% 
-\contentsline {section}{\numberline {2.4}Numerical diagonalisation}{6}{section.2.4}% 
-\contentsline {subsection}{\numberline {2.4.1}Block-diagonal form of real skew-symmetric matrices}{6}{subsection.2.4.1}% 
-\contentsline {subsection}{\numberline {2.4.2}Diagonalisation with Dirac operators}{7}{subsection.2.4.2}% 
-\contentsline {chapter}{\numberline {A}Extended calculations}{9}{appendix.A}% 
-\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{9}{section.A.1}% 
-\contentsline {section}{\numberline {A.2}Purity}{10}{section.A.2}% 
-\contentsline {chapter}{\numberline {B}F-utilities}{12}{appendix.B}% 
-\contentsline {chapter}{\numberline {C}Useful relations}{14}{appendix.C}% 
-\contentsline {section}{\numberline {C.1}Pauli Matrices}{14}{section.C.1}% 
-\contentsline {section}{\numberline {C.2}Operators obeying CAR}{14}{section.C.2}% 
-\contentsline {section}{\numberline {C.3}Jordan-Wigner Transformations}{15}{section.C.3}% 
-\contentsline {subsection}{\numberline {C.3.1}spinless fermions $\rightarrow $ spins}{15}{subsection.C.3.1}% 
-\contentsline {subsection}{\numberline {C.3.2}spins $\rightarrow $ spinless fermions}{15}{subsection.C.3.2}% 
+\contentsline {section}{\numberline {2.4}Numerical diagonalisation}{5}{section.2.4}% 
+\contentsline {subsection}{\numberline {2.4.1}Block-diagonal form of real skew-symmetric matrices}{7}{subsection.2.4.1}% 
+\contentsline {chapter}{\numberline {3}Fermionic gaussian states}{9}{chapter.3}% 
+\contentsline {chapter}{\numberline {A}Extended calculations}{10}{appendix.A}% 
+\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{10}{section.A.1}% 
+\contentsline {section}{\numberline {A.2}Purity}{11}{section.A.2}% 
+\contentsline {chapter}{\numberline {B}F-utilities}{13}{appendix.B}% 
+\contentsline {chapter}{\numberline {C}Useful relations}{15}{appendix.C}% 
+\contentsline {section}{\numberline {C.1}Pauli Matrices}{15}{section.C.1}% 
+\contentsline {section}{\numberline {C.2}Operators obeying CAR}{15}{section.C.2}% 
+\contentsline {section}{\numberline {C.3}Jordan-Wigner Transformations}{16}{section.C.3}% 
+\contentsline {subsection}{\numberline {C.3.1}spinless fermions $\rightarrow $ spins}{16}{subsection.C.3.1}% 
+\contentsline {subsection}{\numberline {C.3.2}spins $\rightarrow $ spinless fermions}{16}{subsection.C.3.2}% 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.28)  26 FEB 2020 10:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.28)  27 FEB 2020 11:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1890,14 +1890,17 @@ File: t1ntxtlf.fd 2015/01/17 v1.0 font definition file for T1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 10.95pt on input line 86.
+ (./main.aux
 
-No file main.aux.
+LaTeX Warning: Label `eq:MCAR' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 86.
 LaTeX Font Info:    Try loading font information for OML+ntxmi on input line 86
 .
-(/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/omlntxmi.fd
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
 LaTeX Font Info:    ... okay on input line 86.
@@ -2095,6 +2098,8 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 86.
 LaTeX Info: Redefining \pageref on input line 86.
 LaTeX Info: Redefining \nameref on input line 86.
+
+(./main.out) (./main.out)
 \@outlinefile=\write8
 \openout8 = `main.out'.
 
@@ -2135,7 +2140,7 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 88.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./figure/cover.jpg, id=31, 1086.0575pt x 925.4575pt>
+<./figure/cover.jpg, id=99, 1086.0575pt x 925.4575pt>
 File: ./figure/cover.jpg Graphic file (type jpg)
 <use ./figure/cover.jpg>
 Package pdftex.def Info: ./figure/cover.jpg  used on input line 88.
@@ -2203,7 +2208,7 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 88.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 14.4pt on input line 88.
-<./figure/logo.png, id=32, 309.3156pt x 184.0476pt>
+<./figure/logo.png, id=100, 309.3156pt x 184.0476pt>
 File: ./figure/logo.png Graphic file (type png)
 <use ./figure/logo.png>
 Package pdftex.def Info: ./figure/logo.png  used on input line 88.
@@ -2222,7 +2227,7 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 17.28pt on input line 89.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf)
+88.pgf) (./main.toc)
 \tf@toc=\write9
 \openout9 = `main.toc'.
 
@@ -2238,19 +2243,11 @@ Chapter 1 1.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
-
-Package natbib Warning: Citation `nielsen' on page 1 undefined on input line 10
-3.
-
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 8.0pt on input line 124.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 6.1pt on input line 124.
-
-LaTeX Warning: Reference `appendix:fermionic_operators' on page 1 undefined on 
-input line 127.
-
-[1
+ [1
 
 
 
@@ -2268,293 +2265,167 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <12> not available
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 12.0pt on input line 157.
 
-LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 200.
-
-
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [2]
-
-LaTeX Warning: Reference `eq:MCAR' on page 3 undefined on input line 208.
-
-
-LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 225.
-
-
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [3]
 Chapter 2 2.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
-
-LaTeX Warning: Reference `eq:Dirac-QFH' on page 4 undefined on input line 244.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 266--270
+Underfull \hbox (badness 10000) in paragraph at lines 267--271
 
  []
-
-
-LaTeX Warning: Reference `eq:Dirac-QFH' on page 4 undefined on input line 275.
 
 [4
 
 ]
-
-Package natbib Warning: Citation `lieb1961' on page 5 undefined on input line 2
-80.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 317--320
+Underfull \hbox (badness 10000) in paragraph at lines 321--324
 
  []
 
 
-LaTeX Warning: Reference `eq:diagonal-Majorana-h' on page 5 undefined on input 
-line 321.
-
-
-Package natbib Warning: Citation `lieb1961' on page 5 undefined on input line 3
-22.
-
-
-Package natbib Warning: Citation `zumino1962' on page 5 undefined on input line
- 324.
-
-
-Package natbib Warning: Citation `horn1985' on page 5 undefined on input line 3
-24.
-
-
-LaTeX Warning: Reference `LastPage' on page 5 undefined on input line 338.
-
-
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [5]
-
-LaTeX Warning: Reference `eq:Majorana-QFH' on page 6 undefined on input line 34
-0.
-
-
-LaTeX Warning: Reference `eq:Schur-Decomposition' on page 6 undefined on input 
-line 340.
-
-
-LaTeX Warning: Reference `eq:Schur-Decomposition' on page 6 undefined on input 
-line 370.
-
-
-LaTeX Warning: Reference `thm:Block-Matrix' on page 6 undefined on input line 3
-70.
-
-
-Package natbib Warning: Citation `horn1985' on page 6 undefined on input line 3
-74.
-
-
-LaTeX Warning: Reference `LastPage' on page 6 undefined on input line 380.
-
-
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [6]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 403.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 409.
 
  (/usr/local/texlive/2019/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 403.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 409.
 
-
-LaTeX Warning: Reference `eq:Schur-Decomposition' on page 7 undefined on input 
-line 404.
-
-
-LaTeX Warning: Reference `eq:Dirac-QFH' on page 7 undefined on input line 412.
-
-
-LaTeX Warning: Reference `eq:Dirac-QFH-FreeFree' on page 7 undefined on input l
-ine 413.
-
-
-LaTeX Warning: Reference `eq:Majorana-QFH-FreeFree' on page 7 undefined on inpu
-t line 414.
-
-
-LaTeX Warning: Reference `eq:Dirac-QFH-FreeFree' on page 7 undefined on input l
-ine 414.
-
-
-LaTeX Warning: Reference `Diag_Real_Skew' on page 7 undefined on input line 424
-.
-
-
-LaTeX Warning: Reference `eq:Majorana-s' on page 7 undefined on input line 426.
-
-
-
-LaTeX Warning: Reference `eq:Majorana-r' on page 7 undefined on input line 426.
-
-
-
-LaTeX Warning: Reference `LastPage' on page 7 undefined on input line 448.
-
-
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [7]
-
-LaTeX Warning: Reference `Dirac-Diagonalisation' on page 8 undefined on input l
-ine 495.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 495--496
+Underfull \hbox (badness 10000) in paragraph at lines 410--411
 
  []
 
 
-LaTeX Warning: Reference `LastPage' on page 8 undefined on input line 1037.
-
-
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [7]
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [8]
+Chapter 3 3.
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [9
+
+]
 Appendix A.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 1038.
+(Font)              scaled to size 14.4pt on input line 1004.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.5pt on input line 1038.
+(Font)              scaled to size 10.5pt on input line 1004.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.9pt on input line 1038.
+(Font)              scaled to size 7.9pt on input line 1004.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 14.4pt on input line 1038.
+(Font)              scaled to size 14.4pt on input line 1004.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.5pt on input line 1038.
+(Font)              scaled to size 10.5pt on input line 1004.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 7.9pt on input line 1038.
+(Font)              scaled to size 7.9pt on input line 1004.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1038.
+(hyperref)                removing `math shift' on input line 1004.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Gamma' on input line 1038.
+(hyperref)                removing `\Gamma' on input line 1004.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1038.
+(hyperref)                removing `math shift' on input line 1004.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1038.
+(hyperref)                removing `math shift' on input line 1004.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1038.
+(hyperref)                removing `subscript' on input line 1004.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\alpha' on input line 1038.
+(hyperref)                removing `\alpha' on input line 1004.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1038.
+(hyperref)                removing `math shift' on input line 1004.
 
 LaTeX Font Info:    Try loading font information for TS1+ntxtlf on input line 1
-073.
+039.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1073.
- [9
+(Font)              scaled to size 10.95pt on input line 1039.
+ [10
 
 ]
-Overfull \hbox (50.70718pt too wide) detected at line 1094
+Overfull \hbox (50.70718pt too wide) detected at line 1060
 \U/ntxmia/m/it/10.95 = [] \OML/ntxmi/m/it/10.95 U[]U[]Tr [] \U/ntxmia/m/it/10.9
 5 ý [] \OML/ntxmi/m/it/10.95 U[]U[]Tr [] \U/ntxmia/m/it/10.95 =
  []
 
 
-LaTeX Warning: Reference `LastPage' on page 10 undefined on input line 1145.
-
-
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [10]
-
-LaTeX Warning: Reference `LastPage' on page 11 undefined on input line 1149.
-
-
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [11]
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [12]
 Appendix B.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
 
-LaTeX Warning: Reference `eq:Omega' on page 12 undefined on input line 1153.
+LaTeX Warning: Reference `Dirac-Diagonalisation' on page 13 undefined on input 
+line 1127.
 
 
-LaTeX Warning: Reference `eq:FxxTxp' on page 12 undefined on input line 1155.
+LaTeX Warning: Reference `eq:Gamma-Dirac-Diagonal' on page 13 undefined on inpu
+t line 1130.
 
 
-LaTeX Warning: Reference `eq:Schur-Decomposition' on page 12 undefined on input
- line 1159.
+LaTeX Warning: Reference `eq:Imaginary-Evolution' on page 13 undefined on input
+ line 1136.
 
-
-LaTeX Warning: Reference `Dirac-Diagonalisation' on page 12 undefined on input 
-line 1161.
-
-
-LaTeX Warning: Reference `eq:Gamma-Dirac-Diagonal' on page 12 undefined on inpu
-t line 1164.
-
-
-LaTeX Warning: Reference `eq:Imaginary-Evolution' on page 12 undefined on input
- line 1170.
-
-[12
+[13
 
 ]
-Overfull \hbox (1.1841pt too wide) in paragraph at lines 1193--1194
+Overfull \hbox (1.1841pt too wide) in paragraph at lines 1159--1160
 []\T1/cmtt/m/n/10.95 Inject_gamma(gamma, injection, first_index)$\LMS/ntxsy/m/n
 /10.95 ! \OML/ntxmi/m/it/10.95 M[]$\T1/ntxtlf/m/n/10.95 :This func-tion over-wr
 ite the
  []
 
 
-LaTeX Warning: Reference `LastPage' on page 13 undefined on input line 1220.
-
-
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [13]
+88.pgf) [14]
 Appendix C.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 1258.
+(Font)              scaled to size 12.0pt on input line 1224.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.8pt on input line 1258.
+(Font)              scaled to size 8.8pt on input line 1224.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.6pt on input line 1258.
+(Font)              scaled to size 6.6pt on input line 1224.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 1258.
+(Font)              scaled to size 12.0pt on input line 1224.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.8pt on input line 1258.
+(Font)              scaled to size 8.8pt on input line 1224.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 6.6pt on input line 1258.
- [14
+(Font)              scaled to size 6.6pt on input line 1224.
+ [15
 
 ] (./main.bbl
-
-LaTeX Warning: Reference `LastPage' on page 15 undefined on input line 4.
-
-
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [15]
+88.pgf) [16]
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
@@ -2565,39 +2436,20 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 9.0pt on input line 7.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
 (Font)              scaled to size 9.0pt on input line 13.
-)
-
-Package natbib Warning: There were undefined citations.
-
-
-Package lastpage Warning: Rerun to get the references right on input line 1319.
-
-
-
+) 
 AED: lastpage setting LastPage
-[16
+[17
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1319.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1319.
- (./main.aux
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1285.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1285.
+ (./main.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1285.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1285.
 
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 5E996E460C1669085E4147DB4A5FE053;3405.
 
-)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1319.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1319.
-
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  0F43EE3C7CF20A0E9FEBB9203692F8A4;3218.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -2605,17 +2457,17 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 44742 strings out of 492616
- 827350 string characters out of 6129481
- 1175081 words of memory out of 5000000
- 47642 multiletter control sequences out of 15000+600000
+ 44772 strings out of 492616
+ 827886 string characters out of 6129481
+ 1174081 words of memory out of 5000000
+ 47666 multiletter control sequences out of 15000+600000
  676581 words of font info for 325 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,18n,124p,842b,1402s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,18n,124p,842b,1311s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/
 local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/lo
 cal/texlive/2019/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/local/t
@@ -2639,10 +2491,10 @@ ist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2019/texmf-dist/fo
 nts/type1/public/txfonts/txsyc.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
 pe1/public/newtx/txsys.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on main.pdf (18 pages, 395980 bytes).
+Output written on main.pdf (19 pages, 401811 bytes).
 PDF statistics:
- 379 PDF objects out of 1000 (max. 8388607)
- 315 compressed objects within 4 object streams
- 159 named destinations out of 1000 (max. 500000)
- 131 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 476 PDF objects out of 1000 (max. 8388607)
+ 410 compressed objects within 5 object streams
+ 155 named destinations out of 1000 (max. 500000)
+ 267 words of extra memory for PDF output out of 10000 (max. 10000000)
 

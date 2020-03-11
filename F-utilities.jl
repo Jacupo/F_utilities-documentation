@@ -109,11 +109,6 @@ function Diag_real_skew(M, rand_perturbation::Int64=0)
  return M_f, O_f;
 end
 
-
-
-###################################################################################
-
-
 function Diag_ferm(M,rand_perturbation::Int64=0)
     N = div(size(M,1),2);
 
@@ -133,6 +128,8 @@ function Diag_ferm(M,rand_perturbation::Int64=0)
 
     return real(M_f), U_f;
 end
+
+###################################################################################
 
 function Diag_gamma(Γ,rand_perturbation::Int64=0)
  #Diagonalizzo cosi' invece che con eig cosi' ottengo gli autovettori a coppie
