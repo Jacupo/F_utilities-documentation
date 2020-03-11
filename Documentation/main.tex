@@ -542,6 +542,9 @@ Expressed in term of Majorana operator the correlation matrix is defined as
 \label{eq:Majorana-Gamma}
 {\Gamma}^{maj} \coloneqq \langle  \vec{r}\da \vec{r} \rangle = \Omega \Gamma \Omega\da.
 \end{equation}
+\\
+It interesting observing that, since a f.g.s. is completely described by its correlation matrix, with the spirit of the maximum entropy principle (see \cite{jaynes1957a, jaynes1957}), it is possible to equivalently define fermionic gaussian states as the states that maximise	the von Neumann entropy	given the expectation values collected in the correlation matrix. 
+
 
 
 \section{Covariance matrix}
@@ -749,7 +752,7 @@ This function return $p$ the purity of the fermionic gaussian state with Dirac c
 
 %%%%Entanglement Contour
 \subsection{Entanglement Contour}
-In 2014 Chen andVidal \cite{chen2014} introduced entanglement contour "a tool to identify which real-space degrees of freedom contribute, and how much, to the entanglement of a region A with the rest of the system B".\\
+In 2014 Chen and Vidal \cite{chen2014} introduced entanglement contour "a tool for identifyng which real-space degrees of freedom contribute, and how much, to the entanglement of a region A with the rest of the system B". We will present here a specific form of entanglement contour, for a more general treatment we refer to the original paper of Chen and Vidal.\\
 We restrict to pure states.\\
 Consider an Hilbert space $\mathcal{H}$ arbitrarily divided in two partitions $\mathcal{H}= \mathcal{H}_A\otimes \mathcal{H}_B$. The Schmidt decomposition of a pure state $|\psi^{A,B}\rangle$ in $\mathcal{H}$ is
 \begin{equation}
@@ -760,7 +763,7 @@ with $p_i\geq0$, $\sum_{i} p_i = 1$ and
 \begin{equation}
 \rho^{A}\equiv Tr_{B}\left[ |\psi^{A,B}\rangle \langle \psi^{A,B}|\right] = \sum_{i} p_i |\psi^{A}_i \rangle \langle \psi^{A}_i|.
 \end{equation}
-Factorising Hilbert space $\mathcal{H}_A$ in its tensor product structure $\mathcal{H}_A=\bigotimes_{j\in A}\mathcal{H}_j$, we can individuate in each local Hilbert space $\mathcal{H}_j$ a site of partition $A$.
+Factorising Hilbert space $\mathcal{H}_A$ in its tensor product structure $\mathcal{H}_A=\bigotimes_{j\in A}\mathcal{H}_j$, we individuate in each local Hilbert space $\mathcal{H}_j$ a site of the partition $A$.
 Genarelly $\rho^A$ cannot be expressed as a product state over this factorisation of $\mathcal{H}_A$.\\
 Chen and Vidal entanglement contour $c_A$ is a function of the sites $j$ of partition $A$ ($c_A:A\rightarrow \mathbb{R}$) that attempts to express the contribution of each site to the total von Neumann entropy $S(\rho^A)$ of partition $A$.\\
 The definition of entanglement contour is based on five constraints (see \cite{chen2014} for the complete definition) that any possible entanglement contour function must satisfy. These constraints are not tight, thus there exist many possible functions that can be regarded as entanglement contour.\\
@@ -776,7 +779,6 @@ We consider an entanglement contour specifically defined for Fermionic Gaussian 
 
 
 
-In the spirit of the maximum entropy principle (see \cite{jaynes1957a, jaynes1957}), it is possible to equivalently define fermionic gaussian states as the states that maximise	the von Neumann entropy	given the expectation values collected in the correlation matrix. \textcolor{red}{NON ho ancora definito la VNEntropy, magari metto questo dopo.}
 
 
 

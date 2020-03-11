@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.28)  11 MAR 2020 17:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.28)  11 MAR 2020 18:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2319,7 +2319,7 @@ Chapter 3 3.
 88.pgf) [10]
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [11]
-Underfull \hbox (badness 10000) in paragraph at lines 673--678
+Underfull \hbox (badness 10000) in paragraph at lines 676--681
 
  []
 
@@ -2327,51 +2327,51 @@ Underfull \hbox (badness 10000) in paragraph at lines 673--678
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [12]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 686.
+(Font)              scaled to size 14.4pt on input line 689.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.5pt on input line 686.
+(Font)              scaled to size 10.5pt on input line 689.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.9pt on input line 686.
+(Font)              scaled to size 7.9pt on input line 689.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 14.4pt on input line 686.
+(Font)              scaled to size 14.4pt on input line 689.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.5pt on input line 686.
+(Font)              scaled to size 10.5pt on input line 689.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 7.9pt on input line 686.
+(Font)              scaled to size 7.9pt on input line 689.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 686.
+(hyperref)                removing `math shift' on input line 689.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rho' on input line 686.
+(hyperref)                removing `\rho' on input line 689.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 686.
+(hyperref)                removing `math shift' on input line 689.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 686.
+(hyperref)                removing `math shift' on input line 689.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Gamma' on input line 686.
+(hyperref)                removing `\Gamma' on input line 689.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 686.
+(hyperref)                removing `math shift' on input line 689.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 695--701
+Underfull \hbox (badness 10000) in paragraph at lines 698--704
 
  []
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [13]
-Underfull \hbox (badness 10000) in paragraph at lines 762--768
+Underfull \hbox (badness 10000) in paragraph at lines 765--771
 
  []
 
@@ -2386,43 +2386,43 @@ Appendix A.
 88.pgf)
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1311.
+(hyperref)                removing `math shift' on input line 1313.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Gamma' on input line 1311.
+(hyperref)                removing `\Gamma' on input line 1313.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1311.
+(hyperref)                removing `math shift' on input line 1313.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1311.
+(hyperref)                removing `math shift' on input line 1313.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1311.
+(hyperref)                removing `subscript' on input line 1313.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\alpha' on input line 1311.
+(hyperref)                removing `\alpha' on input line 1313.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1311.
+(hyperref)                removing `math shift' on input line 1313.
 
 LaTeX Font Info:    Try loading font information for TS1+ntxtlf on input line 1
-346.
+348.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1346.
+(Font)              scaled to size 10.95pt on input line 1348.
  [16
 
 ]
-Overfull \hbox (50.70718pt too wide) detected at line 1367
+Overfull \hbox (50.70718pt too wide) detected at line 1369
 \U/ntxmia/m/it/10.95 = [] \OML/ntxmi/m/it/10.95 U[]U[]Tr [] \U/ntxmia/m/it/10.9
 5 ý [] \OML/ntxmi/m/it/10.95 U[]U[]Tr [] \U/ntxmia/m/it/10.95 =
  []
@@ -2438,20 +2438,20 @@ Appendix B.
 88.pgf)
 
 LaTeX Warning: Reference `Dirac-Diagonalisation' on page 19 undefined on input 
-line 1434.
+line 1436.
 
 
 LaTeX Warning: Reference `eq:Gamma-Dirac-Diagonal' on page 19 undefined on inpu
-t line 1437.
+t line 1439.
 
 
 LaTeX Warning: Reference `eq:Imaginary-Evolution' on page 19 undefined on input
- line 1443.
+ line 1445.
 
 [19
 
 ]
-Overfull \hbox (1.1841pt too wide) in paragraph at lines 1466--1467
+Overfull \hbox (1.1841pt too wide) in paragraph at lines 1468--1469
 []\T1/cmtt/m/n/10.95 Inject_gamma(gamma, injection, first_index)$\LMS/ntxsy/m/n
 /10.95 ! \OML/ntxmi/m/it/10.95 M[]$\T1/ntxtlf/m/n/10.95 :This func-tion over-wr
 ite the
@@ -2465,17 +2465,17 @@ Appendix C.
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 1531.
+(Font)              scaled to size 12.0pt on input line 1533.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.8pt on input line 1531.
+(Font)              scaled to size 8.8pt on input line 1533.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.6pt on input line 1531.
+(Font)              scaled to size 6.6pt on input line 1533.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 1531.
+(Font)              scaled to size 12.0pt on input line 1533.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.8pt on input line 1531.
+(Font)              scaled to size 8.8pt on input line 1533.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 6.6pt on input line 1531.
+(Font)              scaled to size 6.6pt on input line 1533.
  [21
 
 ] (./main.bbl
@@ -2496,11 +2496,11 @@ AED: lastpage setting LastPage
 [23
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1592.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1592.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1594.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1594.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1592.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1592.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1594.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1594.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: DCE625A725762EE8A1EE1FBB133AACAA;4842.
@@ -2516,13 +2516,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 44944 strings out of 492616
- 831695 string characters out of 6129481
+ 44937 strings out of 492616
+ 831503 string characters out of 6129481
  1172081 words of memory out of 5000000
- 47754 multiletter control sequences out of 15000+600000
+ 47747 multiletter control sequences out of 15000+600000
  676897 words of font info for 326 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,18n,124p,842b,1565s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,18n,124p,842b,1311s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/
 local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/lo
 cal/texlive/2019/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/local/t
@@ -2547,7 +2547,7 @@ t/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2019/texmf-dist/font
 s/type1/public/txfonts/txsyc.pfb></usr/local/texlive/2019/texmf-dist/fonts/type
 1/public/newtx/txsys.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/ti
 mes/utmri8a.pfb>
-Output written on main.pdf (25 pages, 469911 bytes).
+Output written on main.pdf (25 pages, 470261 bytes).
 PDF statistics:
  651 PDF objects out of 1000 (max. 8388607)
  577 compressed objects within 6 object streams
