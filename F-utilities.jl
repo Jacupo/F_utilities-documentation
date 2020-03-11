@@ -1,5 +1,5 @@
 using PyPlot;
-#using LinearAlgebra;
+using LinearAlgebra;
 
 function Print_matrix(title, matrix)
  figure(title)
@@ -201,23 +201,11 @@ end
 function VN_entropy(M)
    N = convert(Int64, size(M,1));
 
-   D,U = LinearAlgebra.eigen((M+M')/2.);   #Se voglio fare con eig
-   D = diagm(real(D));
-   S = 0;
+   D,U = LinearAlgebra.eigen((M+M')/2.);
 
+   S = 0;
    for iiter=1:N
-       if (round.(D[iiter,iiter];digits=14)<-0.0000000000001)
-        De,Ue = LinearAlgebra.eigen((M+M')/2.);
-        for iiter=1:N
-         println("DG: ", D[iiter,iiter]);
-        end
-        for iiter=1:N
-         println("DE: ", De[iiter]);
-        end
-        error = string("Eigenvalue in VE not in [0,1]: ",round(D[iiter,iiter];digits=18))
-        throw(ArgumentError(error))
-       end
-       nu = abs(round.(D[iiter,iiter];digits=18))
+       nu = abs(round.(D[iiter];digits=14))
        if (nu != 0 && nu != 1)
            S -= log(nu)*nu;
        end
@@ -241,6 +229,44 @@ function Purity(M)
 
    return purity
 end
+
+function Contour(Γ)
+  N = div(size(Γ,1),2);
+  D,U = Diag_gamma((Γ+Γ')/2.);
+
+  p = zeros(Float64,N,N);
+
+  for i=1:N
+    for k=1:N
+      dand = real(U[i,k]*conj(U[i,k]));
+      ndda = real(U[i+N,k+N]*conj(U[i+N,k+N]));
+      dada = real(U[i,k+N]*conj(U[i,k+N]));
+      ndnd = real(U[i+N,k]*conj(U[i+N,k]));
+      p[i,k] = 0.5*(dand+ndda+dada+ndnd);
+    end
+  end
+
+  Ent_Cont = zeros(Float64, N);
+  for i=1:N
+    for k=1:N
+      ν = real(D[k,k]);
+      if (ν<0.)
+        print()
+        ν = 0;
+      end
+      if (ν>1.)
+        ν = 1;
+      end
+      if (ν!=0.0 && ν!=1.0)
+        Ent_Cont[i] -= p[i,k]*(ν*log(ν)+(1-ν)*log(1-ν));
+      end
+    end
+  end
+
+  return Ent_Cont;
+
+end
+
 
 
 ###################################################################################
@@ -437,7 +463,7 @@ function GS_Gamma(D,U)
 end
 
 
-function Reduce_gamma(M, N_partition, first_index)
+function Reduce_Gamma(M, N_partition, first_index)
    N_f = div(size(M,1),2);
    first_index = first_index-1;
    periodic_dimension = max((N_partition.+first_index-N_f),0)
