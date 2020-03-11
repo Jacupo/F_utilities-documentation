@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2019)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: main.aux
+The style file: aer.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: QFH.bib
+Warning--empty journal in bravyi2004
+Warning--empty journal in nielsen
+Warning--empty year in nielsen
+You've used 17 entries,
+            2984 wiz_defined-function locations,
+            750 strings with 6522 characters,
+and the built_in function-call counts, 14404 in all, are:
+= -- 2335
+> -- 782
+< -- 232
++ -- 244
+- -- 136
+* -- 900
+:= -- 3286
+add.period$ -- 17
+call.type$ -- 17
+change.case$ -- 119
+chr.to.int$ -- 15
+cite$ -- 20
+duplicate$ -- 183
+empty$ -- 432
+format.name$ -- 385
+if$ -- 3587
+int.to.chr$ -- 3
+int.to.str$ -- 0
+missing$ -- 16
+newline$ -- 57
+num.names$ -- 204
+pop$ -- 238
+preamble$ -- 1
+purify$ -- 136
+quote$ -- 0
+skip$ -- 0
+stack$ -- 0
+substring$ -- 451
+swap$ -- 61
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 68
+warning$ -- 3
+while$ -- 188
+width$ -- 0
+write$ -- 288
+(There were 3 warnings)

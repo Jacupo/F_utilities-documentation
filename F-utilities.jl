@@ -129,18 +129,127 @@ function Diag_ferm(M,rand_perturbation::Int64=0)
     return real(M_f), U_f;
 end
 
-###################################################################################
 
 function Diag_gamma(Γ,rand_perturbation::Int64=0)
- #Diagonalizzo cosi' invece che con eig cosi' ottengo gli autovettori a coppie
- #ordinate come voglio.
- #La generica unitaria tra Fermioni di Dirac e' fatta come
- #Ω*O*Ω', con O una generica ortogonale NxN specificata da N(N-1)/2 angoli
  Γ = (Γ+Γ')/2.;
  γ, U = Diag_ferm(Γ-0.5*I,rand_perturbation);
 
  return U'*Γ*U,U;#real(γ+0.5*eye(size(Γ,1))),U
 end
+
+
+
+function Reduce_gamma(M, N_partition, first_index)
+   N_f = div(size(M,1),2);
+   first_index = first_index-1;
+   periodic_dimension = max((N_partition.+first_index-N_f),0)
+   dim_UL = N_partition-periodic_dimension;
+
+   redgamma = zeros(Complex{Float64}, N_partition*2, N_partition*2);
+   #Copy the upper left left part of the correlation matrix
+   redgamma[1:dim_UL,1:dim_UL] = M[(1:dim_UL).+first_index,(1:dim_UL).+first_index];
+   redgamma[(1:dim_UL).+N_partition,1:dim_UL] = M[(1:dim_UL).+N_f.+first_index,(1:dim_UL).+first_index];
+   redgamma[1:dim_UL,(1:dim_UL).+N_partition] = M[(1:dim_UL).+first_index,(1:dim_UL).+N_f.+first_index];
+   redgamma[(1:dim_UL).+N_partition,(1:dim_UL).+N_partition] = M[(1:dim_UL).+N_f.+first_index,(1:dim_UL).+N_f.+first_index];
+
+   if (periodic_dimension>0)
+     redgamma[(dim_UL.+(1:periodic_dimension)),(dim_UL.+(1:periodic_dimension))] = M[1:periodic_dimension,1:periodic_dimension];
+     redgamma[1:dim_UL,(dim_UL.+(1:periodic_dimension))] = M[(first_index.+(1:dim_UL)),1:periodic_dimension];
+     redgamma[(dim_UL.+(1:periodic_dimension)),1:dim_UL] = M[1:periodic_dimension,(first_index.+(1:dim_UL))];
+
+     redgamma[(dim_UL.+(1:periodic_dimension)).+N_partition,(dim_UL.+(1:periodic_dimension))] = M[(1:periodic_dimension).+N_f,1:periodic_dimension];
+     redgamma[(1:dim_UL).+N_partition,(dim_UL.+(1:periodic_dimension))] = M[(first_index.+(1:dim_UL)).+N_f,1:periodic_dimension];
+     redgamma[(dim_UL.+(1:periodic_dimension)).+N_partition,1:dim_UL] = M[(1:periodic_dimension).+N_f,(first_index.+(1:dim_UL))];
+
+     redgamma[(dim_UL.+(1:periodic_dimension)),(dim_UL.+(1:periodic_dimension)).+N_partition] = M[1:periodic_dimension,(1:periodic_dimension).+N_f];
+     redgamma[1:dim_UL,(dim_UL.+(1:periodic_dimension)).+N_partition] = M[(first_index.+(1:dim_UL)),(1:periodic_dimension).+N_f];
+     redgamma[(dim_UL.+(1:periodic_dimension)),(1:dim_UL).+N_partition] = M[1:periodic_dimension,(first_index.+(1:dim_UL)).+N_f];
+
+     redgamma[(dim_UL.+(1:periodic_dimension)).+N_partition,(dim_UL.+(1:periodic_dimension)).+N_partition] = M[(1:periodic_dimension).+N_f,(1:periodic_dimension).+N_f];
+     redgamma[(1:dim_UL).+N_partition,(dim_UL.+(1:periodic_dimension)).+N_partition] = M[(first_index.+(1:dim_UL)).+N_f,(1:periodic_dimension).+N_f];
+     redgamma[(dim_UL.+(1:periodic_dimension)).+N_partition,(1:dim_UL).+N_partition] = M[(1:periodic_dimension).+N_f,(first_index.+(1:dim_UL)).+N_f];
+   end
+
+
+   return redgamma
+end
+
+
+
+function Eigenvalues_of_rho(M)
+   N = convert(Int64, size(M,1)/2);
+
+   evor = ones(Float64, 2^N)
+
+   D,U = Diag_gamma((M+M')/2.)
+
+
+
+   for iiter=1:2^N
+       index = iiter-1;
+       for jiter=1:N
+           evor[iiter] = evor[iiter]*round((mod(index-1,2)*D[jiter,jiter]+(1-mod(index-1,2))*(D[jiter+N,jiter+N])),18)
+           index -= mod(index,2);
+           index = index/2;
+       end
+   end
+
+   return evor;
+end
+
+
+function VN_entropy(M)
+   N = convert(Int64, size(M,1));
+
+   D,U = LinearAlgebra.eigen((M+M')/2.);   #Se voglio fare con eig
+   D = diagm(real(D));
+   S = 0;
+
+   for iiter=1:N
+       if (round.(D[iiter,iiter];digits=14)<-0.0000000000001)
+        De,Ue = LinearAlgebra.eigen((M+M')/2.);
+        for iiter=1:N
+         println("DG: ", D[iiter,iiter]);
+        end
+        for iiter=1:N
+         println("DE: ", De[iiter]);
+        end
+        error = string("Eigenvalue in VE not in [0,1]: ",round(D[iiter,iiter];digits=18))
+        throw(ArgumentError(error))
+       end
+       nu = abs(round.(D[iiter,iiter];digits=18))
+       if (nu != 0 && nu != 1)
+           S -= log(nu)*nu;
+       end
+   end
+
+   return S;
+end
+
+
+
+function Purity(M)
+   N_f = convert(Int64, size(M,1)/2.)
+   M[1,1] += eps()
+   D,U = Diag_gamma(M);
+
+   purity = 1;
+
+   for iiter=1:N_f
+       purity = real(purity*(2*(D[iiter,iiter]-1)*D[iiter,iiter]+1));
+   end
+
+   return purity
+end
+
+
+###################################################################################
+
+
+
+
+
+
 
 function Evolve_gamma(M,D,U,t)
    N = div(size(M,1),2);

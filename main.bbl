@@ -3,19 +3,83 @@
 \fi
 \begin{thebibliography}{xx}
 
+\harvarditem[Bravyi]{Bravyi}{2004}{bravyi2004}
+{\bf Bravyi, Sergey}, ``Lagrangian Representation for Fermionic Linear
+  Optics,'' 2004.
+
+\harvarditem[Chen and Vidal]{Chen and Vidal}{2014}{chen2014}
+{\bf Chen, Yangang and Guifre Vidal}, ``Entanglement Contour,'' {\it Journal of
+  Statistical Mechanics: Theory and Experiment}, October 2014, {\it 2014} (10),
+  P10011.
+
+\harvarditem[Cheong and Henley]{Cheong and Henley}{2003}{cheong2003}
+{\bf Cheong, Siew-Ann and Christopher~L. Henley}, ``Many-{{Body Density
+  Matrices}} for {{Free Fermions}},'' {\it arXiv:cond-mat/0206196}, November
+  2003.
+
+\harvarditem[Coser et al.]{Coser, Nobili and Tonni}{2017}{coser2017}
+{\bf Coser, Andrea, Cristiano~De Nobili, and Erik Tonni}, ``A Contour for the
+  Entanglement Entropies in Harmonic Lattices,'' {\it J. Phys. A: Math.
+  Theor.}, July 2017, {\it 50} (31), 314001.
+
+\harvarditem[Friis et al.]{Friis, Lee and Bruschi}{2013}{friis2013}
+{\bf Friis, Nicolai, Antony~R Lee, and David~Edward Bruschi}, ``Fermionic-Mode
+  Entanglement in Quantum Information,'' {\it Physical Review A}, February
+  2013, {\it 87} (2), 022338.
+
 \harvarditem[Horn and Johnson]{Horn and Johnson}{1985}{horn1985}
 {\bf Horn, Roger~A. and Charles~R. Johnson}, ``Matrix {{Analysis}} by {{Roger
   A}}. {{Horn}},'' /core/books/matrix-analysis/9CF2CB491C9E97948B15FAD835EF9A8B
   December 1985.
+
+\harvarditem[Jaynes]{Jaynes}{1957a}{jaynes1957a}
+{\bf Jaynes, E.~T.}, ``Information Theory and Statistical Mechanics,'' {\it
+  Physical Review}, May 1957, {\it 106} (4), 620--630.
+
+\harvarditem[Jaynes]{Jaynes}{1957b}{jaynes1957}
+{\bf Jaynes, Edwin~T}, ``Information Theory and Statistical Mechanics.
+  {{II}},'' {\it Physical Review}, 1957, {\it 108} (2), 171--190.
 
 \harvarditem[Lieb et al.]{Lieb, Schultz and Mattis}{1961}{lieb1961}
 {\bf Lieb, Elliott, Theodore Schultz, and Daniel Mattis}, ``Two Soluble Models
   of an Antiferromagnetic Chain,'' {\it Annals of Physics}, December 1961, {\it
   16} (3), 407--466.
 
+\harvarditem[Molinari]{Molinari}{2017}{molinari2017}
+{\bf Molinari, Luca~Guido}, ``Notes on {{Wick}}'s Theorem in Many-Body
+  Theory,'' {\it arXiv:1710.09248 [cond-mat, physics:math-ph]}, October 2017.
+
 \harvarditem[Nielsen]{Nielsen}{n.d.}{nielsen}
 {\bf Nielsen, Michael~A}, ``The {{Fermionic}} Canonical Commutation Relations
   and the {{Jordan}}-{{Wigner}} Transform,'' p.~8.
+
+\harvarditem[Peschel]{Peschel}{2003a}{peschel2003a}
+{\bf Peschel, Ingo}, ``Calculation of Reduced Density Matrices from Correlation
+  Functions,'' {\it J. Phys. A: Math. Gen.}, March 2003, {\it 36} (14),
+  L205--L208.
+
+\harvarditem[Peschel]{Peschel}{2003b}{peschel2003}
+{\bf \bysame{}}, ``Calculation of Reduced Density Matrices from Correlation
+  Functions,'' {\it J. Phys. A: Math. Gen.}, March 2003, {\it 36} (14),
+  L205--L208.
+
+\harvarditem[Tonni et al.]{Tonni, {Rodr{\'i}guez-Laguna} and
+  Sierra}{2018}{tonni2018}
+{\bf Tonni, Erik, Javier {Rodr{\'i}guez-Laguna}, and Germ{\'a}n Sierra},
+  ``Entanglement Hamiltonian and Entanglement Contour in Inhomogeneous {{1D}}
+  Critical Systems,'' {\it J. Stat. Mech.: Theory Exp.}, April 2018, {\it 2018}
+  (4), 043105.
+
+\harvarditem[Vidal et al.]{Vidal, Latorre, Rico and Kitaev}{2003}{vidal2003}
+{\bf Vidal, G., J.~I. Latorre, E.~Rico, and A.~Kitaev}, ``Entanglement in
+  {{Quantum Critical Phenomena}},'' {\it Phys. Rev. Lett.}, June 2003, {\it 90}
+  (22), 227902.
+
+\harvarditem[Zhang et al.]{Zhang, Calabrese, Dalmonte and
+  Rajabpour}{2020}{zhang2020}
+{\bf Zhang, Jiaju, Pasquale Calabrese, Marcello Dalmonte, and M.~A. Rajabpour},
+  ``Lattice {{Bisognano}}-{{Wichmann}} Modular {{Hamiltonian}} in Critical
+  Quantum Spin Chains,'' {\it arXiv:2003.00315 [cond-mat]}, February 2020.
 
 \harvarditem[Zumino]{Zumino}{1962}{zumino1962}
 {\bf Zumino, Bruno}, ``Normal {{Forms}} of {{Complex Matrices}},'' {\it Journal

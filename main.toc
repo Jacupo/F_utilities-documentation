@@ -3,22 +3,35 @@
 \contentsline {section}{\numberline {1.2}Dirac and Majorana representations}{2}{section.1.2}% 
 \contentsline {subsection}{\numberline {1.2.1}Vector notation}{2}{subsection.1.2.1}% 
 \contentsline {subsection}{\numberline {1.2.2}Fermionic transformation}{3}{subsection.1.2.2}% 
+\contentsline {subsubsection}{\numberline {1.2.2.1}Clifford Algebra}{3}{subsubsection.1.2.2.1}% 
 \contentsline {chapter}{\numberline {2}Fermionic Quadratic Hamiltonians}{4}{chapter.2}% 
 \contentsline {section}{\numberline {2.1}Dirac Representation}{4}{section.2.1}% 
 \contentsline {section}{\numberline {2.2}Majorana Representation}{4}{section.2.2}% 
-\contentsline {section}{\numberline {2.3}Diagonalisation}{4}{section.2.3}% 
-\contentsline {subsection}{\numberline {2.3.1}Hamiltonian diagonal form with Dirac operators}{4}{subsection.2.3.1}% 
+\contentsline {section}{\numberline {2.3}Diagonalisation}{5}{section.2.3}% 
+\contentsline {subsection}{\numberline {2.3.1}Hamiltonian diagonal form with Dirac operators}{5}{subsection.2.3.1}% 
 \contentsline {subsection}{\numberline {2.3.2}Hamiltonian diagonal form with Majorana operators}{5}{subsection.2.3.2}% 
-\contentsline {section}{\numberline {2.4}Numerical diagonalisation}{5}{section.2.4}% 
-\contentsline {subsection}{\numberline {2.4.1}Block-diagonal form of real skew-symmetric matrices}{7}{subsection.2.4.1}% 
-\contentsline {chapter}{\numberline {3}Fermionic gaussian states}{9}{chapter.3}% 
-\contentsline {chapter}{\numberline {A}Extended calculations}{10}{appendix.A}% 
-\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{10}{section.A.1}% 
-\contentsline {section}{\numberline {A.2}Purity}{11}{section.A.2}% 
-\contentsline {chapter}{\numberline {B}F-utilities}{13}{appendix.B}% 
-\contentsline {chapter}{\numberline {C}Useful relations}{15}{appendix.C}% 
-\contentsline {section}{\numberline {C.1}Pauli Matrices}{15}{section.C.1}% 
-\contentsline {section}{\numberline {C.2}Operators obeying CAR}{15}{section.C.2}% 
-\contentsline {section}{\numberline {C.3}Jordan-Wigner Transformations}{16}{section.C.3}% 
-\contentsline {subsection}{\numberline {C.3.1}spinless fermions $\rightarrow $ spins}{16}{subsection.C.3.1}% 
-\contentsline {subsection}{\numberline {C.3.2}spins $\rightarrow $ spinless fermions}{16}{subsection.C.3.2}% 
+\contentsline {section}{\numberline {2.4}Numerical diagonalisation}{6}{section.2.4}% 
+\contentsline {subsection}{\numberline {2.4.1}Block-diagonal form of real skew-symmetric matrices}{8}{subsection.2.4.1}% 
+\contentsline {chapter}{\numberline {3}Fermionic Gaussian States}{9}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Fermionic Gaussian states}{9}{section.3.1}% 
+\contentsline {subsection}{\numberline {3.1.1}Single mode Gaussian states}{9}{subsection.3.1.1}% 
+\contentsline {section}{\numberline {3.2}Correlation Matrix}{9}{section.3.2}% 
+\contentsline {section}{\numberline {3.3}Covariance matrix}{10}{section.3.3}% 
+\contentsline {section}{\numberline {3.4}Wick's theorem}{10}{section.3.4}% 
+\contentsline {section}{\numberline {3.5}Diagonalisation of the correlation matrix}{11}{section.3.5}% 
+\contentsline {subsubsection}{\numberline {3.5.0.1}Reduced density matrix}{12}{subsubsection.3.5.0.1}% 
+\contentsline {section}{\numberline {3.6}Eigenvalues of $\rho $ and eigenvalues of $\Gamma $}{13}{section.3.6}% 
+\contentsline {section}{\numberline {3.7}Information measures}{13}{section.3.7}% 
+\contentsline {subsection}{\numberline {3.7.1}Von Neumann Entropies}{13}{subsection.3.7.1}% 
+\contentsline {subsection}{\numberline {3.7.2}Purity}{14}{subsection.3.7.2}% 
+\contentsline {subsection}{\numberline {3.7.3}Entanglement Contour}{14}{subsection.3.7.3}% 
+\contentsline {chapter}{\numberline {A}Extended calculations}{16}{appendix.A}% 
+\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{16}{section.A.1}% 
+\contentsline {section}{\numberline {A.2}Purity}{17}{section.A.2}% 
+\contentsline {chapter}{\numberline {B}F-utilities}{19}{appendix.B}% 
+\contentsline {chapter}{\numberline {C}Useful relations}{21}{appendix.C}% 
+\contentsline {section}{\numberline {C.1}Pauli Matrices}{21}{section.C.1}% 
+\contentsline {section}{\numberline {C.2}Operators obeying CAR}{21}{section.C.2}% 
+\contentsline {section}{\numberline {C.3}Jordan-Wigner Transformations}{22}{section.C.3}% 
+\contentsline {subsection}{\numberline {C.3.1}spinless fermions $\rightarrow $ spins}{22}{subsection.C.3.1}% 
+\contentsline {subsection}{\numberline {C.3.2}spins $\rightarrow $ spinless fermions}{22}{subsection.C.3.2}% 
