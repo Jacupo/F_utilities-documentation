@@ -337,7 +337,7 @@ H_{D}=U\da H U =
 \end{array}\right),
 \end{equation}
 where $U$ is the fermionic tranformation that diagonalise the hamiltonian.\\
-We will always order the eigenvalues in descending order ($\epsilon_1 \geq \epsilon_2 \geq \dots \geq \epsilon_N$).
+We will always order the eigenvalues in descending order ($\epsilon_1 \geq \epsilon_2 \geq \dots \geq \epsilon_N\geq 0$).
 \subsection{Hamiltonian diagonal form with Majorana operators}
 In terms of Majorana operators the diagonal form of a generic f.q.h. reads as
 \begin{equation}
@@ -443,7 +443,7 @@ U=\Omega^{\dagger}\cdot O\cdot F_{xp\rightarrow xx}^{\dagger}\cdot\Omega.
 We note that $\epsilon_k=\lambda_k$.
 %
 \begin{proposition}{\code{Diag\_ferm($H$)$\rightarrow  H_{D},U$}}{}
-This function diagonalise $H$. $H_D$ is the diagonal form with the first half diagonal negative and the second one positive. $U$ is the fermionic transformation such that: $H=UH_{D}U\da$. \\
+This function diagonalise $H$. $H_D$ is the diagonal form with the first half diagonal negative and the second one positive ordered as \ref{eq:Diagonal-HD}. $U$ is the fermionic transformation such that: $H=UH_{D}U\da$. \\
 \end{proposition}
 
 
@@ -484,7 +484,7 @@ if $\tilde{\lambda_{i}}>0$.
 
 \end{enumerate}
 
-\begin{proposition}{\code{Diag\_Real\_Skew(h) $\rightarrow h_D,O$}}{}
+\begin{proposition}{\code{Diag\_real\_skew(h) $\rightarrow h_D,O$}}{}
 This function implements the algorithm for the block diagonalisation of $h$ a generic skew-symmetric real matrix. $h_D$ is the block-diagonal matrix of \eqref{eq:Schur-Decomposition} and has the following property: it is in the block diagonal form, each $2\times2$ block is skew-symmetric with the upper-right element positive and real and $h_D$ is in ascending order for the upper diagonal. $O$ is an orthogonal matrix such that: $h=O h_D O^{T}$.
 \end{proposition}
 
@@ -661,14 +661,77 @@ The elements of  $H_D$ and $\Gamma^D$  are related as
 \epsilon_k = \ln \left(\frac{1-\nu_k}{\nu_k} \right),\\
 \nu_k = \frac{1}{1+e^{\epsilon_k}}
 \end{align}
-with $\nu_k\in[0,1]$ and $\epsilon_k\in[-\infty,+infty]$ where the boundary values are take with a limit. The complete calculation can be found in appendix \label{appendix:Eigenvalues-Relations}.
+with $\nu_k\in[0,1]$ and $\epsilon_k\in[-\infty,+\infty]$ where the boundary values are take with a limit. The complete calculation can be found in appendix \ref{appendix:Eigenvalues-Relations}.
+In ref{eq:Diagonal-HD} we defined all the $\epsilon_k$ to be positive, to use the same notation, one just has to exchange $b$ with $\tilde{b}\da$ and $b\da$ with $\tilde{b}$, that is exchanging occupations with vacancies for the mode with $\epsilon_k$ negative. This corresponds to switching $\nu_k$ with $1-\tilde{\nu}_k$ and $1-\nu_k$ with $\tilde{\nu}_k$.\\ 
 In general the correlation matrix $\Gamma$ and the parent hamiltonian $H$ are related as \cite{peschel2003a,vidal2003,cheong2003,zhang2020}
 \begin{equation}
 \Gamma = \frac{1}{1+e^{H}}.
 \end{equation}
-\begin{proposition}{\code{Diag\_Gamma($\Gamma$)$\rightarrow  \Gamma^D, U$}}{}
+\begin{proposition}{\code{Diag\_gamma($\Gamma$)$\rightarrow  \Gamma^D, U$}}{}
 This function returns $\Gamma^D$, the the diagonal form of the Dirac correlation matrix $\Gamma$ and $U$ the fermionic transformation such that $\Gamma=U \Gamma^D U\dag $.
 \end{proposition}
+
+
+\subsubsection{Phisicality of a state}
+It is known that a matrix $\rho$, represent a valid physical density matrix if it is a positive semi-definite hermitian matrix with trace one. 
+The condition for a matrix $\Gamma$ to represent a valid physical correlation matrix of a f.g.s. is
+\begin{equation}
+\Gamma^2-\Gamma \leq 0,
+\end{equation}
+or equivalently
+\begin{equation}
+\gamma\gamma\da \leq -\id.
+\end{equation}
+These conditions are equivalent to asking that the eigenvalues $\nu_i$ of matrix $\Gamma$ belongs all to the interval $[0,1]$.
+
+\subsubsection{Ground states of fermionic quadratic hamiltonians}
+Suppose we have a f.q.h. $H$  and we are interest in obtaining the correlation matrix $\Gamma_0$ associated to its ground state $|0\rangle$. 
+In order to obtain $\Gamma_0$ we proceed by first finding the fermionic transformation $U$ that diagonalise $H$. Since our algorithm associates to each free mode of the diagonalised hamiltonian a positive energy, in the diagonal basis the ground state is $|0\rangle \langle 0|$.
+The correlation matrix associated to the state $|0\rangle$ is the block matrix:
+\begin{equation}
+\Gamma_{ |0\rangle \langle 0|}=
+\begin{pmatrix}
+0 & 0\\
+0 & \id_{N \times N} 
+\end{pmatrix}.
+\end{equation}
+To obtain the ground state $\Gamma_0$ we just need to move back to the original basis, thus
+\begin{equation}
+\Gamma_0 = U \Gamma_{|0\rangle \langle 0|} U\da.
+\end{equation}
+\begin{proposition}{\code{GS\_gamma($H_D,U$)$\rightarrow  \Gamma_0$}}{}
+This function returns $\Gamma_0$, the ground state of the hamiltonian $H=UH_DU\da$.
+\end{proposition}
+
+
+\subsubsection{Thermal state of fermionic quadratic hamiltonians}
+Suppose we have a f.q.h. $H$  and we are interest in obtaining the correlation matrix $\Gamma_0$ associated to the thermal state $\rho_\beta = \frac{e^{-\beta H}}{\Tr{e^{-\beta H}}}$. 
+
+As we did for computing the ground state, we move to the diagonal basis with the fermionic transformation $U$.
+In the diagonal basis the thermal state has the correlation matrix 
+\begin{equation}
+\Gamma_{\beta}^D = \begin{pmatrix}
+\frac{1}{1+e^{\beta \epsilon_1}} & 0 & \dots &  & \dots & 0\\
+0 & \ddots & \ddots &  &  & \vdots\\
+\vdots & \ddots & \frac{1}{1+e^{\beta \epsilon_N}} \\
+ &  &  & \frac{1}{1+e^{-\beta \epsilon_1}}  & \ddots & \vdots\\
+\vdots &  &  & \ddots & \ddots & 0\\
+0 & \dots &  &  & \dots0 & \frac{1}{1+e^{-\beta \epsilon_N}} 
+\end{pmatrix}.
+\end{equation}
+To obtain the thermal state $\Gamma_{\beta}$ we just need to move back to the original basis, thus
+\begin{equation}
+\Gamma_{\beta} = U \Gamma_{\beta}^D U\da.
+\end{equation}
+\begin{proposition}{\code{Thermal\_fix\_beta($H_D,U,\beta$)$\rightarrow  \Gamma_0$}}{}
+This function returns $\Gamma_{\beta}$, the termal state at inverse temperature $\beta$ of the hamiltonian $H=UH_DU\da$.
+\end{proposition}
+\begin{proposition}{\code{Thermal\_fix\_energy($H_D,U,E$)$\rightarrow  \Gamma_{\beta(E)}, \beta(E)$}}{}
+This function returns $\Gamma_{\beta(E)}$, the thermal state at inverse temperature $\beta(E)$ of the hamiltonian $H=UH_DU\da$, and $\beta(E)$ the temperature such that $\Tr{\rho_{\beta(E)}H}=E$.
+Since the correct temperature is computed variationally, it prints in the terminal the precision $\Tr{\rho_{\beta(E)}H}-E$ and $\beta(E)$.
+\end{proposition}
+
+
 
 
 %%%%Reduced density matrix
@@ -680,7 +743,7 @@ In the case of fermionic gaussian states, though, this is a much simpler task. A
 With Wick's theorem in mind it is easy to see that the correlation matrix of the reduced state on the modes ${i_1,\dots,i_m}$ is just the correlation matrix  $\left.\Gamma \right|_{\{i_1,\dots,i_m\}}$.\\
 
 
-\begin{proposition}{ \code{Reduce\_Gamma($\Gamma$,m,i\_1)}$\rightarrow  \left.\Gamma \right|_{\{i_1,\dots,i_m\}}$}{}
+\begin{proposition}{ \code{Reduce\_gamma($\Gamma$,m,i\_1)}$\rightarrow  \left.\Gamma \right|_{\{i_1,\dots,i_m\}}$}{}
 This function takes a Dirac correlation matrix $\Gamma$, a dimensione of the partition $m$ and the initial site of the partition $i_1$ and return  $\left.\Gamma \right|_{\{i_1,\dots,i_m\}}$, the reduced correlation matrix on the contiguous modes $\{i_1,\dots,i_m\}$.
 \end{proposition}
 
@@ -721,27 +784,35 @@ If $\rho$ is a Fermionic Gaussian state of a system with $N$ sites , substitutin
 S(\Gamma) \equiv S(\rho) = -\sum_{i=1}^{N} \left(\nu_i \ln(\nu_i)+(1-\nu_i) \ln(1-\nu_i) \right).
 \end{equation}
 
-\begin{proposition}{\code{VN\_Entropy($\Gamma$)}$\rightarrow S$}{}
+\begin{proposition}{\code{VN\_entropy($\Gamma$)}$\rightarrow S$}{}
 This function return $S$, the \code{Float64} value of the Von Neumann Entropy of the state described by the Dirac correlation matrix $\Gamma$.
 \end{proposition}
 
 %%%%Purity
 \subsection{Purity}
+A state is pure if its correlation matrix $\Gamma$ is such that \cite{bach1994a}
+\begin{equation}
+\Gamma^2 = \Gamma,
+\end{equation}
+or, equivalently,
+\begin{equation}
+\gamma^2 =-\id
+\end{equation}
 The purity of a state $\rho$ is defined as
 \begin{equation}
-\mbox{Purity}\equiv Tr\left[\rho^{2}\right].
+\mbox{Purity}(\rho)\equiv Tr\left[\rho^{2}\right].
 \end{equation}
 We have that:
 \begin{equation}
-\mbox{Purity}=\prod_{i=1}^{N-1}\frac{1}{\sech(\epsilon_{i})+1},
+\mbox{Purity}(\rho)=\prod_{i=1}^{N-1}\frac{1}{\sech(\epsilon_{i})+1},
 \end{equation}
 
 \begin{equation}
-\mbox{Purity}=\prod_{i=1}^{N-1}(2\left(\nu_{i}-1\right)\nu_{i}+1),
+\mbox{Purity}(\Gamma)=\prod_{i=1}^{N-1}(2\left(\nu_{i}-1\right)\nu_{i}+1),
 \end{equation}
 
 \begin{equation}
-\mbox{Purity}=\prod_{i=1}^{N-1}\left(2\eta_{i}^{2}+\frac{1}{2}\right).
+\mbox{Purity}(\gamma)=\prod_{i=1}^{N-1}\left(2\eta_{i}^{2}+\frac{1}{2}\right).
 \end{equation}
 
 For more details see appendix \ref{appendix:Purity}.
@@ -1237,9 +1308,9 @@ We consider an entanglement contour specifically defined for Fermionic Gaussian 
 %\end{align}
 %using the Fermionic Wick Theorem (i.e. $\expv{abcd}=\expv{ab}\expv{cd}-\expv{ac}\expv{bd}+\expv{ad}\expv{bc}$)
 %\begin{align*}
-%\langle \hat{H} & b_{i}^{\dagger}b_{j}\rangle  =\sum_{k=0}^{N-1}\frac{\epsilon_k}{2}\left(\expv{b^{\dagger}_{k}b_{k}b_{i}^{\dagger}b_{j}}-\expv{b_{k}b_{k}^{\dagger}b_{i}^{\dagger}b_{j}} \right)= \nonumber\\
-%& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\sum_{k=0}^{N-1}\epsilon_k\left( \expv{b_{k}b_{i}^{\dagger}}\expv{b_{k}^{\dagger}b_{j}}-\expv{b_{k}^{\dagger}b_{i}^{\dagger}}\expv{b_{k}b_{j}} \right)=\nonumber \\
-%& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\sum_{k=0}^{N-1}\epsilon_k\left(\delta_{i,k}\Gamma^{[1]}_{k,j}-\Gamma^{[1]}_{i,k} \Gamma^{[1]}_{k,j}+\Gamma^{[2]}_{i,k}\Gamma^{[3]}_{kj}\right) =\nonumber \\
+%\langle \hat{H} & b_{i}^{\dagger}b_{j}\rangle  =\sum_{k=1}^{N}\frac{\epsilon_k}{2}\left(\expv{b^{\dagger}_{k}b_{k}b_{i}^{\dagger}b_{j}}-\expv{b_{k}b_{k}^{\dagger}b_{i}^{\dagger}b_{j}} \right)= \nonumber\\
+%& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\sum_{k=1}^{N}\epsilon_k\left( \expv{b_{k}b_{i}^{\dagger}}\expv{b_{k}^{\dagger}b_{j}}-\expv{b_{k}^{\dagger}b_{i}^{\dagger}}\expv{b_{k}b_{j}} \right)=\nonumber \\
+%& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\sum_{k=1}^{N}\epsilon_k\left(\delta_{i,k}\Gamma^{[1]}_{k,j}-\Gamma^{[1]}_{i,k} \Gamma^{[1]}_{k,j}+\Gamma^{[2]}_{i,k}\Gamma^{[3]}_{kj}\right) =\nonumber \\
 %& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\epsilon_i\Gamma^{[1]}_{i,j}+(\Gamma H_D \Gamma)_i,j
 %\end{align*}
 %where in the last step we used the specific diagonal  $H_D$ form of $H$ with negative entries on the first half of the diagonal and positive on the second half.\\
@@ -1311,7 +1382,7 @@ We consider an entanglement contour specifically defined for Fermionic Gaussian 
 \label{appendix:Eigenvalues-Relations}
 We consider the state $\rho=\frac{e^{-\frac{1}{2}\vec{\alpha}^{\dagger}H \vec{\alpha}}}{Z}$, we diagonalise $H$ changing the basis to $\vec{\beta}=U^{\dagger}\vec{\alpha}$. Thus we have
 \begin{equation}
-\rho=\frac{e^{-\frac{1}{2}\vec{\beta}^{\dagger}H_{D}\vec{\beta}}}{Z}=\frac{e^{-\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}}{Z}.
+\rho=\frac{e^{-\frac{1}{2}\vec{\beta}^{\dagger}H_{D}\vec{\beta}}}{Z}=\frac{e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}}{Z}.
 \end{equation}
 
 We change the basis of the correlation matrix too
@@ -1322,7 +1393,7 @@ We change the basis of the correlation matrix too
 Now we want to explicitly compute the elements of $\Gamma^{b}$. First of all we compute the normalisation constant
 
 \begin{equation}
-Z=Tr\left[e^{-\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\right] =\prod_{k=1}^{N-1}\left(2\cosh\left(\frac{\epsilon_{k}}{2}\right)\right).
+Z=Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\right] =2^N\prod_{k=1}^{N}\left(\cosh\left(\frac{\epsilon_{k}}{2}\right)\right).
 \end{equation}
 
 To compute the numerator part this equalities will result useful
@@ -1331,38 +1402,38 @@ To compute the numerator part this equalities will result useful
 
 \begin{equation}
 \begin{aligned}
-Tr\left[e^{-\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)} b_{x}^{\dagger}b_{y}\right]	&  =\sum_{v\in\left\{ 0,1\right\} ^{N}}\langle v|e^{-\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}^{\dagger}b_{y}|v\rangle=\\
-	&=\sum_{v\in\left\{ 0,1\right\} ^{N}}\langle v|e^{-\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}|\tilde{v}\rangle=\\
-	& =\sum_{v\in\left\{ 0,1\right\} ^{N}}e^{-\frac{1}{2}\sum_{k=0}^{N-1}(-1)^{v_{k}+1}\epsilon_{k}}\langle v|\tilde{v}\rangle = 0
+Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)} b_{x}^{\dagger}b_{y}\right]	&  =\sum_{v\in\left\{ 0,1\right\} ^{N}}\langle v|e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}^{\dagger}b_{y}|v\rangle=\\
+	&=\sum_{v\in\left\{ 0,1\right\} ^{N}}\langle v|e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}|\tilde{v}\rangle=\\
+	& =\sum_{v\in\left\{ 0,1\right\} ^{N}}e^{-\frac{1}{2}\sum_{k=1}^{N}(-1)^{v_{k}+1}\epsilon_{k}}\langle v|\tilde{v}\rangle = 0
 \end{aligned}
 \end{equation}
 
 
 \begin{equation}
-Tr\left[e^{-\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}b_{y}^{\dagger}\right]=0
+Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}b_{y}^{\dagger}\right]=0
 \end{equation}
 
 •\item $\forall x,y$
 
 \begin{equation}
-Tr\left[e^{-\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}b_{y}\right]=0
+Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}b_{y}\right]=0
 \end{equation}
 \begin{equation}
-Tr\left[e^{-\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}^{\dagger}b_{y}^{\dagger}\right]=0
+Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}^{\dagger}b_{y}^{\dagger}\right]=0
 \end{equation}
 
 Thus the numerator can be explicitly written as
 
 \begin{equation}
-Tr\left[e^{-\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\vec{\alpha}_{i}\vec{\alpha_{j}}^{\dagger}\right]=
+Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\vec{\alpha}_{i}\vec{\alpha_{j}}^{\dagger}\right]=
 \end{equation}
 
 \begin{equation*}
-=\sum_{l=1}^{2N}\sum_{m=1}^{2N}U_{i,l}U_{m,j}^{\dagger}Tr\left[e^{-\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\vec{\beta}_{l}\vec{\beta_{m}}^{\dagger}\right]=
+=\sum_{l=1}^{2N}\sum_{m=1}^{2N}U_{i,l}U_{m,j}^{\dagger}Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\vec{\beta}_{l}\vec{\beta_{m}}^{\dagger}\right]=
 \end{equation*}
 
 \begin{equation*}
-=\sum_{l=1}^{N}U_{i,l}U_{l,j}^{\dagger}Tr\left[e^{-\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{l}^{\dagger}b_{l}\right]+\sum_{l=1}^{N}U_{i,l+N}U_{l+N,j}^{\dagger}Tr\left[e^{-\frac{1}{2}\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{l}b_{l}^{\dagger}\right]=
+=\sum_{l=1}^{N}U_{i,l}U_{l,j}^{\dagger}Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{l}^{\dagger}b_{l}\right]+\sum_{l=1}^{N}U_{i,l+N}U_{l+N,j}^{\dagger}Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{l}b_{l}^{\dagger}\right]=
 \end{equation*}
 
 \begin{equation*}
@@ -1400,20 +1471,20 @@ since $\nu_{i}\in\left[0,1\right]$ the eigenvalues $\epsilon_{i}\text{\ensuremat
 From the previous subsection we have:
 
 \begin{equation}
-Z^{2}=\prod_{k=1}^{N-1}\left(2\cosh\left(\frac{\epsilon_{k}}{2}\right)\right)^{2}
+Z^{2}=\prod_{k=1}^{N}\left(2\cosh\left(\frac{\epsilon_{k}}{2}\right)\right)^{2}
 \end{equation}
 
 and
 
 \begin{equation}
-Tr\left[e^{-\sum_{k=0}^{N-1}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\right]=\prod_{k=1}^{N-1}\left(2\cosh\left(\epsilon_{k}\right)\right).
+Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\right]=\prod_{k=1}^{N}\left(2\cosh\left(\epsilon_{k}\right)\right).
 \end{equation}
 
 
 Thus the purity is:
 
 \begin{equation}
-\mbox{Purity}=\prod_{k=1}^{N-1}\frac{1}{\sech(\epsilon_{k})+1}
+\mbox{Purity}=\prod_{k=1}^{N}\frac{1}{\sech(\epsilon_{k})+1}
 \end{equation}
 
 

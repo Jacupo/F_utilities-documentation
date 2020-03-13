@@ -3,6 +3,11 @@
 \fi
 \begin{thebibliography}{xx}
 
+\harvarditem[Bach et al.]{Bach, Lieb and Solovej}{1994}{bach1994a}
+{\bf Bach, Volker, Elliott~H. Lieb, and Jan~Philip Solovej}, ``Generalized
+  {{Hartree}}-{{Fock}} Theory and the {{Hubbard}} Model,'' {\it J Stat Phys},
+  July 1994, {\it 76} (1), 3--89.
+
 \harvarditem[Bravyi]{Bravyi}{2004}{bravyi2004}
 {\bf Bravyi, Sergey}, ``Lagrangian Representation for Fermionic Linear
   Optics,'' 2004.
@@ -53,13 +58,8 @@
 {\bf Nielsen, Michael~A}, ``The {{Fermionic}} Canonical Commutation Relations
   and the {{Jordan}}-{{Wigner}} Transform,'' p.~8.
 
-\harvarditem[Peschel]{Peschel}{2003a}{peschel2003a}
+\harvarditem[Peschel]{Peschel}{2003}{peschel2003a}
 {\bf Peschel, Ingo}, ``Calculation of Reduced Density Matrices from Correlation
-  Functions,'' {\it J. Phys. A: Math. Gen.}, March 2003, {\it 36} (14),
-  L205--L208.
-
-\harvarditem[Peschel]{Peschel}{2003b}{peschel2003}
-{\bf \bysame{}}, ``Calculation of Reduced Density Matrices from Correlation
   Functions,'' {\it J. Phys. A: Math. Gen.}, March 2003, {\it 36} (14),
   L205--L208.
 

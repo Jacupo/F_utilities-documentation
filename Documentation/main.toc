@@ -19,19 +19,22 @@
 \contentsline {section}{\numberline {3.3}Covariance matrix}{10}{section.3.3}% 
 \contentsline {section}{\numberline {3.4}Wick's theorem}{10}{section.3.4}% 
 \contentsline {section}{\numberline {3.5}Diagonalisation of the correlation matrix}{11}{section.3.5}% 
-\contentsline {subsubsection}{\numberline {3.5.0.1}Reduced density matrix}{12}{subsubsection.3.5.0.1}% 
-\contentsline {section}{\numberline {3.6}Eigenvalues of $\rho $ and eigenvalues of $\Gamma $}{13}{section.3.6}% 
-\contentsline {section}{\numberline {3.7}Information measures}{13}{section.3.7}% 
-\contentsline {subsection}{\numberline {3.7.1}Von Neumann Entropies}{13}{subsection.3.7.1}% 
-\contentsline {subsection}{\numberline {3.7.2}Purity}{14}{subsection.3.7.2}% 
-\contentsline {subsection}{\numberline {3.7.3}Entanglement Contour}{14}{subsection.3.7.3}% 
-\contentsline {chapter}{\numberline {A}Extended calculations}{16}{appendix.A}% 
-\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{16}{section.A.1}% 
-\contentsline {section}{\numberline {A.2}Purity}{17}{section.A.2}% 
-\contentsline {chapter}{\numberline {B}F-utilities}{19}{appendix.B}% 
-\contentsline {chapter}{\numberline {C}Useful relations}{21}{appendix.C}% 
-\contentsline {section}{\numberline {C.1}Pauli Matrices}{21}{section.C.1}% 
-\contentsline {section}{\numberline {C.2}Operators obeying CAR}{21}{section.C.2}% 
-\contentsline {section}{\numberline {C.3}Jordan-Wigner Transformations}{22}{section.C.3}% 
-\contentsline {subsection}{\numberline {C.3.1}spinless fermions $\rightarrow $ spins}{22}{subsection.C.3.1}% 
-\contentsline {subsection}{\numberline {C.3.2}spins $\rightarrow $ spinless fermions}{22}{subsection.C.3.2}% 
+\contentsline {subsubsection}{\numberline {3.5.0.1}Phisicality of a state}{12}{subsubsection.3.5.0.1}% 
+\contentsline {subsubsection}{\numberline {3.5.0.2}Ground states of fermionic quadratic hamiltonians}{13}{subsubsection.3.5.0.2}% 
+\contentsline {subsubsection}{\numberline {3.5.0.3}Thermal state of fermionic quadratic hamiltonians}{13}{subsubsection.3.5.0.3}% 
+\contentsline {subsubsection}{\numberline {3.5.0.4}Reduced density matrix}{14}{subsubsection.3.5.0.4}% 
+\contentsline {section}{\numberline {3.6}Eigenvalues of $\rho $ and eigenvalues of $\Gamma $}{14}{section.3.6}% 
+\contentsline {section}{\numberline {3.7}Information measures}{15}{section.3.7}% 
+\contentsline {subsection}{\numberline {3.7.1}Von Neumann Entropies}{15}{subsection.3.7.1}% 
+\contentsline {subsection}{\numberline {3.7.2}Purity}{15}{subsection.3.7.2}% 
+\contentsline {subsection}{\numberline {3.7.3}Entanglement Contour}{16}{subsection.3.7.3}% 
+\contentsline {chapter}{\numberline {A}Extended calculations}{17}{appendix.A}% 
+\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{17}{section.A.1}% 
+\contentsline {section}{\numberline {A.2}Purity}{18}{section.A.2}% 
+\contentsline {chapter}{\numberline {B}F-utilities}{20}{appendix.B}% 
+\contentsline {chapter}{\numberline {C}Useful relations}{22}{appendix.C}% 
+\contentsline {section}{\numberline {C.1}Pauli Matrices}{22}{section.C.1}% 
+\contentsline {section}{\numberline {C.2}Operators obeying CAR}{22}{section.C.2}% 
+\contentsline {section}{\numberline {C.3}Jordan-Wigner Transformations}{23}{section.C.3}% 
+\contentsline {subsection}{\numberline {C.3.1}spinless fermions $\rightarrow $ spins}{23}{subsection.C.3.1}% 
+\contentsline {subsection}{\numberline {C.3.2}spins $\rightarrow $ spinless fermions}{23}{subsection.C.3.2}% 
