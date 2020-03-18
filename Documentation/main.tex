@@ -75,6 +75,8 @@
 
 \usepackage{textgreek}
 
+\usepackage{float}
+
 \begin{document}
 
 \maketitle
@@ -253,7 +255,7 @@ The general \textit{fermionic quadratic hamiltonians} (f.q.h.) on a finite latti
 
 \begin{equation}
 	\label{eq:Dirac-QFH}
-	\hat{H}=\frac{1}{2}\sum_{i,j=1}^{N}\left(A_{i,j}a_{i}^{\dagger}a_{j}-\bar{A}_{i,j}a_{i}a_{j}^{\dagger}+B_{i,j}a_{i}a_{j}-\bar{B}_{i,j}a_{i}^{\dagger}a_{j}^{\dagger}\right),
+	\hat{H}=\sum_{i,j=1}^{N}\left(A_{i,j}a_{i}^{\dagger}a_{j}-\bar{A}_{i,j}a_{i}a_{j}^{\dagger}+B_{i,j}a_{i}a_{j}-\bar{B}_{i,j}a_{i}^{\dagger}a_{j}^{\dagger}\right),
 \end{equation}
 %
 where $A$ is an \textit{hermitian} complex matrix, $A^{\dagger}=A$,  and $B$ is a \textit{skew-symmetric} complex matrix, $B^{T}=-B$ . \\
@@ -269,7 +271,7 @@ H=\left(\begin{array}{cc}
 the compact form of equation \eqref{eq:Dirac-QFH} reads
 \begin{equation}
 \label{eq:Dirac-QFH-h}
-\hat{H}=\frac{1}{2}\vec{\alpha}^{\dagger}H\vec{\alpha}.
+\hat{H}= \vec{\alpha}^{\dagger}H\vec{\alpha}.
 \end{equation}
 We will call hamiltonians both $\hat{H}$ and $H$ as for a fized choice of Dirac operators one completely identifies the other.
 %
@@ -279,7 +281,7 @@ We will call hamiltonians both $\hat{H}$ and $H$ as for a fized choice of Dirac 
 The Majorana representation of the generic f.q.h. reads as
 \begin{equation}
 \label{eq:Majorana-QFH}
-\hat{H}=\frac{i}{2}\sum_{i,j=1}^{N}\left(h^{xx}_{i,j} x_i x_j +h^{pp}_{i,j} p_i p_j +h^{xp}_{i,j} x_i p_j +h^{px}_{i,j} p_i x_j\right)  =\frac{i}{2}\vec{r}^{\dagger}h\vec{r},%= \frac{1}{2}\left(\vec{\alpha}^{\dagger}\Omega^{\dagger}\right)\Omega H_{a}\Omega^{\dagger}\left(\Omega\vec{\alpha}\right)
+\hat{H}=i\sum_{i,j=1}^{N}\left(h^{xx}_{i,j} x_i x_j +h^{pp}_{i,j} p_i p_j +h^{xp}_{i,j} x_i p_j +h^{px}_{i,j} p_i x_j\right)  =i\vec{r}^{\dagger}h\vec{r},%= \frac{1}{2}\left(\vec{\alpha}^{\dagger}\Omega^{\dagger}\right)\Omega H_{a}\Omega^{\dagger}\left(\Omega\vec{\alpha}\right)
 \end{equation}
 %
 where
@@ -305,7 +307,7 @@ Using the properties of matrices $A$ and $B$, it is easy to see that matrix $h$ 
 Given a particular f.q.h. $\hat{H}$ in the general form \eqref{eq:Dirac-QFH} it is always possible to find a new set of Dirac operators $\{b_k\}_{k=1}^N$ such that $\hat{H}$ in terms of $\{b_k\}_{k=1}^N$  reads as
 \begin{equation}
 \label{eq:Dirac-QFH-FreeFree}
-\hat{H} = \frac{1}{2}\sum_{k=1}^{N} \epsilon_{k} (b\da_k b_k -b_k b\da_k),
+\hat{H} = \sum_{k=1}^{N} \epsilon_{k} (b\da_k b_k -b_k b\da_k),
 \end{equation}
 with $\epsilon_k \in \mathbb{R}$ for all  $k=1,2,\dots,N$ \cite{lieb1961}.
 \\
@@ -314,7 +316,7 @@ We call hamiltonians in this form free-free fermion hamiltonians.
 In compact form
 \begin{equation}
 \label{eq:Dirac-QFH-FreeFree-Compact}
-\hat{H} = \frac{1}{2} \vec{\beta}\da H_D \vec{\beta}
+\hat{H} = \vec{\beta}\da H_D \vec{\beta}
 \end{equation}
 with
 \begin{equation}
@@ -335,12 +337,12 @@ We will always order the eigenvalues in descending order ($\epsilon_1 \geq \epsi
 In terms of Majorana operators the diagonal form of a generic f.q.h. reads as
 \begin{equation}
 \label{eq:Majorana-QFH-FreeFree}
-\hat{H}=\frac{i}{2}\sum_{i=1}^{N}\lambda_i(\tilde{x}_{i}\tilde{p}_{i}-\tilde{p}_{i}\tilde{x}_{i}).
+\hat{H}=i\sum_{i=1}^{N}\lambda_i(\tilde{x}_{i}\tilde{p}_{i}-\tilde{p}_{i}\tilde{x}_{i}).
 \end{equation}
 for a set of Majorana operators $\{\tilde{x}_i\}_i$, $\{\tilde{p}_i\}_i$.
 In compact form
 \begin{equation}
-\hat{H} = \frac{i}{2} \vec{s}\da h_D \vec{s}
+\hat{H} = i \vec{s}\da h_D \vec{s}
 \end{equation}
 with
 \begin{equation}
@@ -358,8 +360,8 @@ Here we focus on the numerical approach, we diagonalise the hamiltonian using st
 \\
 First step in the diagonalisation procedure is moving to the Majorana representation of $H$
 \begin{align}
-\hat{H} 	&  	= \frac{1}{2}\vec{\alpha}^{\dagger}H\vec{\alpha}= \vec{\alpha}\da \Omega \da \Omega H\Omega\da \Omega \vec{\alpha}= \\
-		&	=   \frac{i}{2} \vec{r}\da h \vec{r}.
+\hat{H} 	&  	= \vec{\alpha}^{\dagger}H\vec{\alpha}= \vec{\alpha}\da \Omega \da \Omega H\Omega\da \Omega \vec{\alpha}= \\
+		&	=   i \vec{r}\da h \vec{r}.
 \end{align}
 The following theorem is a standard result in matrix theory \cite{zumino1962,horn1985}
 %%Theorem 1
@@ -379,13 +381,13 @@ The non-zero eigenvalues of matrix $h$ are the imaginary numbers $\{\pm \im \lam
 
 Matrix $h$ in \eqref{eq:Majorana-QFH} is real, skew-symmetric, thus, using theorem \ref{eq:Schur-Decomposition} we find the orthogonal transformation $O$ that diagonalise the matrix
 \begin{align}
-\hat{H} &	= \frac{i}{2}\vec{r}^{\dagger}h\vec{r} 
-		= \frac{i}{2} \vec{r}^{\dagger}O O\da h O O\da \vec{r} =\\
-	& 	=  \frac{i}{2}\vec{s}^{\dagger} \left( \bigoplus_{i=1}^{N} \begin{pmatrix}0 & \lambda_i \\ -\lambda_i & 0\end{pmatrix}  \right) \vec{s} 
-		=  \frac{i}{2}\vec{s}^{\dagger} h_D \vec{s} 
+\hat{H} &	= i\vec{r}^{\dagger}h\vec{r} 
+		= i \vec{r}^{\dagger}O O\da h O O\da \vec{r} =\\
+	& 	=  i\vec{s}^{\dagger} \left( \bigoplus_{i=1}^{N} \begin{pmatrix}0 & \lambda_i \\ -\lambda_i & 0\end{pmatrix}  \right) \vec{s} 
+		=  i\vec{s}^{\dagger} h_D \vec{s} 
 \end{align}
 
-That is  $\hat{H}=\frac{i}{2}\sum_{i=0}^{N-1}\lambda_{i}(\tilde{x}_{i}\tilde{p}_{i}-\tilde{p}_{i}\tilde{x}_{i})$
+That is  $\hat{H}=i\sum_{i=0}^{N-1}\lambda_{i}(\tilde{x}_{i}\tilde{p}_{i}-\tilde{p}_{i}\tilde{x}_{i})$
  once defined the new collection of Majorana operators $\vec{s}=O\vec{r}$  as
 \begin{equation}
 \label{eq:Majorana-s}
@@ -426,8 +428,8 @@ i=2N+1
  that applied to a vector $\vec{s}$ with the $xp$ ordering returns a vector $\vec{\tilde{r}}=F_{xp\rightarrow xx} \vec{s}$ with $xx$ ordering.
 Mapping back to the Dirac representation we obtain the diagonal form of the hamiltonian in the Dirac operators representation as
  \begin{align}
- \hat{H} & =  \frac{i}{2}  \left(\vec{s}F_{xp\rightarrow xx}^{T} \Omega \right) \left( \Omega\da F_{xp\rightarrow xx} h_D F_{xp\rightarrow xx}^{T} \Omega \right) \left( \Omega\da F_{xp\rightarrow xx} \vec{s} \right) = \\
- 	&	= \frac{1}{2}\sum_{k=1}^{N} \epsilon_{k} (b\da_k b_k -b_k b\da_k) = \frac{1}{2}\vec{\beta}\da H_D \vec{\beta}.
+ \hat{H} & =  i \left(\vec{s}F_{xp\rightarrow xx}^{T} \Omega \right) \left( \Omega\da F_{xp\rightarrow xx} h_D F_{xp\rightarrow xx}^{T} \Omega \right) \left( \Omega\da F_{xp\rightarrow xx} \vec{s} \right) = \\
+ 	&	= \sum_{k=1}^{N} \epsilon_{k} (b\da_k b_k -b_k b\da_k) = \vec{\beta}\da H_D \vec{\beta}.
  \end{align}
 The fermionic transformation $U$ that diagonalise the Hamiltonian H in the form \eqref{eq:Diagonal-HD} is
 \begin{equation}
@@ -492,7 +494,7 @@ This function implements the algorithm for the block diagonalisation of $h$ a ge
 \begin{definition}{Fermionic gaussian state}{} A state $\rho$ is a fermionic gaussian state (f.g.s.) if it can be represented as
 \begin{equation}
 \label{eq:definizione-1_fermionic_gaussian_state}
-\rho = \frac{e^{-\hat{H}}}{Z} = \frac{e^{-\frac{1}{2} \vec{\alpha}\da H \vec{\alpha}}}{Z}
+\rho = \frac{e^{-\hat{H}}}{Z} = \frac{e^{-\vec{\alpha}\da H \vec{\alpha}}}{Z}
 \end{equation}
 with $Z\coloneqq\Tr{e^{-\hat{H}}}$ a normalisation constant and $\hat{H}$ a fermionic gaussian hamiltonian called parent hamiltonian of $\rho$.\\  Every possible value of the norm of the hamiltonian is admitted, $\norm{\hat{H}}_{1}\in [0,+\infty]$. Both extremum values are reached with a single sided limit procedure in the definition of $\rho$.\\
 All the information about the state is encoded in the $2N\times 2N$ matrix $h$ at the exponential.
@@ -517,7 +519,7 @@ where $f=\langle 0| \rho | 0 \rangle$ and the two coherences are $0$ because we 
 \label{sec:Correlation-Matrix}
 We have seen that for any f.q.h. $H$ it is always possible to find a fermionic transformation $U$ that diagonalise $H$ transforming the Dirac operators vector as $\vec{\beta}=U\vec{\alpha}$. Diagonalising the parent hamiltonian of a f.g.s. $\rho$ we obtain its decomposition in terms of single-mode thermal states
 \begin{equation}
-\rho = \frac{e^{-\frac{1}{2}\vec{\beta}\da H_D \vec{\beta}}}{Z} = \frac{1}{Z}\bigotimes_{k=1}^{N}e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)} =\bigotimes_{k=1}^{N}\frac{e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}{Z_k},
+\rho = \frac{e^{-\vec{\beta}\da H_D \vec{\beta}}}{Z} = \frac{1}{Z}\bigotimes_{k=1}^{N}e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)} =\bigotimes_{k=1}^{N}\frac{e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}{Z_k},
 \end{equation}
 where $Z_k = \Tr{e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}$.\\
 %To the fermionic transformation $U$ corresponds a unitary operation $U_{\rho}$ on the Hilbert space of $\rho$ such that 
@@ -630,7 +632,7 @@ In section \ref{sec:Correlation-Matrix} we have seen that for any f.g.s. $\rho$ 
 % and thus a unitary operator $U_{\rho}$ that diagonalise the density matrix $\rho$
 . With the new Dirac operators $\vec{\beta}$ the state can be expressed as a tensor product of single mode thermal states 
 \begin{equation}
- \frac{e^{-\frac{1}{2}\vec{\beta}\da H_D \vec{\beta}}}{Z} =\frac{1}{Z}\bigotimes_{k=1}^{N}e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}=\bigotimes_{k=1}^{N}\frac{e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}{Z_k}.
+ \frac{e^{-\vec{\beta}\da H_D \vec{\beta}}}{Z} =\frac{1}{Z}\bigotimes_{k=1}^{N}e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}=\bigotimes_{k=1}^{N}\frac{e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}{Z_k}.
 \end{equation}
 with $Z_k=\Tr{e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}$.\\
 Expressed with these operators the correlation matrix is diagonal. If we consider the Fock basis $\{|\vec{k}\rangle\}_{\vec{k}\in\{0,1\}^N}$ built with the action of the operators $\vec{\beta}$ on $|0\rangle$, we have that in this basis $\rho$ assumes a diagonal form. We call $U_{\rho}$ the unitary transformation that moves from the basis $\{|\vec{x}\rangle\}_{\vec{x}\in\{0,1\}^N}$ to the one of the modes $\{|\vec{k}\rangle\}_{\vec{k}\in\{0,1\}^N}$. \\
@@ -666,14 +668,14 @@ Following the same procedure of section \ref{sec:Numerical-diagonalisation}, we 
 \end{equation}
 The elements of  $H_D$ and $\Gamma^D$  are related as
 \begin{align}
-\epsilon_k = \ln \left(\frac{1-\nu_k}{\nu_k} \right),\\
-\nu_k = \frac{1}{1+e^{\epsilon_k}}
+\epsilon_k =\frac{1}{2} \ln \left(\frac{1-\nu_k}{\nu_k} \right),\\
+\nu_k = \frac{1}{1+e^{2\epsilon_k}}
 \end{align}
 with $\nu_k\in[0,1]$ and $\epsilon_k\in[-\infty,+\infty]$ where the boundary values are take with a limit. The complete calculation can be found in appendix \ref{appendix:Eigenvalues-Relations}.
 In \ref{eq:Diagonal-HD} we defined all the $\epsilon_k$ to be positive, to use the same notation, one just has to exchange $b$ with $\tilde{b}\da$ and $b\da$ with $\tilde{b}$, that is exchanging occupations with vacancies for the mode with $\epsilon_k$ negative. This corresponds to switching $\nu_k$ with $1-\tilde{\nu}_k$ and $1-\nu_k$ with $\tilde{\nu}_k$.\\ 
 In general the correlation matrix $\Gamma$ and the parent hamiltonian $H$ are related as \cite{peschel2003a,vidal2003,cheong2003,zhang2020}
 \begin{equation}
-\Gamma = \frac{1}{1+e^{H}}.
+\Gamma = \frac{1}{1+e^{2H}}.
 \end{equation}
 \begin{proposition}{\code{Diag\_gamma($\Gamma$)$\rightarrow  \Gamma^D, U$}}{}
 This function returns $\Gamma^D$, the the diagonal form of the Dirac correlation matrix $\Gamma$ and $U$ the fermionic transformation such that $\Gamma=U \Gamma^D U\dag $.
@@ -719,12 +721,12 @@ As we did for computing the ground state, we move to the diagonal basis with the
 In the diagonal basis the thermal state has the correlation matrix 
 \begin{equation}
 \Gamma_{\beta}^D = \begin{pmatrix}
-\frac{1}{1+e^{\beta \epsilon_1}} & 0 & \dots &  & \dots & 0\\
+\frac{1}{1+e^{2\beta \epsilon_1}} & 0 & \dots &  & \dots & 0\\
 0 & \ddots & \ddots &  &  & \vdots\\
-\vdots & \ddots & \frac{1}{1+e^{\beta \epsilon_N}} \\
- &  &  & \frac{1}{1+e^{-\beta \epsilon_1}}  & \ddots & \vdots\\
+\vdots & \ddots & \frac{1}{1+e^{2\beta \epsilon_N}} \\
+ &  &  & \frac{1}{1+e^{-2\beta \epsilon_1}}  & \ddots & \vdots\\
 \vdots &  &  & \ddots & \ddots & 0\\
-0 & \dots &  &  & \dots0 & \frac{1}{1+e^{-\beta \epsilon_N}} 
+0 & \dots &  &  & \dots0 & \frac{1}{1+e^{-2\beta \epsilon_N}} 
 \end{pmatrix}.
 \end{equation}
 To obtain the thermal state $\Gamma_{\beta}$ we just need to move back to the original basis, thus
@@ -744,7 +746,7 @@ Consider a  f.q.h $H$ and a f.g.s. $\Gamma$. The energy of $\Gamma$ with respect
 In order to compute this expectation value one just need to find the fermionic transformation $U$ that diagonalises $H$ and compute the energies $\epsilon_k$ the occupations $\langle b_k\da, b_k\rangle$ and $\langle b_k, b_k\da\rangle$. The correlation matrix $\Gamma$ is not diagonal in the diagonal basis $\vec{\beta}$ of $H$, but we are just interested in its diagonal elements.\\
 The energy $E_{H}(\Gamma)$ of $\Gamma$ is thus
 \begin{equation}
-E_{H}(\Gamma) =\frac{1}{2} \sum_{k} \epsilon_k(\langle b_k\da b_k \rangle - \langle b_k b_k\da \rangle).
+E_{H}(\Gamma) =  \sum_{k} \epsilon_k(\langle b_k\da b_k \rangle - \langle b_k b_k\da \rangle).
 \end{equation}
 
 \begin{proposition}{\code{Energy($\Gamma,H_D,U$)$\rightarrow E_{H}(\Gamma)$}}{}
@@ -944,7 +946,7 @@ The purity of a state $\rho$ is defined as
 \end{equation}
 We have that:
 \begin{equation}
-\mbox{Purity}(\rho)=\prod_{i=1}^{N-1}\frac{1}{\sech(\epsilon_{i})+1},
+\mbox{Purity}(\rho)=\prod_{i=1}^{N-1}\frac{1}{2}\left(1+\tanh(x)^2\right),
 \end{equation}
 
 \begin{equation}
@@ -1021,17 +1023,26 @@ Generate a random f.q.h. hamiltonian for a system of $N$ with just nearest neigh
 \subsection{Computing the energies of H}
 \label{ex:JL-Energies-Of-H}
 \lstinputlisting{JLCODE1.jl}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\linewidth]{figure/JLCODE1.pdf}
-	\caption{Output of examples \ref{ex:JL-Energies-Of-H}}
-	\label{fig:Sectors_Fourier}
-\end{figure}
+
+
+\includegraphics[width=0.7\textwidth]{figure/JLCODE1.pdf} 
+  \captionof{figure}{Output of examples \ref{ex:JL-Energies-Of-H}.}
+  
+
+
 
 \subsection{Computing the entanglement contour of a partition of a ground state}
+\label{ex:JL-Contour-Partition-GS}
+\lstinputlisting{JLCODE2.jl}
+Output:
+
+\code{The energy of the ground state is: -83.1750144099933}
 
 
-
+  \centerline{
+\includegraphics[width=0.7\textwidth]{figure/JLCODE2.pdf} }
+  \captionof{figure}{Output of examples \ref{ex:JL-Contour-Partition-GS}, note how for a nearest neighbour hamiltonian, the contour is higher on the boundary of the partition.}
+  
 
 
 %\begin{note}
@@ -1572,9 +1583,9 @@ Generate a random f.q.h. hamiltonian for a system of $N$ with just nearest neigh
 \chapter{Extended calculations}
 \section{Eigenvalues of $\Gamma$ and $H_{\alpha}$}
 \label{appendix:Eigenvalues-Relations}
-We consider the state $\rho=\frac{e^{-\frac{1}{2}\vec{\alpha}^{\dagger}H \vec{\alpha}}}{Z}$, we diagonalise $H$ changing the basis to $\vec{\beta}=U^{\dagger}\vec{\alpha}$. Thus we have
+We consider the state $\rho=\frac{e^{-\vec{\alpha}^{\dagger}H \vec{\alpha}}}{Z}$, we diagonalise $H$ changing the basis to $\vec{\beta}=U^{\dagger}\vec{\alpha}$. Thus we have
 \begin{equation}
-\rho=\frac{e^{-\frac{1}{2}\vec{\beta}^{\dagger}H_{D}\vec{\beta}}}{Z}=\frac{e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}}{Z}.
+\rho=\frac{e^{-\vec{\beta}^{\dagger}H_{D}\vec{\beta}}}{Z}=\frac{e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}}{Z}.
 \end{equation}
 
 We change the basis of the correlation matrix too
@@ -1585,7 +1596,7 @@ We change the basis of the correlation matrix too
 Now we want to explicitly compute the elements of $\Gamma^{b}$. First of all we compute the normalisation constant
 
 \begin{equation}
-Z=Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\right] =2^N\prod_{k=1}^{N}\left(\cosh\left(\frac{\epsilon_{k}}{2}\right)\right).
+Z=Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\right] =2^N\prod_{k=1}^{N}\left(\cosh\left(\epsilon_{k}\right)\right).
 \end{equation}
 
 To compute the numerator part this equalities will result useful
@@ -1594,51 +1605,51 @@ To compute the numerator part this equalities will result useful
 
 \begin{equation}
 \begin{aligned}
-Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)} b_{x}^{\dagger}b_{y}\right]	&  =\sum_{v\in\left\{ 0,1\right\} ^{N}}\langle v|e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}^{\dagger}b_{y}|v\rangle=\\
-	&=\sum_{v\in\left\{ 0,1\right\} ^{N}}\langle v|e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}|\tilde{v}\rangle=\\
-	& =\sum_{v\in\left\{ 0,1\right\} ^{N}}e^{-\frac{1}{2}\sum_{k=1}^{N}(-1)^{v_{k}+1}\epsilon_{k}}\langle v|\tilde{v}\rangle = 0
+Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)} b_{x}^{\dagger}b_{y}\right]	&  =\sum_{v\in\left\{ 0,1\right\} ^{N}}\langle v|e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}^{\dagger}b_{y}|v\rangle=\\
+	&=\sum_{v\in\left\{ 0,1\right\} ^{N}}\langle v|e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}|\tilde{v}\rangle=\\
+	& =\sum_{v\in\left\{ 0,1\right\} ^{N}}e^{-\sum_{k=1}^{N}(-1)^{v_{k}+1}\epsilon_{k}}\langle v|\tilde{v}\rangle = 0
 \end{aligned}
 \end{equation}
 
 
 \begin{equation}
-Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}b_{y}^{\dagger}\right]=0
+Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}b_{y}^{\dagger}\right]=0
 \end{equation}
 
 •\item $\forall x,y$
 
 \begin{equation}
-Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}b_{y}\right]=0
+Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}b_{y}\right]=0
 \end{equation}
 \begin{equation}
-Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}^{\dagger}b_{y}^{\dagger}\right]=0
+Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}^{\dagger}b_{y}^{\dagger}\right]=0
 \end{equation}
 
 Thus the numerator can be explicitly written as
 
 \begin{equation}
-Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\vec{\alpha}_{i}\vec{\alpha_{j}}^{\dagger}\right]=
+Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\vec{\alpha}_{i}\vec{\alpha_{j}}^{\dagger}\right]=
 \end{equation}
 
 \begin{equation*}
-=\sum_{l=1}^{2N}\sum_{m=1}^{2N}U_{i,l}U_{m,j}^{\dagger}Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\vec{\beta}_{l}\vec{\beta_{m}}^{\dagger}\right]=
+=\sum_{l=1}^{2N}\sum_{m=1}^{2N}U_{i,l}U_{m,j}^{\dagger}Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\vec{\beta}_{l}\vec{\beta_{m}}^{\dagger}\right]=
 \end{equation*}
 
 \begin{equation*}
-=\sum_{l=1}^{N}U_{i,l}U_{l,j}^{\dagger}Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{l}^{\dagger}b_{l}\right]+\sum_{l=1}^{N}U_{i,l+N}U_{l+N,j}^{\dagger}Tr\left[e^{-\frac{1}{2}\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{l}b_{l}^{\dagger}\right]=
+=\sum_{l=1}^{N}U_{i,l}U_{l,j}^{\dagger}Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{l}^{\dagger}b_{l}\right]+\sum_{l=1}^{N}U_{i,l+N}U_{l+N,j}^{\dagger}Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{l}b_{l}^{\dagger}\right]=
 \end{equation*}
 
 \begin{equation*}
-=\sum_{l=1}^{N}U_{i,l}U_{l,j}^{\dagger}e^{-\frac{\epsilon_{l}}{2}}\prod_{k\neq l}2\cosh(\frac{\epsilon_{k}}{2})+\sum_{l=1}^{N}U_{i,l+N}U_{l+N,j}^{\dagger}e^{\frac{\epsilon_{l}}{2}}\prod_{k\neq l}2\cosh(\frac{\epsilon_{k}}{2})
+=\sum_{l=1}^{N}U_{i,l}U_{l,j}^{\dagger}e^{-\epsilon_{l}}\prod_{k\neq l}2\cosh(\epsilon_k))+\sum_{l=1}^{N}U_{i,l+N}U_{l+N,j}^{\dagger}e^{\epsilon_{l}}\prod_{k\neq l}2\cosh(\epsilon_k))
 \end{equation*}
 
 I can divide by Z and obtain
 
 \begin{equation}
 \begin{aligned}
-\Gamma_{i,j} & =\sum_{l=1}^{N}U_{i,l}U_{l,j}^{\dagger}\frac{e^{-\frac{\epsilon_{l}}{2}}}{e^{\frac{\epsilon_{l}}{2}}+e^{-\frac{\epsilon_{l}}{2}}}+\sum_{l=1}^{N}U_{i,l+N}U_{l+N,j}^{\dagger}\frac{e^{\frac{\epsilon_{l}}{2}}}{e^{\frac{\epsilon_{l}}{2}}+e^{-\frac{\epsilon_{l}}{2}}}\\
- & =\sum_{l=1}^{N}U_{i,l}U_{l,j}^{\dagger}\frac{1}{1+e^{\epsilon_{l}}}+\sum_{l=1}^{N}U_{i,l+N}U_{l+N,j}^{\dagger}\frac{1}{1+e^{-\epsilon_{l}}}=\\
- & =\sum_{l=1}^{2N}U_{i,l}U_{l,j}^{\dagger}\frac{1}{1+e^{\epsilon_{l}}}=U\Gamma^{D}U^{\dagger}.
+\Gamma_{i,j} & =\sum_{l=1}^{N}U_{i,l}U_{l,j}^{\dagger}\frac{e^{-\epsilon_{l}}}{e^{\epsilon_{l}}+e^{-\epsilon_{l}}}+\sum_{l=1}^{N}U_{i,l+N}U_{l+N,j}^{\dagger}\frac{e^{\epsilon_{l}}}{e^{\epsilon_{l}}+e^{-\epsilon_{l}}}\\
+ & =\sum_{l=1}^{N}U_{i,l}U_{l,j}^{\dagger}\frac{1}{1+e^{2\epsilon_{l}}}+\sum_{l=1}^{N}U_{i,l+N}U_{l+N,j}^{\dagger}\frac{1}{1+e^{-2\epsilon_{l}}}=\\
+ & =(U\Gamma^{D}U^{\dagger})_{i,j}.
 \end{aligned}
 \end{equation}
 
@@ -1648,11 +1659,11 @@ I can divide by Z and obtain
 So the same transformation U that moves to the free Hamiltonian $H_D$ is also the transformation that diagonalise the correlation matrix. The eigenvalues $\nu_{i}$ of the correlation matrix $\Gamma$ are related to the eigenvalues of the parent hamiltonian $H$ by
 
 \begin{equation}
-\nu_{i}=\frac{1}{1+e^{\epsilon_{i}}},
+\nu_{i}=\frac{1}{1+e^{2\epsilon_{i}}},
 \end{equation}
 
 \begin{equation}
-\epsilon_{i}=ln\left(\frac{1-\nu_{i}}{\nu_{i}}\right),
+\epsilon_{i}=\frac{1}{2}ln\left(\frac{1-\nu_{i}}{\nu_{i}}\right),
 \end{equation}
 
 since $\nu_{i}\in\left[0,1\right]$ the eigenvalues $\epsilon_{i}\text{\ensuremath{\in}[-\ensuremath{\infty},+\ensuremath{\infty}]}$.
@@ -1663,13 +1674,13 @@ since $\nu_{i}\in\left[0,1\right]$ the eigenvalues $\epsilon_{i}\text{\ensuremat
 From the previous subsection we have:
 
 \begin{equation}
-Z^{2}=\prod_{k=1}^{N}\left(2\cosh\left(\frac{\epsilon_{k}}{2}\right)\right)^{2}
+Z^{2}=\prod_{k=1}^{N}\left(2\cosh\left(\epsilon_{k}\right)\right)^{2}
 \end{equation}
 
 and
 
 \begin{equation}
-Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\right]=\prod_{k=1}^{N}\left(2\cosh\left(\epsilon_{k}\right)\right).
+Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}\right]=\prod_{k=1}^{N}\left(2\cosh\left(2\epsilon_{k}\right)\right).
 \end{equation}
 
 
@@ -1679,77 +1690,6 @@ Thus the purity is:
 \mbox{Purity}=\prod_{k=1}^{N}\frac{1}{\sech(\epsilon_{k})+1}
 \end{equation}
 
-
-
-\chapter{F-utilities}
-\begin{enumerate}
-\item \code{Print\_matrix(title, M)}: Print a graphical representation of matrix \code{M} in a figure called title.
-
-\item \code{Build\_Omega(N)$\rightarrow \Omega$}: This function return the $2N\times2N$ matrix $\Omega$ \eqref{eq:Omega}.
-
-\item \code{Build\_FxxTxp(N)$\rightarrow F_{xx\rightarrow xp}$}: This function return the $2N\times2N$ matrix $F_{xx\rightarrow xp}$ \eqref{eq:FxxTxp}.
-
-\item \code{Build\_FxpTxx(N)$\rightarrow F_{xp\rightarrow xx}$}: This function return the $2N\times2N$ matrix $F_{xx\rightarrow xp}^{T}$.
-
-\item \code{Diag\_Real\_Skew(h)$\rightarrow h_D,O$}: This function implements the algorithm for the block diagonalisation of $h$ a generic skew-symmetric real matrix. $h_D$ is the block-diagonal matrix of \eqref{eq:Schur-Decomposition} and has the following property: it is in the block diagonal form, each $2\times2$ block is skew-symmetric with the upper-right element positive and real and $h_D$ is in ascending order for the upper diagonal. $O$ is an orthogonal matrix such that: $h=O h_D O^{T}$.
-
-\item \code{Diag\_ferm(M)$\rightarrow M_{f},U_{f}$}:This function implement the fermionic algorithm of  section \ref{Dirac-Diagonalisation} with $M=H_{a}$. $M_{f}$ is the matrix we called $H_{D}$ and it is in diagonal form with the first half diagonal negative and the second one positive. $U_{f}$ is the orthogonal matrix that we called $U$ and it is a unitary matrix such that: $M=U_{f}M_{f}U_{f}^{\dagger}$.
-
-\item \code{Diag\_Gamma(M)$\rightarrow  M_{f}, U$}
-This function returns $M_{f}$, the the diagonal form \eqref{eq:Gamma-Dirac-Diagonal} of the Dirac correlation matrix $M$ and $U$ the fermionic transformation such that $M=U M_{f} U\dag $.
-
-\item \code{Purity(M)$\rightarrow p$}: This function takes as input the correlation matrix $\Gamma$ and return a Float $p$ from $0$ to $1$ that is the purity.
-
-\item \code{Evolve\_gamma(M,D,U,t)$\rightarrow M_{t}$}: This function evolve for a time \code{t} (last argument) the correlation matrix $\Gamma$ (first argument), \code{D} is the Dirac Hamiltonian diagonalised, $U$ is the unitary transformation that change basis from the diagonal one to the original one. e.g. If I want to evolve the correlation matrix $M$ with $H_{a}$ for a time $t$ I would write \code{M\_{t}=Evolve\_gamma(M,Diag\_h($H_{a}$),$t$)}.
-
-\item \code{Evolve\_gamma\_imag(M,D,U,t)$\rightarrow M_{t}$}: This function evolve for a time \code{t} (last argument) the pure state correlation matrix $\Gamma$ (first argument) with the evolution \ref{eq:Imaginary-Evolution}, \code{D} is the Dirac Hamiltonian diagonalised, $U$ is the unitary transformation that change basis from the diagonal one to the original one .N.B. \code{M} must be a pure state (Purity$(M)=1$), \code{Evolve\_gamma\_imag(M,D,U,t)} is a pure state.
-
-\item \code{Energy\_fermion(M,D,U)$\rightarrow e$}: This function return the energy of the correlation matrix $M$ with respect of the Hamiltonian in the diagonal form $M$ where $U$ is the change of basis from the diagonal one to the space one. e.g. If I want to compute the energy of the correlation matrix $\Gamma$ with respect to the generic quadratic Hamiltonian represented by $H$ I would write \code{Energy\_fermion($\Gamma$,Diag\_ferm($H$))}.
-
-\item \code{Reduce\_gamma(M,N\_partition,first\_index) $\rightarrow M_{r}$}: This function return the correlation matrix of a subsystem with \code{N\_partition} size starting from the site at \code{first\_index}. e.g. \code{Reduce\_gamma()} return the green the element of the matrix $M_{6\times6}$
-\begin{equation}
-\mbox{\mbox{Reduce\_gamma}(\ensuremath{M_{6\times6}},2,1)\ensuremath{\rightarrow}}\begin{array}{cccccc}
-\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
-\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
-\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
-\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}
-\end{array}\mbox{Reduce\_gamma(\ensuremath{M_{6\times6}},2,3)\ensuremath{\rightarrow}}\begin{array}{cccccc}
-\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
-\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
-\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
-\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}
-\end{array}
-\end{equation}
-
-\item \code{Inject\_gamma(gamma, injection, first\_index)$\rightarrow M_{T}$}:This function overwrite the subsystem of gamma starting at \code{first\_index} with the system with correlation matrix injection. The system of injection has to be smaller then the one of gamma. The returned system has same dimension of gamma. e.g. \code{Inject\_gamma()} return the red and blue matrix where the elements in red are the one of the matrix injection.
-\begin{equation}
-\mbox{Inject\_gamma(\ensuremath{M_{6\times6}},2,1)\ensuremath{\rightarrow}}\begin{array}{cccccc}
-\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
-\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
-\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
-\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}
-\end{array}\mbox{Inject\_gamma(\ensuremath{M_{6\times6}},2,3)\ensuremath{\rightarrow}}\begin{array}{cccccc}
-\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
-\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
-\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
-\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}
-\end{array}
-\end{equation}
-
-\item \code{Eigenvalues\_of\_rho(M)$\rightarrow \vec{e}$}: This function take as input a correlation matrix $\Gamma$ and return the vector with all its eigenvalues. N.B. The number of eigenvalues grows exponentially with the size of $\Gamma$.
-
-\item \code{VN\_Entropy($\Gamma$) $\rightarrow S$} This function return $S$, the \code{Float64} value of the Von Neumann Entropy of the state described by the Dirac correlation matrix $\Gamma$.
-
-
-\end{enumerate}
 
 
  \chapter{Useful relations}
