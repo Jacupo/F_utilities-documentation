@@ -288,8 +288,8 @@ function Thermal_fix_beta((Diag_H, U_H), beta)
  gamma = zeros(Complex{Float64}, size(Diag_H,1),size(Diag_H,1))
  for kiter=1:N_f
    e_k = Diag_H[kiter+N_f,kiter+N_f];
-   gamma[kiter,kiter] = 1/(1+exp(beta*e_k));
-   gamma[kiter+N_f,kiter+N_f] = 1/(1+exp(-beta*e_k))
+   gamma[kiter,kiter] = 1/(1+exp(2*beta*e_k));
+   gamma[kiter+N_f,kiter+N_f] = 1/(1+exp(-2*beta*e_k))
  end
 
  gamma = U_H*gamma*U_H';
@@ -312,7 +312,7 @@ function Thermal_fix_energy((Diag_H, U_H,), conserved_energy)
      temp_energy = 0
      for kiter=1:N_f
        e_k = Diag_H[kiter+N_f,kiter+N_f];
-       temp_energy += e_k*(1/(1+exp(beta*e_k))-1/(1+exp(-beta*e_k)));
+       temp_energy += e_k*(1/(1+exp(2*beta*e_k))-1/(1+exp(-2*beta*e_k)));
      end
      if (temp_energy > conserved_energy)
        a = beta;
@@ -326,8 +326,8 @@ function Thermal_fix_energy((Diag_H, U_H,), conserved_energy)
  gamma = zeros(Complex{Float64}, size(Diag_H,1),size(Diag_H,1))
  for kiter=1:N_f
    e_k = Diag_H[kiter+N_f,kiter+N_f];
-   gamma[kiter,kiter] = 1/(1+exp(beta*e_k));
-   gamma[kiter+N_f,kiter+N_f] = 1/(1+exp(-beta*e_k))
+   gamma[kiter,kiter] = 1/(1+exp(2*beta*e_k));
+   gamma[kiter+N_f,kiter+N_f] = 1/(1+exp(-2*beta*e_k))
  end
 
  gamma = U_H*gamma*U_H';
@@ -353,7 +353,7 @@ function Random_NNhamiltonian(N)
     return H;
 end
 
-function Energy(Γ,D,U)
+function Energy(Γ,(D,U))
    N_f = convert(Int64, size(Γ,1)/2.);
 
    energy = 0;
@@ -365,7 +365,7 @@ function Energy(Γ,D,U)
        energy += Γ_diag_base[iiter+N_f,iiter+N_f]*D[iiter,iiter];
    end
 
-   return real(0.5*energy);
+   return real(energy);
 end
 
 
