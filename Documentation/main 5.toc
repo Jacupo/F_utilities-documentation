@@ -31,13 +31,14 @@
 \contentsline {subsection}{\numberline {3.7.3}Entanglement Contour}{18}{subsection.3.7.3}% 
 \contentsline {section}{\numberline {3.8}Examples}{20}{section.3.8}% 
 \contentsline {subsection}{\numberline {3.8.1}Computing the energies of H}{20}{subsection.3.8.1}% 
-\contentsline {subsection}{\numberline {3.8.2}Computing the entanglement contour of a partition of a ground state}{21}{subsection.3.8.2}% 
-\contentsline {chapter}{\numberline {A}Extended calculations}{22}{appendix.A}% 
-\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{22}{section.A.1}% 
-\contentsline {section}{\numberline {A.2}Purity}{23}{section.A.2}% 
-\contentsline {chapter}{\numberline {B}Useful relations}{24}{appendix.B}% 
-\contentsline {section}{\numberline {B.1}Pauli Matrices}{24}{section.B.1}% 
-\contentsline {section}{\numberline {B.2}Operators obeying CAR}{24}{section.B.2}% 
-\contentsline {section}{\numberline {B.3}Jordan-Wigner Transformations}{25}{section.B.3}% 
-\contentsline {subsection}{\numberline {B.3.1}spinless fermions $\rightarrow $ spins}{25}{subsection.B.3.1}% 
-\contentsline {subsection}{\numberline {B.3.2}spins $\rightarrow $ spinless fermions}{25}{subsection.B.3.2}% 
+\contentsline {subsection}{\numberline {3.8.2}Computing the entanglement contour of a partition of a ground state}{20}{subsection.3.8.2}% 
+\contentsline {chapter}{\numberline {A}Extended calculations}{23}{appendix.A}% 
+\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{23}{section.A.1}% 
+\contentsline {section}{\numberline {A.2}Purity}{24}{section.A.2}% 
+\contentsline {chapter}{\numberline {B}F-utilities}{25}{appendix.B}% 
+\contentsline {chapter}{\numberline {C}Useful relations}{27}{appendix.C}% 
+\contentsline {section}{\numberline {C.1}Pauli Matrices}{27}{section.C.1}% 
+\contentsline {section}{\numberline {C.2}Operators obeying CAR}{27}{section.C.2}% 
+\contentsline {section}{\numberline {C.3}Jordan-Wigner Transformations}{28}{section.C.3}% 
+\contentsline {subsection}{\numberline {C.3.1}spinless fermions $\rightarrow $ spins}{28}{subsection.C.3.1}% 
+\contentsline {subsection}{\numberline {C.3.2}spins $\rightarrow $ spinless fermions}{28}{subsection.C.3.2}% 

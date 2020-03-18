@@ -1,13 +1,25 @@
-include("/Users/jacoposurace/Documents/GitHub/F-utilities/F-utilities.jl")
+include("F-utilities.jl")
 
-N_A = 64;
-H_A = Random_NNhamiltonian(N_A);
-HA_D, UA_D = Diag_h(H_A);
+N = 64;
+H = Random_NNhamiltonian(N);
+H_D, U_D = Diag_h(H);
 
+Γ = GS_Gamma(H_D, U_D);
+println("The energy of the ground state is: ", Energy_fermions(Γ,H_D, U_D));
 
-N_B = 32;
-H_B = Random_NNhamiltonian(N_A);
+N_A = 32;
+#I consider the reduced state over the sites 17,2,...,48
+Γ_A = Reduce_gamma(Γ,N_A,17);
+#I compute the entangement entropy
+S_A = VN_entropy(Γ_A);
+#I compute the contour of partition A
+c_A = Contour(Γ_A);
 
-Γ_A = GS_Gamma(HA_D, UA_D);
-Energy_fermions(Γ_A,HA_D, UA_D)
-Γ_B = Thermal_fix_beta(Diag_h(H_B),1)
+lbl_title   = string(L"$S(A) = $", S_A);
+lbl_legend  = string(L"$\sum_{i=1}^{N_A} c_A(i) = $", sum(c_A));
+figure("Contour of A")
+title(lbl_title)
+plot(1:N_A, c_A, marker="o", label=lbl_legend);
+xlabel("i")
+ylabel(L"$c_A(i)$")
+legend();

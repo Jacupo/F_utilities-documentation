@@ -75,6 +75,8 @@
 
 \usepackage{textgreek}
 
+\usepackage{float}
+
 \begin{document}
 
 \maketitle
@@ -1021,17 +1023,26 @@ Generate a random f.q.h. hamiltonian for a system of $N$ with just nearest neigh
 \subsection{Computing the energies of H}
 \label{ex:JL-Energies-Of-H}
 \lstinputlisting{JLCODE1.jl}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\linewidth]{figure/JLCODE1.pdf}
-	\caption{Output of examples \ref{ex:JL-Energies-Of-H}}
-	\label{fig:Sectors_Fourier}
-\end{figure}
+
+
+\includegraphics[width=0.7\textwidth]{figure/JLCODE1.pdf} 
+  \captionof{figure}{Output of examples \ref{ex:JL-Energies-Of-H}.}
+  
+
+
 
 \subsection{Computing the entanglement contour of a partition of a ground state}
+\label{ex:JL-Contour-Partition-GS}
+\lstinputlisting{JLCODE2.jl}
+Output:
+
+\code{The energy of the ground state is: -83.1750144099933}
 
 
-
+  \centerline{
+\includegraphics[width=0.7\textwidth]{figure/JLCODE2.pdf} }
+  \captionof{figure}{Output of examples \ref{ex:JL-Contour-Partition-GS}, note how for a nearest neighbour hamiltonian, the contour is higher on the boundary of the partition.}
+  
 
 
 %\begin{note}
@@ -1679,77 +1690,6 @@ Thus the purity is:
 \mbox{Purity}=\prod_{k=1}^{N}\frac{1}{\sech(\epsilon_{k})+1}
 \end{equation}
 
-
-
-\chapter{F-utilities}
-\begin{enumerate}
-\item \code{Print\_matrix(title, M)}: Print a graphical representation of matrix \code{M} in a figure called title.
-
-\item \code{Build\_Omega(N)$\rightarrow \Omega$}: This function return the $2N\times2N$ matrix $\Omega$ \eqref{eq:Omega}.
-
-\item \code{Build\_FxxTxp(N)$\rightarrow F_{xx\rightarrow xp}$}: This function return the $2N\times2N$ matrix $F_{xx\rightarrow xp}$ \eqref{eq:FxxTxp}.
-
-\item \code{Build\_FxpTxx(N)$\rightarrow F_{xp\rightarrow xx}$}: This function return the $2N\times2N$ matrix $F_{xx\rightarrow xp}^{T}$.
-
-\item \code{Diag\_Real\_Skew(h)$\rightarrow h_D,O$}: This function implements the algorithm for the block diagonalisation of $h$ a generic skew-symmetric real matrix. $h_D$ is the block-diagonal matrix of \eqref{eq:Schur-Decomposition} and has the following property: it is in the block diagonal form, each $2\times2$ block is skew-symmetric with the upper-right element positive and real and $h_D$ is in ascending order for the upper diagonal. $O$ is an orthogonal matrix such that: $h=O h_D O^{T}$.
-
-\item \code{Diag\_ferm(M)$\rightarrow M_{f},U_{f}$}:This function implement the fermionic algorithm of  section \ref{Dirac-Diagonalisation} with $M=H_{a}$. $M_{f}$ is the matrix we called $H_{D}$ and it is in diagonal form with the first half diagonal negative and the second one positive. $U_{f}$ is the orthogonal matrix that we called $U$ and it is a unitary matrix such that: $M=U_{f}M_{f}U_{f}^{\dagger}$.
-
-\item \code{Diag\_Gamma(M)$\rightarrow  M_{f}, U$}
-This function returns $M_{f}$, the the diagonal form \eqref{eq:Gamma-Dirac-Diagonal} of the Dirac correlation matrix $M$ and $U$ the fermionic transformation such that $M=U M_{f} U\dag $.
-
-\item \code{Purity(M)$\rightarrow p$}: This function takes as input the correlation matrix $\Gamma$ and return a Float $p$ from $0$ to $1$ that is the purity.
-
-\item \code{Evolve\_gamma(M,D,U,t)$\rightarrow M_{t}$}: This function evolve for a time \code{t} (last argument) the correlation matrix $\Gamma$ (first argument), \code{D} is the Dirac Hamiltonian diagonalised, $U$ is the unitary transformation that change basis from the diagonal one to the original one. e.g. If I want to evolve the correlation matrix $M$ with $H_{a}$ for a time $t$ I would write \code{M\_{t}=Evolve\_gamma(M,Diag\_h($H_{a}$),$t$)}.
-
-\item \code{Evolve\_gamma\_imag(M,D,U,t)$\rightarrow M_{t}$}: This function evolve for a time \code{t} (last argument) the pure state correlation matrix $\Gamma$ (first argument) with the evolution \ref{eq:Imaginary-Evolution}, \code{D} is the Dirac Hamiltonian diagonalised, $U$ is the unitary transformation that change basis from the diagonal one to the original one .N.B. \code{M} must be a pure state (Purity$(M)=1$), \code{Evolve\_gamma\_imag(M,D,U,t)} is a pure state.
-
-\item \code{Energy\_fermion(M,D,U)$\rightarrow e$}: This function return the energy of the correlation matrix $M$ with respect of the Hamiltonian in the diagonal form $M$ where $U$ is the change of basis from the diagonal one to the space one. e.g. If I want to compute the energy of the correlation matrix $\Gamma$ with respect to the generic quadratic Hamiltonian represented by $H$ I would write \code{Energy\_fermion($\Gamma$,Diag\_ferm($H$))}.
-
-\item \code{Reduce\_gamma(M,N\_partition,first\_index) $\rightarrow M_{r}$}: This function return the correlation matrix of a subsystem with \code{N\_partition} size starting from the site at \code{first\_index}. e.g. \code{Reduce\_gamma()} return the green the element of the matrix $M_{6\times6}$
-\begin{equation}
-\mbox{\mbox{Reduce\_gamma}(\ensuremath{M_{6\times6}},2,1)\ensuremath{\rightarrow}}\begin{array}{cccccc}
-\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
-\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
-\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
-\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}
-\end{array}\mbox{Reduce\_gamma(\ensuremath{M_{6\times6}},2,3)\ensuremath{\rightarrow}}\begin{array}{cccccc}
-\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
-\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
-\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
-\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}
-\end{array}
-\end{equation}
-
-\item \code{Inject\_gamma(gamma, injection, first\_index)$\rightarrow M_{T}$}:This function overwrite the subsystem of gamma starting at \code{first\_index} with the system with correlation matrix injection. The system of injection has to be smaller then the one of gamma. The returned system has same dimension of gamma. e.g. \code{Inject\_gamma()} return the red and blue matrix where the elements in red are the one of the matrix injection.
-\begin{equation}
-\mbox{Inject\_gamma(\ensuremath{M_{6\times6}},2,1)\ensuremath{\rightarrow}}\begin{array}{cccccc}
-\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
-\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
-\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
-\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}
-\end{array}\mbox{Inject\_gamma(\ensuremath{M_{6\times6}},2,3)\ensuremath{\rightarrow}}\begin{array}{cccccc}
-\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
-\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
-\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
-\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
-\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}
-\end{array}
-\end{equation}
-
-\item \code{Eigenvalues\_of\_rho(M)$\rightarrow \vec{e}$}: This function take as input a correlation matrix $\Gamma$ and return the vector with all its eigenvalues. N.B. The number of eigenvalues grows exponentially with the size of $\Gamma$.
-
-\item \code{VN\_Entropy($\Gamma$) $\rightarrow S$} This function return $S$, the \code{Float64} value of the Von Neumann Entropy of the state described by the Dirac correlation matrix $\Gamma$.
-
-
-\end{enumerate}
 
 
  \chapter{Useful relations}
