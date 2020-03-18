@@ -109,7 +109,7 @@ function Diag_real_skew(M, rand_perturbation::Int64=0)
  return M_f, O_f;
 end
 
-function Diag_ferm(M,rand_perturbation::Int64=0)
+function Diag_h(M,rand_perturbation::Int64=0)
     N = div(size(M,1),2);
 
     F_xptxx = Build_FxpTxx(N);
@@ -132,7 +132,7 @@ end
 
 function Diag_gamma(Γ,rand_perturbation::Int64=0)
  Γ = (Γ+Γ')/2.;
- γ, U = Diag_ferm(Γ-0.5*I,rand_perturbation);
+ γ, U = Diag_h(Γ-0.5*I,rand_perturbation);
 
  return U'*Γ*U,U;#real(γ+0.5*eye(size(Γ,1))),U
 end
@@ -282,7 +282,7 @@ function GS_gamma(D,U)
 end
 
 
-function Termal_fix_beta(Diag_H, U_H, beta)
+function Thermal_fix_beta((Diag_H, U_H), beta)
  N_f   = convert(Int64, size(Diag_H,1)/2.);
 
  gamma = zeros(Complex{Float64}, size(Diag_H,1),size(Diag_H,1))
@@ -299,7 +299,7 @@ end
 
 
 
-function Thermal_fix_energy(Diag_H, U_H, conserved_energy)
+function Thermal_fix_energy((Diag_H, U_H,), conserved_energy)
  N_f   = convert(Int64, size(Diag_H,1)/2.);
  a     = 0;
  b     = 100;
@@ -321,7 +321,7 @@ function Thermal_fix_energy(Diag_H, U_H, conserved_energy)
      end
  end
 
- println("Thermal state with energy precision of:", abs(temp_energy-conserved_energy)," and beta: ", beta);
+ println("Thermal state with energy error of:", abs(temp_energy-conserved_energy)," and beta: ", beta);
 
  gamma = zeros(Complex{Float64}, size(Diag_H,1),size(Diag_H,1))
  for kiter=1:N_f
@@ -332,8 +332,43 @@ function Thermal_fix_energy(Diag_H, U_H, conserved_energy)
 
  gamma = U_H*gamma*U_H';
 
- return gamma, β;
+ return gamma, beta, abs(temp_energy-conserved_energy);
 end
+
+
+#Generate a random Hamiltonian with just nearest neighbour interactions
+function Random_NNhamiltonian(N)
+    ud  = rand(N-1).+im*rand(N-1);
+    d   = rand(N).+im*rand(N);
+    bd  = rand(N-1).+im*rand(N-1);
+    A   = Tridiagonal(bd,d,ud);
+    A   = (A+A')/2.;
+    B   = Tridiagonal(bd, zeros(Complex{Float64}, N), -bd);
+    H   = zeros(Complex{Float64}, 2*N, 2*N);
+    H[(1:N),(1:N)]          = -conj(A);
+    H[(1:N).+N,(1:N)]       = -conj(B);
+    H[(1:N),(1:N).+N]       = B;
+    H[(1:N).+N,(1:N).+N]    = A;
+
+    return H;
+end
+
+function Energy(Γ,D,U)
+   N_f = convert(Int64, size(Γ,1)/2.);
+
+   energy = 0;
+   Γ = (Γ+Γ')/2.
+
+   Γ_diag_base = real(U'*Γ*U);
+   for iiter=1:(N_f)
+       energy += Γ_diag_base[iiter,iiter]*D[iiter+N_f,iiter+N_f];
+       energy += Γ_diag_base[iiter+N_f,iiter+N_f]*D[iiter,iiter];
+   end
+
+   return real(0.5*energy);
+end
+
+
 
 ###################################################################################
 
@@ -642,7 +677,7 @@ function Biggest_eig_H(M,n_eig)
     #La grandezza del vettore restituito scala come 2^(n_gaps-1);
     N = convert(Int64, size(M,1)/2);
 
-    D,U = Diag_ferm(M)
+    D,U = Diag_h(M)
 
     # d_rev = sort(real(diag(D)),rev=true); #Il primo è il più grande, sono positivi
     d_norev = sort(real(diag(D)));          #Il primo è il più piccolo, sono negativi
@@ -895,7 +930,7 @@ function Initialise_gamma_sector_H_pi_flux(Lp,Lo,kx)
 
 
   H         = H_fasulla_2(Lp,Lo,kx);
-  H_D, U_D  = Diag_ferm(H);
+  H_D, U_D  = Diag_h(H);
   M         = GS_Gamma(H_D, U_D);
  return M;
 end

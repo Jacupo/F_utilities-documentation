@@ -1,11 +1,11 @@
- \documentclass[fancy,blue,11pt]{elegantbook}
+ \documentclass[elegant,blue,11pt]{elegantbook}
 
 \title{Practical Fermionic Gaussian States}
 \subtitle{Fermionic Gaussian States: practical numerical simulations}
 
 \author{Jacopo Surace}
 \institute{Strathclyde, ICFO}
-\date{\today}
+\date{\today} 
 \version{1.00}
 
 \extrainfo{Julia's code on Github}
@@ -59,8 +59,8 @@
 
 \usepackage{CJKutf8}
 
-\usepackage{algorithm}
-\usepackage{algpseudocode}
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
 
 
 
@@ -68,20 +68,12 @@
 %\usepackage{demonstration}
 \usepackage{mathtools}
 %\let\openbox\relax
+%\usepackage{beramono}
+%\usepackage{listings}
 
+\usepackage[autoload=true]{jlcode}
 
-
-%\theoremstyle{definition}
-%\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
-%\newtheorem{exmp}[thm]{Example}
-%\newtheorem{observation}[thm]{Observation}
-
-%%%%Fine Miei
-
-
-
-
-
+\usepackage{textgreek}
 
 \begin{document}
 
@@ -108,6 +100,7 @@ We denote with $\vec{x}\in\{0,1\}^N$ a binary string of length $N$ with the $i$-
 \item If $a\da_i a_i |\vec{x}\rangle = 0 |\vec{x}\rangle$, that is, it has the $i$-th eigenvalue equal to $0$. Then the action of $a\da_i$ on $|\vec{x}\rangle$ raise the corresponding eigenvalue, meaning that $a\da_i a_i (a\da_i |\vec{x}\rangle) = 1 (a\da_i |\vec{x}\rangle)$.
 \end{enumerate}
 We define an \textit{ordering} by explicitly defining $|\vec{x}\rangle \coloneqq (a\da_1)^{x_1}(a\da_2)^{x_2}\dots(a\da_N)^{x_N}|\vec{0}\rangle$, where $\vec{0}$ is the string of $N$ zeros. The set $\{|\vec{x}\rangle\}_{\vec{x}\in\{0,1\}^N}$ form an orthonormal basis. If the dimension of the Hilbert space $\mathcal{H}$ is $2^N$, then $\{|\vec{x}\rangle\}_{\vec{x}\in\{0,1\}^N}$ is an orthonormal basis of $\mathcal{H}$.\\
+The orthonormal basis $\{|\vec{x}\rangle\}_{\vec{x}\in\{0,1\}^N}$ is called \textit{Fock basis}.
 The action of the raising and lowering operators on $|\vec{x}\rangle$ is then
 \begin{align}
 a_i |\vec{x}\rangle & =
@@ -263,7 +256,7 @@ The general \textit{fermionic quadratic hamiltonians} (f.q.h.) on a finite latti
 	\hat{H}=\frac{1}{2}\sum_{i,j=1}^{N}\left(A_{i,j}a_{i}^{\dagger}a_{j}-\bar{A}_{i,j}a_{i}a_{j}^{\dagger}+B_{i,j}a_{i}a_{j}-\bar{B}_{i,j}a_{i}^{\dagger}a_{j}^{\dagger}\right),
 \end{equation}
 %
-where $A$ is an \textit{hermitian}, $A^{\dagger}=A$,  and $B$ is a \textit{skew-symmetric}, $B^{T}=-B$, complex matrix. \\
+where $A$ is an \textit{hermitian} complex matrix, $A^{\dagger}=A$,  and $B$ is a \textit{skew-symmetric} complex matrix, $B^{T}=-B$ . \\
 Defining the matrix
 \begin{equation}
 \label{eq:H}
@@ -442,7 +435,7 @@ U=\Omega^{\dagger}\cdot O\cdot F_{xp\rightarrow xx}^{\dagger}\cdot\Omega.
 \end{equation}
 We note that $\epsilon_k=\lambda_k$.
 %
-\begin{proposition}{\code{Diag\_ferm($H$)$\rightarrow  H_{D},U$}}{}
+\begin{proposition}{\code{Diag\_h($H$)$\rightarrow  H_{D},U$}}{}
 This function diagonalise $H$. $H_D$ is the diagonal form with the first half diagonal negative and the second one positive ordered as \ref{eq:Diagonal-HD}. $U$ is the fermionic transformation such that: $H=UH_{D}U\da$. \\
 \end{proposition}
 
@@ -524,8 +517,13 @@ where $f=\langle 0| \rho | 0 \rangle$ and the two coherences are $0$ because we 
 \label{sec:Correlation-Matrix}
 We have seen that for any f.q.h. $H$ it is always possible to find a fermionic transformation $U$ that diagonalise $H$ transforming the Dirac operators vector as $\vec{\beta}=U\vec{\alpha}$. Diagonalising the parent hamiltonian of a f.g.s. $\rho$ we obtain its decomposition in terms of single-mode thermal states
 \begin{equation}
-\rho = \frac{e^{-\frac{1}{2}\vec{\beta}\da H_D \vec{\beta}}}{Z} = \frac{1}{Z}\bigotimes_{k=1}^{N}e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)} .
+\rho = \frac{e^{-\frac{1}{2}\vec{\beta}\da H_D \vec{\beta}}}{Z} = \frac{1}{Z}\bigotimes_{k=1}^{N}e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)} =\bigotimes_{k=1}^{N}\frac{e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}{Z_k},
 \end{equation}
+where $Z_k = \Tr{e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}$.\\
+%To the fermionic transformation $U$ corresponds a unitary operation $U_{\rho}$ on the Hilbert space of $\rho$ such that 
+%\begin{equation}
+%\rho = U_{\rho}\bigotimes_{k=1}^{N}\frac{e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}{Z_k} U_{\rho}\da.
+%\end{equation}
 Each single-mode thermal state is completely characterised by its occupation number, thus $\rho$ is completely characterised by the set of occupations $\{\langle b\da_{i} b\rangle\}_{i=1}^{N}$.
 Expressing the occupations in term of the operators $\vec{\alpha}=U\da \vec{\beta}$, we find that every f.g.s. is \textit{completely characterised} by the collection of all the correlators $\Gamma^{a\da a}_{i,j} \coloneqq \langle a\da_i a_j \rangle$ and $\Gamma^{aa}_{i,j} \coloneqq  \langle a_i a_j \rangle$. We collect these correlators in the so called \textit{correlation matrix}
 \begin{equation}
@@ -628,13 +626,23 @@ and
 %La metto la standard form? pagina 67 del quaderno Legami
 
 \section{Diagonalisation of the correlation matrix}
-In section \ref{sec:Correlation-Matrix} we have seen that any f.g.s. $\rho$ can be expressed as a tensor product of single mode thermal states 
+In section \ref{sec:Correlation-Matrix} we have seen that for any f.g.s. $\rho$  there exist a fermionic transformation $U$ that diagonalise its parent hamiltonian
+% and thus a unitary operator $U_{\rho}$ that diagonalise the density matrix $\rho$
+. With the new Dirac operators $\vec{\beta}$ the state can be expressed as a tensor product of single mode thermal states 
 \begin{equation}
-\rho = \frac{e^{-\frac{1}{2}\vec{\beta}\da H_D \vec{\beta}}}{Z} =\frac{1}{Z}\bigotimes_{k=1}^{N}e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}.
+ \frac{e^{-\frac{1}{2}\vec{\beta}\da H_D \vec{\beta}}}{Z} =\frac{1}{Z}\bigotimes_{k=1}^{N}e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}=\bigotimes_{k=1}^{N}\frac{e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}{Z_k}.
 \end{equation}
-for a particular choice of Dirac operators $b_i$.
-Expressed in this basis the correlation matrix, as well as the density matrix of the state, are in diagonal form. \\
-This tells us that for every correlation matrix $\Gamma$ there exist a fermiomic transformation $U$ such that $\Gamma$ can be brought in the diagonal form
+with $Z_k=\Tr{e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}$.\\
+Expressed with these operators the correlation matrix is diagonal. If we consider the Fock basis $\{|\vec{k}\rangle\}_{\vec{k}\in\{0,1\}^N}$ built with the action of the operators $\vec{\beta}$ on $|0\rangle$, we have that in this basis $\rho$ assumes a diagonal form. We call $U_{\rho}$ the unitary transformation that moves from the basis $\{|\vec{x}\rangle\}_{\vec{x}\in\{0,1\}^N}$ to the one of the modes $\{|\vec{k}\rangle\}_{\vec{k}\in\{0,1\}^N}$. \\
+It is easy to see that expressed on this basis $\rho$ has the diagonal form
+\begin{equation}
+\label{eq:Diagona-Correlation-Matrix}
+\rho^D = U_{\rho}\da \rho U_{\rho}=\bigotimes_{i=1}^{N}\left(\begin{array}{cc}
+\nu_{i} & 0\\
+0 & 1-\nu_{i}
+\end{array}\right).
+\end{equation}
+The same fermionic transformation $U$ that diagonalise the parent hamiltonian brings $\Gamma$ in the diagonal form
 \begin{equation}
 \Gamma^D = U\da \Gamma U = 
 \left(\begin{array}{cccccc}
@@ -662,7 +670,7 @@ The elements of  $H_D$ and $\Gamma^D$  are related as
 \nu_k = \frac{1}{1+e^{\epsilon_k}}
 \end{align}
 with $\nu_k\in[0,1]$ and $\epsilon_k\in[-\infty,+\infty]$ where the boundary values are take with a limit. The complete calculation can be found in appendix \ref{appendix:Eigenvalues-Relations}.
-In ref{eq:Diagonal-HD} we defined all the $\epsilon_k$ to be positive, to use the same notation, one just has to exchange $b$ with $\tilde{b}\da$ and $b\da$ with $\tilde{b}$, that is exchanging occupations with vacancies for the mode with $\epsilon_k$ negative. This corresponds to switching $\nu_k$ with $1-\tilde{\nu}_k$ and $1-\nu_k$ with $\tilde{\nu}_k$.\\ 
+In \ref{eq:Diagonal-HD} we defined all the $\epsilon_k$ to be positive, to use the same notation, one just has to exchange $b$ with $\tilde{b}\da$ and $b\da$ with $\tilde{b}$, that is exchanging occupations with vacancies for the mode with $\epsilon_k$ negative. This corresponds to switching $\nu_k$ with $1-\tilde{\nu}_k$ and $1-\nu_k$ with $\tilde{\nu}_k$.\\ 
 In general the correlation matrix $\Gamma$ and the parent hamiltonian $H$ are related as \cite{peschel2003a,vidal2003,cheong2003,zhang2020}
 \begin{equation}
 \Gamma = \frac{1}{1+e^{H}}.
@@ -726,45 +734,177 @@ To obtain the thermal state $\Gamma_{\beta}$ we just need to move back to the or
 \begin{proposition}{\code{Thermal\_fix\_beta($H_D,U,\beta$)$\rightarrow  \Gamma_0$}}{}
 This function returns $\Gamma_{\beta}$, the termal state at inverse temperature $\beta$ of the hamiltonian $H=UH_DU\da$.
 \end{proposition}
-\begin{proposition}{\code{Thermal\_fix\_energy($H_D,U,E$)$\rightarrow  \Gamma_{\beta(E)}, \beta(E)$}}{}
-This function returns $\Gamma_{\beta(E)}$, the thermal state at inverse temperature $\beta(E)$ of the hamiltonian $H=UH_DU\da$, and $\beta(E)$ the temperature such that $\Tr{\rho_{\beta(E)}H}=E$.
-Since the correct temperature is computed variationally, it prints in the terminal the precision $\Tr{\rho_{\beta(E)}H}-E$ and $\beta(E)$.
+\begin{proposition}{\code{Thermal\_fix\_energy($H_D,U,E$)$\rightarrow  \Gamma_{\beta(E)}, \beta(E), \Delta(E)$}}{}
+This function variationally computes and then returns $\Gamma_{\beta(E)}$, the thermal state at inverse temperature $\beta(E)$ of the hamiltonian $H=UH_DU\da$, and $\beta(E)$ the temperature such that $\Tr{\rho_{\beta(E)}H}=E$ and $\Delta(E)$ the difference between the required energy $E$ and the actual energy of the state $\Gamma_{\beta(E)}$.
+It prints in the terminal the precision $\Delta(E)$ and $\beta(E)$.
 \end{proposition}
 
+\subsubsection{Energy of a fermionic gaussian state}
+Consider a  f.q.h $H$ and a f.g.s. $\Gamma$. The energy of $\Gamma$ with respect to $H$ is the expectation value $\Tr{\hat{H}\rho}$ of the associated $\hat{H}$ computed on the associated state $\rho$.  \\
+In order to compute this expectation value one just need to find the fermionic transformation $U$ that diagonalises $H$ and compute the energies $\epsilon_k$ the occupations $\langle b_k\da, b_k\rangle$ and $\langle b_k, b_k\da\rangle$. The correlation matrix $\Gamma$ is not diagonal in the diagonal basis $\vec{\beta}$ of $H$, but we are just interested in its diagonal elements.\\
+The energy $E_{H}(\Gamma)$ of $\Gamma$ is thus
+\begin{equation}
+E_{H}(\Gamma) =\frac{1}{2} \sum_{k} \epsilon_k(\langle b_k\da b_k \rangle - \langle b_k b_k\da \rangle).
+\end{equation}
+
+\begin{proposition}{\code{Energy($\Gamma,H_D,U$)$\rightarrow E_{H}(\Gamma)$}}{}
+This function returns $E_{H}(\Gamma)$ the energy of the state $\Gamma$ calculated with $H$. $H_D$ and $U$ are the output of \code{Diag\_h(H)}.
+\end{proposition}
+
+%%%%Eigenvalues of rho and gamma
+\section{Eigenvalues of $\rho$ and eigenvalues of $\Gamma$}
+We have seen that the diagonal forms of the correlation matrix $\Gamma$ and of the density matrix $\rho$ of a f.g.s. can be obtained respectively with a fermionic transformation $U$ and a unitary operation $U_{\rho}$.
+The Fock basis in which $\rho$ is diagonal is the one generated by the set of operators that expresses $\Gamma$ in diagonal form. \\
+In this two basis $\rho$ and $\Gamma$ assume the forms
+\begin{equation}
+ \label{eq:Rho_Gaussian_State}
+\Gamma^D = 
+\left(\begin{array}{cccccc}
+\nu_{1} & 0 & \dots &  & \dots & 0\\
+0 & \ddots & \ddots &  &  & \vdots\\
+\vdots & \ddots & \nu_{N}\\
+ &  &  & 1-\nu_{1} & \ddots & \vdots\\
+\vdots &  &  & \ddots & \ddots & 0\\
+0 & \dots &  &  & \dots0 & 1-\nu_{N}
+\end{array}\right), \qquad 
+\rho^D=\bigotimes_{k=1}^{N}\left(\begin{array}{cc}
+\nu_{k} & 0\\
+0 & 1-\nu_{k}
+\end{array}\right) = \left(\begin{array}{cccccc}
+\pi_{\vec{0}} & 0&  \dots \\
+0 & \ddots &  \vdots\\
+\vdots &  \dots&  \pi_{\vec{1}}
+\end{array}\right).
+\end{equation}
+%
+Thus the if we denote each of the $2^{N}$ eigenvalues $\pi_{\vec{x}}$ of $\rho$ with a binary string $\vec{x}\in\left\{ 0,1\right\} ^{N}$ we have that: $\pi_{\vec{x}}=\prod_{k=1}^{N}\left(\vec{x}_{k}\nu_{i}+(1-\vec{x}_{k})(1-\nu_{k})\right)$.\\
+It is evocative changing the order of the Dirac operators in the representation of $\Gamma^D$
+\begin{equation}
+\label{eq:Ordering_dada_ndnd}
+\vec{\beta}=\left(\begin{array}{c}
+b_{0}^{\dagger}\\
+\vdots\\
+b_{N-1}^{\dagger}\\
+b_{0}\\
+\vdots\\
+b_{N-1}
+\end{array}\right) \qquad \rightarrow \qquad 
+\vec{\tilde{\beta}}=\left(\begin{array}{c}
+b_{0}^{\dagger}\\
+b_{0}\\
+b_{1}\da\\
+b_{1}\\
+\vdots\\
+b_{N}\da\\
+b_{N}
+\end{array}\right),
+\end{equation}
+this can be easily done with the fermionic transformation $\tilde{\Gamma}^D = F_{xp\rightarrow xx}\da \Gamma^D F_{xp\rightarrow xx}$.
+With this ordering we have
+\begin{equation}
+ \label{eq:Rho_Gaussian_State}
+\tilde{\Gamma}^D=\bigoplus _{k=1}^{N}\left(\begin{array}{cc}
+\nu_{k} & 0\\
+0 & 1-\nu_{k}
+\end{array}\right),\qquad 
+\rho^D=\bigotimes_{k=1}^{N}\left(\begin{array}{cc}
+\nu_{k} & 0\\
+0 & 1-\nu_{k}
+\end{array}\right).
+\end{equation}
+
+\begin{proposition}{\code{Eigenvalues\_of\_rho($\Gamma$)}$\rightarrow\vec{\nu}$}{}
+This function return the eigenvalues of the correlation matrix $\rho$ associated to the fermionic gaussian state with Dirac correlation matrix $\Gamma$. 
+\end{proposition}
 
 
 
 %%%%Reduced density matrix
-\subsubsection{Reduced density matrix}
+\subsubsection{Reduced density matrix and tensor product of fermionic gaussian states}
+\label{sec:Reducede-Density-Matrix}
 Trying to define a partial trace over fermionic modes subspaces one soon faces the what is often called the "partial trace ambiguity" \cite{friis2013}.\\
 %
 In the case of fermionic gaussian states, though, this is a much simpler task. Any reduced state formalism has to satisfy the simple criterion that the reduced density operator contains all the information about the subsystem that can be obtained from the global state when measurements are performed only on the respective subsystem alone \cite{friis2013}.\\
 %
-With Wick's theorem in mind it is easy to see that the correlation matrix of the reduced state on the modes ${i_1,\dots,i_m}$ is just the correlation matrix  $\left.\Gamma \right|_{\{i_1,\dots,i_m\}}$.\\
+With Wick's theorem in mind it is easy to see that the correlation matrix of the reduced state on the modes ${i_1,\dots,i_m}$ is just the correlation matrix  $\left.\Gamma \right|_{\{i_1,\dots,i_m\}}$ and that the reduced state of a f.g.s. is a f.g.s. too.\\
 
 
 \begin{proposition}{ \code{Reduce\_gamma($\Gamma$,m,i\_1)}$\rightarrow  \left.\Gamma \right|_{\{i_1,\dots,i_m\}}$}{}
-This function takes a Dirac correlation matrix $\Gamma$, a dimensione of the partition $m$ and the initial site of the partition $i_1$ and return  $\left.\Gamma \right|_{\{i_1,\dots,i_m\}}$, the reduced correlation matrix on the contiguous modes $\{i_1,\dots,i_m\}$.
-\end{proposition}
-
-
-%%%%Eigenvalues of rho and gamma
-\section{Eigenvalues of $\rho$ and eigenvalues of $\Gamma$}
-Consider the fermionic gaussian state $\rho=\frac{e^{-\frac{1}{2}\vec{\alpha}^{\dagger}H \vec{\alpha}}}{Z}$ and its correlation matrix $\Gamma$.
-The diagonal form $\Gamma^{D}$ of correlation matrix  tells us that a basis exists in which the density matrix $\rho$ of the state can be written as the tensor product of $N$ density matrices, one for each site. If $\nu_{i\in\left[1,N\right]}$ are the positive eigenvalues of $\Gamma$ then there exists a basis such that:
+This function takes a Dirac correlation matrix $\Gamma$, a dimension of the partition $m$ and the initial site of the partition $i_1$ and return  $\left.\Gamma \right|_{\{i_1,\dots,i_m\}}$, the reduced correlation matrix on the contiguous modes $\{i_1,\dots,i_m\}$.\\
+ Examples: the the green the element of the matrix $M_{6\times6}$ are the one of returned by the function.
 \begin{equation}
-\label{eq:Rho_Gaussian_State}
-\rho=\bigotimes_{i=1}^{N}\left(\begin{array}{cc}
-\nu_{i} & 0\\
-0 & 1-\nu_{i}
-\end{array}\right)
+\mbox{\mbox{Reduce\_gamma}(\ensuremath{M_{6\times6}},2,1)\ensuremath{\rightarrow}}\begin{array}{cccccc}
+\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}
+\end{array}\mbox{Reduce\_gamma(\ensuremath{M_{6\times6}},2,3)\ensuremath{\rightarrow}}\begin{array}{cccccc}
+\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
+\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}
+\end{array}
 \end{equation}
-%
-Thus the if we denote each of the $2^{N}$ eigenvalues $\pi_{\vec{x}}$ of $\rho$ with a binary string $\vec{x}\in\left\{ 0,1\right\} ^{N}$ we have that: $\pi_{\vec{x}}=\prod_{i=1}^{N}\left(\vec{x}_{i}\nu_{i}+(1-\vec{x}_{i})(1-\nu_{i})\right)$.\\
-%
-\begin{proposition}{\code{Eigenvalues\_of\_rho($\Gamma$)}$\rightarrow\vec{\nu}$}{}
-This function return the eigenvalues of the correlation matrix $\rho$ associated to the fermionic gaussian state with Dirac correlation matrix $\Gamma$. 
 \end{proposition}
+
+The correlation matrix $\Gamma_{A,B}$ of the tensor product of two f.g.s. $\Gamma_A$ and $\Gamma_B$ is obtained simply by collecting all the elements of $\Gamma_{A}$ and $\Gamma_{B}$ in a single well ordered correlation matrix $\Gamma_{A,B}$.
+The code for obtaining $\Gamma_{A,B}$ from $\Gamma_A$ and $\Gamma_B$ is
+\lstinputlisting{JL_composition.jl}.
+This code makes use of the function \code{Inject\_gamma}.
+
+
+\begin{proposition}{ \code{Inject\_gamma($\Gamma$, $\Gamma_{inj}$, i)}$\rightarrow  {\Gamma_{comp}} $}{}
+This function takes a $2N\times2N$ matrix $\Gamma$    and a $2n\times 2n$ matrix $\Gamma_{inj}$ with $n\leq N$. It returns the $2N\times 2N$ matrix $\Gamma_{comp}$ as shown in the pictures. 
+\begin{equation*}
+\Gamma=\begin{array}{cccccc}
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}
+\end{array},\qquad
+\Gamma_{inj}=\begin{array}{cccc}
+\cellcolor{red} & \cellcolor{red} & \cellcolor{red} & \cellcolor{red} \\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{red} & \cellcolor{red} \\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{red} & \cellcolor{red} \\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{red} & \cellcolor{red} 
+\end{array}
+\end{equation*}
+
+\begin{equation}
+\mbox{\code{Inject\_gamma(}}\Gamma,\Gamma_{inj},\mbox{1)}\rightarrow \begin{array}{cccccc}
+\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}
+\end{array}, \mbox{ }
+\mbox{\code{Inject\_gamma(}}\Gamma,\Gamma_{inj},\mbox{3)}\rightarrow \begin{array}{cccccc}
+\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
+\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}
+\end{array}.
+\end{equation}
+In the last example it is clear the systems behave with periodic boundary conditions.\\
+If $\Gamma$ is the correlation matrix of a f.g.s $\rho$ and $\Gamma_{inj}$ is the correlation matrix of a f.g.s $\rho_{inj}$ then $\Gamma_{comp}$ is the correlation matrix of the state $\mbox{Tr}_{\mbox{\code{i}},\dots,\mbox{\code{i+n-1}}}\left[\rho\right]\otimes\rho_{inj}$.
+\end{proposition}
+
+It is clear that with the ordering \ref{eq:Ordering_dada_ndnd}, the tensor product of two f.g.s. corresponds to the direct sum of their correlation matrices
+\begin{equation}
+\rho_{A,B} = \rho_{A}\otimes \rho_{B} \mbox{ } \rightarrow \mbox{ } \tilde{\Gamma}_{A,B} = \tilde{\Gamma}_{A} \oplus \tilde{\Gamma}_{B}.
+\end{equation}
+
+
+
 
 %%%%Information measures
 \section{Information measures}
@@ -779,9 +919,9 @@ In terms of the eigenvalues $\lambda$ of $\rho$, the Von Neumann entropy read as
 \begin{equation}
 S(\rho) = -\sum_{\lambda} \lambda \ln(\lambda)
 \end{equation}
-If $\rho$ is a Fermionic Gaussian state of a system with $N$ sites , substituting in \eqref{eq:General_VonNeumann_Entropy} the product form \eqref{eq:Rho_Gaussian_State}, the Von Neumann entropy becomes a function of the eigenvalues $\nu_i$ of the correlation matrix $\Gamma$ and it is the sum of just $2N$ terms
+If $\rho$ is a f.g.s. of a system with $N$ sites, since the VonNeumann entropy is invariant under unitary transformation of the state, substituting in \eqref{eq:General_VonNeumann_Entropy} the product form \eqref{eq:Rho_Gaussian_State} and using the fact the the VonNeumann entropy is additive for product states, the VonNeumann entropy becomes a function of the eigenvalues $\nu_i$ of the correlation matrix $\Gamma$ and it is the sum of just $2N$ terms
 \begin{equation}
-S(\Gamma) \equiv S(\rho) = -\sum_{i=1}^{N} \left(\nu_i \ln(\nu_i)+(1-\nu_i) \ln(1-\nu_i) \right).
+S(\Gamma) \equiv S(\rho) = -\sum_{k=1}^{N} \left[\nu_k \ln(\nu_k)+(1-\nu_k) \ln(1-\nu_k) \right].
 \end{equation}
 
 \begin{proposition}{\code{VN\_entropy($\Gamma$)}$\rightarrow S$}{}
@@ -823,9 +963,12 @@ This function return $p$ the purity of the fermionic gaussian state with Dirac c
 
 %%%%Entanglement Contour
 \subsection{Entanglement Contour}
-In 2014 Chen and Vidal \cite{chen2014} introduced entanglement contour "a tool for identifyng which real-space degrees of freedom contribute, and how much, to the entanglement of a region A with the rest of the system B". We will present here a specific form of entanglement contour, for a more general treatment we refer to the original paper of Chen and Vidal.\\
-We restrict to pure states.\\
-Consider an Hilbert space $\mathcal{H}$ arbitrarily divided in two partitions $\mathcal{H}= \mathcal{H}_A\otimes \mathcal{H}_B$. The Schmidt decomposition of a pure state $|\psi^{A,B}\rangle$ in $\mathcal{H}$ is
+In 2014 Chen and Vidal \cite{chen2014} introduced entanglement contour "a tool for identifyng which real-space degrees of freedom contribute, and how much, to the entanglement of a region A with the rest of the system B". 
+We consider the state of a system on a chain of $N$ sites, we divide the chain in two complementary partitions, partition $A$ and partition $B$. Now suppose partition $A$ and $B$ are entangled and there exists a measure $\mathcal{E}(A,B)$ that quantifies the amount of entanglement between $A$ and $B$. The entanglement contour $c_A(i)$ of partition $A$ tells us how much each site $i$ of partition $A$ contributes to the total amount of entanglement betwen $A$ and $B$. Furthermore summing $c_A(i)$ over all the sites of $A$ one should obtain exactly $\mathcal{E}(A,B)$. \\
+Chen and Vidal decide five reasonably properties that define when a function is a contour function. In the same paper they show that these five properties do note define a single contour function, but instead a class of functions.
+We will present here a specific form of entanglement contour, the one introduced by Chen and Vidal for fermionic gaussian states, for other kinds of contour function see i.e. \cite{coser2017,tonni2018}. \\
+First of all we restrict to pure states. For pure state it is known that a good measure of entanglement between two complementary partition $A$ and $B$ is the entanglement entropy, that is the VonNeumann entropy $\mathcal{E}(A,B)=S(A)$ of the reduced state on $A$.\\
+We consider an Hilbert space $\mathcal{H}$ arbitrarily divided in the two complementary partitions $\mathcal{H}= \mathcal{H}_A\otimes \mathcal{H}_B$, each partition with $N_A$ and $N_B$ sites respectively. The Schmidt decomposition of a pure state $|\psi^{A,B}\rangle$ in $\mathcal{H}$ is
 \begin{equation}
 \label{eq:Schmidt-Decomposition}
 |\psi^{A,B}\rangle = \sum_{i} \sqrt{p_i}|\psi^{A}_i\rangle \otimes |\psi^B_i\rangle,
@@ -834,17 +977,66 @@ with $p_i\geq0$, $\sum_{i} p_i = 1$ and
 \begin{equation}
 \rho^{A}\equiv Tr_{B}\left[ |\psi^{A,B}\rangle \langle \psi^{A,B}|\right] = \sum_{i} p_i |\psi^{A}_i \rangle \langle \psi^{A}_i|.
 \end{equation}
-Factorising Hilbert space $\mathcal{H}_A$ in its tensor product structure $\mathcal{H}_A=\bigotimes_{j\in A}\mathcal{H}_j$, we individuate in each local Hilbert space $\mathcal{H}_j$ a site of the partition $A$.
-Genarelly $\rho^A$ cannot be expressed as a product state over this factorisation of $\mathcal{H}_A$.\\
-Chen and Vidal entanglement contour $c_A$ is a function of the sites $j$ of partition $A$ ($c_A:A\rightarrow \mathbb{R}$) that attempts to express the contribution of each site to the total von Neumann entropy $S(\rho^A)$ of partition $A$.\\
-The definition of entanglement contour is based on five constraints (see \cite{chen2014} for the complete definition) that any possible entanglement contour function must satisfy. These constraints are not tight, thus there exist many possible functions that can be regarded as entanglement contour.\\
-We consider an entanglement contour specifically defined for Fermionic Gaussian states (for other entanglement contours see i.e. \cite{coser2017,tonni2018} ).\\
+The entanglement entropy for this choice of partition is thus $S(A)= -\sum_{i} p_i ln(p_i)$.\\
+Factorising the Hilbert space $\mathcal{H}_A$ in its tensor product structure $\mathcal{H}_A=\bigotimes_{j\in A}\mathcal{H}_j$, we individuate in each local Hilbert space $\mathcal{H}_j$ a site of the partition $A$.
+We remind that $\rho^A$ cannot be expressed as a product state over this factorisation of $\mathcal{H}_A$ and that the VonNeumann entropy is not addittive. Thus the VonNeumann entropy computed on each site is not a good entanglement contour function.\\
+We know from \ref{sec:Reducede-Density-Matrix} that $\rho_A$ is a f.g.s., thus we can express the entanglement entropy $S(A)$ as the sum of the VonNeumman entropy of each mode in $A$
+\begin{equation} 
+S(A) = \sum_{k=1}^{N_A} S_k = -\sum_{k=1}^{N_A}\left[\nu_k \ln(\nu_k)+(1-\nu_k)\ln(1-\nu_k) \right] .
+\end{equation}
+Each mode $k$ associated to the Dirac operators $\beta_k=b_k\da$, $\beta_{k+N_A}=b_k$ is connected to the real space modes associated the Dirac operators $\alpha_i=a_i\da$, $\alpha_{i+N_A}=a_i$ by the fermionic transformation $U$ such that
+\begin{equation}
+\beta_k = \sum_{i=1}^{N_A} U_{k,i} \alpha_i.
+\end{equation}
+We want to use this equation to find how much a fixed mode $k$ contribute to a fixed site $i$. We call this contribution $p_i(k)$ and we define it as
+\begin{equation}
+p_i(k) \coloneqq \frac{1}{2}\left[|U_{k,i}|^2+|U_{k+N_A,i+N_A}|^2+|U_{k,i+N_A}|^2+|U_{k+N_A,i}|^2 \right].
+\end{equation}
+The entanglement contour for partition $A$ is thus defined as 
+\begin{equation}
+c_A(i) \coloneqq \sum_{k=1}^{N_A} p_i(k) S_k.
+\end{equation}
+It is easy to see that each of the $p_i(k)$ is positive and that 
+\begin{equation}
+\sum_{k=1}^{N_A} p_i(k) = 1,
+\end{equation}
+as $
+\sum_{k=1}^{N_A} p_i(k)  = \frac{1}{2} \left[\sum_{l=1}^{2N_A} U_{i,l}U^{*}_{l,i} + U_{i+N_A,l}U^{*}_{l,i+N_A}\right] = \frac{1}{2} \left( (UU\da)_{i,i} + (UU\da)_{i+N_A,i+v}\right) = 1$, 
+since $U$ is unitary. Thus one has the desired property
+\begin{equation}
+\sum_{i=1}^{N_A} c_{A}(i) = S(A).
+\end{equation}
+
+\begin{proposition}{\code{Contour($\Gamma_A$)$\rightarrow  \vec{c_A}$}}{}
+This function return the vector $\vec{c_A}_i = c_A(i)$ of the entanglement contour of the correlation matrix $Gamma_A$.
+\end{proposition}
+
+\section{Examples}
+
+We will use the function 
+\begin{proposition}{\code{Random\_NNhamiltonianr(N)$\rightarrow  H$}}{}
+Generate a random f.q.h. hamiltonian for a system of $N$ with just nearest neighbour interactions.
+\end{proposition}
+
+\subsection{Computing the energies of H}
+\label{ex:JL-Energies-Of-H}
+\lstinputlisting{JLCODE1.jl}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{figure/JLCODE1.pdf}
+	\caption{Output of examples \ref{ex:JL-Energies-Of-H}}
+	\label{fig:Sectors_Fourier}
+\end{figure}
+
+\subsection{Computing the entanglement contour of a partition of a ground state}
 
 
 
 
 
-
+%\begin{note}
+%Note that a subgroup~$H$ of a group $G$ is itself a left coset of $H$ in $G$.
+%\end{note}
 
 
 
@@ -1508,7 +1700,7 @@ This function returns $M_{f}$, the the diagonal form \eqref{eq:Gamma-Dirac-Diago
 
 \item \code{Purity(M)$\rightarrow p$}: This function takes as input the correlation matrix $\Gamma$ and return a Float $p$ from $0$ to $1$ that is the purity.
 
-\item \code{Evolve\_gamma(M,D,U,t)$\rightarrow M_{t}$}: This function evolve for a time \code{t} (last argument) the correlation matrix $\Gamma$ (first argument), \code{D} is the Dirac Hamiltonian diagonalised, $U$ is the unitary transformation that change basis from the diagonal one to the original one. e.g. If I want to evolve the correlation matrix $M$ with $H_{a}$ for a time $t$ I would write \code{M\_{t}=Evolve\_gamma(M,Diag\_ferm($H_{a}$),$t$)}.
+\item \code{Evolve\_gamma(M,D,U,t)$\rightarrow M_{t}$}: This function evolve for a time \code{t} (last argument) the correlation matrix $\Gamma$ (first argument), \code{D} is the Dirac Hamiltonian diagonalised, $U$ is the unitary transformation that change basis from the diagonal one to the original one. e.g. If I want to evolve the correlation matrix $M$ with $H_{a}$ for a time $t$ I would write \code{M\_{t}=Evolve\_gamma(M,Diag\_h($H_{a}$),$t$)}.
 
 \item \code{Evolve\_gamma\_imag(M,D,U,t)$\rightarrow M_{t}$}: This function evolve for a time \code{t} (last argument) the pure state correlation matrix $\Gamma$ (first argument) with the evolution \ref{eq:Imaginary-Evolution}, \code{D} is the Dirac Hamiltonian diagonalised, $U$ is the unitary transformation that change basis from the diagonal one to the original one .N.B. \code{M} must be a pure state (Purity$(M)=1$), \code{Evolve\_gamma\_imag(M,D,U,t)} is a pure state.
 

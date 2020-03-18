@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{}Diagonalise the hamiltonian}
+\PYG{n}{H\PYGZus{}D}\PYG{p}{,} \PYG{n}{U\PYGZus{}D} \PYG{o}{=} \PYG{n}{Diag\PYGZus{}ferm}\PYG{p}{(}\PYG{n}{H}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{}Compute the ground state}
+\PYG{n}{gamma} \PYG{o}{=} \PYG{n}{GS\PYGZus{}gamma}\PYG{p}{(}\PYG{n}{H\PYGZus{}D}\PYG{p}{,} \PYG{n}{U\PYGZus{}D}\PYG{p}{);}
+
+\PYG{c}{\PYGZsh{}Print the real part of the correlation matrix of the  ground state}
+\end{Verbatim}

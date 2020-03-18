@@ -22,23 +22,21 @@
 \contentsline {subsubsection}{\numberline {3.5.0.1}Phisicality of a state}{13}{subsubsection.3.5.0.1}% 
 \contentsline {subsubsection}{\numberline {3.5.0.2}Ground states of fermionic quadratic hamiltonians}{13}{subsubsection.3.5.0.2}% 
 \contentsline {subsubsection}{\numberline {3.5.0.3}Thermal state of fermionic quadratic hamiltonians}{13}{subsubsection.3.5.0.3}% 
-\contentsline {subsubsection}{\numberline {3.5.0.4}Energy of a fermionic gaussian state}{14}{subsubsection.3.5.0.4}% 
+\contentsline {subsubsection}{\numberline {3.5.0.4}Reduced density matrix}{14}{subsubsection.3.5.0.4}% 
 \contentsline {section}{\numberline {3.6}Eigenvalues of $\rho $ and eigenvalues of $\Gamma $}{14}{section.3.6}% 
-\contentsline {subsubsection}{\numberline {3.6.0.1}Reduced density matrix and tensor product of fermionic gaussian states}{15}{subsubsection.3.6.0.1}% 
-\contentsline {section}{\numberline {3.7}Information measures}{17}{section.3.7}% 
-\contentsline {subsection}{\numberline {3.7.1}Von Neumann Entropies}{17}{subsection.3.7.1}% 
-\contentsline {subsection}{\numberline {3.7.2}Purity}{18}{subsection.3.7.2}% 
-\contentsline {subsection}{\numberline {3.7.3}Entanglement Contour}{18}{subsection.3.7.3}% 
-\contentsline {section}{\numberline {3.8}Examples}{20}{section.3.8}% 
-\contentsline {subsection}{\numberline {3.8.1}Computing the energies of H}{20}{subsection.3.8.1}% 
-\contentsline {subsection}{\numberline {3.8.2}Computing the entanglement contour of a partition of a ground state}{20}{subsection.3.8.2}% 
-\contentsline {chapter}{\numberline {A}Extended calculations}{22}{appendix.A}% 
-\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{22}{section.A.1}% 
-\contentsline {section}{\numberline {A.2}Purity}{23}{section.A.2}% 
-\contentsline {chapter}{\numberline {B}F-utilities}{25}{appendix.B}% 
-\contentsline {chapter}{\numberline {C}Useful relations}{27}{appendix.C}% 
-\contentsline {section}{\numberline {C.1}Pauli Matrices}{27}{section.C.1}% 
-\contentsline {section}{\numberline {C.2}Operators obeying CAR}{27}{section.C.2}% 
-\contentsline {section}{\numberline {C.3}Jordan-Wigner Transformations}{28}{section.C.3}% 
-\contentsline {subsection}{\numberline {C.3.1}spinless fermions $\rightarrow $ spins}{28}{subsection.C.3.1}% 
-\contentsline {subsection}{\numberline {C.3.2}spins $\rightarrow $ spinless fermions}{28}{subsection.C.3.2}% 
+\contentsline {section}{\numberline {3.7}Information measures}{15}{section.3.7}% 
+\contentsline {subsection}{\numberline {3.7.1}Von Neumann Entropies}{15}{subsection.3.7.1}% 
+\contentsline {subsection}{\numberline {3.7.2}Purity}{16}{subsection.3.7.2}% 
+\contentsline {subsection}{\numberline {3.7.3}Entanglement Contour}{16}{subsection.3.7.3}% 
+\contentsline {section}{\numberline {3.8}Examples}{18}{section.3.8}% 
+\contentsline {subsection}{\numberline {3.8.1}Computing the ground state of an Hamiltonian}{18}{subsection.3.8.1}% 
+\contentsline {chapter}{\numberline {A}Extended calculations}{20}{appendix.A}% 
+\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{20}{section.A.1}% 
+\contentsline {section}{\numberline {A.2}Purity}{21}{section.A.2}% 
+\contentsline {chapter}{\numberline {B}F-utilities}{23}{appendix.B}% 
+\contentsline {chapter}{\numberline {C}Useful relations}{25}{appendix.C}% 
+\contentsline {section}{\numberline {C.1}Pauli Matrices}{25}{section.C.1}% 
+\contentsline {section}{\numberline {C.2}Operators obeying CAR}{25}{section.C.2}% 
+\contentsline {section}{\numberline {C.3}Jordan-Wigner Transformations}{26}{section.C.3}% 
+\contentsline {subsection}{\numberline {C.3.1}spinless fermions $\rightarrow $ spins}{26}{subsection.C.3.1}% 
+\contentsline {subsection}{\numberline {C.3.2}spins $\rightarrow $ spinless fermions}{26}{subsection.C.3.2}% 
