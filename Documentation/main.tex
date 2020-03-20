@@ -1121,7 +1121,7 @@ This is the case because, if for the time evolution operator $U(t)=e^{-iHt}$ for
 It's important to keep in mind that the operator $e^{-H\tau}$ is not unitary and for this reason it doesn't preserve the norm of the state and one has to renormalise it.\\
 %Nevertheless in the rest of these notes we will always refer to this method as a time evolution ;-).
 %textdej{ 😉}.
-
+We know already how to compute the ground state of any f.q.h., but it could result useful to be able to simulate an imaginary time evolution with f.g.s. in the case one is interested in benchmarking more complex algorithms.
 
 \section{Numerical Imaginary time evolution}
 In the numerical approach to imaginary time evolution one faces some difficulties.\\
@@ -1166,12 +1166,16 @@ Knowing that $b_l\da,b_j\hat{H} = (\hat{H}+2\Delta_{l,j})b_l\da b_j$, with $\Del
 \begin{equation}
 e^{-\hat{H} \tau} b_{l}^{\dag}b_{j} e^{-\hat{H} \tau} = \sum_{n=0}^{\infty} \frac{(-2(\hat{H}+\Delta_{l,j})\tau)^n}{n!} b_l\da b_j=e^{-2(\hat{H}+\Delta_{l,j})\tau}b_l\da b_j.  
 \end{equation}
+For the other $3$ quadrants of the correlation matrix we have
 
-Computing the anticommutators in the expansion of the imaginary time evolution of the couple $b_{i}^{\dag}b_{j}$ we obtain
-\begin{align}
-e^{-\hat{H} \tau} b_{i}^{\dag}b_{j} e^{-\hat{H} \tau} = \left[ \sum_{n=0}^{\infty}  \frac{\tau^n}{n!} \sum_{k=0}^{n}  \binom{n}{k}\Delta_{i,j}^{n-k} \hat{H}^{k} \right]b_{i}^{\dag}b_{j},
-\end{align}
-with $\Delta_{i,j} = (\epsilon(j)-\epsilon(i))$ and $\binom{n}{k}=\frac{n!}{k!(n-k)!}$ the binomial coefficient.
+
+%Computing the anticommutators in the expansion of the imaginary time evolution of the couple $b_{i}^{\dag}b_{j}$ we obtain
+%\begin{align}
+%e^{-\hat{H} \tau} b_{i}^{\dag}b_{j} e^{-\hat{H} \tau} = \left[ \sum_{n=0}^{\infty}  \frac{\tau^n}{n!} \sum_{k=0}^{n}  \binom{n}{k}\Delta_{i,j}^{n-k} \hat{H}^{k} \right]b_{i}^{\dag}b_{j},
+%\end{align}
+%with $\Delta_{i,j} = (\epsilon(j)-\epsilon(i))$ and $\binom{n}{k}=\frac{n!}{k!(n-k)!}$ the binomial coefficient.
+
+
 %The expansion of the anticommutators for each value of $n$ is not trivial. We computed the first terms in the expansion of the imaginary time evolution of the couple $b_{i}^{\dagger}b_j$:\\
 %\resizebox{\textwidth}{!}{%
 %$
