@@ -1157,17 +1157,22 @@ The imaginary time evolution of the correlation matrix is defined as
 \end{align}
 %\subsubsection{Heisenberg imaginary time evolution}
 Obtaining an explicit form for $\Gamma(\tau)$ just in term of $H$ and $\Gamma(0)$ is not easy.
-One can compute the imaginary time evolution in Heisenberg picture with $e^{-\hat{H}\tau}$ of  the operator $\vec{\alpha}_{i}\vec{\alpha}_{j}^{\dagger}$. Using \emph{BCH2} (i.e. $e^{A}Be^{A}=\sum_{n=0}^{\infty}\frac{1}{n!}\underbrace{\{A,...\{A}_{n},B\underbrace{\}...\}}_{n}$) and moving in the diagonal basis with Dirac operators  $\vec{\beta}$ one can write the Hamiltonian as $\hat{H}=\frac{1}{2}\sum_k \epsilon(k) \left(b_k^{\dagger}b_k-b_kb_k^{\dagger}\right)$.\\
+One can compute the imaginary time evolution in Heisenberg picture with $e^{-\hat{H}\tau}$ of  the operator $\vec{\alpha}_{i}\vec{\alpha}_{j}^{\dagger}$. Using \emph{BCH2} (i.e. $e^{A}Be^{A}=\sum_{n=0}^{\infty}\frac{1}{n!}\underbrace{\{A,...\{A}_{n},B\underbrace{\}...\}}_{n}$) and moving in the diagonal basis with Dirac operators  $\vec{\beta}$ one can write the Hamiltonian as $\hat{H}= \sum_k \epsilon(k) \left(b_k^{\dagger}b_k-b_kb_k^{\dagger}\right)$.\\
 Thus one has
 \begin{align}
 e^{-\hat{H}\tau}&\vec{\beta}_{l}\vec{\beta}_{j}^{\dagger}e^{-\hat{H}\tau} = \sum_{n=0}^{\infty} \frac{-\tau^n}{n!} \underbrace{\{\hat{H},...\{\hat{H}}_{n},\vec{\beta}_{l}\vec{\beta}_{j}^{\dagger}\underbrace{\}...\}}_{n}.
 \end{align}
-Knowing that $b_l\da,b_j\hat{H} = (\hat{H}+2\Delta_{l,j})b_l\da b_j$, with $\Delta_{l,j}=\epsilon_j-\epsilon_l$, we have we  see that the time evolution of the operator $b_l\da b_j$ is
+Knowing that $b_l\da b_j\hat{H} = (\hat{H}+2\Delta_{l,j})b_l\da b_j$, with $\Delta_{l,j}=\epsilon_j-\epsilon_l$, we have we  see that the time evolution of the operator $b_l\da b_j$ is
 \begin{equation}
 e^{-\hat{H} \tau} b_{l}^{\dag}b_{j} e^{-\hat{H} \tau} = \sum_{n=0}^{\infty} \frac{(-2(\hat{H}+\Delta_{l,j})\tau)^n}{n!} b_l\da b_j=e^{-2(\hat{H}+\Delta_{l,j})\tau}b_l\da b_j.  
 \end{equation}
 For the other $3$ quadrants of the correlation matrix we have
-
+\begin{align}
+e^{-\hat{H} \tau} b_{l}b_{j}\da e^{-\hat{H} \tau} &= e^{-2(\hat{H}-\Delta_{l,j})\tau}b_l b_j\da, \\
+e^{-\hat{H} \tau} b_{l}b_{j} e^{-\hat{H} \tau} &= e^{-2(\hat{H}+\nabla_{l,j})\tau}b_l b_j,\\
+e^{-\hat{H} \tau} b_{l}\da b_{j}\da e^{-\hat{H} \tau} &= e^{-2(\hat{H}-\nabla_{l,j})\tau}b_l\da b_j\da,
+\end{align}
+with $\nabla_{i,j}=(\epsilon_i+\epsilon_j)$.
 
 %Computing the anticommutators in the expansion of the imaginary time evolution of the couple $b_{i}^{\dag}b_{j}$ we obtain
 %\begin{align}
@@ -1452,7 +1457,7 @@ Thus the purity is:
 
 
 \section{Real Time Evolution}
-We want to compute the time evolution in the Heisenberg picture of the annihilation operator $b_k$ induced by the hamiltonian $\hat{H} = sum_{l=1}^{N} \epsilon_{l} (b\da_l b_l -b_l b\da_l) $.
+We want to compute the time evolution in the Heisenberg picture of the annihilation operator $b_k$ induced by the hamiltonian $\hat{H} = \sum_{l=1}^{N} \epsilon_{l} (b\da_l b_l -b_l b\da_l) $.
 First we simplify the expression exploiting the commuting terms 
 \begin{align}
   b_k(t) &= e^{i\hat{H}t}b_ke^{-i\hat{H}t}=e^{ it\sum_{l=1}^{N} \epsilon_{l} (b\da_l b_l -b_l b\da_l)} b_k e^{it \sum_{l=1}^{N} \epsilon_{l} (b\da_k b_l -b_l b\da_l)}= \\

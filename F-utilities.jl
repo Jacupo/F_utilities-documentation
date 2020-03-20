@@ -394,6 +394,19 @@ function Product(Γ1,Γ2)
   return (Ω'*(1/2)*(γp+I)*Ω);
 end
 
+
+
+function Evolve_gamma_euclidean(Γ,D,U,t)
+   N = div(size(Γ,1),2);
+
+   Γ_diag_base = U'*Γ*U;
+   Γβ = Thermal_fix_beta((D,I),t);
+   Γ_diag_base_evolv = Product(Γ_diag_base,Γβ);
+   Γ_diag_base_evolv = Product(Γβ,Γ_diag_base_evolv);
+   Γ_evolv             = U*Γ_diag_base_evolv*U';
+
+   return Γ_evolv;
+end
 ###################################################################################
 
 
@@ -574,7 +587,7 @@ function TFI_Hamiltonian_APBC(N,Jx,Jy,lambda)
    return H_TFI;
 end
 
-function GS_Gamma(D,U)
+function GS_gamma(D,U)
    N = div(size(D,1),2);
 
    Gamma_diag_base = zeros(Complex{Float64}, 2*N, 2*N);
@@ -955,7 +968,7 @@ function Initialise_gamma_sector_H_pi_flux(Lp,Lo,kx)
 
   H         = H_fasulla_2(Lp,Lo,kx);
   H_D, U_D  = Diag_h(H);
-  M         = GS_Gamma(H_D, U_D);
+  M         = GS_gamma(H_D, U_D);
  return M;
 end
 
