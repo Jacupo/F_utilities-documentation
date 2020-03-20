@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.28)  20 MAR 2020 15:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.28)  19 MAR 2020 15:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2264,20 +2264,13 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 LaTeX Warning: Unused global option(s):
     [elegant].
 
-(./main.aux
-
-LaTeX Warning: Label `eq:MCAR' multiply defined.
-
-
-LaTeX Warning: Label `eq:Rho_Gaussian_State' multiply defined.
-
-)
+No file main.aux.
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 80.
 LaTeX Font Info:    Try loading font information for OML+ntxmi on input line 80
 .
- (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/omlntxmi.fd
+(/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
 LaTeX Font Info:    ... okay on input line 80.
@@ -2484,8 +2477,6 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 80.
 LaTeX Info: Redefining \pageref on input line 80.
 LaTeX Info: Redefining \nameref on input line 80.
-
-(./main.out) (./main.out)
 \@outlinefile=\write8
 \openout8 = `main.out'.
 
@@ -2526,7 +2517,7 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 82.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./figure/cover.jpg, id=151, 1086.0575pt x 925.4575pt>
+<./figure/cover.jpg, id=31, 1086.0575pt x 925.4575pt>
 File: ./figure/cover.jpg Graphic file (type jpg)
 <use ./figure/cover.jpg>
 Package pdftex.def Info: ./figure/cover.jpg  used on input line 82.
@@ -2594,7 +2585,7 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 82.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 14.4pt on input line 82.
-<./figure/logo.png, id=152, 309.3156pt x 184.0476pt>
+<./figure/logo.png, id=32, 309.3156pt x 184.0476pt>
 File: ./figure/logo.png Graphic file (type png)
 <use ./figure/logo.png>
 Package pdftex.def Info: ./figure/logo.png  used on input line 82.
@@ -2613,7 +2604,7 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 17.28pt on input line 83.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) (./main.toc)
+88.pgf)
 \tf@toc=\write9
 \openout9 = `main.toc'.
 
@@ -2629,11 +2620,19 @@ Chapter 1 1.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
+
+Package natbib Warning: Citation `nielsen' on page 1 undefined on input line 97
+.
+
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 8.0pt on input line 119.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 6.1pt on input line 119.
- [1
+
+LaTeX Warning: Reference `appendix:fermionic_operators' on page 1 undefined on 
+input line 122.
+
+[1
 
 
 
@@ -2651,54 +2650,220 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <12> not available
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 12.0pt on input line 152.
 
+LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 195.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [2]
+
+Package natbib Warning: Citation `bravyi2004' on page 3 undefined on input line
+ 209.
+
+
+Package natbib Warning: Citation `bravyi2004' on page 3 undefined on input line
+ 216.
+
+
+LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 251.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [3]
 Chapter 2 2.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
+
+LaTeX Warning: Reference `eq:Dirac-QFH' on page 4 undefined on input line 271.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 297--301
 
  []
 
+
+LaTeX Warning: Reference `eq:Dirac-QFH' on page 4 undefined on input line 307.
+
 [4
 
 ]
+
+Package natbib Warning: Citation `lieb1961' on page 5 undefined on input line 3
+12.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 351--354
 
  []
 
 
+LaTeX Warning: Reference `Diag-Ham-Dirac' on page 5 undefined on input line 356
+.
+
+
+LaTeX Warning: Reference `eq:Dirac-QFH-FreeFree' on page 5 undefined on input l
+ine 357.
+
+
+Package natbib Warning: Citation `lieb1961' on page 5 undefined on input line 3
+59.
+
+
+LaTeX Warning: Reference `LastPage' on page 5 undefined on input line 362.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [5]
+
+Package natbib Warning: Citation `zumino1962' on page 6 undefined on input line
+ 366.
+
+
+Package natbib Warning: Citation `horn1985' on page 6 undefined on input line 3
+66.
+
+
+LaTeX Warning: Reference `eq:Majorana-QFH' on page 6 undefined on input line 38
+2.
+
+
+LaTeX Warning: Reference `eq:Schur-Decomposition' on page 6 undefined on input 
+line 382.
+
+
+LaTeX Warning: Reference `LastPage' on page 6 undefined on input line 403.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [6]
+
+LaTeX Warning: Reference `eq:Diagonal-HD' on page 7 undefined on input line 434
+.
+
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 440.
+
+LaTeX Warning: Reference `eq:Diagonal-HD' on page 7 undefined on input line 441
+.
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 441--442
 
  []
 
 
+LaTeX Warning: Reference `eq:Schur-Decomposition' on page 7 undefined on input 
+line 449.
+
+
+LaTeX Warning: Reference `thm:Block-Matrix' on page 7 undefined on input line 4
+49.
+
+
+LaTeX Warning: Reference `LastPage' on page 7 undefined on input line 453.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [7]
+
+Package natbib Warning: Citation `horn1985' on page 8 undefined on input line 4
+53.
+
+
+LaTeX Warning: Reference `eq:Schur-Decomposition' on page 8 undefined on input 
+line 483.
+
+
+LaTeX Warning: Reference `LastPage' on page 8 undefined on input line 491.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [8]
 Chapter 3 3.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [9
+88.pgf)
+
+LaTeX Warning: Reference `eq:polynomial-representantion-|x><x|' on page 9 undef
+ined on input line 515.
+
+[9
 
 ]
+
+Package natbib Warning: Citation `jaynes1957a' on page 10 undefined on input li
+ne 546.
+
+
+Package natbib Warning: Citation `jaynes1957' on page 10 undefined on input lin
+e 546.
+
+
+LaTeX Warning: Reference `eq:Polynomial-Expansion-Clifford' on page 10 undefine
+d on input line 564.
+
+
+Package natbib Warning: Citation `molinari2017' on page 10 undefined on input l
+ine 564.
+
+
+LaTeX Warning: Reference `LastPage' on page 10 undefined on input line 571.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [10]
+
+LaTeX Warning: Reference `sec:Correlation-Matrix' on page 11 undefined on input
+ line 631.
+
+
+LaTeX Warning: Reference `LastPage' on page 11 undefined on input line 646.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [11]
+
+LaTeX Warning: Reference `thm:Block-Matrix' on page 12 undefined on input line 
+660.
+
+
+LaTeX Warning: Reference `sec:Numerical-diagonalisation' on page 12 undefined o
+n input line 665.
+
+
+LaTeX Warning: Reference `appendix:Eigenvalues-Relations' on page 12 undefined 
+on input line 674.
+
+
+LaTeX Warning: Reference `eq:Diagonal-HD' on page 12 undefined on input line 67
+5.
+
+
+Package natbib Warning: Citation `peschel2003a' on page 12 undefined on input l
+ine 676.
+
+
+Package natbib Warning: Citation `vidal2003' on page 12 undefined on input line
+ 676.
+
+
+Package natbib Warning: Citation `cheong2003' on page 12 undefined on input lin
+e 676.
+
+
+Package natbib Warning: Citation `zhang2020' on page 12 undefined on input line
+ 676.
+
+
+LaTeX Warning: Reference `LastPage' on page 12 undefined on input line 688.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [12]
+
+LaTeX Warning: Reference `LastPage' on page 13 undefined on input line 735.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [13]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
@@ -2745,11 +2910,26 @@ it/10.95 = [] [] = [] \OML/ntxmi/m/it/10.95 :
  []
 
 
+LaTeX Warning: Reference `LastPage' on page 14 undefined on input line 780.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [14]
+
+Package natbib Warning: Citation `friis2013' on page 15 undefined on input line
+ 827.
+
+
+Package natbib Warning: Citation `friis2013' on page 15 undefined on input line
+ 829.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 827--832
 
  []
+
+
+LaTeX Warning: Reference `LastPage' on page 15 undefined on input line 854.
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
@@ -2774,15 +2954,66 @@ L/ntxmi/m/it/10.95 ; [] \LMS/ntxsy/m/n/10.95 ! []\OML/ntxmi/m/it/10.95 :
  []
 
 
+LaTeX Warning: Reference `LastPage' on page 16 undefined on input line 901.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [16]
+
+LaTeX Warning: Reference `eq:Ordering_dada_ndnd' on page 17 undefined on input 
+line 903.
+
+
+LaTeX Warning: Reference `eq:General_VonNeumann_Entropy' on page 17 undefined o
+n input line 924.
+
+
+LaTeX Warning: Reference `eq:Rho_Gaussian_State' on page 17 undefined on input 
+line 924.
+
+
+Package natbib Warning: Citation `bach1994a' on page 17 undefined on input line
+ 935.
+
+
+LaTeX Warning: Reference `LastPage' on page 17 undefined on input line 938.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [17]
+
+LaTeX Warning: Reference `appendix:Purity' on page 18 undefined on input line 9
+60.
+
+
+Package natbib Warning: Citation `chen2014' on page 18 undefined on input line 
+968.
+
+
+Package natbib Warning: Citation `coser2017' on page 18 undefined on input line
+ 971.
+
+
+Package natbib Warning: Citation `tonni2018' on page 18 undefined on input line
+ 971.
+
+
+LaTeX Warning: Reference `LastPage' on page 18 undefined on input line 974.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [18]
+
+LaTeX Warning: Reference `sec:Reducede-Density-Matrix' on page 19 undefined on 
+input line 985.
+
+
+LaTeX Warning: Reference `LastPage' on page 19 undefined on input line 1014.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [19] (./JLCODE1.jl)
-<figure/JLCODE1.pdf, id=514, 462.52798pt x 346.89601pt>
+<figure/JLCODE1.pdf, id=295, 462.52798pt x 346.89601pt>
 File: figure/JLCODE1.pdf Graphic file (type pdf)
 <use figure/JLCODE1.pdf>
 Package pdftex.def Info: figure/JLCODE1.pdf  used on input line 1028.
@@ -2804,9 +3035,20 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <10> not available
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 10.0pt on input line 1029.
 
+LaTeX Warning: Reference `ex:JL-Energies-Of-H' on page 20 undefined on input li
+ne 1029.
+
+
+LaTeX Warning: Reference `ex:JL-Energies-Of-H' on page 20 undefined on input li
+ne 1029.
+
+
+LaTeX Warning: Reference `LastPage' on page 20 undefined on input line 1036.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [20 <./figure/JLCODE1.pdf>] (./JLCODE2.jl)
-<figure/JLCODE2.pdf, id=562, 462.52798pt x 346.89601pt>
+<figure/JLCODE2.pdf, id=341, 462.52798pt x 346.89601pt>
 File: figure/JLCODE2.pdf Graphic file (type pdf)
 <use figure/JLCODE2.pdf>
 Package pdftex.def Info: figure/JLCODE2.pdf  used on input line 1043.
@@ -2818,6 +3060,17 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 
+LaTeX Warning: Reference `ex:JL-Contour-Partition-GS' on page 21 undefined on i
+nput line 1044.
+
+
+LaTeX Warning: Reference `ex:JL-Contour-Partition-GS' on page 21 undefined on i
+nput line 1044.
+
+
+LaTeX Warning: Reference `LastPage' on page 21 undefined on input line 1047.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [21 <./figure/JLCODE2.pdf>]
 Chapter 4 4.
@@ -2825,98 +3078,175 @@ Chapter 4 4.
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
 
-LaTeX Warning: Reference `appendix:Real-Heisenberg-Evolution' on page 22 undefi
-ned on input line 1067.
+LaTeX Warning: Reference `eq:Majorana-QFH' on page 22 undefined on input line 1
+052.
 
 [22
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1118--1124
-
- []
-
+Chapter 5 5.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [23]
-Underfull \hbox (badness 10000) in paragraph at lines 1127--1151
+88.pgf)
+
+LaTeX Warning: Reference `eq:Pure_state-ITE' on page 23 undefined on input line
+ 1366.
+
+
+LaTeX Warning: Reference `eq:Pure_state-ITE' on page 23 undefined on input line
+ 1381.
+
+
+LaTeX Warning: Reference `eq:Pure_state-ITE' on page 23 undefined on input line
+ 1382.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1380--1387
 
  []
+
+[23
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1390--1396
+
+ []
+
+
+LaTeX Warning: Reference `eq:Corr_matr-ITE' on page 24 undefined on input line 
+1401.
+
+
+Package natbib Warning: Citation `kraus2009' on page 24 undefined on input line
+ 1401.
+
+<figure/Gaussian-Projection.pdf, id=431, 596.10417pt x 288.15494pt>
+File: figure/Gaussian-Projection.pdf Graphic file (type pdf)
+<use figure/Gaussian-Projection.pdf>
+Package pdftex.def Info: figure/Gaussian-Projection.pdf  used on input line 140
+6.
+(pdftex.def)             Requested size: 334.60422pt x 161.74818pt.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.0pt on input line 1408.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 7.3pt on input line 1408.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.0pt on input line 1408.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 7.3pt on input line 1408.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1413--1414
+
+ []
+
+
+LaTeX Warning: Reference `LastPage' on page 24 undefined on input line 1414.
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [24]
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 1249.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.8pt on input line 1249.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.6pt on input line 1249.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 1249.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.8pt on input line 1249.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 6.6pt on input line 1249.
 
-
-Package natbib Warning: Citation `kraus2010' on page 25 undefined on input line
- 1250.
+LaTeX Warning: Reference `LastPage' on page 25 undefined on input line 1430.
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [25]
+88.pgf) [25 <./figure/Gaussian-Projection.pdf>]
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 1506.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 8.8pt on input line 1506.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.6pt on input line 1506.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 1506.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 8.8pt on input line 1506.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 6.6pt on input line 1506.
+
+
+Package natbib Warning: Citation `kraus2010' on page 26 undefined on input line
+ 1507.
+
+
+LaTeX Warning: Reference `eq:rho(tau)' on page 26 undefined on input line 1510.
+
+
+
+LaTeX Warning: Reference `eq:Term-1_LHS_ddt-Lambda' on page 26 undefined on inp
+ut line 1537.
+
+
+LaTeX Warning: Reference `eq:ddtau-Lambda_1' on page 26 undefined on input line
+ 1537.
+
+
+LaTeX Warning: Reference `LastPage' on page 26 undefined on input line 1545.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [26]
+
+LaTeX Warning: Reference `eq:ddtau-Lambda' on page 27 undefined on input line 1
+546.
+
+
+LaTeX Warning: Reference `LastPage' on page 27 undefined on input line 1596.
+
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [27]
 Appendix A.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1340.
+(hyperref)                removing `math shift' on input line 1597.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Gamma' on input line 1340.
+(hyperref)                removing `\Gamma' on input line 1597.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1340.
+(hyperref)                removing `math shift' on input line 1597.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1340.
+(hyperref)                removing `math shift' on input line 1597.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1340.
+(hyperref)                removing `subscript' on input line 1597.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\alpha' on input line 1340.
+(hyperref)                removing `\alpha' on input line 1597.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1340.
+(hyperref)                removing `math shift' on input line 1597.
 
 LaTeX Font Info:    Try loading font information for TS1+ntxtlf on input line 1
-375.
+632.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1375.
- [27
+(Font)              scaled to size 10.95pt on input line 1632.
+ [28
 
 ]
-Overfull \hbox (34.84189pt too wide) detected at line 1396
+Overfull \hbox (34.84189pt too wide) detected at line 1653
 \U/ntxmia/m/it/10.95 = [] \OML/ntxmi/m/it/10.95 U[]U[]Tr [] \U/ntxmia/m/it/10.9
 5 ý [] \OML/ntxmi/m/it/10.95 U[]U[]Tr [] \U/ntxmia/m/it/10.95 =
  []
 
 
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [28]
+LaTeX Warning: Reference `LastPage' on page 29 undefined on input line 1708.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [29]
 Appendix B.
@@ -2925,6 +3255,10 @@ Appendix B.
 88.pgf) [30
 
 ] (./main.bbl
+
+LaTeX Warning: Reference `LastPage' on page 31 undefined on input line 4.
+
+
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [31]
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
@@ -2942,19 +3276,34 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
 Package natbib Warning: There were undefined citations.
 
 
+Package lastpage Warning: Rerun to get the references right on input line 1811.
+
+
+
 AED: lastpage setting LastPage
 [32
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1581.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1581.
- (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1581.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1581.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1811.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1811.
+ (./main.aux
 
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 780DA544EE1E3047424BCBA2B69F9A7F;5907.
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
 
+)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1811.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1811.
+
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  491D5935F1C3C6900369B9ACF90D8329;6455.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -2962,15 +3311,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 47765 strings out of 492616
- 866788 string characters out of 6129481
- 1347778 words of memory out of 5000000
- 50405 multiletter control sequences out of 15000+600000
- 685485 words of font info for 335 fonts, out of 8000000 for 9000
+ 47749 strings out of 492616
+ 866753 string characters out of 6129481
+ 1346778 words of memory out of 5000000
+ 50403 multiletter control sequences out of 15000+600000
+ 699525 words of font info for 370 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,18n,124p,842b,2693s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/
@@ -2980,31 +3329,35 @@ exlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2019/tex
 mf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}</usr/local/texlive/2019/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist
 /fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2019/texmf-d
-ist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/local/texlive/2019/
-texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2
-019/texmf-dist/fonts/type1/public/tex-gyre/qtmb.pfb></usr/local/texlive/2019/te
-xmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2019/texmf-di
-st/fonts/type1/public/tex-gyre/qtmri.pfb></usr/local/texlive/2019/texmf-dist/fo
-nts/type1/public/newtx/rntxmi.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
-e1/public/newtx/rntxmi5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pub
-lic/newtx/rntxmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/tx
-fonts/rtxmi.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/rt
-xmi5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/rtxmi7.pf
-b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr
-/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfit1095.pfb></usr/l
-ocal/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/loc
-al/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local
-/texlive/2019/texmf-dist/fonts/type1/public/newtx/txexas.pfb></usr/local/texliv
-e/2019/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2019/t
-exmf-dist/fonts/type1/public/txfonts/txmia.pfb></usr/local/texlive/2019/texmf-d
-ist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2019/texmf-dist/fo
-nts/type1/public/txfonts/txsyc.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
-pe1/public/newtx/txsys.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/
-times/utmri8a.pfb>
-Output written on main.pdf (34 pages, 605556 bytes).
+ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/font
+s/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/local/texlive/2019/texmf-di
+st/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2019/texm
+f-dist/fonts/type1/public/tex-gyre/qtmb.pfb></usr/local/texlive/2019/texmf-dist
+/fonts/type1/public/tex-gyre/qtmr.pfb></usr/local/texlive/2019/texmf-dist/fonts
+/type1/public/tex-gyre/qtmri.pfb></usr/local/texlive/2019/texmf-dist/fonts/type
+1/public/newtx/rntxmi.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publi
+c/newtx/rntxmi5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newt
+x/rntxmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/txfonts/rt
+xmi.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/rtxmi5.pfb
+></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/
+local/texlive/2019/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/t
+exlive/2019/texmf-dist/fonts/type1/public/cm-super/sfit1095.pfb></usr/local/tex
+live/2019/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texli
+ve/2019/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive
+/2019/texmf-dist/fonts/type1/public/newtx/txexas.pfb></usr/local/texlive/2019/t
+exmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2019/texmf-dis
+t/fonts/type1/public/txfonts/txmia.pfb></usr/local/texlive/2019/texmf-dist/font
+s/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2019/texmf-dist/fonts/type
+1/public/txfonts/txsyc.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publ
+ic/newtx/txsys.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/ut
+mri8a.pfb>
+Output written on main.pdf (34 pages, 1289769 bytes).
 PDF statistics:
- 939 PDF objects out of 1000 (max. 8388607)
- 813 compressed objects within 9 object streams
- 345 named destinations out of 1000 (max. 500000)
- 381 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 935 PDF objects out of 1000 (max. 8388607)
+ 764 compressed objects within 8 object streams
+ 332 named destinations out of 1000 (max. 500000)
+ 152 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -32,12 +32,20 @@
 \contentsline {section}{\numberline {3.8}Examples}{20}{section.3.8}% 
 \contentsline {subsection}{\numberline {3.8.1}Computing the energies of H}{20}{subsection.3.8.1}% 
 \contentsline {subsection}{\numberline {3.8.2}Computing the entanglement contour of a partition of a ground state}{21}{subsection.3.8.2}% 
-\contentsline {chapter}{\numberline {A}Extended calculations}{22}{appendix.A}% 
-\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{22}{section.A.1}% 
-\contentsline {section}{\numberline {A.2}Purity}{23}{section.A.2}% 
-\contentsline {chapter}{\numberline {B}Useful relations}{24}{appendix.B}% 
-\contentsline {section}{\numberline {B.1}Pauli Matrices}{24}{section.B.1}% 
-\contentsline {section}{\numberline {B.2}Operators obeying CAR}{24}{section.B.2}% 
-\contentsline {section}{\numberline {B.3}Jordan-Wigner Transformations}{25}{section.B.3}% 
-\contentsline {subsection}{\numberline {B.3.1}spinless fermions $\rightarrow $ spins}{25}{subsection.B.3.1}% 
-\contentsline {subsection}{\numberline {B.3.2}spins $\rightarrow $ spinless fermions}{25}{subsection.B.3.2}% 
+\contentsline {chapter}{\numberline {4}Time evolution}{22}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Real Time Evolution}{22}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}Imaginary-time evolution}{23}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}Numerical Imaginary time evolution}{24}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}Imaginary time evolution of the correlation matrix}{24}{subsection.4.3.1}% 
+\contentsline {subsubsection}{\numberline {4.3.1.1}Expansion of the imaginary time evolution with $\delta t$}{25}{subsubsection.4.3.1.1}% 
+\contentsline {chapter}{\numberline {A}Extended calculations}{27}{appendix.A}% 
+\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{27}{section.A.1}% 
+\contentsline {section}{\numberline {A.2}Purity}{28}{section.A.2}% 
+\contentsline {section}{\numberline {A.3}Real Time Evolution}{29}{section.A.3}% 
+\contentsline {chapter}{\numberline {B}Useful relations}{30}{appendix.B}% 
+\contentsline {section}{\numberline {B.1}Pauli Matrices}{30}{section.B.1}% 
+\contentsline {section}{\numberline {B.2}Operators obeying CAR}{30}{section.B.2}% 
+\contentsline {section}{\numberline {B.3}Jordan-Wigner Transformations}{31}{section.B.3}% 
+\contentsline {subsection}{\numberline {B.3.1}spinless fermions $\rightarrow $ spins}{31}{subsection.B.3.1}% 
+\contentsline {subsection}{\numberline {B.3.2}spins $\rightarrow $ spinless fermions}{31}{subsection.B.3.2}% 
+\contentsline {section}{\numberline {B.4}Formulas}{31}{section.B.4}% 

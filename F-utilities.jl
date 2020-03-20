@@ -369,6 +369,24 @@ function Energy(Γ,(D,U))
 end
 
 
+function Evolve_gamma(M,(D,U),t)
+   N = div(size(M,1),2);
+
+   M = (M+M')/2.;
+
+   M_diag_base = U'*M*U;
+   M_diag_base_evolv = exp(im*2*D*t)*M_diag_base*exp(-im*2*D*t);
+   M_evolv = U*M_diag_base_evolv*(U');
+
+   M_evolv = (M_evolv+M_evolv')/2.
+
+   return M_evolv;
+end
+
+
+function Product(Γ1,Γ2)
+  return I-(I-Γ2)*inv(1+Γ1*Γ2)*(I-Γ1);
+end
 
 ###################################################################################
 
