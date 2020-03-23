@@ -1388,10 +1388,81 @@ This function return the correlation matrix $\Gamma$ evolved at imaginary time $
 
 
 
+\chapter{Hopping model}
+We consider the translational invariant hopping hamiltonian for a system of $N$ sites
+\begin{equation}
+\label{eq:Hopping-Hamiltonian}
+\hat{H} = \sum_{i=0}^{N-1} [a_i\da a_{i+1} - a_i a_{i+1}\da],
+\end{equation}
+where $[a_{N-1}\da a_{N}-a_{N-1}a_{N}\da]=[a_{N-1}\da a_{0}-a_{N-1}a_{0}\da]$ is the periodic term for having periodic boundary conditions.\\
+This is one of the simplest model of fermionic quadratic hamiltonian and it can be analytically diagonalised.\\
+In order to do so, one first has to introduce the definition of Fourier modes on a linear lattice
+\begin{equation}
+	f_k = \frac{1}{\sqrt{N}}\sum_{j=0}^{N-1}e^{i\frac{2\pi}{N}kj}a_j, \qquad f_k\da = \frac{1}{\sqrt{N}}\sum_{j=0}^{N-1}e^{-i\frac{2\pi}{N}kj}a_j\da, 
+\end{equation}
+with inverse trasnsformations
+\begin{equation}
+	a_j = \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}e^{-i\frac{2\pi}{N}kj}f_k, \qquad a_j\da = \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}e^{i\frac{2\pi}{N}kj}f_k\da.
+\end{equation}
+It easy to verify that the Fourier modes obey to the CAR and are valid Dirac operators. The fermionic transformation $U_{\omega}$ that maps $\vec{\alpha}$ to the vector of fermionic operator $\vec{\omega}\da = (f_0, \dots, f_{N-1},f_0\da, \dots, f_{N-1}\da)=\vec{\alpha}\da U_{\omega}\da$ is 
+\begin{equation}
+U_{\omega} = \begin{pmatrix}
+W  & 0 \\
+0 & \bar{W}
+\end{pmatrix},
+\end{equation}
+where
+\begin{equation}
+W = \frac{1}{\sqrt{N}}\begin{pmatrix}
+1		&1				&1				&1				&\cdots 	&1 \\
+1		&\omega			&\omega^2		&\omega^3		&\cdots	&\omega^{N-1} \\
+1		&\omega^2		&\omega^4		&\omega^6		&\cdots	&\omega^{2(N-1)}\\ 
+1		&\omega^3		&\omega^6		&\omega^9		&\cdots	&\omega^{3(N-1)}\\
+\vdots	&\vdots			&\vdots			&\vdots			&\ddots	&\vdots\\
+1		&\omega^{N-1}		&\omega^{2(N-1)}	&\omega^{3(N-1)}	&\cdots	&\omega^{(N-1)(N-1)},
+\end{pmatrix}
+\end{equation}
+with $\omega = e^{-i\frac{2\pi}{N}}$.\\
+If we express the hopping hamiltonian \ref{eq:Hopping-Hamiltonian} in term of the Fourier modes we obtain
+\begin{equation}
+\hat{H} = \sum_{k=0}^{N-1} \phi(k) (f_k\da f_k-f_k f_k\da),
+\end{equation}
+where 
+\begin{equation}
+\phi(k)=\cos(\frac{2\pi}{N}k).
+\end{equation}
+
+\section{Example}
+
+\subsubsection{Numerical diagonalisation of the hopping hamiltonian}
+In the following code we show how to initialise and diagonalise the hopping hamiltonian using functions of \code{F-utilities}.
+
+\label{ex:JL-Hopping-Hamiltonian}
+\lstinputlisting{JLCODE3.jl}
+Output:\\
+  \centerline{
+\includegraphics[width=0.7\textwidth]{figure/JLCODE3.pdf} }
+  \captionof{figure}{Output of examples \ref{ex:JL-Hopping-Hamiltonian}, note how for a nearest neighbour hamiltonian, the contour is higher on the boundary of the partition.}
+  
+
+\begin{proposition}{\code{Build\_Fourier($N$)$\rightarrow U_{\omega}$}}{}
+This function returns the matrix $U_{\omega}$ of dimension $2N\times 2N$.
+\end{proposition}
 
 
 
+\begin{proposition}{\code{Build\_hopping\_hamiltonian($N$, PBC=true)$\rightarrow  H$}}{}
+This functions return the hamiltonian $H$ if dimension $2N \times 2N$ for the hopping model. If \code{PBC=false} it return the hopping hamiltonian without the periodic term.
+\end{proposition}
+ 
+For the numerical diagonalisation of the hamiltonian we used two methods, the analytical one using the Fourier modes, and the numerical one introduced in the previous section.\\
+These methods return the hopping hamiltonian in the diagonal forms
+\begin{equation}
+\hat{H}_{\omega} = \sum_{k=0}^{N-1} \phi_k (f_k\da f_k-f_k f_k\da), \qquad \hat{H} = \sum_{k=0}^{N-1} \epsilon_k (b_k\da b_k -b_k b_k\da),
+\end{equation} 
+where the difference in the energies are due to the fact that \code{Diag\_h} consider all the energies $\epsilon_k$ positive, thus defines $b_k = f_k\da$ and $b_k\da = f_k$ for each $k$ such that $\phi_k<0$, and then reorder the modes such that to modes with smaller $k$ correspond biggest energies.\\
 
+\section{Correlation Matrix of a Translational Invariant State}
 
 
 

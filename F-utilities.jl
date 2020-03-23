@@ -407,6 +407,39 @@ function Evolve_imag(Γ,D,U,t)
 
    return Γ_evolv;
 end
+
+
+function Build_hopping_hamiltonian(N,PBC=false);
+  H = zeros(Float64, 2*N, 2*N);
+  A = zeros(Float64, N, N);
+  A[1:N,1:N] = 1/2*Tridiagonal(ones(Int64,N-1),zeros(Int64,N),ones(Int64,N-1));
+  if PBC
+    A[1,N] = 1/2.;
+    A[N,1] = 1/2.;
+  end
+  H[(1:N),(1:N)]      = -A;
+  H[(1:N).+N,(1:N).+N]  = A;
+
+  return H;
+end
+
+
+function Build_Fourier_matrix(N)
+  ω   = exp(-im*2*pi/N);
+  W   = zeros(Complex{Float64}, N, N);
+  U_ω = zeros(Complex{Float64}, 2*N, 2*N);
+  for i=0:(N-1)
+    for j=0:(N-1)
+      W[i+1,j+1] = ω^(i*j);
+    end
+  end
+  W = 1/sqrt(N)*W;
+  U_ω[(1:N),(1:N)]        = W;
+  U_ω[(1:N).+N,(1:N).+N]  = conj.(W);
+
+  return U_ω;
+end
+
 ###################################################################################
 
 
