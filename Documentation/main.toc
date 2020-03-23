@@ -24,20 +24,20 @@
 \contentsline {subsubsection}{\numberline {3.5.0.3}Thermal state of fermionic quadratic hamiltonians}{13}{subsubsection.3.5.0.3}% 
 \contentsline {subsubsection}{\numberline {3.5.0.4}Energy of a fermionic gaussian state}{14}{subsubsection.3.5.0.4}% 
 \contentsline {section}{\numberline {3.6}Eigenvalues of $\rho $ and eigenvalues of $\Gamma $}{14}{section.3.6}% 
-\contentsline {subsubsection}{\numberline {3.6.0.1}Reduced density matrix and tensor product of fermionic gaussian states}{15}{subsubsection.3.6.0.1}% 
-\contentsline {section}{\numberline {3.7}Information measures}{17}{section.3.7}% 
-\contentsline {subsection}{\numberline {3.7.1}Von Neumann Entropies}{17}{subsection.3.7.1}% 
-\contentsline {subsection}{\numberline {3.7.2}Purity}{18}{subsection.3.7.2}% 
-\contentsline {subsection}{\numberline {3.7.3}Entanglement Contour}{18}{subsection.3.7.3}% 
-\contentsline {section}{\numberline {3.8}Examples}{20}{section.3.8}% 
-\contentsline {subsection}{\numberline {3.8.1}Computing the energies of H}{20}{subsection.3.8.1}% 
-\contentsline {subsection}{\numberline {3.8.2}Computing the entanglement contour of a partition of a ground state}{21}{subsection.3.8.2}% 
-\contentsline {chapter}{\numberline {4}Time evolution}{22}{chapter.4}% 
-\contentsline {section}{\numberline {4.1}Real Time Evolution}{22}{section.4.1}% 
-\contentsline {section}{\numberline {4.2}Imaginary-time evolution}{23}{section.4.2}% 
-\contentsline {section}{\numberline {4.3}Numerical Imaginary time evolution}{24}{section.4.3}% 
-\contentsline {subsection}{\numberline {4.3.1}Imaginary time evolution of the correlation matrix}{24}{subsection.4.3.1}% 
-\contentsline {subsubsection}{\numberline {4.3.1.1}Expansion of the imaginary time evolution with $\delta t$}{25}{subsubsection.4.3.1.1}% 
+\contentsline {section}{\numberline {3.7}Reduced density matrix and tensor product of fermionic gaussian states}{15}{section.3.7}% 
+\contentsline {section}{\numberline {3.8}Product Rule}{17}{section.3.8}% 
+\contentsline {section}{\numberline {3.9}Information measures}{18}{section.3.9}% 
+\contentsline {subsection}{\numberline {3.9.1}Von Neumann Entropies}{18}{subsection.3.9.1}% 
+\contentsline {subsection}{\numberline {3.9.2}Purity}{18}{subsection.3.9.2}% 
+\contentsline {subsection}{\numberline {3.9.3}Entanglement Contour}{19}{subsection.3.9.3}% 
+\contentsline {section}{\numberline {3.10}Examples}{20}{section.3.10}% 
+\contentsline {subsection}{\numberline {3.10.1}Computing the energies of H}{20}{subsection.3.10.1}% 
+\contentsline {subsection}{\numberline {3.10.2}Computing the entanglement contour of a partition of a ground state}{21}{subsection.3.10.2}% 
+\contentsline {chapter}{\numberline {4}Time evolution}{23}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Real Time Evolution}{23}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}Imaginary-time evolution}{24}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}Numerical Imaginary time evolution}{25}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}Imaginary time evolution of the correlation matrix}{25}{subsection.4.3.1}% 
 \contentsline {chapter}{\numberline {A}Extended calculations}{27}{appendix.A}% 
 \contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{27}{section.A.1}% 
 \contentsline {section}{\numberline {A.2}Purity}{28}{section.A.2}% 

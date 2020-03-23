@@ -369,7 +369,7 @@ function Energy(Γ,(D,U))
 end
 
 
-function Evolve_gamma(M,(D,U),t)
+function Evolve(M,(D,U),t)
    N = div(size(M,1),2);
 
    M = (M+M')/2.;
@@ -396,7 +396,7 @@ end
 
 
 
-function Evolve_gamma_euclidean(Γ,D,U,t)
+function Evolve_imag(Γ,D,U,t)
    N = div(size(Γ,1),2);
 
    Γ_diag_base = U'*Γ*U;

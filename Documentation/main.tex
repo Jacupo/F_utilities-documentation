@@ -822,7 +822,7 @@ This function return the eigenvalues of the correlation matrix $\rho$ associated
 
 
 %%%%Reduced density matrix
-\subsubsection{Reduced density matrix and tensor product of fermionic gaussian states}
+\section{Reduced density matrix and tensor product of fermionic gaussian states}
 \label{sec:Reducede-Density-Matrix}
 Trying to define a partial trace over fermionic modes subspaces one soon faces the what is often called the "partial trace ambiguity" \cite{friis2013}.\\
 %
@@ -905,6 +905,28 @@ It is clear that with the ordering \ref{eq:Ordering_dada_ndnd}, the tensor produ
 \rho_{A,B} = \rho_{A}\otimes \rho_{B} \mbox{ } \rightarrow \mbox{ } \tilde{\Gamma}_{A,B} = \tilde{\Gamma}_{A} \oplus \tilde{\Gamma}_{B}.
 \end{equation}
 
+
+\section{Product Rule}
+\label{sec:Product-Rule}
+It will result useful to compute the product $\rho=\rho_1 \rho_2$ of the density matrices of two fermionic gaussian states.
+We observe that the commutator of two quadratic terms of Majorana operators $\vec{r}$ is always again a quadratic operator or zero
+\begin{equation}
+[r_i r_j,r_k r_l] = \delta_{k,i} r_l r_j+\delta_{k,j} r_i r_l-\delta_{i,l} r_k r_j-\delta_{l,j} r_i r_k.
+\end{equation}
+This is also valid for Dirac operators. We say that the commutator of two monomial of Dirac operator of degree at most $2$ is a polynomial of Dirac operators of degree at most $2$.
+Using this observation together with the Baker-Campbell-Hausdorff formula ( equation B.C.H.0 in appendix \ref{appendix:Formulas}), it is easy to see that $\rho$, the product of two f.g.s., is always a f.g.s. 
+\begin{equation}
+\rho = \frac{e^{-\hat{H}}}{Z},
+\end{equation}
+with $\hat{H}$ given by the B.C.H.0.\\
+It is possible to derive the covariance matrix $\gamma$ of $\rho$ directly from the covariance matrices $\gamma_1$ and $\gamma_2$ of the states $\rho_1$ and $\rho_2$.
+This formula appears in \cite{fagotti2010} where a more detailed description, considering even pathological cases, is given. If we assume that $\id-\gamma_1$ and $\id-\gamma_2$ are invertible than we have
+\begin{equation}
+\gamma = \id-(\id-\gamma_2)\frac{1}{\id+\gamma_1 \gamma_2} (\id-\gamma_1).
+\end{equation}
+\begin{proposition}{\code{Product($\Gamma_1,\Gamma_2$)}$\rightarrow \Gamma$}{}
+This function return the correlation matrix $\Gamma$ corresponding to the f.g.s $\rho=\rho_1 \rho_2$, where $\rho_1$ and $\rho_2$ are characterised by the correlation matrices $\Gamma_1$ and $\Gamma_2$. 
+\end{proposition}
 
 
 
@@ -1054,11 +1076,7 @@ Using standard notation we call $\rho(t)$ the state $\rho$ at time $t$ defined a
 \begin{equation}
 \rho(t) \coloneqq e^{-it\hat{H}} \rho e^{it\hat{H}} = \frac{e^{-it\hat{H}} e^{-\hat{H}_{\rho}} e^{it\hat{H}}}{Z}.
 \end{equation}
-We observe that the commutator of two quadratic terms of Majorana operators $\vec{r}$ is always again a quadratic operator or zero
-\begin{equation}
-[r_i r_j,r_k r_l] = \delta_{k,i} r_l r_j+\delta_{k,j} r_i r_l-\delta_{i,l} r_k r_j-\delta_{l,j} r_i r_k.
-\end{equation}
-Using this observation together with the Baker-Campbell-Hausdorff formula ( equation B.C.H.0 in appendix \ref{appendix:Formulas}), it is easy to see that $\rho(t)$ has the form
+As already observed in section \ref{sec:Product-Rule}, the commutator of two quadratic monomial of Dirac operators is a polynomial at most quadratic in Dirac operators. Using this observation together with the Baker-Campbell-Hausdorff formula ( equation B.C.H.0 in appendix \ref{appendix:Formulas}), it is easy to see that $\rho(t)$ has the form
 \begin{equation}
 \rho(t) = \frac{e^{-\hat{H}_{\rho(t)}}}{Z}, 
 \end{equation}
@@ -1162,17 +1180,32 @@ Thus one has
 \begin{align}
 e^{-\hat{H}\tau}&\vec{\beta}_{l}\vec{\beta}_{j}^{\dagger}e^{-\hat{H}\tau} = \sum_{n=0}^{\infty} \frac{-\tau^n}{n!} \underbrace{\{\hat{H},...\{\hat{H}}_{n},\vec{\beta}_{l}\vec{\beta}_{j}^{\dagger}\underbrace{\}...\}}_{n}.
 \end{align}
-Knowing that $b_l\da b_j\hat{H} = (\hat{H}+2\Delta_{l,j})b_l\da b_j$, with $\Delta_{l,j}=\epsilon_j-\epsilon_l$, we have we  see that the time evolution of the operator $b_l\da b_j$ is
+Since  $b_l\da b_j\hat{H} = (\hat{H}+2\Delta_{l,j})b_l\da b_j$, we cannot simplify this expression as in the case of real time evolution.\\
+To obtain a  numerical algorithm for the imaginary time evolution one has to realise that, for each value of $\tau$, $\Gamma(\tau)$ is just the correlation matrix of the f.g.s. 
 \begin{equation}
-e^{-\hat{H} \tau} b_{l}^{\dag}b_{j} e^{-\hat{H} \tau} = \sum_{n=0}^{\infty} \frac{(-2(\hat{H}+\Delta_{l,j})\tau)^n}{n!} b_l\da b_j=e^{-2(\hat{H}+\Delta_{l,j})\tau}b_l\da b_j.  
+\rho(\tau) = \frac{e^{-\hat{H}\tau} \rho e^{-\hat{H}\tau}}{\Tr{e^{-\hat{H}\tau} \rho e^{-\hat{H}\tau}}}.
 \end{equation}
-For the other $3$ quadrants of the correlation matrix we have
-\begin{align}
-e^{-\hat{H} \tau} b_{l}b_{j}\da e^{-\hat{H} \tau} &= e^{-2(\hat{H}-\Delta_{l,j})\tau}b_l b_j\da, \\
-e^{-\hat{H} \tau} b_{l}b_{j} e^{-\hat{H} \tau} &= e^{-2(\hat{H}+\nabla_{l,j})\tau}b_l b_j,\\
-e^{-\hat{H} \tau} b_{l}\da b_{j}\da e^{-\hat{H} \tau} &= e^{-2(\hat{H}-\nabla_{l,j})\tau}b_l\da b_j\da,
-\end{align}
-with $\nabla_{i,j}=(\epsilon_i+\epsilon_j)$.
+The correlation matrix $\Gamma(\tau)$ can be easily obtained by the product rule (see section \ref{sec:Product-Rule}) of the initial f.g.s. $\rho$ and the thermal state $\rho_{\beta=\tau}=\frac{e^{-{H}\tau}}{\Tr{e^{-\hat{H}\tau}}}$.
+
+
+\begin{proposition}{\code{Evolve\_imag($\Gamma$, H\_D, U, $\tau$)$\rightarrow  \Gamma(\tau)$}}{}
+This function return the correlation matrix $\Gamma$ evolved at imaginary time $\tau$ with $H$. Matrices $H_D$ and $U$ are the output of \code{Diag\_h(H)}.
+\end{proposition}
+
+
+
+%
+%Knowing that $b_l\da b_j\hat{H} = (\hat{H}+2\Delta_{l,j})b_l\da b_j$, with $\Delta_{l,j}=\epsilon_j-\epsilon_l$, we have we  see that the time evolution of the operator $b_l\da b_j$ is
+%\begin{equation}
+%e^{-\hat{H} \tau} b_{l}^{\dag}b_{j} e^{-\hat{H} \tau} = \sum_{n=0}^{\infty} \frac{(-2(\hat{H}+\Delta_{l,j})\tau)^n}{n!} b_l\da b_j=e^{-2(\hat{H}+\Delta_{l,j})\tau}b_l\da b_j.  
+%\end{equation}
+%For the other $3$ quadrants of the correlation matrix we have
+%\begin{align}
+%e^{-\hat{H} \tau} b_{l}b_{j}\da e^{-\hat{H} \tau} &= e^{-2(\hat{H}-\Delta_{l,j})\tau}b_l b_j\da, \\
+%e^{-\hat{H} \tau} b_{l}b_{j} e^{-\hat{H} \tau} &= e^{-2(\hat{H}+\nabla_{l,j})\tau}b_l b_j,\\
+%e^{-\hat{H} \tau} b_{l}\da b_{j}\da e^{-\hat{H} \tau} &= e^{-2(\hat{H}-\nabla_{l,j})\tau}b_l\da b_j\da,
+%\end{align}
+%with $\nabla_{i,j}=(\epsilon_i+\epsilon_j)$.
 
 %Computing the anticommutators in the expansion of the imaginary time evolution of the couple $b_{i}^{\dag}b_{j}$ we obtain
 %\begin{align}
@@ -1253,88 +1286,109 @@ with $\nabla_{i,j}=(\epsilon_i+\epsilon_j)$.
 %%	\end{itemize}
 %%\end{remark}
 
+%
+%
 
 
-\subsubsection{Expansion of the imaginary time evolution with $\delta t$}
-This method has been showed in \cite{kraus2010} to be equivalent to other variational methods and to be  usually an effective method.
 
 
-In order to compute the expansion of the imaginary evolution in terms of $\delta t$ we start from the exact time derivative of eq \eqref{eq:rho(tau)}
-\begin{equation}
-\frac{d}{d\tau} \rho(\tau) = -\left\{ \hat{H},\rho(\tau) \right\}+2\rho(\tau)\langle \hat{H} \rangle.
-\end{equation}
-Using the last equation and exploiting the linearity of the trace, we can easily compute the time derivative of the evolution of a term of the correlation matrix
-\begin{equation}
-\frac{d}{dt}\Gamma^{[1]}_{i,j}(\tau)= -Tr\left[ \left\{ \hat{H},\rho(\tau)\right\}b_{i}^{\dagger}b_j\right]+2\langle \hat{H}\rangle \Gamma^{[1]}_{i,j}.
-\label{eq:ddtau-Lambda_1}
-\end{equation}
-Considering the first term in the LHS we can proceed as follows.
-\begin{align}
-Tr\left[ \left\{ \hat{H},\rho(\tau)\right\}b_{i}^{\dagger}b_j\right] &=\Tr{\left\{ \hat{H},b_{i}^{\dagger}b_j\right\}\rho(\tau)}= \nonumber\\
-& =\langle \hat{H} b_{i}^{\dagger}b_{j}\rangle + \langle b_{i}^{\dagger}b_{j} \hat{H} \rangle,
-\label{eq:Term-1_LHS_ddt-Lambda}
-\end{align}
-using the Fermionic Wick Theorem (i.e. $\expv{abcd}=\expv{ab}\expv{cd}-\expv{ac}\expv{bd}+\expv{ad}\expv{bc}$)
-\begin{align*}
-\langle \hat{H} & b_{i}^{\dagger}b_{j}\rangle  =\sum_{k=1}^{N}\frac{\epsilon_k}{2}\left(\expv{b^{\dagger}_{k}b_{k}b_{i}^{\dagger}b_{j}}-\expv{b_{k}b_{k}^{\dagger}b_{i}^{\dagger}b_{j}} \right)= \nonumber\\
-& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\sum_{k=1}^{N}\epsilon_k\left( \expv{b_{k}b_{i}^{\dagger}}\expv{b_{k}^{\dagger}b_{j}}-\expv{b_{k}^{\dagger}b_{i}^{\dagger}}\expv{b_{k}b_{j}} \right)=\nonumber \\
-& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\sum_{k=1}^{N}\epsilon_k\left(\delta_{i,k}\Gamma^{[1]}_{k,j}-\Gamma^{[1]}_{i,k} \Gamma^{[1]}_{k,j}+\Gamma^{[2]}_{i,k}\Gamma^{[3]}_{kj}\right) =\nonumber \\
-& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\epsilon_i\Gamma^{[1]}_{i,j}+(\Gamma H_D \Gamma)_i,j
-\end{align*}
-where in the last step we used the specific diagonal  $H_D$ form of $H$ with negative entries on the first half of the diagonal and positive on the second half.\\
-With the same procedure we find
-\begin{align*}
-\expv{b_{i}^{\dagger}b_{j}\hat{H}} = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\epsilon_{j}\Gamma^{[1]}_{i,j}+(\Gamma H_D \Gamma)_{i,j}.
-\end{align*}
-Inserting both terms first in \eqref{eq:Term-1_LHS_ddt-Lambda} and then in \eqref{eq:ddtau-Lambda_1} one obtains
-\begin{equation*}
-\frac{d}{d\tau}\Gamma^{[1]}_{i,j}(\tau)= -2(\Gamma H_D \Gamma)_{i,j}-(\epsilon_{i}+\epsilon_{j})\Gamma^{[1]}_{i,j}=-2(\Gamma H_D \Gamma)_{i,j}-\left[H_D,\Gamma\right]_{i,j},
-\end{equation*}
-and thus applying the same procedure for each quadrant of the correlation matrix one obtain the general form of the derivative of the imaginary time evolution of the correlation matrix
-\begin{equation}
-\frac{d}{d\tau}\Gamma(\tau) = 4\Gamma(\tau) H_D\Gamma(\tau) - 4 H_D\Gamma(\tau) .
-\label{eq:ddtau-Lambda}
-\end{equation}
-It will result more convenient work in the Majorana formalism now. For Majorana fermions equation \eqref{eq:ddtau-Lambda} read as
-\begin{equation}
-\frac{d}{d\tau}\gamma(\tau) = 4\left((\gamma(\tau) \tilde{h}_d\gamma(\tau) - \tilde{h}_D,\gamma(\tau)\right) .
-\end{equation}
 
-%\emph{Now we introduce an approximation}.\\
-At first order in imaginary time we can write the derivative as
-\begin{equation*}
-\gamma(\tau+\delta \tau)-\gamma(\tau) = \left( 4\gamma(\tau)H_D\gamma(\tau) - 4 H_D,\gamma(\tau)\right)\delta \tau +\mathcal{O}(\delta \tau^2).
-\end{equation*}
-We want to find an orthogonal matrix $O_\tau$ such that
-\begin{equation*}
-\gamma(\tau+\delta \tau) = O_{\tau}(\delta \tau) \gamma(\tau) O_{\tau}^{T}( \delta \tau).
-\end{equation*}
-Requesting for it to be orthogonal is a necessary and sufficient condition for it to be a general transformation on Majorana Fermions preserving the anticommutation relations.
-We write $O_{\tau}(\delta \tau) = e^{L_t \delta \tau}$ with $L_t^{T}=-L_t$ (every special orthogonal matrix can be written as the exponential of a skew-symmetric matrix, this is why here is more convenient working with Majoranas).% In fact a general transformation on Dirac Fermions is a matrix $U$ such that $U\Omega^{T}$ is orthogonal or such that $UU^{\dagger}=\{\{0,\mathbb{I}\},\{\mathbb{I},0\}\}$).
-\\
-At first order in time we would have
-\begin{equation*}
-\gamma(\tau+\delta \tau) = \gamma(t)+ \left[L_t,\gamma(t) \right] \delta t+ \mathcal{O}(\delta t^2).
-\end{equation*}
-In order to find $O_{\tau}(\delta \tau)$ at first order in time we have to solve
-\begin{equation*}
-\left[L_{\tau},\gamma(\tau) \right] = 4\gamma(\tau)H_D\gamma(\tau)-4H_d,\gamma(\tau).
-\end{equation*}
-%\emph{Here we insert a request.}\\
-This equation has a simple solution if we restrict to the case of pure Fermionic Gaussian states that is  imposing to the correlation matrix to be idempotent, $\gamma=\gamma^2$.\\
-For a pure state we have
-\begin{equation*}
-L_{\tau} = 2\left[H_d,\gamma(\tau) \right].
-\end{equation*}
-Thus the imaginary time evolution of the correlation matrix of a pure Fermionic Gaussian state with an approximation at first order in time is:
-\begin{equation}
-\gamma(\tau)(t+\delta t) = e^{2\left[H_D, \gamma(\tau)\right]}\gamma(\tau)e^{-2\left[H_D,\gamma(\tau) \right]}
-\end{equation}
-or for Dirac Fermions
-\begin{equation}
-\Gamma(\tau)(t+\delta t) = e^{2\left[H_D, \Gamma(\tau)\right]}\Gamma(\tau)e^{-2\left[H_D,\Gamma(\tau) \right]},
-\end{equation}
-where $H_D$ is the block diagonalised or diagonalised Hamiltonian for Majorana or Dirac.
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%IMAGINARY TIME EXPANSION%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsubsection{Expansion of the imaginary time evolution with $\delta t$}
+%This method has been showed in \cite{kraus2010} to be equivalent to other variational methods and to be  usually an effective method.
+%
+%
+%In order to compute the expansion of the imaginary evolution in terms of $\delta t$ we start from the exact time derivative of eq \eqref{eq:rho(tau)}
+%\begin{equation}
+%\frac{d}{d\tau} \rho(\tau) = -\left\{ \hat{H},\rho(\tau) \right\}+2\rho(\tau)\langle \hat{H} \rangle.
+%\end{equation}
+%Using the last equation and exploiting the linearity of the trace, we can easily compute the time derivative of the evolution of a term of the correlation matrix
+%\begin{equation}
+%\frac{d}{dt}\Gamma^{[1]}_{i,j}(\tau)= -Tr\left[ \left\{ \hat{H},\rho(\tau)\right\}b_{i}^{\dagger}b_j\right]+2\langle \hat{H}\rangle \Gamma^{[1]}_{i,j}.
+%\label{eq:ddtau-Lambda_1}
+%\end{equation}
+%Considering the first term in the LHS we can proceed as follows.
+%\begin{align}
+%Tr\left[ \left\{ \hat{H},\rho(\tau)\right\}b_{i}^{\dagger}b_j\right] &=\Tr{\left\{ \hat{H},b_{i}^{\dagger}b_j\right\}\rho(\tau)}= \nonumber\\
+%& =\langle \hat{H} b_{i}^{\dagger}b_{j}\rangle + \langle b_{i}^{\dagger}b_{j} \hat{H} \rangle,
+%\label{eq:Term-1_LHS_ddt-Lambda}
+%\end{align}
+%using the Fermionic Wick Theorem (i.e. $\expv{abcd}=\expv{ab}\expv{cd}-\expv{ac}\expv{bd}+\expv{ad}\expv{bc}$)
+%\begin{align*}
+%\langle \hat{H} & b_{i}^{\dagger}b_{j}\rangle  =\sum_{k=1}^{N}\frac{\epsilon_k}{2}\left(\expv{b^{\dagger}_{k}b_{k}b_{i}^{\dagger}b_{j}}-\expv{b_{k}b_{k}^{\dagger}b_{i}^{\dagger}b_{j}} \right)= \nonumber\\
+%& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\sum_{k=1}^{N}\epsilon_k\left( \expv{b_{k}b_{i}^{\dagger}}\expv{b_{k}^{\dagger}b_{j}}-\expv{b_{k}^{\dagger}b_{i}^{\dagger}}\expv{b_{k}b_{j}} \right)=\nonumber \\
+%& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\sum_{k=1}^{N}\epsilon_k\left(\delta_{i,k}\Gamma^{[1]}_{k,j}-\Gamma^{[1]}_{i,k} \Gamma^{[1]}_{k,j}+\Gamma^{[2]}_{i,k}\Gamma^{[3]}_{kj}\right) =\nonumber \\
+%& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\epsilon_i\Gamma^{[1]}_{i,j}+(\Gamma H_D \Gamma)_i,j
+%\end{align*}
+%where in the last step we used the specific diagonal  $H_D$ form of $H$ with negative entries on the first half of the diagonal and positive on the second half.\\
+%With the same procedure we find
+%\begin{align*}
+%\expv{b_{i}^{\dagger}b_{j}\hat{H}} = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\epsilon_{j}\Gamma^{[1]}_{i,j}+(\Gamma H_D \Gamma)_{i,j}.
+%\end{align*}
+%Inserting both terms first in \eqref{eq:Term-1_LHS_ddt-Lambda} and then in \eqref{eq:ddtau-Lambda_1} one obtains
+%\begin{equation*}
+%\frac{d}{d\tau}\Gamma^{[1]}_{i,j}(\tau)= -2(\Gamma H_D \Gamma)_{i,j}-(\epsilon_{i}+\epsilon_{j})\Gamma^{[1]}_{i,j}=-2(\Gamma H_D \Gamma)_{i,j}-\left[H_D,\Gamma\right]_{i,j},
+%\end{equation*}
+%and thus applying the same procedure for each quadrant of the correlation matrix one obtain the general form of the derivative of the imaginary time evolution of the correlation matrix
+%\begin{equation}
+%\frac{d}{d\tau}\Gamma(\tau) = 4\Gamma(\tau) H_D\Gamma(\tau) - 4 H_D\Gamma(\tau) .
+%\label{eq:ddtau-Lambda}
+%\end{equation}
+%It will result more convenient work in the Majorana formalism now. For Majorana fermions equation \eqref{eq:ddtau-Lambda} read as
+%\begin{equation}
+%\frac{d}{d\tau}\gamma(\tau) = 4\left((\gamma(\tau) \tilde{h}_d\gamma(\tau) - \tilde{h}_D,\gamma(\tau)\right) .
+%\end{equation}
+%
+%%\emph{Now we introduce an approximation}.\\
+%At first order in imaginary time we can write the derivative as
+%\begin{equation*}
+%\gamma(\tau+\delta \tau)-\gamma(\tau) = \left( 4\gamma(\tau)H_D\gamma(\tau) - 4 H_D,\gamma(\tau)\right)\delta \tau +\mathcal{O}(\delta \tau^2).
+%\end{equation*}
+%We want to find an orthogonal matrix $O_\tau$ such that
+%\begin{equation*}
+%\gamma(\tau+\delta \tau) = O_{\tau}(\delta \tau) \gamma(\tau) O_{\tau}^{T}( \delta \tau).
+%\end{equation*}
+%Requesting for it to be orthogonal is a necessary and sufficient condition for it to be a general transformation on Majorana Fermions preserving the anticommutation relations.
+%We write $O_{\tau}(\delta \tau) = e^{L_t \delta \tau}$ with $L_t^{T}=-L_t$ (every special orthogonal matrix can be written as the exponential of a skew-symmetric matrix, this is why here is more convenient working with Majoranas).% In fact a general transformation on Dirac Fermions is a matrix $U$ such that $U\Omega^{T}$ is orthogonal or such that $UU^{\dagger}=\{\{0,\mathbb{I}\},\{\mathbb{I},0\}\}$).
+%\\
+%At first order in time we would have
+%\begin{equation*}
+%\gamma(\tau+\delta \tau) = \gamma(t)+ \left[L_t,\gamma(t) \right] \delta t+ \mathcal{O}(\delta t^2).
+%\end{equation*}
+%In order to find $O_{\tau}(\delta \tau)$ at first order in time we have to solve
+%\begin{equation*}
+%\left[L_{\tau},\gamma(\tau) \right] = 4\gamma(\tau)H_D\gamma(\tau)-4H_d,\gamma(\tau).
+%\end{equation*}
+%%\emph{Here we insert a request.}\\
+%This equation has a simple solution if we restrict to the case of pure Fermionic Gaussian states that is  imposing to the correlation matrix to be idempotent, $\gamma=\gamma^2$.\\
+%For a pure state we have
+%\begin{equation*}
+%L_{\tau} = 2\left[H_d,\gamma(\tau) \right].
+%\end{equation*}
+%Thus the imaginary time evolution of the correlation matrix of a pure Fermionic Gaussian state with an approximation at first order in time is:
+%\begin{equation}
+%\gamma(\tau)(t+\delta t) = e^{2\left[H_D, \gamma(\tau)\right]}\gamma(\tau)e^{-2\left[H_D,\gamma(\tau) \right]}
+%\end{equation}
+%or for Dirac Fermions
+%\begin{equation}
+%\Gamma(\tau)(t+\delta t) = e^{2\left[H_D, \Gamma(\tau)\right]}\Gamma(\tau)e^{-2\left[H_D,\Gamma(\tau) \right]},
+%\end{equation}
+%where $H_D$ is the block diagonalised or diagonalised Hamiltonian for Majorana or Dirac.
+
+
+
+
+
+
+
 
 
 

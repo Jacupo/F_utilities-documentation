@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.28)  21 MAR 2020 00:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.1.28)  23 MAR 2020 14:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2526,7 +2526,7 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 82.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./figure/cover.jpg, id=151, 1086.0575pt x 925.4575pt>
+<./figure/cover.jpg, id=159, 1086.0575pt x 925.4575pt>
 File: ./figure/cover.jpg Graphic file (type jpg)
 <use ./figure/cover.jpg>
 Package pdftex.def Info: ./figure/cover.jpg  used on input line 82.
@@ -2594,7 +2594,7 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 82.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 14.4pt on input line 82.
-<./figure/logo.png, id=152, 309.3156pt x 184.0476pt>
+<./figure/logo.png, id=160, 309.3156pt x 184.0476pt>
 File: ./figure/logo.png Graphic file (type png)
 <use ./figure/logo.png>
 Package pdftex.def Info: ./figure/logo.png  used on input line 82.
@@ -2623,6 +2623,9 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 ]
 Package marginnote Info: Using workaround for absolute page number on input lin
 e 84.
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [2]
 Package hyperref Info: Option `pageanchor' set `true' on input line 87.
 
 Chapter 1 1.
@@ -2638,9 +2641,6 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 
 
 ]
-Package marginnote Info: Using workaround for absolute page number on input lin
-e 126.
-
 Underfull \hbox (badness 10000) in paragraph at lines 145--147
 
  []
@@ -2781,81 +2781,63 @@ L/ntxmi/m/it/10.95 ; [] \LMS/ntxsy/m/n/10.95 ! []\OML/ntxmi/m/it/10.95 :
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf) [18]
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [19] (./JLCODE1.jl)
-<figure/JLCODE1.pdf, id=514, 462.52798pt x 346.89601pt>
+88.pgf) [19] (./JLCODE1.jl
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
+88.pgf) [20])
+<figure/JLCODE1.pdf, id=545, 462.52798pt x 346.89601pt>
 File: figure/JLCODE1.pdf Graphic file (type pdf)
 <use figure/JLCODE1.pdf>
-Package pdftex.def Info: figure/JLCODE1.pdf  used on input line 1028.
+Package pdftex.def Info: figure/JLCODE1.pdf  used on input line 1050.
 (pdftex.def)             Requested size: 292.77629pt x 219.59369pt.
 
 
 Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 1029.
+(caption)                outside box or environment on input line 1051.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1029.
+(caption)                particular \caption on input line 1051.
 See the caption package documentation for explanation.
 
 LaTeX Font Info:    Font shape `T1/ntxtlf/bx/n' in size <10> not available
-(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 1029
+(Font)              Font shape `T1/ntxtlf/b/n' tried instead on input line 1051
 .
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 1029.
-
+(Font)              scaled to size 10.0pt on input line 1051.
+(./JLCODE2.jl
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [20 <./figure/JLCODE1.pdf>] (./JLCODE2.jl)
-<figure/JLCODE2.pdf, id=562, 462.52798pt x 346.89601pt>
+88.pgf) [21 <./figure/JLCODE1.pdf>])
+<figure/JLCODE2.pdf, id=605, 462.52798pt x 346.89601pt>
 File: figure/JLCODE2.pdf Graphic file (type pdf)
 <use figure/JLCODE2.pdf>
-Package pdftex.def Info: figure/JLCODE2.pdf  used on input line 1043.
+Package pdftex.def Info: figure/JLCODE2.pdf  used on input line 1065.
 (pdftex.def)             Requested size: 292.77629pt x 219.59369pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1044.
+(caption)                particular \caption on input line 1066.
 See the caption package documentation for explanation.
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [21 <./figure/JLCODE2.pdf>]
+88.pgf) [22 <./figure/JLCODE2.pdf>]
 Chapter 4 4.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
 88.pgf)
 
-LaTeX Warning: Reference `appendix:Real-Heisenberg-Evolution' on page 22 undefi
-ned on input line 1067.
+LaTeX Warning: Reference `appendix:Real-Heisenberg-Evolution' on page 23 undefi
+ned on input line 1085.
 
-[22
+[23
 
 ]
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [23]
-Underfull \hbox (badness 10000) in paragraph at lines 1127--1151
+88.pgf) [24]
+Underfull \hbox (badness 10000) in paragraph at lines 1145--1169
 
  []
-
-
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [24]
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 1258.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.8pt on input line 1258.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.6pt on input line 1258.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 1258.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 8.8pt on input line 1258.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 6.6pt on input line 1258.
-
-
-Package natbib Warning: Citation `kraus2010' on page 25 undefined on input line
- 1259.
 
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
@@ -2868,43 +2850,43 @@ Appendix A.
 88.pgf)
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1349.
+(hyperref)                removing `math shift' on input line 1396.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\Gamma' on input line 1349.
+(hyperref)                removing `\Gamma' on input line 1396.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1349.
+(hyperref)                removing `math shift' on input line 1396.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1349.
+(hyperref)                removing `math shift' on input line 1396.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1349.
+(hyperref)                removing `subscript' on input line 1396.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\alpha' on input line 1349.
+(hyperref)                removing `\alpha' on input line 1396.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1349.
+(hyperref)                removing `math shift' on input line 1396.
 
 LaTeX Font Info:    Try loading font information for TS1+ntxtlf on input line 1
-384.
+431.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1384.
+(Font)              scaled to size 10.95pt on input line 1431.
  [27
 
 ]
-Overfull \hbox (34.84189pt too wide) detected at line 1405
+Overfull \hbox (34.84189pt too wide) detected at line 1452
 \U/ntxmia/m/it/10.95 = [] \OML/ntxmi/m/it/10.95 U[]U[]Tr [] \U/ntxmia/m/it/10.9
 5 ý [] \OML/ntxmi/m/it/10.95 U[]U[]Tr [] \U/ntxmia/m/it/10.95 =
  []
@@ -2917,7 +2899,20 @@ Overfull \hbox (34.84189pt too wide) detected at line 1405
 Appendix B.
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
-88.pgf) [30
+88.pgf)
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 1569.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 8.8pt on input line 1569.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.6pt on input line 1569.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 1569.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 8.8pt on input line 1569.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
+(Font)              scaled to size 6.6pt on input line 1569.
+ [30
 
 ] (./main.bbl
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfornament/vectorian/vectorian
@@ -2932,23 +2927,19 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 9.0pt on input line 7.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
 (Font)              scaled to size 9.0pt on input line 8.
-)
-
-Package natbib Warning: There were undefined citations.
-
-
+) 
 AED: lastpage setting LastPage
 [32
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1590.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1590.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1637.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1637.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1590.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1590.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1637.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1637.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 780DA544EE1E3047424BCBA2B69F9A7F;5907.
+(rerunfilecheck)             Checksum: 533EB1C9CD695D85F9B27B6F697C69EE;6507.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -2961,13 +2952,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 47767 strings out of 492616
- 866818 string characters out of 6129481
- 1347777 words of memory out of 5000000
- 50405 multiletter control sequences out of 15000+600000
- 685485 words of font info for 335 fonts, out of 8000000 for 9000
+ 47772 strings out of 492616
+ 867088 string characters out of 6129481
+ 1358778 words of memory out of 5000000
+ 50416 multiletter control sequences out of 15000+600000
+ 683485 words of font info for 331 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,18n,124p,842b,2693s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,18n,124p,842b,3585s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/
 local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/lo
 cal/texlive/2019/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/local/t
@@ -2996,10 +2987,10 @@ ist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2019/texmf-dist/fo
 nts/type1/public/txfonts/txsyc.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
 pe1/public/newtx/txsys.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on main.pdf (34 pages, 605199 bytes).
+Output written on main.pdf (35 pages, 603363 bytes).
 PDF statistics:
- 941 PDF objects out of 1000 (max. 8388607)
- 815 compressed objects within 9 object streams
- 347 named destinations out of 1000 (max. 500000)
- 381 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 949 PDF objects out of 1000 (max. 8388607)
+ 822 compressed objects within 9 object streams
+ 343 named destinations out of 1000 (max. 500000)
+ 397 words of extra memory for PDF output out of 10000 (max. 10000000)
 
