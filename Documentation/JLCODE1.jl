@@ -1,4 +1,4 @@
-include("F-utilities.jl")
+using F_utilities;
 
 N = 64;
 

@@ -25,31 +25,32 @@
 \contentsline {subsubsection}{\numberline {3.5.0.4}Energy of a fermionic gaussian state}{14}{subsubsection.3.5.0.4}% 
 \contentsline {section}{\numberline {3.6}Eigenvalues of $\rho $ and eigenvalues of $\Gamma $}{14}{section.3.6}% 
 \contentsline {section}{\numberline {3.7}Reduced density matrix and tensor product of fermionic gaussian states}{15}{section.3.7}% 
-\contentsline {section}{\numberline {3.8}Product Rule}{17}{section.3.8}% 
-\contentsline {section}{\numberline {3.9}Information measures}{18}{section.3.9}% 
-\contentsline {subsection}{\numberline {3.9.1}Von Neumann Entropies}{18}{subsection.3.9.1}% 
-\contentsline {subsection}{\numberline {3.9.2}Purity}{18}{subsection.3.9.2}% 
-\contentsline {subsection}{\numberline {3.9.3}Entanglement Contour}{19}{subsection.3.9.3}% 
-\contentsline {section}{\numberline {3.10}Examples}{20}{section.3.10}% 
-\contentsline {subsection}{\numberline {3.10.1}Computing the energies of H}{20}{subsection.3.10.1}% 
-\contentsline {subsection}{\numberline {3.10.2}Computing the entanglement contour of a partition of a ground state}{21}{subsection.3.10.2}% 
-\contentsline {chapter}{\numberline {4}Time evolution}{23}{chapter.4}% 
-\contentsline {section}{\numberline {4.1}Real Time Evolution}{23}{section.4.1}% 
-\contentsline {section}{\numberline {4.2}Imaginary-time evolution}{24}{section.4.2}% 
-\contentsline {section}{\numberline {4.3}Numerical Imaginary time evolution}{25}{section.4.3}% 
-\contentsline {subsection}{\numberline {4.3.1}Imaginary time evolution of the correlation matrix}{25}{subsection.4.3.1}% 
-\contentsline {chapter}{\numberline {5}Hopping model}{27}{chapter.5}% 
-\contentsline {section}{\numberline {5.1}Example}{28}{section.5.1}% 
-\contentsline {subsubsection}{\numberline {5.1.0.1}Numerical diagonalisation of the hopping hamiltonian}{28}{subsubsection.5.1.0.1}% 
-\contentsline {section}{\numberline {5.2}Correlation Matrix of a Translational Invariant State}{29}{section.5.2}% 
-\contentsline {chapter}{\numberline {A}Extended calculations}{30}{appendix.A}% 
-\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{30}{section.A.1}% 
-\contentsline {section}{\numberline {A.2}Purity}{31}{section.A.2}% 
-\contentsline {section}{\numberline {A.3}Real Time Evolution}{32}{section.A.3}% 
-\contentsline {chapter}{\numberline {B}Useful relations}{33}{appendix.B}% 
-\contentsline {section}{\numberline {B.1}Pauli Matrices}{33}{section.B.1}% 
-\contentsline {section}{\numberline {B.2}Operators obeying CAR}{33}{section.B.2}% 
-\contentsline {section}{\numberline {B.3}Jordan-Wigner Transformations}{34}{section.B.3}% 
-\contentsline {subsection}{\numberline {B.3.1}spinless fermions $\rightarrow $ spins}{34}{subsection.B.3.1}% 
-\contentsline {subsection}{\numberline {B.3.2}spins $\rightarrow $ spinless fermions}{34}{subsection.B.3.2}% 
-\contentsline {section}{\numberline {B.4}Formulas}{34}{section.B.4}% 
+\contentsline {section}{\numberline {3.8}Correlation matrix of translational invariant state}{17}{section.3.8}% 
+\contentsline {section}{\numberline {3.9}Product Rule}{19}{section.3.9}% 
+\contentsline {section}{\numberline {3.10}Information measures}{20}{section.3.10}% 
+\contentsline {subsection}{\numberline {3.10.1}Von Neumann Entropies}{20}{subsection.3.10.1}% 
+\contentsline {subsection}{\numberline {3.10.2}Purity}{20}{subsection.3.10.2}% 
+\contentsline {subsection}{\numberline {3.10.3}Entanglement Contour}{21}{subsection.3.10.3}% 
+\contentsline {section}{\numberline {3.11}Examples}{22}{section.3.11}% 
+\contentsline {subsection}{\numberline {3.11.1}Computing the energies of H}{23}{subsection.3.11.1}% 
+\contentsline {subsection}{\numberline {3.11.2}Computing the entanglement contour of a partition of a ground state}{23}{subsection.3.11.2}% 
+\contentsline {chapter}{\numberline {4}Time evolution}{25}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Real Time Evolution}{25}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}Imaginary-time evolution}{26}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}Numerical Imaginary time evolution}{27}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}Imaginary time evolution of the correlation matrix}{27}{subsection.4.3.1}% 
+\contentsline {chapter}{\numberline {5}Hopping model}{29}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Example}{29}{section.5.1}% 
+\contentsline {subsubsection}{\numberline {5.1.0.1}Numerical diagonalisation of the hopping hamiltonian}{29}{subsubsection.5.1.0.1}% 
+\contentsline {section}{\numberline {5.2}Time evolution}{30}{section.5.2}% 
+\contentsline {chapter}{\numberline {A}Extended calculations}{32}{appendix.A}% 
+\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{32}{section.A.1}% 
+\contentsline {section}{\numberline {A.2}Purity}{33}{section.A.2}% 
+\contentsline {section}{\numberline {A.3}Real Time Evolution}{34}{section.A.3}% 
+\contentsline {chapter}{\numberline {B}Useful relations}{35}{appendix.B}% 
+\contentsline {section}{\numberline {B.1}Pauli Matrices}{35}{section.B.1}% 
+\contentsline {section}{\numberline {B.2}Operators obeying CAR}{35}{section.B.2}% 
+\contentsline {section}{\numberline {B.3}Jordan-Wigner Transformations}{36}{section.B.3}% 
+\contentsline {subsection}{\numberline {B.3.1}spinless fermions $\rightarrow $ spins}{36}{subsection.B.3.1}% 
+\contentsline {subsection}{\numberline {B.3.2}spins $\rightarrow $ spinless fermions}{36}{subsection.B.3.2}% 
+\contentsline {section}{\numberline {B.4}Formulas}{36}{section.B.4}% 

@@ -501,7 +501,7 @@ All the information about the state is encoded in the $2N\times 2N$ matrix $h$ a
 \end{definition}
 Fermionic gaussian states have an immediate interpretation as thermal Gibbs state of f.q.h.. One can even rescale the parent hamiltonian as $\hat{\tilde{H}}=\frac{1}{\beta}\hat{H}$ such that $\norm{\hat{\tilde{H}}}=1$ and $\beta=\frac{1}{\norm{\hat{H}}}$. In this way the state reads as $\rho=\frac{e^{-i\beta \hat{\tilde{H}}}}{Z}$ with $\beta\in [0,+\infty]$.
 Since f.g.s are exponential of f.g.h. and f.g.h. are even operator, it follows that f.g.s are even operator.
-%%Bravyi2004 definisce anche GAUSSIANI ODD, però fa vedere che questi sono sempre riconducibili a Gaussiani even aumentando di uno modo il sistema, quindi guassiani even vanno bene per tutto.
+%%Bravyi2004 definisce anche GAUSSIANI ODD, per\UTF{00F2} fa vedere che questi sono sempre riconducibili a Gaussiani even aumentando di uno modo il sistema, quindi guassiani even vanno bene per tutto.
 
 
 \subsection{Single mode Gaussian states}
@@ -906,6 +906,93 @@ It is clear that with the ordering \ref{eq:Ordering_dada_ndnd}, the tensor produ
 \end{equation}
 
 
+
+\section{Correlation matrix of translational invariant state}
+We consider a state $\rho$ of a system of $N$ sites and all its reduced density matrices $\rho_A$, where $A$ is any possible set of sites of the system. We denote with $A+m$ the set of sites $A+m=\{j=i+m | i$ i s a site of $ A\}$, that is a translation of all site of $A$ by $m$ sites. When we will assume Periodic Boundary Conditions (PBC) we will allow for translations "over the border" of the system, in the sense that when $i+m>N$ (or $i+m<1$)  we will substitute it with $i+m \rightarrow \mod(i+m-1,N+1)+1$. This is interpreted as connecting the first site with the last site of the system. Thus for PBC all translations are allowed. When we will assume Open Boundary Conditions (OBC) only translations within the system. This means that if $i\in A$ and $i+m>N$ (or $i+m<1$), then the subset $A+m$ is not an allowed subset of sites.\\
+A \textit{translational invariant state} is a state such that for every $A$ we have $\rho_A=\rho_{A+m}$ for every $m$.\\
+This property easily translate to correlation matrices of states. For the two point correlators of a translational invariant state we have that $\langle a_j\da a_l \rangle = \langle a_{j+m}\da a_{l+m}\rangle$ and $\langle a_j a_l \rangle = \langle a_{j+m} a_{l+m}\rangle$ for every $m$. We see that the specific correlator is thus individuated just by the difference of the sites of the first and the second operators $\Delta \coloneqq l-j $ with $\Delta \in [-(N-1),N-1]$. Using this, we substitute $\langle a_j\da a_l \rangle \rightarrow \langle a\da a \rangle_{\Delta}$ and analogously $\langle a_j a_l \rangle \rightarrow \langle a a \rangle_{\Delta}$.
+We consider the correlation matrix divided in the four quadrants
+\begin{equation}
+\Gamma = 
+\begin{pmatrix}
+\Gamma^{TL} & \Gamma^{TR} \\
+\Gamma^{BL} & \Gamma^{BR},
+\end{pmatrix}
+\end{equation}
+expressing $\Gamma^{TL}$  explicitly we have
+\begin{equation}
+\Gamma^{TL}
+\begin{pmatrix}
+\langle a\da a \rangle_{0}	    	& \langle a\da a \rangle_{1} 	 	& \langle a\da a \rangle_{2} 		&\dots		& \langle a\da a \rangle_{N-1} 	\\
+\langle a\da a \rangle_{-1}	    	& \langle a\da a \rangle_{0} 	 	& \langle a\da a \rangle_{1}		&\dots		& \langle a\da a \rangle_{N-2}	\\
+\langle a\da a \rangle_{-2}	    	& \langle a\da a \rangle_{-1} 	 	&\langle a\da a \rangle_{0}		& \dots		& \langle a\da a \rangle_{N-3}	\\
+\vdots					& \vdots					 	&\vdots		 				& \ddots		& \vdots					\\
+\langle a\da a \rangle_{-(N-1)}  	& \langle a\da a \rangle_{-(N-2)} 	&\langle a\da a \rangle_{-(N-3)}		&\dots		&\langle a\da a \rangle_{0}
+\end{pmatrix}.
+\end{equation}
+Matrix with this structure are called \textit{Teoplitz matrices}.\\
+If we further require the system to have PBC, we have that the parameter $\Delta$ is restricted to the range $[0,N-1]$. This is easily understood with an example. Consider for example the the specific instance of the correlator $\langle a\da a \rangle _{1-N} = \langle a_N\da a_1 \rangle$, because of the translational invariance property of the system and because of the PBC we know that $\langle a_N \da a_1 \rangle = \langle a_{N+1}\da a_{1+1} \rangle = \langle a_{1}\da a_2 \rangle = \langle a\da a \rangle _{1}$.\\
+The $\Gamma^{TL}$ of the correlation matrix of the state of a translational invariant system with PBC will thus take the form
+\begin{equation}
+\label{eq:GammaTL-Cyrculant}
+\Gamma^{TL}
+\begin{pmatrix}
+\langle a\da a \rangle_{0}	    	& \langle a\da a \rangle_{1} 	 	& \langle a\da a \rangle_{2} 		&\dots		& \langle a\da a \rangle_{N-1} 	\\
+\langle a\da a \rangle_{N-1}	& \langle a\da a \rangle_{0} 	 	& \langle a\da a \rangle_{1}		&\dots		& \langle a\da a \rangle_{N-2}	\\
+\langle a\da a \rangle_{N-2}	& \langle a\da a \rangle_{N-1} 	 	&\langle a\da a \rangle_{0}		& \dots		& \langle a\da a \rangle_{N-3}	\\
+\vdots					& \vdots					 	&\vdots		 				& \ddots		& \vdots					\\
+\langle a\da a \rangle_{1}  		& \langle a\da a \rangle_{2} 		&\langle a\da a \rangle_{3}		&\dots		&\langle a\da a \rangle_{0}
+\end{pmatrix}.
+\end{equation}
+Matrix with this structure are called \textit{circulant matrices}.\\
+A $N\times N$ circulant matrix is entirely characterised by its cyclic row vector defined as its first row. For $\Gamma^{TL}$ the cyclic row vector is $(\langle a\da a \rangle_{0}),\langle a\da a \rangle_{1}, \dots, \langle a\da a \rangle_{N-1}$. All the other rows of the matrix are obtained by cyclic permutation of this vector as it is clear from \ref{eq:GammaTL-Cyrculant}.
+Circulant matrices are diagonalised by taking their fourier transform.\\
+The Fourier transform on a linear lattice is defined as
+\begin{equation}
+	f_k = \frac{1}{\sqrt{N}}\sum_{j=1}^{N}e^{i\frac{2\pi}{N}kj}a_j, \qquad f_k\da = \frac{1}{\sqrt{N}}\sum_{j=1}^{N}e^{-i\frac{2\pi}{N}kj}a_j\da, 
+\end{equation}
+with inverse trasnsformations
+\begin{equation}
+	a_j = \frac{1}{\sqrt{N}}\sum_{k=1}^{N}e^{-i\frac{2\pi}{N}kj}f_k, \qquad a_j\da = \frac{1}{\sqrt{N}}\sum_{k=1}^{N}e^{i\frac{2\pi}{N}kj}f_k\da.
+\end{equation}
+It easy to verify that the Fourier modes obey to the CAR and are valid Dirac operators. The fermionic transformation $U_{\omega}$ that maps $\vec{\alpha}$ to the vector of fermionic operator $\vec{\phi}\da = (f_1, \dots, f_{N},f_1\da, \dots, f_{N}\da)=\vec{\alpha}\da U_{\omega}\da$ thus doesn't mix creation and annihilation operators. For this reason it takes the following block diagonal form
+\begin{equation}
+U_{\omega} = \begin{pmatrix}
+W  & 0 \\
+0 & \bar{W}
+\end{pmatrix},
+\end{equation}
+where the fourier transform is implemented separately on the creation and annihilation operator by the matrix
+\begin{equation}
+W = \frac{1}{\sqrt{N}}\begin{pmatrix}
+\omega			&\omega^2		&\omega^3		&\cdots	&\omega^{N-1} 		&1\\
+\omega^2			&\omega^4		&\omega^6		&\cdots	&\omega^{2(N-1)}		&1\\ 
+\omega^3			&\omega^6		&\omega^9		&\cdots	&\omega^{3(N-1)}		&1\\
+\vdots			&\vdots			&\vdots			&\ddots	&\vdots				&1\\
+\omega^{N-1}		&\omega^{2(N-1)}	&\omega^{3(N-1)}	&\cdots	&\omega^{(N-1)(N-1)}	&1\\
+1				&1				&1				&1		&\cdots 				&1
+\end{pmatrix},
+\end{equation}
+with $\omega = e^{-i\frac{2\pi}{N}}$.\\
+We have said that circulant matrices are diagonalised by taking this fourier transorm. We can in fact see that  $W\Gamma^{TL}W\da$ has the form:
+
+
+
+We now turn to express $\Gamma^{TL}$ on the basis of $\langle f\da f \rangle$. 
+
+
+To simplify this expression, we exploit the translational invariance with noticing that $\langle a\da a\rangle{\Delta}=\frac{1}{N} \sum_{j=1}^{N} \langle a_j\da a_{j+\Delta} \rangle$. Thus we have that each term of $\Gamma^{TL}$ can be explicitly written in term of $f\da$ and $f$ as
+\begin{equation}
+\langle a\da a \rangle_{\Delta}= \frac{1}{N^2} \sum_{j}^{N} \sum_{k,k'}e^{i\frac{2\pi}{N}k'\Delta} e^{i\frac{2\pi}{N}(k-k')j}f_k\da f_{k'},
+\end{equation} 
+and collecting the Kronecker delta we have
+\begin{equation}
+\langle a\da a \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{i\frac{2\pi}{N}k\Delta} f_k\da f_k.
+\end{equation}
+
+
+
+
 \section{Product Rule}
 \label{sec:Product-Rule}
 It will result useful to compute the product $\rho=\rho_1 \rho_2$ of the density matrices of two fermionic gaussian states.
@@ -927,6 +1014,10 @@ This formula appears in \cite{fagotti2010} where a more detailed description, co
 \begin{proposition}{\code{Product($\Gamma_1,\Gamma_2$)}$\rightarrow \Gamma$}{}
 This function return the correlation matrix $\Gamma$ corresponding to the f.g.s $\rho=\rho_1 \rho_2$, where $\rho_1$ and $\rho_2$ are characterised by the correlation matrices $\Gamma_1$ and $\Gamma_2$. 
 \end{proposition}
+
+
+
+
 
 
 
@@ -1138,7 +1229,7 @@ We refer to the method for obtaining the ground state using \eqref{eq:Pure_state
 This is the case because, if for the time evolution operator $U(t)=e^{-iHt}$ for the Hamiltonian $H$,  we select $t=-i \tau$ we obtain the operator $e^{-H \tau }$ that is the one of eq \eqref{eq:Pure_state-ITE}. One can thus write in a non-formal way $|GS\rangle = \lim_{t \rightarrow -i \infty} \frac{|\psi(t)\rangle}{||\psi(t)\rangle||}$.\\
 It's important to keep in mind that the operator $e^{-H\tau}$ is not unitary and for this reason it doesn't preserve the norm of the state and one has to renormalise it.\\
 %Nevertheless in the rest of these notes we will always refer to this method as a time evolution ;-).
-%textdej{ 😉}.
+%textdej{ \CID{2021}}.
 We know already how to compute the ground state of any f.q.h., but it could result useful to be able to simulate an imaginary time evolution with f.g.s. in the case one is interested in benchmarking more complex algorithms.
 
 \section{Numerical Imaginary time evolution}
@@ -1392,44 +1483,21 @@ This function return the correlation matrix $\Gamma$ evolved at imaginary time $
 We consider the translational invariant hopping hamiltonian for a system of $N$ sites
 \begin{equation}
 \label{eq:Hopping-Hamiltonian}
-\hat{H} = \sum_{i=0}^{N-1} [a_i\da a_{i+1} - a_i a_{i+1}\da],
+\hat{H} = \sum_{i=1}^{N} [a_i\da a_{i+1} - a_i a_{i+1}\da],
 \end{equation}
-where $[a_{N-1}\da a_{N}-a_{N-1}a_{N}\da]=[a_{N-1}\da a_{0}-a_{N-1}a_{0}\da]$ is the periodic term for having periodic boundary conditions.\\
+where $[a_{N}\da a_{N+1}-a_{N}a_{N+1}\da] \coloneqq [a_{N}\da a_{1}-a_{N}a_{1}\da]$ is the periodic term for having periodic boundary conditions.\\
 This is one of the simplest model of fermionic quadratic hamiltonian and it can be analytically diagonalised.\\
-In order to do so, one first has to introduce the definition of Fourier modes on a linear lattice
-\begin{equation}
-	f_k = \frac{1}{\sqrt{N}}\sum_{j=0}^{N-1}e^{i\frac{2\pi}{N}kj}a_j, \qquad f_k\da = \frac{1}{\sqrt{N}}\sum_{j=0}^{N-1}e^{-i\frac{2\pi}{N}kj}a_j\da, 
-\end{equation}
-with inverse trasnsformations
-\begin{equation}
-	a_j = \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}e^{-i\frac{2\pi}{N}kj}f_k, \qquad a_j\da = \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}e^{i\frac{2\pi}{N}kj}f_k\da.
-\end{equation}
-It easy to verify that the Fourier modes obey to the CAR and are valid Dirac operators. The fermionic transformation $U_{\omega}$ that maps $\vec{\alpha}$ to the vector of fermionic operator $\vec{\omega}\da = (f_0, \dots, f_{N-1},f_0\da, \dots, f_{N-1}\da)=\vec{\alpha}\da U_{\omega}\da$ is 
-\begin{equation}
-U_{\omega} = \begin{pmatrix}
-W  & 0 \\
-0 & \bar{W}
-\end{pmatrix},
-\end{equation}
-where
-\begin{equation}
-W = \frac{1}{\sqrt{N}}\begin{pmatrix}
-1		&1				&1				&1				&\cdots 	&1 \\
-1		&\omega			&\omega^2		&\omega^3		&\cdots	&\omega^{N-1} \\
-1		&\omega^2		&\omega^4		&\omega^6		&\cdots	&\omega^{2(N-1)}\\ 
-1		&\omega^3		&\omega^6		&\omega^9		&\cdots	&\omega^{3(N-1)}\\
-\vdots	&\vdots			&\vdots			&\vdots			&\ddots	&\vdots\\
-1		&\omega^{N-1}		&\omega^{2(N-1)}	&\omega^{3(N-1)}	&\cdots	&\omega^{(N-1)(N-1)},
-\end{pmatrix}
-\end{equation}
-with $\omega = e^{-i\frac{2\pi}{N}}$.\\
+In order to obtain its diagonal expression, we just have to consider the specific form of the submatrices $A$ and $B$ of the hamiltonian $H$. We have that for the hopping model $B$ is a matrix with all elements equal to $0$ and $A$ is a cyclic matrix with cyclic row vector $(0,\frac{1}{2}, \underbrace{0,\dots,0}_{N-3}, \frac{1}{2})$.
+
+
 If we express the hopping hamiltonian \ref{eq:Hopping-Hamiltonian} in term of the Fourier modes we obtain
 \begin{equation}
-\hat{H} = \sum_{k=0}^{N-1} \phi(k) (f_k\da f_k-f_k f_k\da),
+\label{eq:Hopping-Diagonal}
+\hat{H} = \sum_{k=1}^{N} \phi_k (f_k\da f_k-f_k f_k\da),
 \end{equation}
 where 
 \begin{equation}
-\phi(k)=\cos(\frac{2\pi}{N}k).
+\phi_k=\cos(\frac{2\pi}{N}k).
 \end{equation}
 
 \section{Example}
@@ -1458,11 +1526,18 @@ This functions return the hamiltonian $H$ if dimension $2N \times 2N$ for the ho
 For the numerical diagonalisation of the hamiltonian we used two methods, the analytical one using the Fourier modes, and the numerical one introduced in the previous section.\\
 These methods return the hopping hamiltonian in the diagonal forms
 \begin{equation}
-\hat{H}_{\omega} = \sum_{k=0}^{N-1} \phi_k (f_k\da f_k-f_k f_k\da), \qquad \hat{H} = \sum_{k=0}^{N-1} \epsilon_k (b_k\da b_k -b_k b_k\da),
+\hat{H}_{\omega} = \sum_{k=1}^{N} \phi_k (f_k\da f_k-f_k f_k\da), \qquad \hat{H} = \sum_{k=1}^{N} \epsilon_k (b_k\da b_k -b_k b_k\da),
 \end{equation} 
 where the difference in the energies are due to the fact that \code{Diag\_h} consider all the energies $\epsilon_k$ positive, thus defines $b_k = f_k\da$ and $b_k\da = f_k$ for each $k$ such that $\phi_k<0$, and then reorder the modes such that to modes with smaller $k$ correspond biggest energies.\\
 
-\section{Correlation Matrix of a Translational Invariant State}
+\section{Time evolution}
+For the hopping model we analytically obtained the fermionic transformation $U_{\omega}$ that diagonalise the Hamiltonian. This allows us to give an analytical expression for the time evolution of the correlation matrix.\\
+Expressing the correlation matrix $\Gamma$ in term of the operators $\vec{\phi}$ and computing the time evolution with the diagonal hamiltonian \ref{eq:Hopping-Diagonal} we obtain
+\begin{align}
+\langle a_l\da a_m\rangle (t) & = \frac{1}{N}\sum_{k,k'}e^{i(\phi_k-\phi_{k'})t}  e^{i\frac{2 \pi}{N} (k(l-x)-k'(m-y))}a_x\da a_y \\ %% f non b
+\langle a_l a_m \rangle (t)     & = \frac{1}{N}\sum_{k,k'}e^{-i(\phi_{k}+\phi_{k'})t} e^{-i\frac{2 \pi}{N} (k(l-x)+k'(m-y))}a_x a_y.
+\end{align}
+Because of the block diagonal structure of $U_{\omega}$ there is not mixing of the two types of correlators during the evolution of the correlation matrix.
 
 
 
@@ -1506,7 +1581,7 @@ Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\da
 Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}b_{y}^{\dagger}\right]=0
 \end{equation}
 
-•\item $\forall x,y$
+\item $\forall x,y$
 
 \begin{equation}
 Tr\left[e^{-\sum_{k=1}^{N}\epsilon_{k}\left(b_{k}^{\dagger}b_{k}-b_{k}b_{k}^{\dagger}\right)}b_{x}b_{y}\right]=0
