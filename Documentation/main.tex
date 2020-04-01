@@ -911,17 +911,9 @@ It is clear that with the ordering \ref{eq:Ordering_dada_ndnd}, the tensor produ
 We consider a state $\rho$ of a system of $N$ sites and all its reduced density matrices $\rho_A$, where $A$ is any possible set of sites of the system. We denote with $A+m$ the set of sites $A+m=\{j=i+m | i$ i s a site of $ A\}$, that is a translation of all site of $A$ by $m$ sites. When we will assume Periodic Boundary Conditions (PBC) we will allow for translations "over the border" of the system, in the sense that when $i+m>N$ (or $i+m<1$)  we will substitute it with $i+m \rightarrow \mod(i+m-1,N+1)+1$. This is interpreted as connecting the first site with the last site of the system. Thus for PBC all translations are allowed. When we will assume Open Boundary Conditions (OBC) only translations within the system. This means that if $i\in A$ and $i+m>N$ (or $i+m<1$), then the subset $A+m$ is not an allowed subset of sites.\\
 A \textit{translational invariant state} is a state such that for every $A$ we have $\rho_A=\rho_{A+m}$ for every $m$.\\
 This property easily translate to correlation matrices of states. For the two point correlators of a translational invariant state we have that $\langle a_j\da a_l \rangle = \langle a_{j+m}\da a_{l+m}\rangle$ and $\langle a_j a_l \rangle = \langle a_{j+m} a_{l+m}\rangle$ for every $m$. We see that the specific correlator is thus individuated just by the difference of the sites of the first and the second operators $\Delta \coloneqq l-j $ with $\Delta \in [-(N-1),N-1]$. Using this, we substitute $\langle a_j\da a_l \rangle \rightarrow \langle a\da a \rangle_{\Delta}$ and analogously $\langle a_j a_l \rangle \rightarrow \langle a a \rangle_{\Delta}$.
-We consider the correlation matrix divided in the four quadrants
+We now focus on $\Gamma^{a\da a}$, explicitly expressing it we have
 \begin{equation}
-\Gamma = 
-\begin{pmatrix}
-\Gamma^{TL} & \Gamma^{TR} \\
-\Gamma^{BL} & \Gamma^{BR},
-\end{pmatrix}
-\end{equation}
-expressing $\Gamma^{TL}$  explicitly we have
-\begin{equation}
-\Gamma^{TL}
+\Gamma^{a \da a}
 \begin{pmatrix}
 \langle a\da a \rangle_{0}	    	& \langle a\da a \rangle_{1} 	 	& \langle a\da a \rangle_{2} 		&\dots		& \langle a\da a \rangle_{N-1} 	\\
 \langle a\da a \rangle_{-1}	    	& \langle a\da a \rangle_{0} 	 	& \langle a\da a \rangle_{1}		&\dots		& \langle a\da a \rangle_{N-2}	\\
@@ -932,10 +924,10 @@ expressing $\Gamma^{TL}$  explicitly we have
 \end{equation}
 Matrix with this structure are called \textit{Teoplitz matrices}.\\
 If we further require the system to have PBC, we have that the parameter $\Delta$ is restricted to the range $[0,N-1]$. This is easily understood with an example. Consider for example the the specific instance of the correlator $\langle a\da a \rangle _{1-N} = \langle a_N\da a_1 \rangle$, because of the translational invariance property of the system and because of the PBC we know that $\langle a_N \da a_1 \rangle = \langle a_{N+1}\da a_{1+1} \rangle = \langle a_{1}\da a_2 \rangle = \langle a\da a \rangle _{1}$.\\
-The $\Gamma^{TL}$ of the correlation matrix of the state of a translational invariant system with PBC will thus take the form
+With PBC $\Gamma^{a \da a}$ has the form
 \begin{equation}
 \label{eq:GammaTL-Cyrculant}
-\Gamma^{TL}
+\Gamma^{a \da a} = 
 \begin{pmatrix}
 \langle a\da a \rangle_{0}	    	& \langle a\da a \rangle_{1} 	 	& \langle a\da a \rangle_{2} 		&\dots		& \langle a\da a \rangle_{N-1} 	\\
 \langle a\da a \rangle_{N-1}	& \langle a\da a \rangle_{0} 	 	& \langle a\da a \rangle_{1}		&\dots		& \langle a\da a \rangle_{N-2}	\\
@@ -944,9 +936,10 @@ The $\Gamma^{TL}$ of the correlation matrix of the state of a translational inva
 \langle a\da a \rangle_{1}  		& \langle a\da a \rangle_{2} 		&\langle a\da a \rangle_{3}		&\dots		&\langle a\da a \rangle_{0}
 \end{pmatrix}.
 \end{equation}
+We notice that $\Gamma^{a\da a}$ is entirely characterised by its first row vector, all the other rows of the matrix are just cyclic permutation of the first vector. We call the first vector the \textit{cyclic row vector}. 
 Matrix with this structure are called \textit{circulant matrices}.\\
-A $N\times N$ circulant matrix is entirely characterised by its cyclic row vector defined as its first row. For $\Gamma^{TL}$ the cyclic row vector is $(\langle a\da a \rangle_{0}),\langle a\da a \rangle_{1}, \dots, \langle a\da a \rangle_{N-1}$. All the other rows of the matrix are obtained by cyclic permutation of this vector as it is clear from \ref{eq:GammaTL-Cyrculant}.
-Circulant matrices are diagonalised by taking their fourier transform.\\
+
+
 The Fourier transform on a linear lattice is defined as
 \begin{equation}
 	f_k = \frac{1}{\sqrt{N}}\sum_{j=1}^{N}e^{i\frac{2\pi}{N}kj}a_j, \qquad f_k\da = \frac{1}{\sqrt{N}}\sum_{j=1}^{N}e^{-i\frac{2\pi}{N}kj}a_j\da, 
@@ -974,14 +967,14 @@ W = \frac{1}{\sqrt{N}}\begin{pmatrix}
 \end{pmatrix},
 \end{equation}
 with $\omega = e^{-i\frac{2\pi}{N}}$.\\
-We have said that circulant matrices are diagonalised by taking this fourier transorm. We can in fact see that  $W\Gamma^{TL}W\da$ has the form:
+We have said that circulant matrices are diagonalised by taking this fourier transorm. We can in fact see that  $W\Gamma^{a \da a}W\da$ has the form:
 
 
 
-We now turn to express $\Gamma^{TL}$ on the basis of $\langle f\da f \rangle$. 
+We now turn to express $\Gamma^{a \da a}$ on the basis of $\langle f\da f \rangle$. 
 
 
-To simplify this expression, we exploit the translational invariance with noticing that $\langle a\da a\rangle{\Delta}=\frac{1}{N} \sum_{j=1}^{N} \langle a_j\da a_{j+\Delta} \rangle$. Thus we have that each term of $\Gamma^{TL}$ can be explicitly written in term of $f\da$ and $f$ as
+To simplify this expression, we exploit the translational invariance with noticing that $\langle a\da a\rangle{\Delta}=\frac{1}{N} \sum_{j=1}^{N} \langle a_j\da a_{j+\Delta} \rangle$. Thus we have that each term of $\Gamma^{a \da a}$ can be explicitly written in term of $f\da$ and $f$ as
 \begin{equation}
 \langle a\da a \rangle_{\Delta}= \frac{1}{N^2} \sum_{j}^{N} \sum_{k,k'}e^{i\frac{2\pi}{N}k'\Delta} e^{i\frac{2\pi}{N}(k-k')j}f_k\da f_{k'},
 \end{equation} 
@@ -1676,6 +1669,29 @@ we obtain
 b_k(t)= \sum_{n=0}^{\infty} \frac{(2 i e_k t)^n}{n!}b_k = e^{-i2e_kt}b_k.
 \end{equation}
 
+\section{Circulant Matrices}
+An $N \times N$ circulant matrix $C$ has the form
+\begin{equation}
+C=
+\begin{pmatrix}
+c_0		& c_1		& c_2		& \dots		& c_N-1
+c_
+\end{pmatrix}
+\end{equation} 
+
+It is known that circulant matrices are diagonalised by taking their Fourier transform.\\
+Given a vector $\vec{v}$ of length $N$ its Fourier transform is expressed as $\vec{w}=W\vec{v}$, with $W$ defined as
+\begin{equation}
+W = \frac{1}{\sqrt{N}}\begin{pmatrix}
+\omega			&\omega^2		&\omega^3		&\cdots	&\omega^{N-1} 		&1\\
+\omega^2			&\omega^4		&\omega^6		&\cdots	&\omega^{2(N-1)}		&1\\ 
+\omega^3			&\omega^6		&\omega^9		&\cdots	&\omega^{3(N-1)}		&1\\
+\vdots			&\vdots			&\vdots			&\ddots	&\vdots				&1\\
+\omega^{N-1}		&\omega^{2(N-1)}	&\omega^{3(N-1)}	&\cdots	&\omega^{(N-1)(N-1)}	&1\\
+1				&1				&1				&1		&\cdots 				&1
+\end{pmatrix},
+\end{equation}
+with $\omega = e^{-i\frac{2\pi}{N}}$.\\
 
 
 
