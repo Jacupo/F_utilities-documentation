@@ -76,6 +76,9 @@
 \usepackage{textgreek}
 
 \usepackage{float}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
 
 \begin{document}
 
@@ -365,7 +368,7 @@ First step in the diagonalisation procedure is moving to the Majorana representa
 \end{align}
 The following theorem is a standard result in matrix theory \cite{zumino1962,horn1985}
 %%Theorem 1
-\begin{theorem}{Block diagonal form of real, skew-symmetric matrices}{Block-Matrix}
+\begin{theorem}{Block diagonal form of skew-symmetric matrices}{Block-Matrix}
 Let $h$ be $2N\times2N$ a real, skew-symmetric matrix. There exist a a real special orthogonal matrix $O$ such that
 \begin{equation}
 \label{eq:Schur-Decomposition}
@@ -375,8 +378,9 @@ with $h_D$ a block diagonal matrix of the form
 \begin{equation}
 h_D = \bigoplus_{i=1}^{N} \begin{pmatrix}0 & \lambda_i \\ -\lambda_i & 0\end{pmatrix}
 \end{equation}
-for real, positive definite $\left\{\lambda_i\right\}_{i=1,\dots,N}$.
-The non-zero eigenvalues of matrix $h$ are the imaginary numbers $\{\pm \im \lambda_i\}_{i=1,\dots,N}$.
+for real, positive-definite $\left\{\lambda_i\right\}_{i=1,\dots,N}$.
+The non-zero eigenvalues of matrix $h$ are the imaginary numbers $\{\pm \im \lambda_i\}_{i=1,\dots,N}$.\\
+For a more general form of this theorem see appendix \ref{appendix:Shurd-Decomposition}.
 \end{theorem}
 
 Matrix $h$ in \eqref{eq:Majorana-QFH} is real, skew-symmetric, thus, using theorem \ref{eq:Schur-Decomposition} we find the orthogonal transformation $O$ that diagonalise the matrix
@@ -692,7 +696,7 @@ or equivalently
 \begin{equation}
 \gamma\gamma\da \leq -\id.
 \end{equation}
-These conditions are equivalent to asking that the eigenvalues $\nu_i$ of matrix $\Gamma$ belongs all to the interval $[0,1]$.
+These conditions are equivalent to the request that all the eigenvalues $\nu_i$ of matrix $\Gamma$ have to belong to the interval $[0,1]$.
 
 \subsubsection{Ground states of fermionic quadratic hamiltonians}
 Suppose we have a f.q.h. $H$  and we are interest in obtaining the correlation matrix $\Gamma_0$ associated to its ground state $|0\rangle$. 
@@ -909,8 +913,19 @@ It is clear that with the ordering \ref{eq:Ordering_dada_ndnd}, the tensor produ
 
 \section{Correlation matrix of translational invariant state}
 We consider a state $\rho$ of a system of $N$ sites and all its reduced density matrices $\rho_A$, where $A$ is any possible set of sites of the system. We denote with $A+m$ the set of sites $A+m=\{j=i+m | i$ i s a site of $ A\}$, that is a translation of all site of $A$ by $m$ sites. When we will assume Periodic Boundary Conditions (PBC) we will allow for translations "over the border" of the system, in the sense that when $i+m>N$ (or $i+m<1$)  we will substitute it with $i+m \rightarrow \mod(i+m-1,N+1)+1$. This is interpreted as connecting the first site with the last site of the system. Thus for PBC all translations are allowed. When we will assume Open Boundary Conditions (OBC) only translations within the system. This means that if $i\in A$ and $i+m>N$ (or $i+m<1$), then the subset $A+m$ is not an allowed subset of sites.\\
+
+
+  \centerline{
+\includegraphics[width=0.5\textwidth]{figure/OBC.png} }
+  \captionof{figure}{System with Open Boundary Conditions. If the state is translational invariant then the reduced density matrix on sites $1$ and $2$ is the same as the one on sites $3$ and $4$, but is different from the one on sites $5$ and $1$}
+  
+    \centerline{
+\includegraphics[width=0.3\textwidth]{figure/PBC.png} }
+  \captionof{figure}{System with Periodic Boundary Conditions. If the state is translational invariant then the reduced density matrix on sites $1$ and $2$ or sites $3$ and $4$ or even sites $5$ and $1$ are all the same}
+  \label{fig:PBC}
+  
 A \textit{translational invariant state} is a state such that for every $A$ we have $\rho_A=\rho_{A+m}$ for every $m$.\\
-This property easily translate to correlation matrices of states. For the two point correlators of a translational invariant state we have that $\langle a_j\da a_l \rangle = \langle a_{j+m}\da a_{l+m}\rangle$ and $\langle a_j a_l \rangle = \langle a_{j+m} a_{l+m}\rangle$ for every $m$. We see that the specific correlator is thus individuated just by the difference of the sites of the first and the second operators $\Delta \coloneqq l-j $ with $\Delta \in [-(N-1),N-1]$. Using this, we substitute $\langle a_j\da a_l \rangle \rightarrow \langle a\da a \rangle_{\Delta}$ and analogously $\langle a_j a_l \rangle \rightarrow \langle a a \rangle_{\Delta}$.
+This property easily translate to correlation matrices of states. For the two point correlators of a translational invariant state we have that $\langle a_j\da a_l \rangle = \langle a_{j+m}\da a_{l+m}\rangle$ and $\langle a_j a_l \rangle = \langle a_{j+m} a_{l+m}\rangle$ for every $m$. The specific correlator is thus individuated just by the difference of the sites of the first and second operator $\Delta \coloneqq l-j $ with $\Delta \in [-(N-1),N-1]$. Using this, we substitute $\langle a_j\da a_l \rangle \rightarrow \langle a\da a \rangle_{\Delta}$ and analogously $\langle a_j a_l \rangle \rightarrow \langle a a \rangle_{\Delta}$.
 We now focus on $\Gamma^{a\da a}$, explicitly expressing it we have
 \begin{equation}
 \Gamma^{a \da a}
@@ -923,8 +938,8 @@ We now focus on $\Gamma^{a\da a}$, explicitly expressing it we have
 \end{pmatrix}.
 \end{equation}
 Matrix with this structure are called \textit{Teoplitz matrices}.\\
-If we further require the system to have PBC, we have that the parameter $\Delta$ is restricted to the range $[0,N-1]$. This is easily understood with an example. Consider for example the the specific instance of the correlator $\langle a\da a \rangle _{1-N} = \langle a_N\da a_1 \rangle$, because of the translational invariance property of the system and because of the PBC we know that $\langle a_N \da a_1 \rangle = \langle a_{N+1}\da a_{1+1} \rangle = \langle a_{1}\da a_2 \rangle = \langle a\da a \rangle _{1}$.\\
-With PBC $\Gamma^{a \da a}$ has the form
+If we further require the system to have PBC, we have that the parameter $\Delta$ is restricted to the range $[0,N-1]$. Consider for example the the specific instance of the correlator $\langle a\da a \rangle _{1-N} = \langle a_N\da a_1 \rangle$, because of the translational invariance property of the system and because of the PBC we know that $\langle a_N \da a_1 \rangle = \langle a_{N+1}\da a_{1+1} \rangle = \langle a_{1}\da a_2 \rangle = \langle a\da a \rangle _{1}$ (see figure \ref{fig:PBC}).\\
+With PBC, $\Gamma^{a \da a}$ has the form
 \begin{equation}
 \label{eq:GammaTL-Cyrculant}
 \Gamma^{a \da a} = 
@@ -936,53 +951,80 @@ With PBC $\Gamma^{a \da a}$ has the form
 \langle a\da a \rangle_{1}  		& \langle a\da a \rangle_{2} 		&\langle a\da a \rangle_{3}		&\dots		&\langle a\da a \rangle_{0}
 \end{pmatrix}.
 \end{equation}
-We notice that $\Gamma^{a\da a}$ is entirely characterised by its first row vector, all the other rows of the matrix are just cyclic permutation of the first vector. We call the first vector the \textit{cyclic row vector}. 
-Matrix with this structure are called \textit{circulant matrices}.\\
+We see that $\Gamma^{a\da a}$ is the circulant matrix characterised by the circulant vector $\vec{\langle a\da a \rangle}= \left( \langle a\da a \rangle_{0}	, \langle a\da a \rangle_{1}, \langle a\da a \rangle_{2} ,\dots, \langle a\da a \rangle_{N-1} \right)$.  By the same reasoning, we see that $\Gamma^{a a\da}$ is a circulant matrix characterised by the circulant vector $\vec{\langle a a\da \rangle}= \left( \langle a a\da \rangle_{0}, \langle a a\da \rangle_{1}, \langle a a\da \rangle_{2} ,\dots, \langle a a\da \rangle_{N-1} \right)$.  Matrices $\Gamma^{a a}$ and $\Gamma^{a\da a\da}$ are circulant skew-simmetric matrices, often called \textit{skew-circulant matrices}. If $N$ is even $\Gamma^{a a}$ and $\Gamma^{a\da a\da}$ are specified by the circulant vectors $\vec{\langle a a \rangle}= \left( \langle a a \rangle_{0}	, \langle a a \rangle_{1}, \langle a a \rangle_{2} ,\dots,  \langle a a \rangle_{\frac{N}{2}-1}, 0,-\langle a a \rangle_{\frac{N}{2}-1},-\langle a a \rangle_{\frac{N}{2}-2},\dots,  \langle a a \rangle_{1} \right)$ and $\vec{\langle a\da a\da \rangle}= \left( \langle a\da a\da \rangle_{0}	, \langle a\da a\da \rangle_{1}, \langle a\da a\da \rangle_{2} ,\dots,  \langle a\da a\da \rangle_{\frac{N}{2}-1}, 0,-\langle a\da a\da \rangle_{\frac{N}{2}-1},-\langle a\da a\da \rangle_{\frac{N}{2}-2},\dots,  \langle a\da a\da \rangle_{1} \right)$.
+If $N$ is odd $\Gamma^{a a}$ and $\Gamma^{a\da a\da}$ are specified by the circulant vectors $\vec{\langle a a \rangle}= \left( \langle a a \rangle_{0}	, \langle a a \rangle_{1}, \langle a a \rangle_{2} ,\dots,  \langle a a \rangle_{\frac{N-1}{2}}, -\langle a a \rangle_{\frac{N-1}{2}-1},-\langle a a \rangle_{\frac{N-1}{2}-2},\dots,  \langle a a \rangle_{1} \right)$ and $\vec{\langle a\da a\da \rangle}= \left( \langle a\da a\da \rangle_{0}	, \langle a\da a\da \rangle_{1}, \langle a\da a\da \rangle_{2} ,\dots,  \langle a\da a\da \rangle_{\frac{N-1}{2}}, -\langle a\da a\da \rangle_{\frac{N-1}{2}-1},-\langle a\da a\da \rangle_{\frac{N-1}{2}-2},\dots,  \langle a\da a\da \rangle_{1} \right)$.\\
 
+\subsection{Eigenvalues using the properties of circulant-matrices}
+In appendix \ref{appendix:Circulant-Matrices} we show the general form of the eigenvalues of a circulant matrix. For  $\Gamma^{a a}$,$\Gamma^{a\da a\da}$matrices $\Gamma^{a\da a}$,$\Gamma^{a a\da}$  we have that their respective eigenvalues $\lambda^{a\da a}_k$,$\lambda^{a a\da}_k$ are
+\begin{align}
+&\lambda^{a\da a}_k = \sum_{\Delta=0}^{N-1}e^{i\frac{2\pi}{N}\Delta k} \langle a\da a \rangle_{\Delta} & \lambda^{a a\da}_k = \sum_{\Delta=0}^{N-1}e^{i\frac{2\pi}{N}\Delta k} \langle a a\da \rangle_{\Delta}.\end{align}
 
-The Fourier transform on a linear lattice is defined as
+ For  matrices $\Gamma^{a a}$,$\Gamma^{a\da a\da}$  we have that their respective eigenvalues $\lambda^{a a}_k$,$\lambda^{a\da a\da}_k$ are
+ \begin{align}
+ &&&&&\lambda^{a a}_k &=& \begin{cases} 
+ 2\sum_{\Delta=0}^{{\frac{N}{2}}-1}e^{i \frac{2\pi}{N}k\Delta} \langle a a \rangle_{\Delta}  & \mbox{ if $N$ even} \\
+ (1+e^{-i\frac{\pi}{N}})\sum_{\Delta=0}^{{\frac{N}{2}}-1}e^{i \frac{2\pi}{N}k\Delta} \langle a a \rangle_{\Delta} &  \mbox{ if $N$ odd}
+ \end{cases}, &&&&\nonumber\\
+ &&&&& \lambda^{a\da a\da}_k &=& \begin{cases} 
+ 2\sum_{\Delta=0}^{{\frac{N}{2}}-1}e^{i \frac{2\pi}{N}k\Delta} \langle a\da a\da \rangle_{\Delta} & \mbox{ if $N$ even} \\
+ (1+e^{-i\frac{\pi}{N}})\sum_{\Delta=0}^{{\frac{N}{2}}-1}e^{i \frac{2\pi}{N}k\Delta} \langle a\da a\da \rangle_{\Delta}  & \mbox{ if $N$ odd}
+ \end{cases}.&&&&
+ \end{align}
+We notice that the eigenvalues of $\Gamma^{a a}$,$\Gamma^{a\da a\da}$ comes in pairs $\lambda^{a a}_k=-\lambda^{a a}_{k+\ceil{\frac{N}{2}}}$ and $\lambda^{a\da a\da}_k=-\lambda^{a\da a\da}_{k+\ceil{\frac{N}{2}}}$ as expected from the property of skew-symmetric matrices (see appendix \ref{appendix:Shurd-Decomposition}).
+
+\subsection{Eigenvalues using the Fourier transform on a linear lattice}
+
+We introduce the Fourier transforms on a linear lattice
 \begin{equation}
+\label{eq:Fourier_f-to-a}
 	f_k = \frac{1}{\sqrt{N}}\sum_{j=1}^{N}e^{i\frac{2\pi}{N}kj}a_j, \qquad f_k\da = \frac{1}{\sqrt{N}}\sum_{j=1}^{N}e^{-i\frac{2\pi}{N}kj}a_j\da, 
 \end{equation}
-with inverse trasnsformations
+with inverse transformations
+\label{eq:Fourier_a-to-f}
 \begin{equation}
 	a_j = \frac{1}{\sqrt{N}}\sum_{k=1}^{N}e^{-i\frac{2\pi}{N}kj}f_k, \qquad a_j\da = \frac{1}{\sqrt{N}}\sum_{k=1}^{N}e^{i\frac{2\pi}{N}kj}f_k\da.
 \end{equation}
-It easy to verify that the Fourier modes obey to the CAR and are valid Dirac operators. The fermionic transformation $U_{\omega}$ that maps $\vec{\alpha}$ to the vector of fermionic operator $\vec{\phi}\da = (f_1, \dots, f_{N},f_1\da, \dots, f_{N}\da)=\vec{\alpha}\da U_{\omega}\da$ thus doesn't mix creation and annihilation operators. For this reason it takes the following block diagonal form
+
+It is easy to see that the Fourier modes  $\{f_k,f\da_k \}_k$ obey to the CAR and are valid Dirac operators.\\
+Now we perform the substitutions \ref{eq:Fourier_a-to-f} in the expression of $\Gamma^{a \da a}$ and we further exploit the translational invariance ($\langle a\da a\rangle{\Delta}=\frac{1}{N} \sum_{j=1}^{N} \langle a_j\da a_{j+\Delta} \rangle$) to obtain
 \begin{equation}
+\langle a\da a \rangle_{\Delta}= \frac{1}{N^2} \sum_{j}^{N} \sum_{k,k'}e^{i\frac{2\pi}{N}k'\Delta} e^{i\frac{2\pi}{N}(k-k')j}\langle  f_k\da f_{k'} \rangle.
+\end{equation} 
+Collecting the Kronecker delta (see appendix \ref{appendix:Formulas}) we can express the elements of $\Gamma^{a\da a}$ as
+\begin{align}
+&\langle a\da a \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k\da f_k \rangle.
+\end{align}
+With the same procedure we obtain
+\begin{align}
+&\langle a\da a \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k\da f_k \rangle, & \mbox{ } & \langle a a\da \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k f_k\da \rangle \nonumber \\
+&\langle a a \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k f_{N-k} \rangle, & \mbox{ } & \langle a\da a\da \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_{N-k}\da f_k\da \rangle.
+\end{align}
+with inverse transformations
+\begin{align}
+&\langle f_k\da f_k \rangle =  \sum_{\Delta=1}^{N} e^{i\frac{2\pi}{N}k\Delta} \langle a\da a \rangle_{\Delta} , & \mbox{ } & \langle f_k f_k\da \rangle = \sum_{\Delta=1}^{N} e^{i\frac{2\pi}{N}k\Delta} \langle a a\da \rangle_{\Delta} \nonumber \\
+&\langle f_k f_{N-k} \rangle =  \sum_{\Delta=1}^{N} e^{i\frac{2\pi}{N}k\Delta} \langle a\da a \rangle_{\Delta} , & \mbox{ } & \langle f_k\da f_{N-k}\da \rangle = \sum_{\Delta=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle a a\da \rangle_{\Delta}.
+\end{align}
+We can easily identify 
+\begin{align}
+& \lambda^{a\da a}_k = \langle f_k\da f_k \rangle, & \mbox{ } & \lambda^{a a\da}_k = \langle f_k f_k\da \rangle \nonumber \\
+& \lambda^{a a}_k = \langle f_k f_{N-k} \rangle, & \mbox{ } & \lambda^{a\da a\da}_k = \langle f_k\da f_{N-k}\da \rangle.
+\end{align}
+
+
+As last, we note that the Fourier transform does not mix creation and annihilation operators and can be implement directly on the vector of Dirac operators $\vec{\alpha}$ with the fermionic transformation $U_{\omega}$ that has the block diagonal form
+\begin{equation}
+\label{eq:Fermionic-Transformation-Fourier}
 U_{\omega} = \begin{pmatrix}
 W  & 0 \\
 0 & \bar{W}
 \end{pmatrix},
 \end{equation}
-where the fourier transform is implemented separately on the creation and annihilation operator by the matrix
-\begin{equation}
-W = \frac{1}{\sqrt{N}}\begin{pmatrix}
-\omega			&\omega^2		&\omega^3		&\cdots	&\omega^{N-1} 		&1\\
-\omega^2			&\omega^4		&\omega^6		&\cdots	&\omega^{2(N-1)}		&1\\ 
-\omega^3			&\omega^6		&\omega^9		&\cdots	&\omega^{3(N-1)}		&1\\
-\vdots			&\vdots			&\vdots			&\ddots	&\vdots				&1\\
-\omega^{N-1}		&\omega^{2(N-1)}	&\omega^{3(N-1)}	&\cdots	&\omega^{(N-1)(N-1)}	&1\\
-1				&1				&1				&1		&\cdots 				&1
-\end{pmatrix},
-\end{equation}
-with $\omega = e^{-i\frac{2\pi}{N}}$.\\
-We have said that circulant matrices are diagonalised by taking this fourier transorm. We can in fact see that  $W\Gamma^{a \da a}W\da$ has the form:
+where  $W$ is the matrix implementing the discrete Fourier transform  (see appendix \ref{appendix:Circulant-Matrices}) and it acts separately on the creation and annihilation operators sectors of $\vec{\alpha}$.
 
-
-
-We now turn to express $\Gamma^{a \da a}$ on the basis of $\langle f\da f \rangle$. 
-
-
-To simplify this expression, we exploit the translational invariance with noticing that $\langle a\da a\rangle{\Delta}=\frac{1}{N} \sum_{j=1}^{N} \langle a_j\da a_{j+\Delta} \rangle$. Thus we have that each term of $\Gamma^{a \da a}$ can be explicitly written in term of $f\da$ and $f$ as
-\begin{equation}
-\langle a\da a \rangle_{\Delta}= \frac{1}{N^2} \sum_{j}^{N} \sum_{k,k'}e^{i\frac{2\pi}{N}k'\Delta} e^{i\frac{2\pi}{N}(k-k')j}f_k\da f_{k'},
-\end{equation} 
-and collecting the Kronecker delta we have
-\begin{equation}
-\langle a\da a \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{i\frac{2\pi}{N}k\Delta} f_k\da f_k.
-\end{equation}
-
+For an example of diagonalisation of translational invariant matrices see e.g. section \ref{sec:Hopping-Model}
+\begin{proposition}{\code{Build\_Fourier\_matrix($N$)}$\rightarrow U_{\omega}$}{}
+This function return the fermionic transformation $U_{\omega}$ for a system of $N$ sites.
+\end{proposition}
 
 
 
@@ -1473,6 +1515,7 @@ This function return the correlation matrix $\Gamma$ evolved at imaginary time $
 
 
 \chapter{Hopping model}
+\label{sec:Hopping-Model}
 We consider the translational invariant hopping hamiltonian for a system of $N$ sites
 \begin{equation}
 \label{eq:Hopping-Hamiltonian}
@@ -1480,19 +1523,20 @@ We consider the translational invariant hopping hamiltonian for a system of $N$ 
 \end{equation}
 where $[a_{N}\da a_{N+1}-a_{N}a_{N+1}\da] \coloneqq [a_{N}\da a_{1}-a_{N}a_{1}\da]$ is the periodic term for having periodic boundary conditions.\\
 This is one of the simplest model of fermionic quadratic hamiltonian and it can be analytically diagonalised.\\
-In order to obtain its diagonal expression, we just have to consider the specific form of the submatrices $A$ and $B$ of the hamiltonian $H$. We have that for the hopping model $B$ is a matrix with all elements equal to $0$ and $A$ is a cyclic matrix with cyclic row vector $(0,\frac{1}{2}, \underbrace{0,\dots,0}_{N-3}, \frac{1}{2})$.
+In order to obtain its diagonal expression, we just have to consider the specific form of the submatrices $A$ and $B$ of the hamiltonian $H$. We have that for the hopping model $B$ is a matrix with all elements equal to $0$ and $A$ is a circulat matrix with circulant vector $(0,\frac{1}{2}, \underbrace{0,\dots,0}_{N-3}, \frac{1}{2})$ (see appendix \ref{appendix:Circulant-Matrices}).
 
 
-If we express the hopping hamiltonian \ref{eq:Hopping-Hamiltonian} in term of the Fourier modes we obtain
+If we express the hopping hamiltonian \eqref{eq:Hopping-Hamiltonian} in term of the Fourier modes \eqref{eq:Fourier_a-to-f} we obtain
 \begin{equation}
 \label{eq:Hopping-Diagonal}
 \hat{H} = \sum_{k=1}^{N} \phi_k (f_k\da f_k-f_k f_k\da),
 \end{equation}
 where 
 \begin{equation}
+\label{eq:Dispersion-Hopping}
 \phi_k=\cos(\frac{2\pi}{N}k).
 \end{equation}
-
+The fermionic transformation that diagonalise the Hamiltonian is $U_{\omega}$ as definied in \eqref{eq:Fermionic-Transformation-Fourier}.
 \section{Example}
 
 \subsubsection{Numerical diagonalisation of the hopping hamiltonian}
@@ -1503,12 +1547,8 @@ In the following code we show how to initialise and diagonalise the hopping hami
 Output:\\
   \centerline{
 \includegraphics[width=0.7\textwidth]{figure/JLCODE3.pdf} }
-  \captionof{figure}{Output of examples \ref{ex:JL-Hopping-Hamiltonian}, note how for a nearest neighbour hamiltonian, the contour is higher on the boundary of the partition.}
+  \captionof{figure}{In this example we diagonalised the hamiltonian with two different methods. Using the Fourier transform method we obtain the energies specified in \eqref{eq:Dispersion-Hopping}. These energies are both positive and negative. Using the \code{Diag\_h} method of \code{F\_utilities} we obtain just positive energies. The difference in the diagonal energies comes from the fact that \code{Diag\_h} for every eigenmode with negative energy substitute creation and annihilation operators in order to redefine the energy as positive, and then reorder the modes in order to have the energies in descending order. If we diagonalise with the Fourier transform than the ground state is obtained filling all the modes with negative energy. If we diagonalise with \code{Diag\_h} then the ground state corresponds to the empty state.}
   
-
-\begin{proposition}{\code{Build\_Fourier($N$)$\rightarrow U_{\omega}$}}{}
-This function returns the matrix $U_{\omega}$ of dimension $2N\times 2N$.
-\end{proposition}
 
 
 
@@ -1670,16 +1710,25 @@ b_k(t)= \sum_{n=0}^{\infty} \frac{(2 i e_k t)^n}{n!}b_k = e^{-i2e_kt}b_k.
 \end{equation}
 
 \section{Circulant Matrices}
-An $N \times N$ circulant matrix $C$ has the form
+\label{appendix:Circulant-Matrices}
+An $N \times N$ circulant matrix $C$ is a matric of the form
 \begin{equation}
 C=
 \begin{pmatrix}
-c_0		& c_1		& c_2		& \dots		& c_N-1
-c_
-\end{pmatrix}
+c_0		& c_1		& c_2		& \dots		& c_{N-1}	\\
+c_{N-1}	& c_0		& c_1		& \dots		& c_{N-2}	\\
+c_{N-2}	& c_{N-1}		& c_0		& \dots 		& c_{N-3}	\\
+\vdots	& \vdots		& \vdots		& \ddots		&\vdots	\\
+c_1		& c_2		& c_3		&\dots		&c_0		
+\end{pmatrix}.
 \end{equation} 
-
-It is known that circulant matrices are diagonalised by taking their Fourier transform.\\
+A circulant matrix is completely specified by the  \textit{circulant vector} $\vec{c}$, that is its first row. 
+\begin{equation}
+\vec{c} = \left( c_0, c_1, c_2, \dots, c_{N-1}\right).
+\end{equation}
+All the other rows of the matrix are cyclic permutations of $\vec{c}$ with offset increasing by one going down with the rows.\\
+Since each descending diagonal from left to right is constant, circulant matrices are a special case of Toeplitz matrices.\\
+Because of their special structure, circulant matrices are diagonalised by taking their Fourier transform.\\
 Given a vector $\vec{v}$ of length $N$ its Fourier transform is expressed as $\vec{w}=W\vec{v}$, with $W$ defined as
 \begin{equation}
 W = \frac{1}{\sqrt{N}}\begin{pmatrix}
@@ -1692,10 +1741,22 @@ W = \frac{1}{\sqrt{N}}\begin{pmatrix}
 \end{pmatrix},
 \end{equation}
 with $\omega = e^{-i\frac{2\pi}{N}}$.\\
+The columns of $W$ are the normalised eigenvectors $|\lambda_i\rangle$ of every circulant matrix of dimension $N\times N$.\\
+The corresponding eigenvalues depend on the specific circulant vector $\vec{c}$ specifying the circulant matrix and are given by 
+\begin{equation}
+\lambda_j = c_0 \omega^{j}+ c_1 \omega^{j} + c_2 \omega^{j2}+\dots +c_{N-2} \omega^{j(N-2)}+c_{N-1} \omega^{j(N-1)}.
+\end{equation}
 
 
-
-
+\section{Block diagonal form of skew-symmetric matrices}
+\label{appendix:Shurd-Decomposition}
+Let $h$ be a $N\times N$ skew-symmetric matrix of rank $2m$, where $N\geq2m$.\\
+Then there exist a $N\times N$ unitary matrix $U$ such that  \cite{horn1985}
+\begin{equation}
+U^ThU = \begin{pmatrix} 0 & \lambda_1 \\ -\lambda_1 & 0 \end{pmatrix} \oplus \begin{pmatrix} 0 & \lambda_2 \\ -\lambda_2 & 0 \end{pmatrix} \oplus  \dots  \oplus \begin{pmatrix} 0 & \lambda_m \\ -\lambda_m & 0 \end{pmatrix} \oplus \hat{0}_{N-2m},
+\end{equation}  
+where $\hat{0}_{N-2m}$ is a $(N-2m)\times (N-2m)$ matrix with all elements equal to zero and where the real and positive-definite $\{\lambda_i\}_{i=1,m}$ are the singular values of $h$.\\
+Since a skew-symmetric matrix $h$ is similar to its own transpose$h^T$, then $h$ and $h^T$ must have the same eigenvalues. Thus, the eigenvalues of a skew-symmetric matrix of even dimension will always come in pairs $\pm \tilde{\lambda}$ (for the case of odd dimension there will be an unpaired eigenvalue equal to $0$). 
 
  \chapter{Useful relations}
  \section{Pauli Matrices}
@@ -1759,6 +1820,7 @@ Commutators
 \item B.C.H. 1: $e^Ae^B=e^{Z}$ with $Z=A+B+\frac{1}{2}\left[A,B \right]+\frac{1}{12}\left[A,\left[A,B\right]\right]+\frac{1}{12}\left[B,\left[A,B\right]\right]+\dots \mbox{higher commutators of A and B}$
 \item B.C.H 2: $e^ABe^{-A} = \sum_{n=0}^{\infty} \frac{1}{n!}\underbrace{[A,\dots [A}_{n},B\underbrace{] \dots ]}_{n}$ where $[A,B]=AB-BA$.
 \item B.C.H 3: $e^ABe^{A} = \sum_{n=0}^{\infty} \frac{1}{n!}\underbrace{\{A,\dots \{A}_{n},B\underbrace{\} \dots \}}_{n}$ where $\{A,B\}=AB+BA$.
+\item Kronecker Delta: $\delta_{n,m} = \frac{1}{N} \sum_{k=1}^{N} e^{i \frac{2 \pi}{N}k(n-m)}$.
 \end{enumerate}
 
 \bibliography{QFH}
