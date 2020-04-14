@@ -34,7 +34,7 @@
 \contentsline {subsection}{\numberline {3.10.2}Purity}{21}{subsection.3.10.2}% 
 \contentsline {subsection}{\numberline {3.10.3}Entanglement Contour}{22}{subsection.3.10.3}% 
 \contentsline {section}{\numberline {3.11}Examples}{23}{section.3.11}% 
-\contentsline {subsection}{\numberline {3.11.1}Computing the energies of H}{23}{subsection.3.11.1}% 
+\contentsline {subsection}{\numberline {3.11.1}Computing the energies of H}{24}{subsection.3.11.1}% 
 \contentsline {subsection}{\numberline {3.11.2}Computing the entanglement contour of a partition of a ground state}{24}{subsection.3.11.2}% 
 \contentsline {chapter}{\numberline {4}Time evolution}{26}{chapter.4}% 
 \contentsline {section}{\numberline {4.1}Real Time Evolution}{26}{section.4.1}% 
