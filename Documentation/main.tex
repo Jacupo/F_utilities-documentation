@@ -1545,10 +1545,16 @@ In the following code we show how to initialise and diagonalise the hopping hami
 \label{ex:JL-Hopping-Hamiltonian}
 \lstinputlisting{JLCODE3.jl}
 Output:\\
+\code{Energy GS Method Fourier:      -80.85277253991693}\\
+\code{En GS Method Diag\_h:           -80.85277253997737}
+
   \centerline{
 \includegraphics[width=0.7\textwidth]{figure/JLCODE3.pdf} }
   \captionof{figure}{In this example we diagonalised the hamiltonian with two different methods. Using the Fourier transform method we obtain the energies specified in \eqref{eq:Dispersion-Hopping}. These energies are both positive and negative. Using the \code{Diag\_h} method of \code{F\_utilities} we obtain just positive energies. The difference in the diagonal energies comes from the fact that \code{Diag\_h} for every eigenmode with negative energy substitute creation and annihilation operators in order to redefine the energy as positive, and then reorder the modes in order to have the energies in descending order. If we diagonalise with the Fourier transform than the ground state is obtained filling all the modes with negative energy. If we diagonalise with \code{Diag\_h} then the ground state corresponds to the empty state.}
   
+    \centerline{
+\includegraphics[width=1\textwidth]{figure/JLCODE3_2.pdf} }
+  \captionof{figure}{Here we plot the real and imaginary part of the differences correlation matrices of the ground state computed with the two methods. On the real space basis of $a,a\da$ the ground state must be the same.}
 
 
 
