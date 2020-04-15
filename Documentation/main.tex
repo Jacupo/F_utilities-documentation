@@ -57,7 +57,6 @@
 
 
 
-\usepackage{CJKutf8}
 
 %\usepackage{algorithm}
 %\usepackage{algpseudocode}
@@ -70,16 +69,51 @@
 %\let\openbox\relax
 %\usepackage{beramono}
 %\usepackage{listings}
-
-\usepackage[autoload=true]{jlcode}
-
-\usepackage{textgreek}
+%
+%\usepackage[autoload=true]{jlcode}
+%
+%\usepackage{textgreek}
 
 \usepackage{float}
 \usepackage{mathtools}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 
 
+
+%\usepackage{minted}
+%\newminted{julia}{}
+
+\usepackage[scaled]{beramono}
+\usepackage{xeCJK}
+\usepackage[utf8]{inputenc} % optional
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+%\usepackage[usenames,dvipsnames]{xcolor}
+
+%%
+%% Julia definition (c) 2014 Jubobs
+%%
+\lstdefinelanguage{Julia}%
+  {morekeywords={abstract,break,case,catch,const,continue,do,else,elseif,%
+      end,export,false,for,function,immutable,import,importall,if,in,%
+      macro,module,otherwise,quote,return,switch,true,try,type,typealias,%
+      using,while},%
+   sensitive=true,%
+   alsoother={$},%
+   morecomment=[l]\#,%
+   morecomment=[n]{\#=}{=\#},%
+   morestring=[s]{"}{"},%
+   morestring=[m]{'}{'},%
+}[keywords,comments,strings]%
+
+\lstset{%
+    language         = Julia,
+    basicstyle       = \ttfamily,
+    keywordstyle     = \bfseries\color{blue},
+    stringstyle      = \color{magenta},
+    commentstyle     = \color{green},
+    showstringspaces = false,
+}
 \begin{document}
 
 \maketitle
@@ -539,7 +573,7 @@ Expressing the occupations in term of the operators $\vec{\alpha}=U\da \vec{\bet
 \Gamma^{aa} & \Gamma^{a a\da}
 \end{pmatrix} 
 \end{equation}
-with $\Gamma^{aa}_{i,j} \coloneqq \langle a_i a_j\rangle=-\overline{\Gamma^{a\da a\da}_{i,j}}$ and $\Gamma^{a a\da}_{i,j} \coloneqq \langle a_i a\da_j \rangle =(\overline{ \id - \Gamma^{a\da a}})^{T}_{i,j}$, where $\overline{A}$ is the conjugate of $A$.
+with $\Gamma^{aa}_{i,j} \coloneqq \langle a_i a_j\rangle=-\overline{\Gamma^{a\da a\da}_{i,j}}$ and $\Gamma^{a a\da}_{i,j} \coloneqq \langle a_i a\da_j \rangle =(\id - \Gamma^{a\da a})\da_{i,j}$, where $\overline{A}$ is the conjugate of $A$.
 The correlation matrix $\Gamma$ is hermitian, $\Gamma^{aa}$ and $\Gamma^{a \da a \da}$ are skew-symmetric, and $\Gamma^{a\da a}$ and $\Gamma^{a a\da}$ are hermitian.\\
 Expressed in term of Majorana operator the correlation matrix is defined as 
 \begin{equation}
@@ -912,6 +946,7 @@ It is clear that with the ordering \ref{eq:Ordering_dada_ndnd}, the tensor produ
 
 
 \section{Correlation matrix of translational invariant state}
+\label{sec:Translational-Invariant-States}
 We consider a state $\rho$ of a system of $N$ sites and all its reduced density matrices $\rho_A$, where $A$ is any possible set of sites of the system. We denote with $A+m$ the set of sites $A+m=\{j=i+m | i$ i s a site of $ A\}$, that is a translation of all site of $A$ by $m$ sites. When we will assume Periodic Boundary Conditions (PBC) we will allow for translations "over the border" of the system, in the sense that when $i+m>N$ (or $i+m<1$)  we will substitute it with $i+m \rightarrow \mod(i+m-1,N+1)+1$. This is interpreted as connecting the first site with the last site of the system. Thus for PBC all translations are allowed. When we will assume Open Boundary Conditions (OBC) only translations within the system. This means that if $i\in A$ and $i+m>N$ (or $i+m<1$), then the subset $A+m$ is not an allowed subset of sites.\\
 
 
@@ -951,7 +986,7 @@ With PBC, $\Gamma^{a \da a}$ has the form
 \langle a\da a \rangle_{1}  		& \langle a\da a \rangle_{2} 		&\langle a\da a \rangle_{3}		&\dots		&\langle a\da a \rangle_{0}
 \end{pmatrix}.
 \end{equation}
-We see that $\Gamma^{a\da a}$ is the circulant matrix characterised by the circulant vector $\vec{\langle a\da a \rangle}= \left( \langle a\da a \rangle_{0}	, \langle a\da a \rangle_{1}, \langle a\da a \rangle_{2} ,\dots, \langle a\da a \rangle_{N-1} \right)$.  By the same reasoning, we see that $\Gamma^{a a\da}$ is a circulant matrix characterised by the circulant vector $\vec{\langle a a\da \rangle}= \left( \langle a a\da \rangle_{0}, \langle a a\da \rangle_{1}, \langle a a\da \rangle_{2} ,\dots, \langle a a\da \rangle_{N-1} \right)$.  Matrices $\Gamma^{a a}$ and $\Gamma^{a\da a\da}$ are circulant skew-simmetric matrices, often called \textit{skew-circulant matrices}. If $N$ is even $\Gamma^{a a}$ and $\Gamma^{a\da a\da}$ are specified by the circulant vectors $\vec{\langle a a \rangle}= \left( \langle a a \rangle_{0}	, \langle a a \rangle_{1}, \langle a a \rangle_{2} ,\dots,  \langle a a \rangle_{\frac{N}{2}-1}, 0,-\langle a a \rangle_{\frac{N}{2}-1},-\langle a a \rangle_{\frac{N}{2}-2},\dots,  \langle a a \rangle_{1} \right)$ and $\vec{\langle a\da a\da \rangle}= \left( \langle a\da a\da \rangle_{0}	, \langle a\da a\da \rangle_{1}, \langle a\da a\da \rangle_{2} ,\dots,  \langle a\da a\da \rangle_{\frac{N}{2}-1}, 0,-\langle a\da a\da \rangle_{\frac{N}{2}-1},-\langle a\da a\da \rangle_{\frac{N}{2}-2},\dots,  \langle a\da a\da \rangle_{1} \right)$.
+We see that $\Gamma^{a\da a}$ is the circulant matrix (see appendix \ref{appendix:Circulant-Matrices}) characterised by the circulant vector $\vec{\langle a\da a \rangle}= \left( \langle a\da a \rangle_{0}	, \langle a\da a \rangle_{1}, \langle a\da a \rangle_{2} ,\dots, \langle a\da a \rangle_{N-1} \right)$.  By the same reasoning, we see that $\Gamma^{a a\da}$ is a circulant matrix characterised by the circulant vector $\vec{\langle a a\da \rangle}= \left( \langle a a\da \rangle_{0}, \langle a a\da \rangle_{1}, \langle a a\da \rangle_{2} ,\dots, \langle a a\da \rangle_{N-1} \right)$.  Matrices $\Gamma^{a a}$ and $\Gamma^{a\da a\da}$ are circulant skew-simmetric matrices, often called \textit{skew-circulant matrices}. If $N$ is even $\Gamma^{a a}$ and $\Gamma^{a\da a\da}$ are specified by the circulant vectors $\vec{\langle a a \rangle}= \left( \langle a a \rangle_{0}	, \langle a a \rangle_{1}, \langle a a \rangle_{2} ,\dots,  \langle a a \rangle_{\frac{N}{2}-1}, 0,-\langle a a \rangle_{\frac{N}{2}-1},-\langle a a \rangle_{\frac{N}{2}-2},\dots,  \langle a a \rangle_{1} \right)$ and $\vec{\langle a\da a\da \rangle}= \left( \langle a\da a\da \rangle_{0}	, \langle a\da a\da \rangle_{1}, \langle a\da a\da \rangle_{2} ,\dots,  \langle a\da a\da \rangle_{\frac{N}{2}-1}, 0,-\langle a\da a\da \rangle_{\frac{N}{2}-1},-\langle a\da a\da \rangle_{\frac{N}{2}-2},\dots,  \langle a\da a\da \rangle_{1} \right)$.
 If $N$ is odd $\Gamma^{a a}$ and $\Gamma^{a\da a\da}$ are specified by the circulant vectors $\vec{\langle a a \rangle}= \left( \langle a a \rangle_{0}	, \langle a a \rangle_{1}, \langle a a \rangle_{2} ,\dots,  \langle a a \rangle_{\frac{N-1}{2}}, -\langle a a \rangle_{\frac{N-1}{2}-1},-\langle a a \rangle_{\frac{N-1}{2}-2},\dots,  \langle a a \rangle_{1} \right)$ and $\vec{\langle a\da a\da \rangle}= \left( \langle a\da a\da \rangle_{0}	, \langle a\da a\da \rangle_{1}, \langle a\da a\da \rangle_{2} ,\dots,  \langle a\da a\da \rangle_{\frac{N-1}{2}}, -\langle a\da a\da \rangle_{\frac{N-1}{2}-1},-\langle a\da a\da \rangle_{\frac{N-1}{2}-2},\dots,  \langle a\da a\da \rangle_{1} \right)$.\\
 
 \subsection{Eigenvalues using the properties of circulant-matrices}
@@ -996,6 +1031,7 @@ Collecting the Kronecker delta (see appendix \ref{appendix:Formulas}) we can exp
 \end{align}
 With the same procedure we obtain
 \begin{align}
+\label{eq:Translational-Invariant-State-a-to-f}
 &\langle a\da a \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k\da f_k \rangle, & \mbox{ } & \langle a a\da \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k f_k\da \rangle \nonumber \\
 &\langle a a \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k f_{N-k} \rangle, & \mbox{ } & \langle a\da a\da \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_{N-k}\da f_k\da \rangle.
 \end{align}
@@ -1170,8 +1206,8 @@ Generate a random f.q.h. hamiltonian for a system of $N$ with just nearest neigh
 
 \subsection{Computing the energies of H}
 \label{ex:JL-Energies-Of-H}
+%\inputminted{csharp}{JLCODE1.jl}
 \lstinputlisting{JLCODE1.jl}
-
 
 \includegraphics[width=0.7\textwidth]{figure/JLCODE1.pdf} 
   \captionof{figure}{Output of examples \ref{ex:JL-Energies-Of-H}.}
@@ -1549,7 +1585,7 @@ Output:\\
 \code{En GS Method Diag\_h:           -80.85277253997737}
 
   \centerline{
-\includegraphics[width=0.7\textwidth]{figure/JLCODE3.pdf} }
+\includegraphics[width=0.7\textwidth]{figure/JLCODE3_1.pdf} }
   \captionof{figure}{In this example we diagonalised the hamiltonian with two different methods. Using the Fourier transform method we obtain the energies specified in \eqref{eq:Dispersion-Hopping}. These energies are both positive and negative. Using the \code{Diag\_h} method of \code{F\_utilities} we obtain just positive energies. The difference in the diagonal energies comes from the fact that \code{Diag\_h} for every eigenmode with negative energy substitute creation and annihilation operators in order to redefine the energy as positive, and then reorder the modes in order to have the energies in descending order. If we diagonalise with the Fourier transform than the ground state is obtained filling all the modes with negative energy. If we diagonalise with \code{Diag\_h} then the ground state corresponds to the empty state.}
   
     \centerline{
@@ -1565,19 +1601,42 @@ This functions return the hamiltonian $H$ if dimension $2N \times 2N$ for the ho
 For the numerical diagonalisation of the hamiltonian we used two methods, the analytical one using the Fourier modes, and the numerical one introduced in the previous section.\\
 These methods return the hopping hamiltonian in the diagonal forms
 \begin{equation}
+\label{eq:Diagonal-Hopping}
 \hat{H}_{\omega} = \sum_{k=1}^{N} \phi_k (f_k\da f_k-f_k f_k\da), \qquad \hat{H} = \sum_{k=1}^{N} \epsilon_k (b_k\da b_k -b_k b_k\da),
 \end{equation} 
 where the difference in the energies are due to the fact that \code{Diag\_h} consider all the energies $\epsilon_k$ positive, thus defines $b_k = f_k\da$ and $b_k\da = f_k$ for each $k$ such that $\phi_k<0$, and then reorder the modes such that to modes with smaller $k$ correspond biggest energies.\\
 
 \section{Time evolution}
+
+曇り
+
 For the hopping model we analytically obtained the fermionic transformation $U_{\omega}$ that diagonalise the Hamiltonian. This allows us to give an analytical expression for the time evolution of the correlation matrix.\\
 Expressing the correlation matrix $\Gamma$ in term of the operators $\vec{\phi}$ and computing the time evolution with the diagonal hamiltonian \ref{eq:Hopping-Diagonal} we obtain
 \begin{align}
-\langle a_l\da a_m\rangle (t) & = \frac{1}{N}\sum_{k,k'}e^{i(\phi_k-\phi_{k'})t}  e^{i\frac{2 \pi}{N} (k(l-x)-k'(m-y))}a_x\da a_y \\ %% f non b
-\langle a_l a_m \rangle (t)     & = \frac{1}{N}\sum_{k,k'}e^{-i(\phi_{k}+\phi_{k'})t} e^{-i\frac{2 \pi}{N} (k(l-x)+k'(m-y))}a_x a_y.
+\langle a_l\da a_m\rangle (t) & = \frac{1}{N}\sum_{k,k'}e^{i2(\phi_k-\phi_{k'})t}  e^{i\frac{2 \pi}{N} (k(l-x)-k'(m-y))}a_x\da a_y \\ %% f non b
+\langle a_l a_m \rangle (t)     & = \frac{1}{N}\sum_{k,k'}e^{-i2(\phi_{k}+\phi_{k'})t} e^{-i\frac{2 \pi}{N} (k(l-x)+k'(m-y))}a_x a_y.
 \end{align}
 Because of the block diagonal structure of $U_{\omega}$ there is not mixing of the two types of correlators during the evolution of the correlation matrix.
+\subsection{Time evolution of translational invariant states}
+Let us consider a translational invariant state $\Gamma$. In section \ref{sec:Translational-Invariant-States} we expressed $\Gamma$ in term of the Fourier modes $f_k\da,f_k$.
+Using the diagonal form \eqref{eq:Diagonal-Hopping} of the Hopping Hamiltonian to compute the time evolution of the correlators of $\Gamma$ expressed as in \eqref{eq:Translational-Invariant-State-a-to-f}
+we have that $\Gamma$ evolves as
+\begin{align}
+&\langle a\da a \rangle_{\Delta}(t) = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k\da f_k \rangle, & \mbox{ } & \langle a a\da \rangle_{\Delta}(t) = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k f_k\da \rangle \nonumber \\
+&\langle a a \rangle_{\Delta}(t) = \frac{1}{N} \sum_{k=1}^{N}e^{i4\phi(k)t} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k f_{N-k} \rangle, & \mbox{ } & \langle a\da a\da \rangle_{\Delta}(t) = \frac{1}{N} \sum_{k=1}^{N} e^{-i4\phi(k)t} e^{-i\frac{2\pi}{N}k\Delta} \langle f_{N-k}\da f_k\da \rangle.
+\end{align}
 
+\label{ex:JL-Evolution-Hopping-Hamiltonian}
+\lstinputlisting{JLCODE4.jl}
+Output:\\
+
+  \centerline{
+\includegraphics[width=1\textwidth]{figure/JLCODE4_1.pdf} }
+  \captionof{figure}{This is the correlation matrix $\Gamma$ of a translational invariant state with exponentially decaying correlations}
+  
+    \centerline{
+\includegraphics[width=0.7\textwidth]{figure/JLCODE4_2.pdf} }
+  \captionof{figure}{Here we plot the real and imaginary part of the differences correlation matrices of the ground state computed with the two methods. On the real space basis of $a,a\da$ the ground state must be the same.}
 
 
 
