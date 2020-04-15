@@ -42,20 +42,20 @@
 \contentsline {section}{\numberline {4.3}Numerical Imaginary time evolution}{29}{section.4.3}% 
 \contentsline {subsection}{\numberline {4.3.1}Imaginary time evolution of the correlation matrix}{29}{subsection.4.3.1}% 
 \contentsline {chapter}{\numberline {5}Hopping model}{31}{chapter.5}% 
-\contentsline {section}{\numberline {5.1}Example}{31}{section.5.1}% 
-\contentsline {subsubsection}{\numberline {5.1.0.1}Numerical diagonalisation of the hopping hamiltonian}{31}{subsubsection.5.1.0.1}% 
+\contentsline {section}{\numberline {5.1}Numerical diagonalisation}{31}{section.5.1}% 
 \contentsline {section}{\numberline {5.2}Time evolution}{33}{section.5.2}% 
 \contentsline {subsection}{\numberline {5.2.1}Time evolution of translational invariant states}{34}{subsection.5.2.1}% 
-\contentsline {chapter}{\numberline {A}Extended calculations}{37}{appendix.A}% 
-\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{37}{section.A.1}% 
-\contentsline {section}{\numberline {A.2}Purity}{38}{section.A.2}% 
-\contentsline {section}{\numberline {A.3}Real Time Evolution}{39}{section.A.3}% 
-\contentsline {section}{\numberline {A.4}Circulant Matrices}{39}{section.A.4}% 
-\contentsline {section}{\numberline {A.5}Block diagonal form of skew-symmetric matrices}{40}{section.A.5}% 
-\contentsline {chapter}{\numberline {B}Useful relations}{41}{appendix.B}% 
-\contentsline {section}{\numberline {B.1}Pauli Matrices}{41}{section.B.1}% 
-\contentsline {section}{\numberline {B.2}Operators obeying CAR}{41}{section.B.2}% 
-\contentsline {section}{\numberline {B.3}Jordan-Wigner Transformations}{42}{section.B.3}% 
-\contentsline {subsection}{\numberline {B.3.1}spinless fermions $\rightarrow $ spins}{42}{subsection.B.3.1}% 
-\contentsline {subsection}{\numberline {B.3.2}spins $\rightarrow $ spinless fermions}{42}{subsection.B.3.2}% 
-\contentsline {section}{\numberline {B.4}Formulas}{42}{section.B.4}% 
+\contentsline {chapter}{\numberline {6}Transverse Field Ising Model}{37}{chapter.6}% 
+\contentsline {chapter}{\numberline {A}Extended calculations}{38}{appendix.A}% 
+\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{38}{section.A.1}% 
+\contentsline {section}{\numberline {A.2}Purity}{39}{section.A.2}% 
+\contentsline {section}{\numberline {A.3}Real Time Evolution}{40}{section.A.3}% 
+\contentsline {section}{\numberline {A.4}Circulant Matrices}{40}{section.A.4}% 
+\contentsline {section}{\numberline {A.5}Block diagonal form of skew-symmetric matrices}{41}{section.A.5}% 
+\contentsline {chapter}{\numberline {B}Useful relations}{42}{appendix.B}% 
+\contentsline {section}{\numberline {B.1}Pauli Matrices}{42}{section.B.1}% 
+\contentsline {section}{\numberline {B.2}Operators obeying CAR}{42}{section.B.2}% 
+\contentsline {section}{\numberline {B.3}Jordan-Wigner Transformations}{43}{section.B.3}% 
+\contentsline {subsection}{\numberline {B.3.1}spinless fermions $\rightarrow $ spins}{43}{subsection.B.3.1}% 
+\contentsline {subsection}{\numberline {B.3.2}spins $\rightarrow $ spinless fermions}{43}{subsection.B.3.2}% 
+\contentsline {section}{\numberline {B.4}Formulas}{43}{section.B.4}% 

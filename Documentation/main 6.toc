@@ -1,0 +1,61 @@
+\contentsline {chapter}{\numberline {1}The canonical anticommutation relations}{1}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}The Hilbert space characterised by the canonical anticommutation relations}{1}{section.1.1}% 
+\contentsline {section}{\numberline {1.2}Dirac and Majorana representations}{2}{section.1.2}% 
+\contentsline {subsection}{\numberline {1.2.1}Vector notation}{2}{subsection.1.2.1}% 
+\contentsline {subsection}{\numberline {1.2.2}Fermionic transformation}{3}{subsection.1.2.2}% 
+\contentsline {subsubsection}{\numberline {1.2.2.1}Clifford Algebra}{3}{subsubsection.1.2.2.1}% 
+\contentsline {chapter}{\numberline {2}Fermionic Quadratic Hamiltonians}{5}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Dirac Representation}{5}{section.2.1}% 
+\contentsline {section}{\numberline {2.2}Majorana Representation}{5}{section.2.2}% 
+\contentsline {section}{\numberline {2.3}Diagonalisation}{6}{section.2.3}% 
+\contentsline {subsection}{\numberline {2.3.1}Hamiltonian diagonal form with Dirac operators}{6}{subsection.2.3.1}% 
+\contentsline {subsection}{\numberline {2.3.2}Hamiltonian diagonal form with Majorana operators}{6}{subsection.2.3.2}% 
+\contentsline {section}{\numberline {2.4}Numerical diagonalisation}{7}{section.2.4}% 
+\contentsline {subsection}{\numberline {2.4.1}Block-diagonal form of real skew-symmetric matrices}{9}{subsection.2.4.1}% 
+\contentsline {chapter}{\numberline {3}Fermionic Gaussian States}{10}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Fermionic Gaussian states}{10}{section.3.1}% 
+\contentsline {subsection}{\numberline {3.1.1}Single mode Gaussian states}{10}{subsection.3.1.1}% 
+\contentsline {section}{\numberline {3.2}Correlation Matrix}{10}{section.3.2}% 
+\contentsline {section}{\numberline {3.3}Covariance matrix}{11}{section.3.3}% 
+\contentsline {section}{\numberline {3.4}Wick's theorem}{11}{section.3.4}% 
+\contentsline {section}{\numberline {3.5}Diagonalisation of the correlation matrix}{12}{section.3.5}% 
+\contentsline {subsubsection}{\numberline {3.5.0.1}Phisicality of a state}{14}{subsubsection.3.5.0.1}% 
+\contentsline {subsubsection}{\numberline {3.5.0.2}Ground states of fermionic quadratic hamiltonians}{14}{subsubsection.3.5.0.2}% 
+\contentsline {subsubsection}{\numberline {3.5.0.3}Thermal state of fermionic quadratic hamiltonians}{14}{subsubsection.3.5.0.3}% 
+\contentsline {subsubsection}{\numberline {3.5.0.4}Energy of a fermionic gaussian state}{15}{subsubsection.3.5.0.4}% 
+\contentsline {section}{\numberline {3.6}Eigenvalues of $\rho $ and eigenvalues of $\Gamma $}{16}{section.3.6}% 
+\contentsline {section}{\numberline {3.7}Reduced density matrix and tensor product of fermionic gaussian states}{17}{section.3.7}% 
+\contentsline {section}{\numberline {3.8}Correlation matrix of translational invariant state}{18}{section.3.8}% 
+\contentsline {subsection}{\numberline {3.8.1}Eigenvalues using the properties of circulant-matrices}{20}{subsection.3.8.1}% 
+\contentsline {subsection}{\numberline {3.8.2}Eigenvalues using the Fourier transform on a linear lattice}{20}{subsection.3.8.2}% 
+\contentsline {section}{\numberline {3.9}Product Rule}{21}{section.3.9}% 
+\contentsline {section}{\numberline {3.10}Information measures}{22}{section.3.10}% 
+\contentsline {subsection}{\numberline {3.10.1}Von Neumann Entropies}{22}{subsection.3.10.1}% 
+\contentsline {subsection}{\numberline {3.10.2}Purity}{23}{subsection.3.10.2}% 
+\contentsline {subsection}{\numberline {3.10.3}Entanglement Contour}{23}{subsection.3.10.3}% 
+\contentsline {section}{\numberline {3.11}Examples}{25}{section.3.11}% 
+\contentsline {subsection}{\numberline {3.11.1}Computing the energies of H}{25}{subsection.3.11.1}% 
+\contentsline {subsection}{\numberline {3.11.2}Computing the entanglement contour of a partition of a ground state}{26}{subsection.3.11.2}% 
+\contentsline {chapter}{\numberline {4}Time evolution}{27}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Real Time Evolution}{27}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}Imaginary-time evolution}{28}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}Numerical Imaginary time evolution}{29}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}Imaginary time evolution of the correlation matrix}{29}{subsection.4.3.1}% 
+\contentsline {chapter}{\numberline {5}Hopping model}{31}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Example}{31}{section.5.1}% 
+\contentsline {subsubsection}{\numberline {5.1.0.1}Numerical diagonalisation of the hopping hamiltonian}{31}{subsubsection.5.1.0.1}% 
+\contentsline {section}{\numberline {5.2}Time evolution}{33}{section.5.2}% 
+\contentsline {subsection}{\numberline {5.2.1}Time evolution of translational invariant states}{33}{subsection.5.2.1}% 
+\contentsline {chapter}{\numberline {A}Extended calculations}{35}{appendix.A}% 
+\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{35}{section.A.1}% 
+\contentsline {section}{\numberline {A.2}Purity}{36}{section.A.2}% 
+\contentsline {section}{\numberline {A.3}Real Time Evolution}{37}{section.A.3}% 
+\contentsline {section}{\numberline {A.4}Circulant Matrices}{37}{section.A.4}% 
+\contentsline {section}{\numberline {A.5}Block diagonal form of skew-symmetric matrices}{38}{section.A.5}% 
+\contentsline {chapter}{\numberline {B}Useful relations}{39}{appendix.B}% 
+\contentsline {section}{\numberline {B.1}Pauli Matrices}{39}{section.B.1}% 
+\contentsline {section}{\numberline {B.2}Operators obeying CAR}{39}{section.B.2}% 
+\contentsline {section}{\numberline {B.3}Jordan-Wigner Transformations}{40}{section.B.3}% 
+\contentsline {subsection}{\numberline {B.3.1}spinless fermions $\rightarrow $ spins}{40}{subsection.B.3.1}% 
+\contentsline {subsection}{\numberline {B.3.2}spins $\rightarrow $ spinless fermions}{40}{subsection.B.3.2}% 
+\contentsline {section}{\numberline {B.4}Formulas}{40}{section.B.4}% 

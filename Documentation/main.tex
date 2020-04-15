@@ -14,6 +14,8 @@
 \cover{cover.jpg}
 
 
+%Se non usi elegantbook, puoi usare minted
+
 
 %%%%Inizio Miei
 %\usepackage{amsthm}
@@ -83,11 +85,12 @@
 %\usepackage{minted}
 %\newminted{julia}{}
 
-\usepackage[scaled]{beramono}
 \usepackage{xeCJK}
-\usepackage[utf8]{inputenc} % optional
+\usepackage[scaled]{beramono}
+%\usepackage[utf8]{inputenc} % optional
 \usepackage[T1]{fontenc}
-\usepackage{listings}
+\usepackage[utf8]{inputenc}
+\usepackage{listingsutf8}
 %\usepackage[usenames,dvipsnames]{xcolor}
 
 %%
@@ -95,7 +98,7 @@
 %%
 \lstdefinelanguage{Julia}%
   {morekeywords={abstract,break,case,catch,const,continue,do,else,elseif,%
-      end,export,false,for,function,immutable,import,importall,if,in,%
+      end,export,false,for,function,global,immutable,import,importall,if,in,%
       macro,module,otherwise,quote,return,switch,true,try,type,typealias,%
       using,while},%
    sensitive=true,%
@@ -114,6 +117,7 @@
     commentstyle     = \color{green},
     showstringspaces = false,
 }
+
 \begin{document}
 
 \maketitle
@@ -125,6 +129,7 @@
 
 \chapter{The canonical anticommutation relations}
 \section{The Hilbert space characterised by the canonical anticommutation relations}
+
 Consider a set of operators $\{a_i\}_{i=1}^{N}$ acting on a Hilbert space $\mathcal{H}$. We say that these operators satisfy the \textit{canonical anticommutation relation} (CAR) when they satisfy
 \begin{equation}
 \label{eq:CAR}
@@ -1555,14 +1560,27 @@ This function return the correlation matrix $\Gamma$ evolved at imaginary time $
 We consider the translational invariant hopping hamiltonian for a system of $N$ sites
 \begin{equation}
 \label{eq:Hopping-Hamiltonian}
-\hat{H} = \sum_{i=1}^{N} [a_i\da a_{i+1} - a_i a_{i+1}\da],
+\hat{H} = \sum_{i=1}^{N-1} [a_i\da a_{i+1} - a_i a_{i+1}\da]+\delta[a_{N}\da a_{1}-a_{N}a_{1}\da],
 \end{equation}
-where $[a_{N}\da a_{N+1}-a_{N}a_{N+1}\da] \coloneqq [a_{N}\da a_{1}-a_{N}a_{1}\da]$ is the periodic term for having periodic boundary conditions.\\
-This is one of the simplest model of fermionic quadratic hamiltonian and it can be analytically diagonalised.\\
-In order to obtain its diagonal expression, we just have to consider the specific form of the submatrices $A$ and $B$ of the hamiltonian $H$. We have that for the hopping model $B$ is a matrix with all elements equal to $0$ and $A$ is a circulat matrix with circulant vector $(0,\frac{1}{2}, \underbrace{0,\dots,0}_{N-3}, \frac{1}{2})$ (see appendix \ref{appendix:Circulant-Matrices}).
-
-
-If we express the hopping hamiltonian \eqref{eq:Hopping-Hamiltonian} in term of the Fourier modes \eqref{eq:Fourier_a-to-f} we obtain
+with $\delta=1$ for periodic boundary conditions and $\delta=0$ for open boundary conditions.\\
+The compact form \eqref{eq:H} of $\hat{H}$ is specified by the two circulant matrices (see \ref{appendix:Circulant-Matrices})
+\begin{align}
+A = \begin{pmatrix}
+0				& \frac{1}{2}	& 0			& \dots 		& 0				& \delta \frac{1}{2}	\\
+\frac{1}{2} 			& 0 			& \frac{1}{2} 	& 0 			& \dots 			& 0 				\\
+0				& \frac{1}{2} 	& 0 			& \frac{1}{™2} 	& 0 				& \dots 			 \\
+\vdots			& \vdots		&\ddots		& \ddots		& \ddots			& \vdots			\\
+\delta \frac{1}{2} 	& 0 			& 0 			& \dots 		& \frac{1}{2} 			& 0 \\
+\end{pmatrix} & \qquad
+& 
+B = \begin{pmatrix}
+0 		& \dots 	& 0 		\\
+\vdots	& \ddots	& \vdots	\\
+0		& \dots	& 0	
+\end{pmatrix}
+\end{align}
+As seen in section \ref{sec:Translational-Invariant-State} and appendix \ref{appendix:Circulant-Matrices}) we know that $H$ is diagonalised with a Fourier transformation.
+Indeed, if we express the hopping hamiltonian \eqref{eq:Hopping-Hamiltonian} in term of the Fourier modes \eqref{eq:Fourier_a-to-f} we obtain
 \begin{equation}
 \label{eq:Hopping-Diagonal}
 \hat{H} = \sum_{k=1}^{N} \phi_k (f_k\da f_k-f_k f_k\da),
@@ -1573,9 +1591,8 @@ where
 \phi_k=\cos(\frac{2\pi}{N}k).
 \end{equation}
 The fermionic transformation that diagonalise the Hamiltonian is $U_{\omega}$ as definied in \eqref{eq:Fermionic-Transformation-Fourier}.
-\section{Example}
 
-\subsubsection{Numerical diagonalisation of the hopping hamiltonian}
+\section{Numerical diagonalisation}
 In the following code we show how to initialise and diagonalise the hopping hamiltonian using functions of \code{F-utilities}.
 
 \label{ex:JL-Hopping-Hamiltonian}
@@ -1595,7 +1612,7 @@ Output:\\
 
 
 \begin{proposition}{\code{Build\_hopping\_hamiltonian($N$, PBC=true)$\rightarrow  H$}}{}
-This functions return the hamiltonian $H$ if dimension $2N \times 2N$ for the hopping model. If \code{PBC=false} it return the hopping hamiltonian without the periodic term.
+This functions return the hamiltonian $H$ if dimension $2N \times 2N$ for the hopping model. If \code{PBC=false} it return the hopping hamiltonian with open boundary conditions
 \end{proposition}
  
 For the numerical diagonalisation of the hamiltonian we used two methods, the analytical one using the Fourier modes, and the numerical one introduced in the previous section.\\
@@ -1607,8 +1624,6 @@ These methods return the hopping hamiltonian in the diagonal forms
 where the difference in the energies are due to the fact that \code{Diag\_h} consider all the energies $\epsilon_k$ positive, thus defines $b_k = f_k\da$ and $b_k\da = f_k$ for each $k$ such that $\phi_k<0$, and then reorder the modes such that to modes with smaller $k$ correspond biggest energies.\\
 
 \section{Time evolution}
-
-曇り
 
 For the hopping model we analytically obtained the fermionic transformation $U_{\omega}$ that diagonalise the Hamiltonian. This allows us to give an analytical expression for the time evolution of the correlation matrix.\\
 Expressing the correlation matrix $\Gamma$ in term of the operators $\vec{\phi}$ and computing the time evolution with the diagonal hamiltonian \ref{eq:Hopping-Diagonal} we obtain
@@ -1636,7 +1651,16 @@ Output:\\
   
     \centerline{
 \includegraphics[width=0.7\textwidth]{figure/JLCODE4_2.pdf} }
-  \captionof{figure}{Here we plot the real and imaginary part of the differences correlation matrices of the ground state computed with the two methods. On the real space basis of $a,a\da$ the ground state must be the same.}
+  \captionof{figure}{The time evolution induced by the Hopping hamiltonian of the real and imaginary part of $\langle a_1\da a_2 \rangle$ and $\langle a_1a_2\rangle$ of the translational invariant state specified in the code. }
+
+\chapter{Transverse Field Ising Model}
+The hamiltonian of the Transverse Field Ising model (TFI) is written as
+\begin{equation}
+\hat{H}=-\sum_{n=1}^{N-1}\sigma_n^x\sigma_{n+1}^x-\delta \sigma_N^x\sigma_1^x-\cot(\theta)\sum_{n=1}^{N}\sigma_n^z,
+\end{equation} 
+where $N$ is the number of sites, $\sigma_i^{\alpha}$ with $\alpha=x,y,z$ are the Pauli matrices at the $i$-th site and $\cot(\theta)$ is the magnetic field, with $0<\theta<\frac{\pi}{2}$.\\
+The parameter $\delta$ encodes the boundary conditions: here we consider $\delta=1$ or $\delta=0$, corresponding respectively to periodic boundary conditions and open boundary conditions.\\
+The model is called \textit{transverse} field Ising model because the field interacts with the spins with $\sigma_i^z$, while the spins interact between each others with $\sigma_i^x\sigma_{i+1}^x$.
 
 
 
