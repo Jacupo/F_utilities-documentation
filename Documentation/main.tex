@@ -118,6 +118,19 @@
     showstringspaces = false,
 }
 
+\usepackage{tikz-cd}
+\tikzcdset{
+    boxedcd/.style={
+        every matrix/.append style={
+            draw=red,
+            thick,
+            fill=yellow!50!white,
+            rounded corners,
+            #1
+        },
+    },
+}
+
 \begin{document}
 
 \maketitle
@@ -1659,9 +1672,9 @@ The hamiltonian of the Transverse Field Ising model (TFI) is written as
 \hat{H}=-\sum_{n=1}^{N-1}\sigma_n^x\sigma_{n+1}^x-\delta \sigma_N^x\sigma_1^x-\cot(\theta)\sum_{n=1}^{N}\sigma_n^z,
 \end{equation} 
 where $N$ is the number of sites, $\sigma_i^{\alpha}$ with $\alpha=x,y,z$ are the Pauli matrices at the $i$-th site and $\cot(\theta)$ is the magnetic field, with $0<\theta<\frac{\pi}{2}$.\\
-The parameter $\delta$ encodes the boundary conditions: here we consider $\delta=1$ or $\delta=0$, corresponding respectively to periodic boundary conditions and open boundary conditions.\\
-The model is called \textit{transverse} field Ising model because the field interacts with the spins with $\sigma_i^z$, while the spins interact between each others with $\sigma_i^x\sigma_{i+1}^x$.
-
+The parameter $\delta$ encodes the boundary conditions: here we consider $\delta=1$ or $\delta=0$, corresponding, respectively, to periodic boundary conditions and open boundary conditions.\\
+The model is called \textit{transverse} field Ising model because the field interacts with the spins with $\sigma_i^z$, while the spins interact between each others with $\sigma_i^x\sigma_{i+1}^x$.\\
+The TFI hamiltonian can be exactly diagonalised using Jordan-Wigner transformation (see appendix \ref{appendix:Jordan-Wigner}) mapping spin operators to spinless fermions \cite{lieb1961,schultz1964,pfeuty1970,mattis1976,cabrera1987,henkel1999,calabrese2012,suzuki2013}.
 
 
 %%%%%%%%%%Appendix
@@ -1847,6 +1860,67 @@ U^ThU = \begin{pmatrix} 0 & \lambda_1 \\ -\lambda_1 & 0 \end{pmatrix} \oplus \be
 where $\hat{0}_{N-2m}$ is a $(N-2m)\times (N-2m)$ matrix with all elements equal to zero and where the real and positive-definite $\{\lambda_i\}_{i=1,m}$ are the singular values of $h$.\\
 Since a skew-symmetric matrix $h$ is similar to its own transpose$h^T$, then $h$ and $h^T$ must have the same eigenvalues. Thus, the eigenvalues of a skew-symmetric matrix of even dimension will always come in pairs $\pm \tilde{\lambda}$ (for the case of odd dimension there will be an unpaired eigenvalue equal to $0$). 
 
+\section{Jordan-Wigner transformation}
+\label{appendix:Jordan-Wigner}
+The Jordan-Wigner transformation, introduced in the original paper \cite{jordan1928}, is a transformation that maps spin-$\tfrac{1}{2}$ systems to fermionic systems. \\
+Suppose we have a system of $N$ spins-$\tfrac{1}{2}$ with the usual Pauli matrices $\sigma_j^x$, $\sigma_j^y$ and $\sigma_j^z$ acting on the $j$-th spin of the system
+The Jordan-Wigner transformation defines the operator $a_j$ as
+\begin{equation}
+\label{eq:Pauli-To-Annihilation}
+a_j = -\left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes \sigma_j^-\left(\otimes_{k=j+1}^{N} \id_k \right),
+\end{equation}
+where $\sigma_j^{\pm}=\tfrac{\sigma^x_j\pm \im \sigma_j^y}{2}$ and $\id_j$ is the identity acting on the $j$-th spin. 
+Taking the adjoint obtains
+\begin{equation}
+\label{eq:Pauli-To-creation}
+a_j\da = -\left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes \sigma_j^+\left(\otimes_{k=j+1}^{N} \id_k \right).
+\end{equation}
+Computing the anticommutator of these two operators we notice that they obey the CAR, thus using this transformation for every site $j$ we are able to build a legitimate set of Dirac fermionic operators starting from a set of Pauli matrices.\\
+Knowing the expression for the creation and annihilation operators, we can easily find the mapping of the single site occupation operator in term of Pauli operators:
+\begin{equation}
+a_j\da a_j =  -\left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes \frac{\sigma_j^z+\id_j}{2}\left(\otimes_{k=j+1}^{N} \id_k \right).
+\end{equation}
+Finally there are two important remarks.
+We notice that the mapping from spins to fermions is not local, in the sense that equation \ref{eq:Pauli-To-Annihilation} maps a string of Pauli operators acting non trivially on $j$ spins to a Dirac operator local only on site $j$. \\
+We even notice that in the definition of the annihilation operator \ref{eq:Pauli-To-Annihilation} it is encoded some information on the geometrical structure of the spin system, in particular it is encoded the distance of site $j$ from the border.\\
+When using the Jordan-Wigner transformation one has to be careful about these two observations.\\
+
+In the main text we are interested in mapping the transverse field Ising hamiltonian to a fermionic system, thus we need the inverse Jordan-Wigner transformation.
+We have that the Pauli operator $ \sigma_j^z$ is easily mapped to fermionic annihilation and creation operators as
+\begin{equation}
+\label{eq:Pauli_Z-To-Dirac}
+\sigma_j^z = a_j\da a_j -a_j a_j\da.
+\end{equation}
+We see that for this transformation local spin operators are mapped to local fermionic operators. We know nonetheless that the Jordan-Wigner transformation does not preserve locality in general, indeed we have that the Pauli operators $\sigma_j^x$ and $\sigma_j^y$ maps to fermionic operators as
+\begin{align}
+\sigma_j^x = -\left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes (a_j+a_j\da)\left(\otimes_{k=j+1}^{N} \id_k \right) \nonumber \\
+\sigma_j^y = \im \left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes (a_j-a_j\da)\left(\otimes_{k=j+1}^{N} \id_k \right),
+\end{align}
+where for each $\sigma_k^z$ one should use the substitution \eqref{eq:Pauli_Z-To-Dirac}. \\
+Fortunately, if we consider the product of Pauli operators, as for example are the spin-spin interactions in the TFI model we have 
+\begin{align}
+ \sigma_j^x\sigma_{j+1}^x = (a_j^{\dag}-a_j)(a_{j+1}+a_{j+1}^{\dag}), \nonumber \\
+ \sigma_j^y\sigma_{j+1}^y = -(a_j^{\dag}+a_j)(a_{j+1}^{\dag}-a_{j+1}), \nonumber \\
+\sigma_j^x\sigma_{j+1}^y = \im (a_j^{\dag}-a_j)(a_{j+1}^{\dag}+a_{j+1}),\nonumber \\
+ \sy_j\sx_{j+1} = \im (a_j\da+a_j)(a_{j+1}\da+a_{j+1}),
+\end{align}
+nearest neighbour interactions are mapped to nearest neighbour interactions.\\
+It easy to see that an interaction of this kind between two arbitrary spins at site $j$ and $k$ will map to a string of Dirac operators acting non trivially on all sites between $j$ and $k$. \\
+
+We have seen that the Jordan-Wigner transformation defines an isomorphism from a system of $n$ fermions to a system of $n$ spins. One should ask why we cannot completely identify spin systems with fermionic systems or vice versa.
+To answer to this question we remind that, as specified above, the Jordan-Wigner mapping does not preserve the locality. 
+One of the consequence of this fact is that the procedure of partial tracing does not generally commute with the Jordan-Wigner mapping \cite{friis2013,friis2016}.
+Consider for example a state of $N$ fermions $\rho_{AB}$ defined on a system divided in two complementary partitions $A$ and $B$. We map $\rho_{AB}$ with a Jordan-Wigner transformation to a a state $\tilde{\rho}_{AB}$ of $N$ spins. Now we consider the marginals $\rho_A$ and $\tilde{\rho}_A$ on partition $A$ of the states $\rho_{AB}$ and $\tilde{\rho}_{AB}$. If, using a Jordan-Wigner transformation, we map the state $\rho_{A}$ to the spin state $\tilde{\tilde{\rho}}_{A}$, we will generally have that $\tilde{\rho}_{A}\neq \tilde{\tilde{\rho}}_{A}$.
+We show a schematic picture of this in figure \ref{fig:Friis-Fermions-Spins}.\\
+
+  \centerline{\label{fig:Friis-Fermions-Spins}
+\includegraphics[width=0.5\textwidth]{figure/friis-rdm.pdf} }
+  \captionof{figure}{The mapping of the reduced state is different from the reduced state of the mapping \cite{friis2016}}
+
+
+Due to antisymmetrisation the fermionic Fock space is not naturally equipped with a tensor product structure with respect to the individual mode subspaces. Spins instead yes. Partial trace is well defined for fermions. Partial trace is well defined for spins. This is the limitation of the mapping.
+One has to take care when considering entanglement in fermionic systems.\cite{banuls2007, ENRICO}
+
  \chapter{Useful relations}
  \section{Pauli Matrices}
  \begin{enumerate}
@@ -1885,6 +1959,7 @@ Commutators
 \end{enumerate}
 
  \section{Jordan-Wigner Transformations}
+ \label{Appendix:Jordan-Wigner-Formulas}
  \subsection{spinless fermions $\rightarrow$ spins}
  \begin{enumerate}
  \item $a_j=-\bigotimes_{k=1}^{j-1}\sigma_k^z\otimes\sigma_j^-\bigotimes_{k=j+1}^N\mathbb{I}_k$

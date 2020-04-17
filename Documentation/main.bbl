@@ -12,6 +12,18 @@
 {\bf Bravyi, Sergey}, ``Lagrangian Representation for Fermionic Linear
   Optics,'' 2004.
 
+\harvarditem[Cabrera and Jullien]{Cabrera and Jullien}{1987}{cabrera1987}
+{\bf Cabrera, G.~G. and R.~Jullien}, ``Role of Boundary Conditions in the
+  Finite-Size {{Ising}} Model,'' {\it Physical Review B}, May 1987, {\it 35}
+  (13), 7062--7072.
+
+\harvarditem[Calabrese et al.]{Calabrese, Essler and
+  Fagotti}{2012}{calabrese2012}
+{\bf Calabrese, P., F.~H.~L. Essler, and M.~Fagotti}, ``Quantum {{Quench}} in
+  the {{Transverse Field Ising}} Chain {{I}}: {{Time}} Evolution of Order
+  Parameter Correlators,'' {\it Journal of Statistical Mechanics: Theory and
+  Experiment}, July 2012, {\it 2012} (07), P07016.
+
 \harvarditem[Chen and Vidal]{Chen and Vidal}{2014}{chen2014}
 {\bf Chen, Yangang and Guifre Vidal}, ``Entanglement Contour,'' {\it Journal of
   Statistical Mechanics: Theory and Experiment}, October 2014, {\it 2014} (10),
@@ -32,10 +44,19 @@
   Disjoint Blocks in {{{\emph{XY}}}} Chains,'' {\it Journal of Statistical
   Mechanics: Theory and Experiment}, April 2010, {\it 2010} (04), P04016.
 
+\harvarditem[Friis]{Friis}{2016}{friis2016}
+{\bf Friis, Nicolai}, ``Reasonable Fermionic Quantum Information Theories
+  Require Relativity,'' {\it New Journal of Physics}, 2016, {\it 18} (3).
+
 \harvarditem[Friis et al.]{Friis, Lee and Bruschi}{2013}{friis2013}
-{\bf Friis, Nicolai, Antony~R Lee, and David~Edward Bruschi}, ``Fermionic-Mode
+{\bf \bysame{}, Antony~R Lee, and David~Edward Bruschi}, ``Fermionic-Mode
   Entanglement in Quantum Information,'' {\it Physical Review A}, February
   2013, {\it 87} (2), 022338.
+
+\harvarditem[Henkel]{Henkel}{1999}{henkel1999}
+{\bf Henkel, Malte}, {\it Conformal {{Invariance}} and {{Critical Phenomena}}}
+  Theoretical and {{Mathematical Physics}}, {Berlin Heidelberg}:
+  {Springer-Verlag}, 1999.
 
 \harvarditem[Horn and Johnson]{Horn and Johnson}{1985}{horn1985}
 {\bf Horn, Roger~A. and Charles~R. Johnson}, ``Matrix {{Analysis}} by {{Roger
@@ -50,10 +71,19 @@
 {\bf Jaynes, Edwin~T}, ``Information Theory and Statistical Mechanics.
   {{II}},'' {\it Physical Review}, 1957, {\it 108} (2), 171--190.
 
+\harvarditem[Jordan and Wigner]{Jordan and Wigner}{1928}{jordan1928}
+{\bf Jordan, P. and E.~Wigner}, ``{{\"U}ber das Paulische
+  {\"A}quivalenzverbot},'' {\it Z. Physik}, September 1928, {\it 47} (9),
+  631--651.
+
 \harvarditem[Lieb et al.]{Lieb, Schultz and Mattis}{1961}{lieb1961}
 {\bf Lieb, Elliott, Theodore Schultz, and Daniel Mattis}, ``Two Soluble Models
   of an Antiferromagnetic Chain,'' {\it Annals of Physics}, December 1961, {\it
   16} (3), 407--466.
+
+\harvarditem[Mattis]{Mattis}{1976}{mattis1976}
+{\bf Mattis, D.~C.}, ``Solvable Spin Systems with Random Interactions,'' {\it
+  Physics Letters A}, April 1976, {\it 56} (5), 421--422.
 
 \harvarditem[Molinari]{Molinari}{2017}{molinari2017}
 {\bf Molinari, Luca~Guido}, ``Notes on {{Wick}}'s Theorem in Many-Body
@@ -67,6 +97,20 @@
 {\bf Peschel, Ingo}, ``Calculation of Reduced Density Matrices from Correlation
   Functions,'' {\it J. Phys. A: Math. Gen.}, March 2003, {\it 36} (14),
   L205--L208.
+
+\harvarditem[Pfeuty]{Pfeuty}{1970}{pfeuty1970}
+{\bf Pfeuty, Pierre}, ``The One-Dimensional {{Ising}} Model with a Transverse
+  Field,'' {\it Annals of Physics}, March 1970, {\it 57} (1), 79--90.
+
+\harvarditem[Schultz et al.]{Schultz, Mattis and Lieb}{1964}{schultz1964}
+{\bf Schultz, T.~D., D.~C. Mattis, and E.~H. Lieb}, ``Two-{{Dimensional Ising
+  Model}} as a {{Soluble Problem}} of {{Many Fermions}},'' {\it Rev. Mod.
+  Phys.}, July 1964, {\it 36} (3), 856--871.
+
+\harvarditem[Suzuki et al.]{Suzuki, Inoue and Chakrabarti}{2013}{suzuki2013}
+{\bf Suzuki, Sei, Jun ichi Inoue, and Bikas~K. Chakrabarti}, {\it Transverse
+  {{Ising Chain}} ({{Pure System}})}, Vol. 862, {Berlin, Heidelberg}: {Springer
+  Berlin Heidelberg},
 
 \harvarditem[Tonni et al.]{Tonni, {Rodr{\'i}guez-Laguna} and
   Sierra}{2018}{tonni2018}
