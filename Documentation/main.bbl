@@ -8,6 +8,18 @@
   {{Hartree}}-{{Fock}} Theory and the {{Hubbard}} Model,'' {\it J Stat Phys},
   July 1994, {\it 76} (1), 3--89.
 
+\harvarditem[Ba{\~n}uls et al.]{Ba{\~n}uls, Cirac and Wolf}{2007}{banuls2007}
+{\bf Ba{\~n}uls, Mari-Carmen, J.~Ignacio Cirac, and Michael~M. Wolf},
+  ``Entanglement in Fermionic Systems,'' {\it Phys. Rev. A}, August 2007, {\it
+  76} (2), 022311.
+
+\harvarditem[Becher et al.]{Becher, Sindici, Klemt, Jochim, Daley and
+  Preiss}{2020}{becher2020}
+{\bf Becher, Jan~Hendrik, Enrico Sindici, Ralf Klemt, Selim Jochim, Andrew~J.
+  Daley, and Philipp~M. Preiss}, ``Measurement of {{Identical Particle
+  Entanglement}} and the {{Influence}} of {{Antisymmetrisation}},'' {\it
+  arXiv:2002.11207 [cond-mat]}, February 2020.
+
 \harvarditem[Bravyi]{Bravyi}{2004}{bravyi2004}
 {\bf Bravyi, Sergey}, ``Lagrangian Representation for Fermionic Linear
   Optics,'' 2004.
@@ -76,6 +88,11 @@
   {\"A}quivalenzverbot},'' {\it Z. Physik}, September 1928, {\it 47} (9),
   631--651.
 
+\harvarditem[Li et al.]{Li, Zeng, Liu and Long}{2001}{li2001}
+{\bf Li, Y.~S., B.~Zeng, X.~S. Liu, and G.~L. Long}, ``Entanglement in a
+  Two-Identical-Particle System,'' {\it Phys. Rev. A}, October 2001, {\it 64}
+  (5), 054302.
+
 \harvarditem[Lieb et al.]{Lieb, Schultz and Mattis}{1961}{lieb1961}
 {\bf Lieb, Elliott, Theodore Schultz, and Daniel Mattis}, ``Two Soluble Models
   of an Antiferromagnetic Chain,'' {\it Annals of Physics}, December 1961, {\it
@@ -102,10 +119,21 @@
 {\bf Pfeuty, Pierre}, ``The One-Dimensional {{Ising}} Model with a Transverse
   Field,'' {\it Annals of Physics}, March 1970, {\it 57} (1), 79--90.
 
+\harvarditem[Schliemann et al.]{Schliemann, Cirac, Ku{\'s}, Lewenstein and
+  Loss}{2001}{schliemann2001}
+{\bf Schliemann, John, J.~Ignacio Cirac, Marek Ku{\'s}, Maciej Lewenstein, and
+  Daniel Loss}, ``Quantum Correlations in Two-Fermion Systems,'' {\it Phys.
+  Rev. A}, July 2001, {\it 64} (2), 022303.
+
 \harvarditem[Schultz et al.]{Schultz, Mattis and Lieb}{1964}{schultz1964}
 {\bf Schultz, T.~D., D.~C. Mattis, and E.~H. Lieb}, ``Two-{{Dimensional Ising
   Model}} as a {{Soluble Problem}} of {{Many Fermions}},'' {\it Rev. Mod.
   Phys.}, July 1964, {\it 36} (3), 856--871.
+
+\harvarditem[Sindici and Piani]{Sindici and Piani}{2018}{sindici2018}
+{\bf Sindici, Enrico and Marco Piani}, ``Simple Class of Bound Entangled States
+  Based on the Properties of the Antisymmetric Subspace,'' {\it Phys. Rev. A},
+  March 2018, {\it 97} (3), 032319.
 
 \harvarditem[Suzuki et al.]{Suzuki, Inoue and Chakrabarti}{2013}{suzuki2013}
 {\bf Suzuki, Sei, Jun ichi Inoue, and Bikas~K. Chakrabarti}, {\it Transverse
@@ -123,6 +151,10 @@
 {\bf Vidal, G., J.~I. Latorre, E.~Rico, and A.~Kitaev}, ``Entanglement in
   {{Quantum Critical Phenomena}},'' {\it Phys. Rev. Lett.}, June 2003, {\it 90}
   (22), 227902.
+
+\harvarditem[Wolf]{Wolf}{2006}{wolf2006}
+{\bf Wolf, Michael~M.}, ``Violation of the {{Entropic Area Law}} for
+  {{Fermions}},'' {\it Phys. Rev. Lett.}, January 2006, {\it 96} (1), 010404.
 
 \harvarditem[Zhang et al.]{Zhang, Calabrese, Dalmonte and
   Rajabpour}{2020}{zhang2020}

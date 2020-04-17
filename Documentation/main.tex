@@ -142,6 +142,7 @@
 
 \chapter{The canonical anticommutation relations}
 \section{The Hilbert space characterised by the canonical anticommutation relations}
+\label{sec:Fermionic-Fock-Space}
 
 Consider a set of operators $\{a_i\}_{i=1}^{N}$ acting on a Hilbert space $\mathcal{H}$. We say that these operators satisfy the \textit{canonical anticommutation relation} (CAR) when they satisfy
 \begin{equation}
@@ -1910,16 +1911,14 @@ It easy to see that an interaction of this kind between two arbitrary spins at s
 We have seen that the Jordan-Wigner transformation defines an isomorphism from a system of $n$ fermions to a system of $n$ spins. One should ask why we cannot completely identify spin systems with fermionic systems or vice versa.
 To answer to this question we remind that, as specified above, the Jordan-Wigner mapping does not preserve the locality. 
 One of the consequence of this fact is that the procedure of partial tracing does not generally commute with the Jordan-Wigner mapping \cite{friis2013,friis2016}.
-Consider for example a state of $N$ fermions $\rho_{AB}$ defined on a system divided in two complementary partitions $A$ and $B$. We map $\rho_{AB}$ with a Jordan-Wigner transformation to a a state $\tilde{\rho}_{AB}$ of $N$ spins. Now we consider the marginals $\rho_A$ and $\tilde{\rho}_A$ on partition $A$ of the states $\rho_{AB}$ and $\tilde{\rho}_{AB}$. If, using a Jordan-Wigner transformation, we map the state $\rho_{A}$ to the spin state $\tilde{\tilde{\rho}}_{A}$, we will generally have that $\tilde{\rho}_{A}\neq \tilde{\tilde{\rho}}_{A}$.
-We show a schematic picture of this in figure \ref{fig:Friis-Fermions-Spins}.\\
+Consider for example a state of $N$ fermions $\rho_{AB}$ defined on a system divided in two complementary partitions $A$ and $B$. We map $\rho_{AB}$ with a Jordan-Wigner transformation to a state $\tilde{\rho}_{AB}$ of $N$ spins. Now we consider the reduced states $\rho_A$ and $\tilde{\rho}_A$ on partition $A$ of the states $\rho_{AB}$ and $\tilde{\rho}_{AB}$. If, using a Jordan-Wigner transformation, we map the state $\rho_{A}$ to the spin state $\tilde{\tilde{\rho}}_{A}$, we will generally have that $\tilde{\rho}_{A}\neq \tilde{\tilde{\rho}}_{A}$ as shown schematically in figure \ref{fig:Friis-Fermions-Spins}.\\
 
   \centerline{\label{fig:Friis-Fermions-Spins}
 \includegraphics[width=0.5\textwidth]{figure/friis-rdm.pdf} }
   \captionof{figure}{The mapping of the reduced state is different from the reduced state of the mapping \cite{friis2016}}
 
-
-Due to antisymmetrisation the fermionic Fock space is not naturally equipped with a tensor product structure with respect to the individual mode subspaces. Spins instead yes. Partial trace is well defined for fermions. Partial trace is well defined for spins. This is the limitation of the mapping.
-One has to take care when considering entanglement in fermionic systems.\cite{banuls2007, ENRICO}
+For a detailed and very well explained treatment of this question see \ref{friis2016}.
+We end this section pointing out that, the fact that the well defined trace for fermionic system is not consistent with the mapping between fermions and qubits, leads to many interesting questions on entanglement in fermionic systems, see e.g.  \cite{li2001,schliemann2001,wolf2006,banuls2007,sindici2018,becher2020}
 
  \chapter{Useful relations}
  \section{Pauli Matrices}
