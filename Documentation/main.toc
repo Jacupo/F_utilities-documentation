@@ -43,20 +43,26 @@
 \contentsline {subsection}{\numberline {4.3.1}Imaginary time evolution of the correlation matrix}{29}{subsection.4.3.1}% 
 \contentsline {chapter}{\numberline {5}Hopping model}{31}{chapter.5}% 
 \contentsline {section}{\numberline {5.1}Numerical diagonalisation}{31}{section.5.1}% 
-\contentsline {section}{\numberline {5.2}Time evolution}{33}{section.5.2}% 
+\contentsline {section}{\numberline {5.2}Time Evolution}{33}{section.5.2}% 
 \contentsline {subsection}{\numberline {5.2.1}Time evolution of translational invariant states}{34}{subsection.5.2.1}% 
 \contentsline {chapter}{\numberline {6}Transverse Field Ising Model}{37}{chapter.6}% 
-\contentsline {chapter}{\numberline {A}Extended calculations}{38}{appendix.A}% 
-\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{38}{section.A.1}% 
-\contentsline {section}{\numberline {A.2}Purity}{39}{section.A.2}% 
-\contentsline {section}{\numberline {A.3}Real Time Evolution}{40}{section.A.3}% 
-\contentsline {section}{\numberline {A.4}Circulant Matrices}{40}{section.A.4}% 
-\contentsline {section}{\numberline {A.5}Block diagonal form of skew-symmetric matrices}{41}{section.A.5}% 
-\contentsline {section}{\numberline {A.6}Jordan-Wigner transformation}{41}{section.A.6}% 
-\contentsline {chapter}{\numberline {B}Useful relations}{44}{appendix.B}% 
-\contentsline {section}{\numberline {B.1}Pauli Matrices}{44}{section.B.1}% 
-\contentsline {section}{\numberline {B.2}Operators obeying CAR}{44}{section.B.2}% 
-\contentsline {section}{\numberline {B.3}Jordan-Wigner Transformations}{45}{section.B.3}% 
-\contentsline {subsection}{\numberline {B.3.1}spinless fermions $\rightarrow $ spins}{45}{subsection.B.3.1}% 
-\contentsline {subsection}{\numberline {B.3.2}spins $\rightarrow $ spinless fermions}{45}{subsection.B.3.2}% 
-\contentsline {section}{\numberline {B.4}Formulas}{45}{section.B.4}% 
+\contentsline {section}{\numberline {6.1}Analytical diagonalisation of the TFI hamiltonian}{38}{section.6.1}% 
+\contentsline {subsection}{\numberline {6.1.1}Antiperiodic and periodic boundary condition fermionic hamiltonian}{39}{subsection.6.1.1}% 
+\contentsline {subsection}{\numberline {6.1.2}Open boundary condition fermionic hamiltonian}{40}{subsection.6.1.2}% 
+\contentsline {section}{\numberline {6.2}Ground state}{40}{section.6.2}% 
+\contentsline {subsection}{\numberline {6.2.1}Analitical and Numerical energies}{41}{subsection.6.2.1}% 
+\contentsline {subsection}{\numberline {6.2.2}Degenerancy of the ground state}{43}{subsection.6.2.2}% 
+\contentsline {chapter}{\numberline {A}Extended calculations}{45}{appendix.A}% 
+\contentsline {section}{\numberline {A.1}Eigenvalues of $\Gamma $ and $H_{\alpha }$}{45}{section.A.1}% 
+\contentsline {section}{\numberline {A.2}Purity}{46}{section.A.2}% 
+\contentsline {section}{\numberline {A.3}Real Time Evolution}{47}{section.A.3}% 
+\contentsline {section}{\numberline {A.4}Circulant Matrices}{47}{section.A.4}% 
+\contentsline {section}{\numberline {A.5}Block diagonal form of skew-symmetric matrices}{48}{section.A.5}% 
+\contentsline {section}{\numberline {A.6}Jordan-Wigner transformation}{48}{section.A.6}% 
+\contentsline {chapter}{\numberline {B}Useful relations}{51}{appendix.B}% 
+\contentsline {section}{\numberline {B.1}Pauli Matrices}{51}{section.B.1}% 
+\contentsline {section}{\numberline {B.2}Operators obeying CAR}{51}{section.B.2}% 
+\contentsline {section}{\numberline {B.3}Jordan-Wigner Transformations}{52}{section.B.3}% 
+\contentsline {subsection}{\numberline {B.3.1}spinless fermions $\rightarrow $ spins}{52}{subsection.B.3.1}% 
+\contentsline {subsection}{\numberline {B.3.2}spins $\rightarrow $ spinless fermions}{52}{subsection.B.3.2}% 
+\contentsline {section}{\numberline {B.4}Formulas}{52}{section.B.4}% 

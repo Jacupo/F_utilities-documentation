@@ -131,6 +131,12 @@
     },
 }
 
+
+
+\newcommand*{\bfrac}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
+\usepackage{multirow}
+
+
 \begin{document}
 
 \maketitle
@@ -1582,7 +1588,7 @@ The compact form \eqref{eq:H} of $\hat{H}$ is specified by the two circulant mat
 A = \begin{pmatrix}
 0				& \frac{1}{2}	& 0			& \dots 		& 0				& \delta \frac{1}{2}	\\
 \frac{1}{2} 			& 0 			& \frac{1}{2} 	& 0 			& \dots 			& 0 				\\
-0				& \frac{1}{2} 	& 0 			& \frac{1}{™2} 	& 0 				& \dots 			 \\
+0				& \frac{1}{2} 	& 0 			& \frac{1}{2} 	& 0 				& \dots 			 \\
 \vdots			& \vdots		&\ddots		& \ddots		& \ddots			& \vdots			\\
 \delta \frac{1}{2} 	& 0 			& 0 			& \dots 		& \frac{1}{2} 			& 0 \\
 \end{pmatrix} & \qquad
@@ -1637,7 +1643,7 @@ These methods return the hopping hamiltonian in the diagonal forms
 \end{equation} 
 where the difference in the energies are due to the fact that \code{Diag\_h} consider all the energies $\epsilon_k$ positive, thus defines $b_k = f_k\da$ and $b_k\da = f_k$ for each $k$ such that $\phi_k<0$, and then reorder the modes such that to modes with smaller $k$ correspond biggest energies.\\
 
-\section{Time evolution}
+\section{Time Evolution}
 
 For the hopping model we analytically obtained the fermionic transformation $U_{\omega}$ that diagonalise the Hamiltonian. This allows us to give an analytical expression for the time evolution of the correlation matrix.\\
 Expressing the correlation matrix $\Gamma$ in term of the operators $\vec{\phi}$ and computing the time evolution with the diagonal hamiltonian \ref{eq:Hopping-Diagonal} we obtain
@@ -1670,12 +1676,208 @@ Output:\\
 \chapter{Transverse Field Ising Model}
 The hamiltonian of the Transverse Field Ising model (TFI) is written as
 \begin{equation}
-\hat{H}=-\sum_{n=1}^{N-1}\sigma_n^x\sigma_{n+1}^x-\delta \sigma_N^x\sigma_1^x-\cot(\theta)\sum_{n=1}^{N}\sigma_n^z,
+\hat{H}=-\sum_{n=1}^{N-1}\sigma_n^x\sigma_{n+1}^x-g_I \sigma_N^x\sigma_1^x-\cot(\theta)\sum_{n=1}^{N}\sigma_n^z,
 \end{equation} 
 where $N$ is the number of sites, $\sigma_i^{\alpha}$ with $\alpha=x,y,z$ are the Pauli matrices at the $i$-th site and $\cot(\theta)$ is the magnetic field, with $0<\theta<\frac{\pi}{2}$.\\
-The parameter $\delta$ encodes the boundary conditions: here we consider $\delta=1$ or $\delta=0$, corresponding, respectively, to periodic boundary conditions and open boundary conditions.\\
+The parameter $g_I$ encodes the boundary conditions of the Ising model: here we consider $g_I=-1,0,+1$, corresponding, respectively, to anti-periodic, open and periodic boundary conditions.\\
 The model is called \textit{transverse} field Ising model because the field interacts with the spins with $\sigma_i^z$, while the spins interact between each others with $\sigma_i^x\sigma_{i+1}^x$.\\
-The TFI hamiltonian can be exactly diagonalised using Jordan-Wigner transformation (see appendix \ref{appendix:Jordan-Wigner}) mapping spin operators to spinless fermions \cite{lieb1961,schultz1964,pfeuty1970,mattis1976,cabrera1987,henkel1999,calabrese2012,suzuki2013}.
+The TFI hamiltonian can be exactly diagonalised using a Jordan-Wigner transformation (see appendix \ref{appendix:Jordan-Wigner}) mapping spin operators to spinless fermions \cite{lieb1961,schultz1964,pfeuty1970,mattis1976,cabrera1987,henkel1999,calabrese2012,suzuki2013}.\\
+In term of fermions the hamiltonian has the form
+\begin{equation}
+\label{eq:TFI-Fermions}
+\hat{H} = -\sum_{n=1}^{N-1}(a_n\da-a_n)(a_{n+1}+a_{n+1}\da)+g_I\hat{P}(a_N\da-a_N)(a_1+a_1\da)-\cot(\theta)\sum_{n=1}^{N}(a_n\da a_n-a_n a_n\da),
+\end{equation}
+where $\hat{P}=\prod_{n=1}^{N}(1-2a_n\da a_n)$ is the parity operator introduced in \ref{sec:Clifford-Algebra}.\\
+We notice that becuase of the presence of the parity operator $\hat{P}$, the TFI hamiltonian cannot be directly mapped to a f.q.h.. 
+Nonetheless, since the hamiltonian $\hat{H}$ commutes with the parity operator $\hat{P}$ we can diagonalise $\hat{H}$ and $\hat{P}$ simultaneously. On the diagonal basis of $\hat{P}$ we have that $\hat{H}$ has the block diagonal form $\hat{H}=\hat{H}_{e}\oplus \hat{H}_{o}$, where $\hat{H}_{e}$, called even sector hamiltonian, corresponds to the eigenvalue $+1$ of $\hat{P}$ and $\hat{H}_{o}$, the odd sector hamiltonian, corresponds to the eigenvalue $-1$ of $\hat{P}$. We can than proceed to diagonalise the hamiltonian on the two sectors independently. \\
+The hamiltonians of the two sectors are:
+\begin{equation}
+\hat{H}_{\bfrac{e}{o}} = -\sum_{n=1}^{N-1}(a_n\da-a_n)(a_{n+1}+a_{n+1}\da) \pm g_I(a_N\da-a_N)(a_1+a_1\da)-\cot(\theta)\sum_{n=1}^{N}(a_n\da a_n-a_n a_n\da).
+\end{equation}
+Finally, we see that on each parity sector the TFI hamiltonian is mapped to a f.q.h.. \\
+A bit of confusion can raise from considering the boundary conditions. The boundary conditions of the TFI hamiltonian do not corresponds to the boundary conditions of the fermionic hamiltonian. In fact, let us consider the three f.q.h.
+\begin{equation}
+\label{eq:TFI-Fermions-BC}
+\hat{H}(g_F) = -\sum_{n=1}^{N-1}(a_n\da-a_n)(a_{n+1}+a_{n+1}\da) - g_F(a_N\da-a_N)(a_1+a_1\da)-\cot(\theta)\sum_{n=1}^{N}(a_n\da a_n-a_n a_n\da),
+\end{equation}
+where the boundary conditions are encoded by the parameter $g_F=-1,0.+1$ and corresponds respectively to antiperiodic, open and periodic boundary conditions of the fermionic hamiltonian.
+The correspondences between spin model and fermionic model are collected in table \ref{tab:Spin-Fermions}
+Written in compact form \eqref{eq:Dirac-QFH-h}, hamiltonian \eqref{eq:TFI-Fermions-BC}, is specified by the matrices 
+\begin{equation}
+A = -\tfrac{1}{2}\begin{pmatrix}
+2\cot(\theta)				& 1	& 0			& \dots 		& 0				& g_F	\\
+1			& 2\cot(\theta) 			& 1	& 0 			& \dots 			& 0 				\\
+0				& 1 	& 2\cot(\theta) 			& 1 	& 0 				& \dots 			 \\
+\vdots			& \vdots		&\ddots		& \ddots		& \ddots			& \vdots			\\
+g_F 	& 0 			& 0 			& \dots 		& 1			& 2\cot(\theta) \\
+\end{pmatrix} 
+\end{equation}
+and
+\begin{equation}
+B = -\tfrac{1}{2}\begin{pmatrix}
+0				& -1	& 0			& \dots 		& 0				& g_F 	\\
+1			& 0			& -1	& 0 			& \dots 			& 0 				\\
+0				& 1 	& 0 			& -1 	& 0 				& \dots 			 \\
+\vdots			& \vdots		&\ddots		& \ddots		& \ddots			& \vdots			\\
+-g_F 	& 0 			& 0 			& \dots 		& 1			& 0 \\
+\end{pmatrix}.
+\end{equation}
+We already know how to numerically diagonalise this hamiltonian.
+We will present here the standard method for analytical diagonalisation, introducing the Bogoliubov transformations, and we will compare the results with the numerical diagonalisation.
+\begin{table}
+\centering
+\begin{tabular}{ |l|l|l| }
+\hline
+\multirow{2}{*} {$g_I=1$ (TFI periodic)} 	& Even sector 	& $g_F=-1$,	(f.q.h. antiperiodic)\\ \cline{2-3}
+								& Odd Sector	& $g_F=+1$,	(f.q.h periodic)\\
+\hline
+$g_I=0$ (TFI open) 		& Even/Odd sector 	& $g_F=0$,	(f.q.h. open)\\
+\hline
+\multirow{2}{*} {$g_I=-1$ (TFI antiperiodic)} 	& Even sector 	& $g_F=+1$,	(f.q.h. periodic)\\ \cline{2-3}
+									& Odd Sector	& $g_F=-1$,	(f.q.h antiperiodic)\\
+\hline
+\end{tabular}
+\caption{Corrspondences between spin models and fermionic models}
+\label{tab:Spin-Fermions}
+\end{table}
+
+
+
+
+
+\section{Analytical diagonalisation of the TFI hamiltonian}
+In this section we will see how to diagonalise the three hamiltonians \eqref{eq:TFI-Fermions-BC} analytically. For a complete and detailed treatment we refer to \cite{lieb1961,cabrera1987} or the more recent review \cite{suzuki2013}.\\
+\subsection{Antiperiodic and periodic boundary condition fermionic hamiltonian}
+Let us first consider the case of antiperiodic and periodic boundary conditions, $g_F=-1,+1$ (APBC and PBC respectively). Both cases can be brought to the form:
+\begin{align}
+\label{eq:H-FTFI-PBC-APBC}
+\hat{H} 	 = 	& -2\sum_{k > 0} \left[(\cot(\theta)+\cos(\frac{2\pi}{N}k))(f_k\da f_k - f_k f_k\da)+ i \sin(\frac{2\pi}{N}k)(f_k\da f_{-k}\da-f_{-k} f_k)\right]+ \nonumber \\
+			& -(1+\cot(\theta))(f_0\da f_0 -f_0 f_0\da)-(\cot(\theta)-1)(f_{-\tfrac{N}{2}}\da f_{-\tfrac{N}{2}} -f_{-\tfrac{N}{2}} f_{-\tfrac{N}{2}}\da),
+\end{align}
+where
+\begin{equation}
+\label{eq:Fourier_f-to-a}
+	f_k = \frac{1}{\sqrt{N}}\sum_{j=1}^{N}e^{i\frac{2\pi}{N}kj}a_j, \qquad f_k\da = \frac{1}{\sqrt{N}}\sum_{j=1}^{N}e^{-i\frac{2\pi}{N}kj}a_j\da, 
+\end{equation}
+with inverse transformations
+\label{eq:Fourier_a-to-f}
+\begin{equation}
+	a_j = \frac{1}{\sqrt{N}}\sum_{k}e^{-i\frac{2\pi}{N}kj}f_k, \qquad a_j\da = \frac{1}{\sqrt{N}}\sum_{k}e^{i\frac{2\pi}{N}kj}f_k\da.
+\end{equation}
+and 
+\begin{align}
+k=\frac{-N+1}{2},\frac{-N+1}{2}+1,\dots,\frac{N-1}{2} & & \mbox{ for $g_F=-1$ and $N$ even or $g_F=1$ and $N$ odd} \nonumber \\
+k=\frac{-N}{2},\frac{-N}{2}+1,\dots,\frac{N}{2}-1 & & \mbox{ for $g_F=+1$ and $N$ even or $g_F=-1$ and $N$ odd}.
+\end{align}
+Terms with $f_0\da,f_0$ and $f_{-\tfrac{N}{2}}, f_{-\tfrac{N}{2}}\da$ in \eqref{eq:H-FTFI-PBC-APBC} are present just when $k=0$ and $k={-\tfrac{N}{2}}$ are allowed.\\
+The different quantisation of the $k$ in the two cases is justified in \cite{lieb1961} and can be understood by intuition noting that with the first quantisation one would have $a_{N+1}=-a_1$, while with the second $a_{N+1}=a_1$. 
+We can write the hamiltonian in the more compact form 
+\begin{equation}
+\hat{H}  =	 \sum_{k>0}\begin{pmatrix} f_k\da & f_{-k} \end{pmatrix} h_k \begin{pmatrix} f_k \\ f_{-k}\da \end{pmatrix} -(1+\cot(\theta)(f_0\da f_0 -f_0 f_0\da),
+\end{equation}
+with 
+\begin{equation}
+h_k = \begin{pmatrix} -2(\cot(\theta)+\cos(\frac{2\pi}{N}k)) & 2\im \sin(\frac{2\pi}{N}k) \\ -2\im \sin(\frac{2\pi}{N}k) & 2(\cot(\theta)+\cos(\frac{2\pi}{N}k)) \end{pmatrix}.
+\end{equation}
+This divides the modes space in sectors that couples each $k$ with $-k$.
+For each of these sectors we have the unitary transformation
+\begin{equation}
+U_k =  \begin{pmatrix} s_k & -\im t_k \\ -\im t_k & s_k \end{pmatrix},
+\end{equation}
+such that it diagonalise $h_k$ as
+\begin{equation}
+U_k\da h_k U_k = \begin{pmatrix} \epsilon_k 	& 0 \\ 
+							0		& -\epsilon_k \end{pmatrix},
+\end{equation}
+with eigenvalues
+\begin{equation}
+\epsilon_k = 2 \sqrt{1+\cot(\theta)^2+2 \cot(\theta) \cos(\frac{2\pi}{N}k)}.
+\end{equation}
+
+The elements of  $U_k$ are defined as
+\begin{align}
+s_k	& = \frac{\sin(\frac{2\pi}{N}k)}{ \sqrt{\epsilon_k(\epsilon_k / 2+\cot(\theta)+\cos(\frac{2\pi}{N}k))} }, \\
+t_k 	& = \frac{ \epsilon_k / 2+\cot(\theta)+cos(\frac{2\pi}{N}k) } { \sqrt{ \epsilon_k(\epsilon_k / 2+\cot(\theta)+cos(\frac{2\pi}{N}k)) } }.
+\end{align}
+
+This defines the fermionic transformation of all the Fourier modes that reads as
+\begin{align}
+f_k		& = s_k b_k  - \im t_k b_{-k}\da, \\
+f_{-k}\da	& = s_k b_{-k}\da  - \im t_k b_k.
+\end{align}
+This transformation is called Bogoliubov-Valatin transformation \cite{bogoljubov1958,valatin1958}, and seldom $s_k$ and $t_k$ are expressed respectively as $\cos(\phi_k)$ and $\sin(\phi_k)$, with $\phi_k$ called Bogoliubov angle. One has that for PBC and APBC each f.q.h. of the form \eqref{eq:H-FTFI-PBC-APBC} is characterised by the choice of the quantisation of $k$ and a particular Bogoliubov angle.\\
+We finally obtain the diagonal form of the hamiltonian
+\begin{equation}
+\hat{H}=\sum_{k\neq -\frac{N}{2}, 0} \frac{\epsilon_k}{2}(b_k\da b_k -b_{k}b_{k}\da)-(1-\cot(\theta))(f_0\da f_0 -f_0 f_0\da)-(\cot(\theta)-1)(f_{-\tfrac{N}{2}}\da f_{-\tfrac{N}{2}} -f_{-\tfrac{N}{2}} f_{-\tfrac{N}{2}}\da).
+\end{equation}
+
+
+\subsection{Open boundary condition fermionic hamiltonian}
+For the open boundary conditions (OBC) form of  hamiltonian \eqref{eq:TFI-Fermions-BC} there is not a clear meaning for the term $a_{N+1}$, thus we will not apply any Fourier transform.
+We will not show here the procedure for the diagonalisation, we refer to \cite{lieb1961, cabrera1987} or the more recent \cite{he2017} for it. 
+%\begin{align}
+%b_k = \sum_{n=1}^{N}( g_{k,n} a_n + h_{k,n} a_n\da), & & b_k\da = \sum_{n=1}^{N}(g_{k,n}a_n\da + h_{k,n}a_{n}),
+%\end{align}
+%where 
+%\begin{align}
+%g_{k,n}	& = \frac{1}{2\sqrt{\sum_{n=1}^{N} u_{k,n}}} (u_{k,n}+u_{k,N-n+1}), \\
+%h_{k,n}	& = \frac{1}{2\sqrt{\sum_{n=1}^{N} u_{k,n}}} (u_{k,n}-u_{k,N-n+1}), 
+%\end{align}
+%$u_{k,n}=\sin(n\phi_k)$ and
+We have that he energies $\epsilon_k$ of the hamiltonian in diagonal form will be
+\begin{equation}
+\epsilon_k = \sqrt{1+\cot(\theta)^2+2\cot(\theta)\cos(\phi_k)}
+\end{equation}
+with  $\{\phi_k\}_{k=1}^{N}$ the roots of equation
+\begin{equation}
+\frac{\sin((N+1)\phi)}{\sin(N\phi)}=-\frac{1}{\cot(\theta)},
+\end{equation}
+in the interval $0\leq \phi_k \leq \pi$.
+
+\section{Ground state}
+In the case of OBC the ground state is easily found using the function \code{GS\_gamma()} with the hamiltonian \eqref{eq:TFI-Fermions-BC} imposing $g_F=0$.\\
+For the APBC and PBC cases it is not clear yet how to find it. We don't know yet if the ground state is even or odd or if it is a superposition of states with different parities.
+It is know that, at finite dimension, with $N$ even, for the antiperiodic Ising model the ground state is in the odd sector, while for the periodic Ising model the ground state is in the even sector.
+When $N$ is odd, for the antiperiodic Ising model the ground state is in the even sector and for the periodic Ising model the ground state is in the odd sector \cite{calabrese2012}.\\
+In the thermodynamic limits, the energy differences between the two sectors goes to zero, the ground state become degenerate. 
+Here we present a code for finding the correct sector of the ground state and for verifying that as $N$ grows the energy difference between the ground state of the two sectors goes to zero.
+\subsection{Analitical and Numerical energies}
+\label{sec:JLCODE5}
+\lstinputlisting{JLCODE5.jl}
+
+Output:\\
+\code{Ground State Energies}\\
+\code{G\_F=-1	:  -25.18934650837823}\\
+\code{G\_F=+1	:   -25.189223629491178}\\
+We have $N=10$ so the ground state is expected to be in the GF=-1 sector. The computed energies confirm this.
+
+  \centerline{
+\includegraphics[width=0.85\textwidth]{figure/JLCODE5.pdf} }
+  \captionof{figure}{Output of the code \ref{sec:JLCODE5}, we see that the energies computed with \code{F\_utilities} correspond to the one computed analytically.}
+ 
+\subsection{Degenerancy of the ground state}
+\lstinputlisting{JLCODE6.jl}
+
+  \centerline{
+\includegraphics[width=0.85\textwidth]{figure/JLCODE6.pdf} }
+  \captionof{figure}{The ground state of hamiltonians \eqref{eq:TFI-Fermions-BC} for $g_F=\pm 1$ converges exponentially to the same value. The ground state of the antiperiodic and of the periodic transverse field Ising model is degenerate in the thermodynamic limit.}
+
+
+%\begin{equation}
+%\begin{tikzcd}
+%	& |[alias=A]| \mbox{Even sector} \arrow[ to=B, rightarrow]  & |[alias=B]| g_F=1 \mbox{, fermionic periodic}   \\  
+%	|[alias=C]| \mbox{TFI periodic} \arrow[to=A, rightarrow] \arrow[to=D, rightarrow] && \\
+%	& |[alias=D]| \mbox{Odd sector} \arrow[to=E, rightarrow] & |[alias=E]| g_F=-1 \mbox{, fermionic antiperiodic}
+%%\arrow[ to=B, leftrightarrow, bend left, "=" description,red] \arrow[to=D, "\textbf{A}" description, draw=none, xshift=2ex]&  	|[alias=B]| \rho_1^{G} \arrow[to=F, "\textbf{B}" description, draw=none]  \arrow[l, "P_{\mathcal{G}}" description] \arrow[r, "\mcut_{H}", to=C] \arrow[d,  "\Lambda" description, to=D]
+%%	&  &  	|[alias=C]| \mcut_{H}(\rho_1^{G}) \arrow[d,"\Lambda" description,to=F] \arrow[r, "P_{\mathcal{G}}" description] & 	|[alias=L]| \rho(\tilde{\mcut}_{H}(\Lambda(\rho_{1}^{G}))) \arrow[ to=C, leftrightarrow, bend right, "?=" description ,red] \arrow[to=F, "\textbf{C}" description, draw=none,xshift=-2ex] \\
+%%	& 	|[alias=D]|  \Lambda(\rho_{1}^{G}) \arrow[bend left, to=A, "\rho" description,yshift=0.5ex,xshift=1ex] \arrow[ to=A, leftarrow, bend left, "\Lambda"description ,yshift=-1ex, xshift=-1ex] \arrow[r,  "\tilde{\mcut}_{H}"]
+%%	& 	|[alias=E]| \tilde{\mcut}_{H}(\Lambda(\rho_{1}^{G})) \arrow[r, leftrightarrow,"="] & |[alias=F]| \Lambda( \mcut_{H}(\rho_1^{G}))  \arrow[bend right, to=L, "\rho" description ,yshift=1ex, xshift=-1ex]  \arrow[ to=L, leftarrow, bend right, "\Lambda"description ,yshift=-1ex, xshift=1ex] &
+%\end{tikzcd}.
+%\label{eq:comm_graph}
+%\end{equation}
+%\captionof{figure}{Commutative graph for the transformations between correlations matrices and density matrices. Since the initial state $\rho_1^{G}$ is Gaussian, the quadrant $\textbf{A}$ is completely commutative and all the elements are equivalent. The quadrant $\textbf{B}$ introduce the complete dephasing that is in general a non reversible mapping (exception made for the case in which $\rho_1^{G}$ is diagonal). The quadrant $\textbf{C}$ is in general not commutative since the complete dephasing doesn't always preserve the Gaussianity of the state. The proof of the equality in quadrant $\textbf{B}$ is in appendix \ref{appendix:Not-Gaussian}.}
+
+
 
 
 %%%%%%%%%%Appendix
@@ -1868,18 +2070,18 @@ Suppose we have a system of $N$ spins-$\tfrac{1}{2}$ with the usual Pauli matric
 The Jordan-Wigner transformation defines the operator $a_j$ as
 \begin{equation}
 \label{eq:Pauli-To-Annihilation}
-a_j = -\left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes \sigma_j^-\left(\otimes_{k=j+1}^{N} \id_k \right),
+a_j = -\left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes \sigma_j^+\left(\otimes_{k=j+1}^{N} \id_k \right),
 \end{equation}
 where $\sigma_j^{\pm}=\tfrac{\sigma^x_j\pm \im \sigma_j^y}{2}$ and $\id_j$ is the identity acting on the $j$-th spin. 
 Taking the adjoint obtains
 \begin{equation}
 \label{eq:Pauli-To-creation}
-a_j\da = -\left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes \sigma_j^+\left(\otimes_{k=j+1}^{N} \id_k \right).
+a_j\da = -\left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes \sigma_j^-\left(\otimes_{k=j+1}^{N} \id_k \right).
 \end{equation}
 Computing the anticommutator of these two operators we notice that they obey the CAR, thus using this transformation for every site $j$ we are able to build a legitimate set of Dirac fermionic operators starting from a set of Pauli matrices.\\
 Knowing the expression for the creation and annihilation operators, we can easily find the mapping of the single site occupation operator in term of Pauli operators:
 \begin{equation}
-a_j\da a_j =  -\left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes \frac{\sigma_j^z+\id_j}{2}\left(\otimes_{k=j+1}^{N} \id_k \right).
+a_j\da a_j =  \left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes \frac{\id_j-\sigma_j^z}{2}\left(\otimes_{k=j+1}^{N} \id_k \right).
 \end{equation}
 Finally there are two important remarks.
 We notice that the mapping from spins to fermions is not local, in the sense that equation \ref{eq:Pauli-To-Annihilation} maps a string of Pauli operators acting non trivially on $j$ spins to a Dirac operator local only on site $j$. \\
@@ -1890,19 +2092,19 @@ In the main text we are interested in mapping the transverse field Ising hamilto
 We have that the Pauli operator $ \sigma_j^z$ is easily mapped to fermionic annihilation and creation operators as
 \begin{equation}
 \label{eq:Pauli_Z-To-Dirac}
-\sigma_j^z = a_j\da a_j -a_j a_j\da.
+\sigma_j^z = a_j a_j\da-a_j\da a_j = 1-2a_j\da a_j.
 \end{equation}
 We see that for this transformation local spin operators are mapped to local fermionic operators. We know nonetheless that the Jordan-Wigner transformation does not preserve locality in general, indeed we have that the Pauli operators $\sigma_j^x$ and $\sigma_j^y$ maps to fermionic operators as
 \begin{align}
 \sigma_j^x = -\left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes (a_j+a_j\da)\left(\otimes_{k=j+1}^{N} \id_k \right) \nonumber \\
-\sigma_j^y = \im \left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes (a_j-a_j\da)\left(\otimes_{k=j+1}^{N} \id_k \right),
+\sigma_j^y = \im \left(\otimes_{k=1}^{j-1}\sigma^z_k \right)\otimes (a_j\da-a_j)\left(\otimes_{k=j+1}^{N} \id_k \right),
 \end{align}
 where for each $\sigma_k^z$ one should use the substitution \eqref{eq:Pauli_Z-To-Dirac}. \\
 Fortunately, if we consider the product of Pauli operators, as for example are the spin-spin interactions in the TFI model we have 
 \begin{align}
  \sigma_j^x\sigma_{j+1}^x = (a_j^{\dag}-a_j)(a_{j+1}+a_{j+1}^{\dag}), \nonumber \\
  \sigma_j^y\sigma_{j+1}^y = -(a_j^{\dag}+a_j)(a_{j+1}^{\dag}-a_{j+1}), \nonumber \\
-\sigma_j^x\sigma_{j+1}^y = \im (a_j^{\dag}-a_j)(a_{j+1}^{\dag}+a_{j+1}),\nonumber \\
+\sigma_j^x\sigma_{j+1}^y = \im (a_j^{\dag}-a_j)(a_{j+1}^{\dag}-a_{j+1}),\nonumber \\
  \sy_j\sx_{j+1} = \im (a_j\da+a_j)(a_{j+1}\da+a_{j+1}),
 \end{align}
 nearest neighbour interactions are mapped to nearest neighbour interactions.\\
@@ -1963,7 +2165,7 @@ Commutators
  \begin{enumerate}
  \item $a_j=-\bigotimes_{k=1}^{j-1}\sigma_k^z\otimes\sigma_j^-\bigotimes_{k=j+1}^N\mathbb{I}_k$
  \item $a_j^{\dag}=-\bigotimes_{k=1}^{j-1}\sigma_k^z\otimes\sigma_j^+\bigotimes_{k=j+1}^N\mathbb{I}_k$
-  \item $a_j^{\dag}a_j=\bigotimes_{k=1}^{j-1}\otimes \frac{\sigma_j^z+\id_j}{2} \bigotimes_{k=j+1}^N \id_k $
+  \item $a_j^{\dag}a_j=\otimes_{k=1}^{j-1}\sigma^z_k \otimes \frac{\sigma_j^z+\id_j}{2}\otimes_{k=j+1}^{N} \id_k $
  \end{enumerate}
  \subsection{spins $\rightarrow$ spinless fermions}
  \begin{enumerate}
