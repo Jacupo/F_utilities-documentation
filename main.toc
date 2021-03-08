@@ -63,12 +63,15 @@
 \contentsline {subsection}{\numberline {A.1.4}Circulant Matrices}{63}{subsection.A.1.4}%
 \contentsline {subsection}{\numberline {A.1.5}Block diagonal form of skew-symmetric matrices}{64}{subsection.A.1.5}%
 \contentsline {subsection}{\numberline {A.1.6}Power method algorithm}{64}{subsection.A.1.6}%
-\contentsline {subsection}{\numberline {A.1.7}Jordan-Wigner transformation}{65}{subsection.A.1.7}%
-\contentsline {section}{\numberline {A.2}Useful relations}{66}{section.A.2}%
-\contentsline {subsection}{\numberline {A.2.1}Pauli Matrices}{66}{subsection.A.2.1}%
-\contentsline {subsection}{\numberline {A.2.2}Operators obeying CAR}{67}{subsection.A.2.2}%
-\contentsline {subsection}{\numberline {A.2.3}Jordan-Wigner Transformations}{67}{subsection.A.2.3}%
-\contentsline {paragraph}{spinless fermions $\rightarrow $ spins}{67}{section*.40}%
-\contentsline {paragraph}{spins $\rightarrow $ spinless fermions}{67}{section*.41}%
-\contentsline {subsection}{\numberline {A.2.4}Formulas}{68}{subsection.A.2.4}%
-\contentsline {chapter}{Bibliography}{68}{Item.41}%
+\contentsline {subsection}{\numberline {A.1.7}Equilibration of Fermionic Gaussian systems}{65}{subsection.A.1.7}%
+\contentsline {subsubsection}{Equilibration times and Gaussification}{65}{section*.40}%
+\contentsline {subsubsection}{Equilibration of occupations in the Fermionic transverve Field Ising model}{65}{section*.41}%
+\contentsline {subsection}{\numberline {A.1.8}Jordan-Wigner transformation}{66}{subsection.A.1.8}%
+\contentsline {section}{\numberline {A.2}Useful relations}{68}{section.A.2}%
+\contentsline {subsection}{\numberline {A.2.1}Pauli Matrices}{68}{subsection.A.2.1}%
+\contentsline {subsection}{\numberline {A.2.2}Operators obeying CAR}{68}{subsection.A.2.2}%
+\contentsline {subsection}{\numberline {A.2.3}Jordan-Wigner Transformations}{69}{subsection.A.2.3}%
+\contentsline {paragraph}{spinless fermions $\rightarrow $ spins}{69}{section*.42}%
+\contentsline {paragraph}{spins $\rightarrow $ spinless fermions}{69}{section*.43}%
+\contentsline {subsection}{\numberline {A.2.4}Formulas}{69}{subsection.A.2.4}%
+\contentsline {chapter}{Bibliography}{69}{Item.41}%

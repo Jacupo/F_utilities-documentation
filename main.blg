@@ -20,45 +20,45 @@ Repeated entry---line 9625 of file TesiTotale.bib
  :                     ,
 I'm skipping whatever remains of this entry
 Warning--empty year in nielsena
-You've used 37 entries,
+You've used 40 entries,
             1876 wiz_defined-function locations,
-            704 strings with 8368 characters,
-and the built_in function-call counts, 9993 in all, are:
-= -- 1076
-> -- 296
+            721 strings with 8887 characters,
+and the built_in function-call counts, 10719 in all, are:
+= -- 1146
+> -- 332
 < -- 0
-+ -- 116
-- -- 79
-* -- 647
-:= -- 1333
-add.period$ -- 42
-call.type$ -- 37
-change.case$ -- 33
++ -- 129
+- -- 89
+* -- 694
+:= -- 1436
+add.period$ -- 46
+call.type$ -- 40
+change.case$ -- 35
 chr.to.int$ -- 0
-cite$ -- 38
-duplicate$ -- 584
-empty$ -- 870
-format.name$ -- 79
-if$ -- 2510
+cite$ -- 41
+duplicate$ -- 627
+empty$ -- 931
+format.name$ -- 89
+if$ -- 2692
 int.to.chr$ -- 0
-int.to.str$ -- 37
-missing$ -- 42
-newline$ -- 119
-num.names$ -- 37
-pop$ -- 81
+int.to.str$ -- 40
+missing$ -- 46
+newline$ -- 129
+num.names$ -- 40
+pop$ -- 91
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 512
+skip$ -- 545
 stack$ -- 0
-substring$ -- 609
-swap$ -- 317
+substring$ -- 627
+swap$ -- 338
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 93
-width$ -- 39
-write$ -- 365
+while$ -- 98
+width$ -- 42
+write$ -- 394
 (There were 4 error messages)

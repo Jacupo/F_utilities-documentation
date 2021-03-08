@@ -310,6 +310,65 @@ We note here the importance of the value of the difference $|\lambda_1-\lambda_2
 In condensed matter one is often interested in computing the ground state energy $E_0$ of a Hamiltonian $H$, that is the smallest eigenvalue of $H$. By adding a sufficiently big number to the Hamiltonian, one obtains that the smallest eigenvalue of $H$ corresponds to the eigenvalue with the smallest magnitude. In order to compute the smallest eigenvalue in magnitude of $H$ one can use the inverse power method \cite{grinfeld2015} that fundamentally is the power method applied to $H^{-1}$. In this case the algorithm will converge geometrically with ratio $\frac{E_0}{E_1}$, where  $E_1$ is the second smallest eigenvalue of the Hamiltonian $H$. If $E_1-E_0 = 0$ then the algorithm will not converge.\\
 Because of its importance, the difference between the two lowest eigenvalues of an Hamiltonian (that is the difference between the ground state energy and the first excited state energy) has a specific name and it is called \textit{Hamiltonian Gap} or \textit{spectral gap} often denoted by $\Delta E$. In particular, definining a family of Hamiltonians dependendent on the parameter $N$ (the dimension of the system), we call \textit{gapless Hamiltonians} those Hamiltonians for wich the Hamiltonian Gap $\to 0$ in the thermodynamics limit $N \to \infty$, and  we call \textit{gapped Hamiltonians} those Hamiltonians for which the spectral gap remains positive in the thermodynamic limit.
 
+
+\subsection{Equilibration of Fermionic Gaussian systems}
+\subsubsection{Equilibration times and Gaussification}
+For systems evolving with a quadratic Fermionic Hamiltonian there exists general, and mathematically rigorous statements about the equilibration of the systems towards the GGE \cite{gluza2016a,gluza2019}.\\
+ The framework in which these theorems hold is that of a generic $1D$ fermionic system of $N$ sites with translational invariant local Hamiltonian $H$ with periodic boundary conditions, with the additional assumption that the derivative of the dispersion relation $\epsilon(k)$ have not coinciding roots (there is not a $k$ such that $\frac{d^2}{d k^2}\epsilon(k)=\frac{d^3}{d k^3} \epsilon(k)=0$). In this context, for every initial state $\rho$ of the system with finite correlation lenght and no long-wavelength dislocations in the two points correlators of Dirac operators , there exists a constant relaxation time $t_0$ and a time of recurrence $t_R$ proportional to the system size $N$ such that, for all $t \in [t_0,t_R]$, the state locally equilibrate to a GGE with
+\begin{equation}
+|\langle O \rangle_{\rho(t)}-\langle O \rangle_{GGE}| \leq C t^{-\gamma},
+\end{equation}
+with $O$ a local observable and $C,\gamma>0$ independent from $N$.\\
+It is important to notice that no assumptions on the Gaussianity of the initial state have been made. It is indeed possible to choose as initial state a state that is not Gaussian, it is the quadratic form of the Hamiltonian $H$ that, through a process called \textit{gaussification} \cite{gluza2016a}, transforms the state to a state locally indistinguishable from a Fermionic Gaussian state.\\
+Gaussification is a general result conferring even more relevance to Fermionic Gaussian states.\\
+Following again \cite{gluza2019} we have that for an initial Fermionic state $\rho$ with exponential decay of correlations and a non-interacting translational invariant Hamiltonian $H$ with the derivative of the dispersion relation with not coinciding roots (there is not a $k$ such that $\frac{d^2}{d k^2}\epsilon(k)=\frac{d^3}{d k^3} \epsilon(k)=0$), there exists a constant relaxation time $t_0$ and and a recurrence time $t_R$ proportional to $N$ such that, for all $t \in [t_0,t_R]$,
+\begin{equation}
+|\langle O \rangle_{\rho(t)} - \langle O \rangle_{\rho(\Gamma(\rho(t)))}| \leq C t^{-1/6},
+\end{equation}
+where $C>0$.
+This shows that, under these conditions, the expectation value of the local observable $O$ converges with a power law in time towards the same value computed with the Gaussian projection of the state.
+
+\subsubsection{Equilibration of occupations in the Fermionic transverve Field Ising model}
+\label{sec:Equilibration-Thermodynamics-Fermions}
+In some cases it is possible to explicitly compute the equilbration of some local observables. \\
+In chapter \ref{sec:Time-Evolution-TFI} we compute the time evolution of the single site occupation $\langle a_1\da a_1 \rangle$ during the out-of-equilibrium dynamics of a translational invariant state with Hamiltonian \eqref{eq:TFI-Fermions-BC} where $g_F=-1$ and $N$ is even. \\
+We are now interested to verify if this observable equilibrates. \\
+In order to avoid recurrence effects we compute the limit of expression \eqref{eq:Evolution-occupation-TFI} in the case of the number of sites going to infinity $N\to \infty$. Defining the quantity $p=-\frac{2\pi}{N}$ we can write
+\begin{align}
+\label{eq:integral-time-evolution-occupation-TFI}
+&\langle a_1\da a_1 \rangle (t)  = \nonumber \\
+& = \lim_{N \to \infty} \frac{1}{N} \sum_{k=\frac{-N+1}{2}}^{\frac{N+1}{2}} \left[s_k^2 \langle b_k\da b_k \rangle +t_k^2 \langle b_{-k} b_{-k}\da \rangle + \im s_k t_k (e^{i \epsilon_k t}\langle b_{-k} b_k \rangle - e^{-i \epsilon_k t}\langle b_k\da b_{-k}\da \rangle ) \right] = \nonumber \\
+& = - \int_{-\pi}^{\pi} dp \left[s_{-p}^2 \langle b_{-p}\da b_{-p} \rangle +t_{-p}^2 \langle b_{p} b_{p}\da \rangle + \im s_{-p} t_{-p} (e^{i \epsilon(p) t}\langle b_{p} b_{-p} \rangle - e^{-i \epsilon(p) t}\langle b_{-p}\da b_{p}\da \rangle ) \right],
+\end{align} with
+\begin{align}
+s_p	& = \frac{\sin(p)}{ \sqrt{\epsilon_k(\epsilon_p / 2+\cot(\theta)+\cos(p))} }, \nonumber \\
+t_p 	& = \frac{ \epsilon_p / 2+\cot(\theta)+cos(p) } { \sqrt{ \epsilon_p(\epsilon_p / 2+\cot(\theta)+cos(p) } }, \nonumber \\
+\epsilon(p)  & = 2 \sqrt{1+\cot(\theta)^2-2 \cot(\theta) \cos(p)}.
+\end{align}
+The two time-dependent terms of the integral \eqref{eq:integral-time-evolution-occupation-TFI} have the same form, thus it suffices to study the long-time behaviour of the integral
+\begin{equation}
+I(t) = \int_{-\pi}^{\pi} dp e^{i \epsilon(p) t} s_{-p} t_{-p} \langle b_{p} b_{-p} \rangle.
+\end{equation}
+In order to study the long-time beaviour of $I(t)$ we use the result about oscillatory integral in \cite{stein1993a} chapter VII proposition 3.
+Having that $\frac{d}{dp}\epsilon(p)\Big|_{p=0}=0$ and $\frac{d^2}{dp^2}\epsilon(p)\Big|_{p=0}\neq 0$, for large values of $t$, the integral can be approximated as
+\begin{equation}
+I(t) \sim t^{-1/2} \sum_{j=0}^{\infty} a_{2j} t^{-j},
+\end{equation}
+where each $a_j$ depends only on finitely many derivatives of both $\epsilon(p)$ and $ s_{-p} t_{-p} \langle b_{p} b_{-p} \rangle$ at $p=0$. Computing $a_j$ explicitly we find that $a_0=0$, thus we have that at large $t$
+\begin{equation}
+I(t) \sim t^{-3/2}.
+\end{equation}
+Plugging this result into \eqref{eq:integral-time-evolution-occupation-TFI} we find out that the single site occupation, in the long-time regime, equilibrates as $t^{-3/2}$ to the asymptotic value of
+\begin{equation}
+\langle a_1\da a_1 \rangle = - \int_{-\pi}^{\pi} dp \left[s_{-p}^2 \langle b_{-p}\da b_{-p} \rangle +t_{-p}^2 \langle b_{p} b_{p}\da \rangle \right],
+\end{equation}
+that is exactly the one predicted by the GDE.
+
+
+
+
+
+
 \subsection{Jordan-Wigner transformation}
 \label{appendix:Jordan-Wigner}
 The Jordan-Wigner transformation, introduced in the original paper \cite{jordan1928}, is a transformation that maps spin-$\tfrac{1}{2}$ systems to fermionic systems. \\

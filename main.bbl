@@ -136,6 +136,21 @@ M.~T. Fishman and S.~R. White, ``Compression of correlation matrices and an
 M.~Grinfeld, {\em Mathematical {{Tools}} for {{Physicists}}}.
 \newblock {John Wiley \& Sons}, Jan. 2015.
 
+\bibitem{gluza2016a}
+M.~Gluza, C.~Krumnow, M.~Friesdorf, C.~Gogolin, and J.~Eisert, ``Equilibration
+  via {{Gaussification}} in {{Fermionic Lattice Systems}},'' {\em Phys. Rev.
+  Lett.}, vol.~117, p.~190602, Nov. 2016.
+
+\bibitem{gluza2019}
+M.~Gluza, J.~Eisert, and T.~Farrelly, ``Equilibration towards generalized
+  {{Gibbs}} ensembles in non-interacting theories,'' {\em SciPost Phys.},
+  vol.~7, p.~038, Sept. 2019.
+
+\bibitem{stein1993a}
+E.~M. Stein and T.~S. Murphy, {\em Harmonic {{Analysis}}: {{Real}}-{{Variable
+  Methods}}, {{Orthogonality}}, and {{Oscillatory Integrals}}. ({{PMS}}-43)}.
+\newblock {Princeton University Press}, 1993.
+
 \bibitem{jordan1928}
 P.~Jordan and E.~Wigner, ``{\"Uber das Paulische \"Aquivalenzverbot},'' {\em Z.
   Phys.}, vol.~47, pp.~631--651, Sept. 1928.
