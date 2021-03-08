@@ -1,0 +1,64 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{using} \PYG{n}{F\PYGZus{}utilities}\PYG{p}{;}
+\PYG{k}{using} \PYG{n}{PyPlot}\PYG{p}{;}
+\PYG{k}{using} \PYG{n}{LinearAlgebra}\PYG{p}{;}
+
+\PYG{k+kd}{const} \PYG{n}{Fu} \PYG{o}{=} \PYG{n}{F\PYGZus{}utilities}\PYG{p}{;}
+
+
+\PYG{n}{N}\PYG{o}{=}\PYG{l+m+mi}{50}\PYG{p}{;}
+\PYG{n}{N\PYGZus{}steps} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{n}{δ\PYGZus{}steps} \PYG{o}{=} \PYG{l+m+mf}{0.1}\PYG{p}{;}
+
+\PYG{c}{\PYGZsh{}Build the circulant vector for the a†a part of the Γ with exponential decaying correlations}
+\PYG{n}{adaa} \PYG{o}{=} \PYG{n}{zeros}\PYG{p}{(}\PYG{k+kt}{Complex}\PYG{p}{\PYGZob{}}\PYG{k+kt}{Float64}\PYG{p}{\PYGZcb{},}\PYG{n}{N}\PYG{p}{);}\PYG{c}{\PYGZsh{}}
+\PYG{k}{for} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{div}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}
+    \PYG{n}{adaa}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{exp}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{o}{*}\PYG{l+m+mf}{0.15}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{rand}\PYG{p}{()}\PYG{o}{+}\PYG{n+nb}{im}\PYG{o}{*}\PYG{n}{rand}\PYG{p}{())}
+\PYG{k}{end}
+\PYG{n}{adaa}\PYG{p}{[((}\PYG{n}{div}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{))}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{:}\PYG{n}{N}\PYG{p}{]}\PYG{o}{=} \PYG{n}{reverse}\PYG{p}{(}\PYG{n}{adaa}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{div}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)]);}
+\PYG{c}{\PYGZsh{}Build the translational invariant a†a part of the Γ}
+\PYG{n}{Γ\PYGZus{}adaa} \PYG{o}{=} \PYG{n}{Fu}\PYG{o}{.}\PYG{n}{Circulant}\PYG{p}{(}\PYG{n}{adaa}\PYG{p}{);}
+\PYG{n}{Γ\PYGZus{}adaa} \PYG{o}{=} \PYG{p}{(}\PYG{n}{Γ\PYGZus{}adaa}\PYG{o}{+}\PYG{n}{Γ\PYGZus{}adaa}\PYG{o}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mf}{2.}
+
+\PYG{c}{\PYGZsh{}Build the circulant vector for the aa part of the Γ}
+\PYG{n}{aa} \PYG{o}{=} \PYG{n}{zeros}\PYG{p}{(}\PYG{k+kt}{Complex}\PYG{p}{\PYGZob{}}\PYG{k+kt}{Float64}\PYG{p}{\PYGZcb{},}\PYG{n}{N}\PYG{p}{);}
+\PYG{n}{aa}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{=} \PYG{n}{rand}\PYG{p}{()}\PYG{o}{+}\PYG{n+nb}{im}\PYG{o}{*}\PYG{n}{rand}\PYG{p}{();}
+\PYG{n}{aa}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{=} \PYG{n}{rand}\PYG{p}{()}\PYG{o}{+}\PYG{n+nb}{im}\PYG{o}{*}\PYG{n}{rand}\PYG{p}{();}
+\PYG{c}{\PYGZsh{}Build the translational invariant aa part of the Γ}
+\PYG{n}{Γ\PYGZus{}aa} \PYG{o}{=} \PYG{n}{Fu}\PYG{o}{.}\PYG{n}{Circulant}\PYG{p}{(}\PYG{n}{aa}\PYG{p}{)}
+\PYG{n}{Γ\PYGZus{}aa} \PYG{o}{=} \PYG{p}{(}\PYG{n}{Γ\PYGZus{}aa}\PYG{o}{\PYGZhy{}}\PYG{n}{transpose}\PYG{p}{(}\PYG{n}{Γ\PYGZus{}aa}\PYG{p}{))}\PYG{o}{/}\PYG{l+m+mf}{2.}\PYG{p}{;}
+
+\PYG{c}{\PYGZsh{}Build the translational invariant Γ}
+\PYG{n}{Γ}\PYG{o}{=} \PYG{n}{zeros}\PYG{p}{(}\PYG{k+kt}{Complex}\PYG{p}{\PYGZob{}}\PYG{k+kt}{Float64}\PYG{p}{\PYGZcb{},} \PYG{l+m+mi}{2}\PYG{n}{N}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{n}{N}\PYG{p}{);}
+\PYG{n}{Γ}\PYG{p}{[(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{),(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{)]}          \PYG{o}{=} \PYG{n}{Γ\PYGZus{}adaa}\PYG{p}{;}
+\PYG{n}{Γ}\PYG{p}{[(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{)}\PYG{o}{.+}\PYG{n}{N}\PYG{p}{,(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{)}\PYG{o}{.+}\PYG{n}{N}\PYG{p}{]}    \PYG{o}{=} \PYG{p}{(}\PYG{n+nb}{I}\PYG{o}{\PYGZhy{}}\PYG{n}{Γ\PYGZus{}adaa}\PYG{p}{)}\PYG{o}{\PYGZsq{}}\PYG{p}{;}
+\PYG{n}{Γ}\PYG{p}{[(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{)}\PYG{o}{.+}\PYG{n}{N}\PYG{p}{,(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{)]}       \PYG{o}{=} \PYG{n}{Γ\PYGZus{}aa}\PYG{p}{;}
+\PYG{n}{Γ}\PYG{p}{[(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{),(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{)}\PYG{o}{.+}\PYG{n}{N}\PYG{p}{]}       \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{conj}\PYG{p}{(}\PYG{n}{Γ\PYGZus{}aa}\PYG{p}{);}
+\PYG{n}{Fu}\PYG{o}{.}\PYG{n}{Print\PYGZus{}complex\PYGZus{}matrix}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Γ\PYGZdq{}}\PYG{p}{,}\PYG{n}{Γ}\PYG{p}{)}
+
+\PYG{n}{H}   \PYG{o}{=} \PYG{n}{Fu}\PYG{o}{.}\PYG{n}{Build\PYGZus{}hopping\PYGZus{}hamiltonian}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,}\PYG{k+kc}{true}\PYG{p}{);}
+\PYG{n}{D}\PYG{p}{,}\PYG{n}{U} \PYG{o}{=} \PYG{n}{Diag\PYGZus{}h}\PYG{p}{(}\PYG{n}{H}\PYG{p}{);}
+
+
+\PYG{n}{Γ\PYGZus{}evolved}   \PYG{o}{=} \PYG{n}{copy}\PYG{p}{(}\PYG{n}{Γ}\PYG{p}{);}
+\PYG{n}{adaa}        \PYG{o}{=} \PYG{n}{zeros}\PYG{p}{(}\PYG{k+kt}{Complex}\PYG{p}{\PYGZob{}}\PYG{k+kt}{Float64}\PYG{p}{\PYGZcb{},} \PYG{n}{N\PYGZus{}steps}\PYG{p}{)}
+\PYG{n}{aa}          \PYG{o}{=} \PYG{n}{similar}\PYG{p}{(}\PYG{n}{adaa}\PYG{p}{);}
+
+\PYG{c}{\PYGZsh{}Start the time evolution cycle}
+\PYG{c}{\PYGZsh{}at each cycle it saves the value of two correalotors}
+\PYG{n}{adaa}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}     \PYG{o}{=} \PYG{n}{Γ\PYGZus{}evolved}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{];}
+\PYG{n}{aa}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}       \PYG{o}{=} \PYG{n}{Γ\PYGZus{}evolved}\PYG{p}{[}\PYG{n}{N}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{];}
+\PYG{k}{for} \PYG{n}{t}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{o}{:}\PYG{n}{N\PYGZus{}steps}
+    \PYG{k+kd}{global} \PYG{n}{Γ\PYGZus{}evolved} \PYG{o}{=} \PYG{n}{Fu}\PYG{o}{.}\PYG{n}{Evolve}\PYG{p}{(}\PYG{n}{Γ\PYGZus{}evolved}\PYG{p}{,(}\PYG{n}{D}\PYG{p}{,}\PYG{n}{U}\PYG{p}{),}\PYG{n}{δ\PYGZus{}steps}\PYG{p}{);}
+    \PYG{n}{adaa}\PYG{p}{[}\PYG{n}{t}\PYG{p}{]}     \PYG{o}{=} \PYG{n}{Γ\PYGZus{}evolved}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{];}
+    \PYG{n}{aa}\PYG{p}{[}\PYG{n}{t}\PYG{p}{]}       \PYG{o}{=} \PYG{n}{Γ\PYGZus{}evolved}\PYG{p}{[}\PYG{n}{N}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{];}
+\PYG{k}{end}
+
+\PYG{n}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Evolutions\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plot}\PYG{p}{(}\PYG{n}{real}\PYG{o}{.}\PYG{p}{(}\PYG{n}{adaa}\PYG{p}{),} \PYG{n}{color}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}black\PYGZdq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{n}{L}\PYG{l+s}{\PYGZdq{}\PYGZdl{}\PYGZbs{}mathfrak\PYGZob{}R\PYGZcb{}(\PYGZbs{}langle a\PYGZus{}1\PYGZca{}\PYGZob{}\PYGZbs{}dagger\PYGZcb{}a\PYGZus{}2 }\PYG{l+s+se}{\PYGZbs{}r}\PYG{l+s}{angle)(t)\PYGZdl{}\PYGZdq{}}\PYG{p}{);}
+\PYG{n}{plot}\PYG{p}{(}\PYG{n}{imag}\PYG{o}{.}\PYG{p}{(}\PYG{n}{adaa}\PYG{p}{),} \PYG{n}{color}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}black\PYGZdq{}}\PYG{p}{,}\PYG{n}{linestyle}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZdq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{n}{L}\PYG{l+s}{\PYGZdq{}\PYGZdl{}\PYGZbs{}mathfrak\PYGZob{}I\PYGZcb{}(\PYGZbs{}langle a\PYGZus{}1\PYGZca{}\PYGZob{}\PYGZbs{}dagger\PYGZcb{} a\PYGZus{}2 }\PYG{l+s+se}{\PYGZbs{}r}\PYG{l+s}{angle)(t)\PYGZdl{}\PYGZdq{}}\PYG{p}{);}
+\PYG{n}{plot}\PYG{p}{(}\PYG{n}{real}\PYG{o}{.}\PYG{p}{(}\PYG{n}{aa}\PYG{p}{),} \PYG{n}{color}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}purple\PYGZdq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{n}{L}\PYG{l+s}{\PYGZdq{}\PYGZdl{}\PYGZbs{}mathfrak\PYGZob{}R\PYGZcb{}(\PYGZbs{}langle a\PYGZus{}1a\PYGZus{}2 }\PYG{l+s+se}{\PYGZbs{}r}\PYG{l+s}{angle|(t))\PYGZdl{}\PYGZdq{}}\PYG{p}{);}
+\PYG{n}{plot}\PYG{p}{(}\PYG{n}{imag}\PYG{o}{.}\PYG{p}{(}\PYG{n}{aa}\PYG{p}{),} \PYG{n}{color}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}purple\PYGZdq{}}\PYG{p}{,} \PYG{n}{linestyle}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZdq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{n}{L}\PYG{l+s}{\PYGZdq{}\PYGZdl{}\PYGZbs{}mathfrak\PYGZob{}I\PYGZcb{}(\PYGZbs{}langle a\PYGZus{}1 a\PYGZus{}2 }\PYG{l+s+se}{\PYGZbs{}r}\PYG{l+s}{angle)(t)\PYGZdl{}\PYGZdq{}}\PYG{p}{);}
+\PYG{n}{legend}\PYG{p}{()}
+\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}timestep\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

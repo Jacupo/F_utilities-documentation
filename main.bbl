@@ -1,0 +1,172 @@
+\begin{thebibliography}{10}
+
+\bibitem{nielsena}
+M.~A. Nielsen, ``The {{Fermionic}} canonical commutation relations and the
+  {{Jordan}}-{{Wigner}} transform,'' {\em
+  http://michaelnielsen.org/blog/archive/notes/fermions\_and\_jordan\_wigner.pdf},
+  p.~8.
+
+\bibitem{bravyi2004}
+S.~Bravyi, ``Lagrangian representation for fermionic linear optics,'' {\em
+  arXiv:quant-ph/0404180}, Apr. 2004.
+
+\bibitem{lieb1961}
+E.~Lieb, T.~Schultz, and D.~Mattis, ``Two soluble models of an
+  antiferromagnetic chain,'' {\em Ann. Phys. (N. Y.)}, vol.~16, pp.~407--466,
+  Dec. 1961.
+
+\bibitem{zumino1962}
+B.~Zumino, ``Normal {{Forms}} of {{Complex Matrices}},'' {\em J. Math. Phys.},
+  vol.~3, pp.~1055--1057, Sept. 1962.
+
+\bibitem{horn2012}
+R.~A. Horn and C.~R. Johnson, {\em Matrix {{Analysis}}}.
+\newblock {Cambridge}: {Cambridge University Press}, second~ed., 2012.
+
+\bibitem{friis2013a}
+N.~Friis, A.~R. Lee, and D.~E. Bruschi, ``Fermionic-mode entanglement in
+  quantum information,'' {\em Phys. Rev. A}, vol.~87, p.~022338, Feb. 2013.
+
+\bibitem{friis2016}
+N.~Friis, ``Reasonable fermionic quantum information theories require
+  relativity,'' {\em New J. Phys.}, vol.~18, no.~3, 2016.
+
+\bibitem{jaynes1957a}
+E.~T. Jaynes, ``Information theory and statistical mechanics,'' {\em Phys.
+  Rev.}, vol.~106, pp.~620--630, May 1957.
+
+\bibitem{jaynes1957}
+E.~T. Jaynes, ``Information theory and statistical mechanics. {{II}},'' {\em
+  Phys. Rev.}, vol.~108, no.~2, pp.~171--190, 1957.
+
+\bibitem{molinari2017}
+L.~G. Molinari, ``Notes on {{Wick}}'s theorem in many-body theory,'' {\em
+  arXiv:1710.09248}, Oct. 2017.
+
+\bibitem{vein1999}
+R.~Vein and P.~Dale, {\em Determinants and {{Their Applications}} in
+  {{Mathematical Physics}}}.
+\newblock Applied {{Mathematical Sciences}}, {New York}: {Springer-Verlag},
+  1999.
+
+\bibitem{peschel2003a}
+I.~Peschel, ``Calculation of reduced density matrices from correlation
+  functions,'' {\em J. Phys. A: Math. Gen.}, vol.~36, pp.~L205--L208, Mar.
+  2003.
+
+\bibitem{vidal2003a}
+G.~Vidal, J.~I. Latorre, E.~Rico, and A.~Kitaev, ``Entanglement in {{Quantum
+  Critical Phenomena}},'' {\em Phys. Rev. Lett.}, vol.~90, p.~227902, June
+  2003.
+
+\bibitem{cheong2004}
+S.-A. Cheong and C.~L. Henley, ``Many-body density matrices for free
+  fermions,'' {\em Phys. Rev. B}, vol.~69, p.~075111, Feb. 2004.
+
+\bibitem{zhang2020}
+J.~Zhang, P.~Calabrese, M.~Dalmonte, and M.~A. Rajabpour, ``Lattice
+  {{Bisognano}}-{{Wichmann}} modular {{Hamiltonian}} in critical quantum spin
+  chains,'' {\em arXiv:2003.00315}, Feb. 2020.
+
+\bibitem{fagotti2010a}
+M.~Fagotti and P.~Calabrese, ``Entanglement entropy of two disjoint blocks in
+  {{XY}} chains,'' {\em J. Stat. Mech. Theory Exp.}, vol.~2010, p.~P04016, Apr.
+  2010.
+
+\bibitem{bach1994a}
+V.~Bach, E.~H. Lieb, and J.~P. Solovej, ``Generalized {{Hartree}}-{{Fock}}
+  theory and the {{Hubbard}} model,'' {\em J Stat Phys}, vol.~76, pp.~3--89,
+  July 1994.
+
+\bibitem{chen2014}
+Y.~Chen and G.~Vidal, ``Entanglement contour,'' {\em J. Stat. Mech. Theory
+  Exp.}, vol.~2014, p.~P10011, Oct. 2014.
+
+\bibitem{schultz1964}
+T.~D. Schultz, D.~C. Mattis, and E.~H. Lieb, ``Two-dimensional {{Ising}} model
+  as a soluble problem of many fermions,'' {\em Rev. Mod. Phys.}, vol.~36,
+  pp.~856--871, July 1964.
+
+\bibitem{pfeuty1970}
+P.~Pfeuty, ``The one-dimensional {{Ising}} model with a transverse field,''
+  {\em Ann Phys (N Y)}, vol.~57, pp.~79--90, Mar. 1970.
+
+\bibitem{mattis1976}
+D.~C. Mattis, ``Solvable spin systems with random interactions,'' {\em Phys.
+  Lett. A}, vol.~56, pp.~421--422, Apr. 1976.
+
+\bibitem{cabrera1987}
+G.~G. Cabrera and R.~Jullien, ``Role of boundary conditions in the finite-size
+  {{Ising}} model,'' {\em Phys. Rev. B}, vol.~35, pp.~7062--7072, May 1987.
+
+\bibitem{henkel1999}
+M.~Henkel, {\em Conformal {{Invariance}} and {{Critical Phenomena}}}.
+\newblock Theoretical and {{Mathematical Physics}}, {Berlin Heidelberg}:
+  {Springer-Verlag}, 1999.
+
+\bibitem{calabrese2012}
+P.~Calabrese, F.~H.~L. Essler, and M.~Fagotti, ``Quantum {{Quench}} in the
+  {{Transverse Field Ising}} chain {{I}}: {{Time}} evolution of order parameter
+  correlators,'' {\em J. Stat. Mech. Theory Exp.}, vol.~2012, p.~P07016, July
+  2012.
+
+\bibitem{suzuki2013}
+S.~Suzuki, J.-i. Inoue, and B.~K. Chakrabarti, {\em Transverse {{Ising Chain}}
+  ({{Pure System}})}, vol.~862, pp.~13--46.
+\newblock {Berlin, Heidelberg}: {Springer Berlin Heidelberg}, 2013.
+
+\bibitem{bogoljubov1958}
+N.~N. Bogoljubov, ``On a new method in the theory of superconductivity,'' {\em
+  Nuovo Cim}, vol.~7, pp.~794--805, Mar. 1958.
+
+\bibitem{valatin1958}
+J.~G. Valatin, ``Comments on the theory of superconductivity,'' {\em Nuovo
+  Cim}, vol.~7, pp.~843--857, Mar. 1958.
+
+\bibitem{he2017}
+Y.~He and H.~Guo, ``The boundary effects of transverse field {{Ising}} model,''
+  {\em J. Stat. Mech.}, vol.~2017, p.~093101, Sept. 2017.
+
+\bibitem{fishman2015}
+M.~T. Fishman and S.~R. White, ``Compression of correlation matrices and an
+  efficient method for forming matrix product states of fermionic {{Gaussian}}
+  states,'' {\em Phys. Rev. B}, vol.~92, p.~075132, Aug. 2015.
+
+\bibitem{grinfeld2015}
+M.~Grinfeld, {\em Mathematical {{Tools}} for {{Physicists}}}.
+\newblock {John Wiley \& Sons}, Jan. 2015.
+
+\bibitem{jordan1928}
+P.~Jordan and E.~Wigner, ``{\"Uber das Paulische \"Aquivalenzverbot},'' {\em Z.
+  Phys.}, vol.~47, pp.~631--651, Sept. 1928.
+
+\bibitem{li2001}
+Y.~S. Li, B.~Zeng, X.~S. Liu, and G.~L. Long, ``Entanglement in a
+  two-identical-particle system,'' {\em Phys. Rev. A}, vol.~64, p.~054302, Oct.
+  2001.
+
+\bibitem{schliemann2001}
+J.~Schliemann, J.~I. Cirac, M.~Ku{\'s}, M.~Lewenstein, and D.~Loss, ``Quantum
+  correlations in two-fermion systems,'' {\em Phys. Rev. A}, vol.~64,
+  p.~022303, July 2001.
+
+\bibitem{wolf2006}
+M.~M. Wolf, ``Violation of the {{Entropic Area Law}} for {{Fermions}},'' {\em
+  Phys. Rev. Lett.}, vol.~96, p.~010404, Jan. 2006.
+
+\bibitem{banuls2007}
+M.-C. Ba{\~n}uls, J.~I. Cirac, and M.~M. Wolf, ``Entanglement in fermionic
+  systems,'' {\em Phys. Rev. A}, vol.~76, p.~022311, Aug. 2007.
+
+\bibitem{sindici2018}
+E.~Sindici and M.~Piani, ``Simple class of bound entangled states based on the
+  properties of the antisymmetric subspace,'' {\em Phys. Rev. A}, vol.~97,
+  p.~032319, Mar. 2018.
+
+\bibitem{becher2020a}
+J.~Becher, E.~Sindici, R.~Klemt, S.~Jochim, A.~Daley, and P.~Preiss,
+  ``Measurement of {Identical} {Particle} {Entanglement} and the {Influence} of
+  {Antisymmetrization},'' {\em Phys. Rev. Lett.}, vol.~125, p.~180402, Oct.
+  2020.
+
+\end{thebibliography}

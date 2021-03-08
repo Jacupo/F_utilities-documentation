@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{using} \PYG{n+nn}{F\PYGZus{}utilities}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{PyPlot}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{LinearAlgebra}\PYG{p}{;}
+
+\PYG{k}{const} \PYG{n}{Fu} \PYG{p}{=} \PYG{n}{F\PYGZus{}utilities}\PYG{p}{;}
+
+\PYG{n}{N} \PYG{p}{=} \PYG{l+m}{64}\PYG{p}{;}
+
+\PYG{err}{\PYGZsh{}}\PYG{n}{Generate} \PYG{n}{and} \PYG{n}{diagonalise} \PYG{n}{the} \PYG{n}{hamiltonian}
+\PYG{n}{H} \PYG{p}{=} \PYG{n}{Fu}\PYG{p}{.}\PYG{n}{Random\PYGZus{}NNhamiltonian}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
+\PYG{n}{H\PYGZus{}D}\PYG{p}{,} \PYG{n}{U\PYGZus{}D} \PYG{p}{=} \PYG{n}{Fu}\PYG{p}{.}\PYG{n}{Diag\PYGZus{}h}\PYG{p}{(}\PYG{n}{H}\PYG{p}{)}
+
+\PYG{err}{\PYGZsh{}}\PYG{n}{Print} \PYG{n}{the} \PYG{n}{energy} \PYG{n}{modes} \PYG{n}{ϵ\PYGZus{}k}
+\PYG{n}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Energies\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plot}\PYG{p}{(}\PYG{l+m}{1}\PYG{p}{:}\PYG{n}{N}\PYG{p}{,}\PYG{n}{diag}\PYG{p}{(}\PYG{n}{H\PYGZus{}D}\PYG{p}{)[}\PYG{l+m}{1}\PYG{p}{:}\PYG{n}{N}\PYG{p}{])}
+\PYG{n}{xlabel}\PYG{p}{(}\PYG{n}{L}\PYG{l+s}{\PYGZdq{}\PYGZdl{}k\PYGZdl{}\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{ylabel}\PYG{p}{(}\PYG{n}{L}\PYG{l+s}{\PYGZdq{}\PYGZdl{}\PYGZbs{}epsilon\PYGZus{}k\PYGZdl{}\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}

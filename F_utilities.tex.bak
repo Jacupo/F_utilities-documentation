@@ -1,0 +1,2113 @@
+\documentclass[class=book, crop=false]{standalone}
+\usepackage[subpreambles=false]{standalone}
+\usepackage{import}
+
+\synctex = 1
+%%%%INIZIO MIEI
+\usepackage{amsmath,amsfonts,bm,hyperref,amssymb,amsthm}
+\newcommand{\expv}[1]{\left\langle #1 \right\rangle}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\id}{\mathbb{I}}
+\newcommand{\im}{{i\mkern1mu}}
+\newcommand{\da}{^{\dag}}
+\newcommand{\sx}{\sigma^x}
+\newcommand{\sy}{\sigma^y}
+\newcommand{\sz}{\sigma^z}
+\newcommand{\ket}[1] {| #1 \rangle}
+ \newcommand{\bra}[1] {\langle #1 |}
+  \newcommand{\Tr}[1] {\mbox{Tr}\left[ #1 \right]}
+  \DeclareMathOperator{\sech}{sech}
+\newcount\colveccount
+\newcommand*\colvec[1]{
+        \global\colveccount#1
+        \begin{pmatrix}
+        \colvecnext
+}
+\def\colvecnext#1{
+        #1
+        \global\advance\colveccount-1
+        \ifnum\colveccount>0
+                \\
+                \expandafter\colvecnext
+        \else
+                \end{pmatrix}
+        \fi
+}
+\def\code#1{\texttt{#1}}
+\usepackage{colortbl}
+\definecolor{blue}{cmyk}{0.897, 0.393, 0, 0.0118}
+\definecolor{green}{cmyk}{0.835, 0, 0.395, 0.0275}
+\definecolor{red}{rgb}{0.992,0.498,0.486}
+\usepackage{systeme}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\usepackage[scaled]{beramono}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{listingsutf8}
+\definecolor{backcolour}{RGB}{245, 246, 255}
+\lstdefinelanguage{Julia}%
+  {morekeywords={abstract,break,case,catch,const,continue,do,else,elseif,%
+      end,export,false,for,function,global,immutable,import,importall,if,in,%
+      macro,module,otherwise,quote,return,switch,true,try,type,typealias,%
+      using,while},%
+   sensitive=true,%
+   alsoother={},%
+   morecomment=[l]\#,%
+   morecomment=[n]{\#=}{=\#},%
+   morestring=[s]{"}{"},%
+   morestring=[m]{'}{'},%
+}[keywords,comments,strings]%
+\lstset{%
+    language         = Julia,
+    basicstyle       = \ttfamily,
+    keywordstyle     = \bfseries\color{blue},
+    stringstyle      = \color{magenta},
+    commentstyle     = \color{green},
+    showstringspaces = false,
+    frame = L,
+    xleftmargin=15pt,
+    breaklines=true,
+     backgroundcolor=\color{backcolour},
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}
+}
+\usepackage{tikz-cd}
+\tikzcdset{
+    boxedcd/.style={
+        every matrix/.append style={
+            draw=red,
+            thick,
+            fill=yellow!50!white,
+            rounded corners,
+            #1
+        },
+    },
+}
+\newcommand*{\bfrac}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
+\usepackage{multirow}
+\usepackage{subcaption}
+\newtheoremstyle{break}
+  {\topsep}{\topsep}%
+  {\itshape}{}%
+  {\bfseries}{}%
+  {\newline}{}%
+\theoremstyle{break}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+\newtcbtheorem[number within=section]{proposition}{\code{F\_utilities }}%
+{colback=blue!5,colframe=blue!35!black,fonttitle=\bfseries}{th}
+
+%%%%FINEMIEI
+
+
+
+\begin{document}
+
+In this section we present a practical introduction to the manipulation of Fermionic Gaussian systems. In particular we will focus on the encoding of these systems in a computer using a Julia package called \code{F\_utilities}. Starting from the basis, we will move to relevant modern results and techiques, and finish introducing novel algorithms. By the end of the chapter the reader should be able to reproduce all the results of this thesis using the package \code{F\_utilities} and make good use of \code{F\_utilities} for other relevant numerical simulations. It should be possible to read this chapter independently from the rest of the thesis and use it as the documentation of the package \code{F\_utilities} and as a useful resource in the broad and fertile field of Fermionic Gaussian states.
+
+\section{The canonical anticommutation relations}
+\subsection{The Hilbert space characterised by the canonical anticommutation relations}
+\label{sec:Fermionic-Fock-Space}
+
+Consider a set of operators $\{a_i\}_{i=1}^{N}$ acting on a Hilbert space $\mathcal{H}$. We say that these operators satisfy the \textit{canonical anticommutation relation} (CAR) when they satisfy
+\begin{equation}
+\label{eq:CAR}
+\{a_i,a\da_j\}=\id \delta_{i,j} ;  \qquad \{a_i,a_j\}=0,
+\end{equation}
+with $\{a,b\}\coloneqq ab+ba$ the notation for the anticommutator. \\
+As shown in \cite{nielsena} a number of properties of the set of operators $\{a_i\}_{i=1}^{N}$  and of the Hilbert space $\mathcal{H}$ can be inferred just by the fact that such operators exist and obey the CAR.\\
+The  $a\da_i a_i$ form a set of \textit{commuting, Hermitian,  positive operators} with eigenvalues $\{0,1\}$.
+We denote with $\vec{x}\in\{0,1\}^N$ a binary string of length $N$ with the $i$-th elements $x_i$. With $|\vec{x}\rangle$ we identify one of the $2^N$ states that is the simultaneous eigenstate of $a\da_i a_i$ for all $i=1,\dots,N$ with eigenvalues respectively $x_i$. The operator $a_i$ acts as a \textit{lowering operator} for $a\da_i a_i$ and $a\da_i$ acts as a \textit{raising operator} for $a\da_i a_i$ in the sense that
+\begin{enumerate}
+\item If $a\da_i a_i |\vec{x}\rangle = |\vec{x}\rangle$, that is, $\ket{\vec{x}}$ is an eigenvector of $a\da_i a_i $ with eigenvalue equal to $1$, then the action of $a_i$ on $|\vec{x}\rangle$ lowers the corresponding eigenvalue, meaning that $a\da_i a_i (a_i |\vec{x}\rangle) = 0 (a_i |\vec{x}\rangle)$.
+\item If $a\da_i a_i |\vec{x}\rangle = 0 |\vec{x}\rangle$, that is, $\ket{\vec{x}}$ is an eigenvector of $a\da_i a_i $ with eigenvalue equal to $0$, then the action of $a\da_i$ on $|\vec{x}\rangle$ raises the corresponding eigenvalue, meaning that $a\da_i a_i (a\da_i |\vec{x}\rangle) = 1 (a\da_i |\vec{x}\rangle)$.
+\end{enumerate}
+We define an \textit{ordering} by explicitly defining $|\vec{x}\rangle \coloneqq (a\da_1)^{x_1}(a\da_2)^{x_2}\dots(a\da_N)^{x_N}|\vec{0}\rangle$, where $\vec{0}$ is the string of $N$ zeros. The set $\{|\vec{x}\rangle\}_{\vec{x}\in\{0,1\}^N}$ forms an orthonormal basis. Since the dimension of the Hilbert space $\mathcal{H}$ is $2^N$, then $\{|\vec{x}\rangle\}_{\vec{x}\in\{0,1\}^N}$ is an orthonormal basis of $\mathcal{H}$.\\
+The orthonormal basis $\{|\vec{x}\rangle\}_{\vec{x}\in\{0,1\}^N}$ is called \textit{Fock basis}.
+The action of the raising and lowering operators on $|\vec{x}\rangle$ is then
+\begin{align}
+a_i |\vec{x}\rangle & =
+\begin{cases}
+	-(-1)^{S^i_{\vec{x}}}|\vec{x'}\rangle  \mbox{ with } x'_i=0 \mbox{ and } x'_{j\neq i} = x_{j \neq i},  & \text{if } x_i=1 \\
+	0 & \text{if } x_i=0
+\end{cases},
+\\
+a\da_i |\vec{x}\rangle  & =
+\begin{cases}
+	0 & \text{if } x_i=1 \\
+	-(-1)^{S^i_{\vec{x}}}|\vec{x'}\rangle \mbox{ with } x'_i=1 \mbox{ and } x'_{j\neq i} = x_{j \neq i},  & \text{if } x_i=0
+\end{cases},
+\end{align}
+with $S^i_{\vec{x}}=\sum_{k=1}^{i-1}x_k$.
+\\
+In appendix \ref{sec:Appendix-F-utilities}  we report some useful equalities valid for operators satisfying the CAR.
+\subsection{Dirac and Majorana representations}
+The raising and lowering operators $a\da_i$,$a_i$ are called \textit{Dirac operators} and they represent the action of adding and removing the $i$-th Fermionic mode.\\
+Both $a_i$ and its adjoint $a\da_i$ are not Hermitian. The Hermitian combinations of the raising and lowering operators
+\begin{equation}
+\label{eq:Majorana=Dirac}
+\begin{array}{ccc}
+x_{i}=\frac{a_{i}+a_{i}^{\dagger}}{\sqrt{2}}, & \mbox{  } & p_{i}=\frac{a_{i}-a_{i}^{\dagger}}{i\sqrt{2}},\end{array}
+\end{equation}
+are called \textit{Majorana operators}.
+\\
+The inverse transformations are:
+\begin{equation}
+\label{eq:Dirac=Majorana}
+\begin{array}{ccc}
+a_{i}=\frac{x_{i}+ip_{i}}{\sqrt{2}}, & \mbox{  } & a_{i}^{\dagger}=\frac{x_{i}-ip_{i}}{\sqrt{2}}.\end{array}
+\end{equation}
+\\
+In terms of Majorana operators the CARs read as
+\begin{equation}
+\label{eq:MCAR}
+\begin{array}{ccc}
+\{ x_{i},x_{j}\} =\{ p_{i},p_{j}\} =\delta_{i,j}, & \mbox{  } & \{ x_{i},p_{j}\} =0.\end{array}
+\end{equation}
+\\
+
+We remark that to Majorana operators labelled by $i$ correspond Dirac operators labelled by $i$. Moving between Majorana and Dirac operators does not mix modes.
+
+\paragraph{Vector notation}
+We can collect the Dirac operators of a system with $N$ modes in the vector $\vec{\alpha}$ of length $2N$ defined as
+\begin{equation}
+\label{eq:Vector-Alpha}
+\begin{array}{ccc}
+\vec{\alpha}=\left(\begin{array}{c}
+a_{0}^{\dagger}\\
+\vdots\\
+a_{N-1}^{\dagger}\\
+a_{0}\\
+\vdots\\
+a_{N-1}
+\end{array}\right) & \mbox{ , } & \vec{\alpha}^{\dagger}=\left(\begin{array}{cccccc}
+a_{0} & \dots & a_{N-1} & a_{0}^{\dagger} & \dots & a_{N-1}^{\dagger}\end{array}\right).\end{array}
+\end{equation}
+Analogously we can collect the Majorana operators in the vector $\vec{r}$ defined as
+\begin{equation}
+\label{eq:Majorana-r}
+\vec{r}=\left(\begin{array}{c}
+x_{0}\\
+\vdots\\
+x_{N-1}\\
+p_{0}\\
+\vdots\\
+p_{N-1}
+\end{array}\right),
+\end{equation}
+in terms of $\vec{r}$ the CAR are conveniently written as
+\begin{equation}
+\label{eq:MCAR}
+\left\{ r_{i},r_{j}\right\} =\delta_{i,j}.
+\end{equation}
+We define the unitary matrix $\Omega$ as
+\begin{equation}
+\label{eq:Omega}
+\begin{array}{ccc}
+\Omega=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}
+\mathbb{I} & \mathbb{I}\\
+i\mathbb{I} & -i\mathbb{I}
+\end{array}\right) & \mbox{ , } & \Omega^{\dagger}=\Omega^{-1}=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}
+\mathbb{I} & -i\mathbb{I}\\
+\mathbb{I} & i\mathbb{I}
+\end{array}\right)\end{array}.
+\end{equation}
+Such a matrix, applied to the vector of the Dirac operators $\vec{\alpha}$, returns the vector of Majorana operators $\vec{r}=\Omega\vec{\alpha}$.
+
+%\begin{remark}
+%In the Dirac operators representation one associate to each mode $i$ the $2$ operators $a\da_i$ and $a_i$. Moving to the Majorana representation one can maintain the information about the Dirac mode with the notation in $x_i$ and $p_i$. Switching to the vector notation $\vec{r}$ one lose this information, dealing with $2N$ \textcolor{red}{modes}
+%\end{remark}
+
+\paragraph{Fermionic transformation}
+A transformation $\vec{r} \to \vec{s}=O\vec{r}$ is said to preserve the CAR in the Majorana representation if it maps a vector of Majorana operators $\vec{r}$ to a new one $\vec{s}=O\vec{r}$.
+If we explicitly impose $\vec{s}=O\vec{r}$ to preserve the CAR we obtain
+\begin{equation}
+\delta_{i,j} = \{s_i,s_j\} =\sum_{k,l}O_{i,k}O_{j,l}\{r_k,r_l\}=(OO^{T})_{i,j},
+\end{equation}
+thus matrix $O$ must be an orthogonal matrix.\\
+We call \textit{Fermionic transformation} any transformation $\vec{\alpha}\to \vec{\beta}=U\vec{\alpha}$  that preserves the CAR of the Dirac operators vectors. Matrix $U$ has the form of $U=\Omega\da O \Omega$ with $O$ an orthogonal matrix. It has been shown in \cite{bravyi2004} that Fermionic transformations are generated by Fermionic quadratic Hamiltonian (to be defined later), thus have the general form $U=e^{-i \hat{H}}$, with $\hat{H}$ a generic Fermionic quadratic Hamiltonian.
+
+
+\subparagraph{Clifford Algebra}
+\label{sec:Clifford-Algebra}
+%Here we present a parallelism between the Clifford algebra generated by the Majorana operators and the Grassmann algebra. This parallelism, aside being beautiful, it will result useful in understanding the \textit{lagrangian representation} of Fermionic Gaussian states in the next section.  For a more comprehensive exposition we refer to \cite{bravyi2004, francesco1997,soper1978}.\\
+The Majorana operators $\{r_i\}_{i=1,\dots,2N}$ are Hermitian, traceless and generate the Clifford algebra denoted by $\mathcal{C}_{2N}$.\\
+Any arbitrary operator $X\in\mathcal{C}_{2N}$ can be represented as a polynomial of the Majorana operators as \cite{bravyi2004}
+\begin{equation}
+\label{eq:Polynomial-Expansion-Clifford}
+X = \alpha_0 \id +\sum_{p=1}^{2N} \sum_{1\leq q_1<\dots< q_p \leq 2N} \alpha_{q_1,\dots,q_p}r_{q_1}\dots r_{q_p},
+\end{equation}
+where $\id$ is the identity and the coefficients $\alpha_0$ and $\alpha_{q_1,\dots,q_p}$  are real. When the representation of $X\in\mathcal{C}_{2N}$ involves only even powers of Majorana operators, we call it an \textit{even operator}. If the representation of $X$ involves only odd powers of Majorana operators, then $X$ is called \textit{odd} operator.\\
+We define the \textit{parity operator} as
+\begin{equation}
+\label{eq:parity-operator}
+P=(i2)^N r_{1} r_{2}\dots r_{2N}=\prod_{i=1}^{N}(\id-2a\da_i a_i)
+\end{equation}
+Every even operator $X$ commutes with the parity operator $P$. The parity $p_X$ of an operator $X$ is defined as $PX=p_X X$ and it can only assume the two values $p_X\in \{-1,1\}$.\\
+Fermionic quadratic Hamiltonians (to be defined later) are even operators.
+For an $N$-mode Fermionic system with orthonormal basis $\{|\vec{x}\rangle \}$, the matrices $|\vec{x}\rangle \langle \vec{x}|$ defined for every $\vec{x}$ have the polynomial representation
+\begin{equation}
+\label{eq:polynomial-representantion-|x><x|}
+|\vec{x}\rangle \langle \vec{x}| = \left(\frac{\id}{2}-\im(-1)^{x_1}r_1 r_2\right) \left(\frac{\id}{2}-\im(-1)^{x_2}r_3 r_4\right)\dots \left(\frac{\id}{2}-\im(-1)^{x_N}r_{2N-1} r_{2N}\right),
+\end{equation}
+thus $\{|\vec{x}\rangle \langle \vec{x}| \}$ are all even operators with parity $p_{|\vec{x}\rangle \langle \vec{x}|}=-(-1)^{\sum_{i=1}^N x_i}$.\\
+Mixed matrices $|\vec{x}\rangle \langle \vec{x'}|$ with $\vec{x} \neq \vec{x'}$ are odd operators if $\text{mod}(d(\vec{x},\vec{x'}),2)=1$, where $d(\vec{x},\vec{y})$ is the Hamming distance of $\vec{x}$ and $\vec{y}$, and they are even operators if $\text{mod}(d(\vec{x},\vec{x'}),2)=0$.
+%A complex coefficients Grassmann algebra $\mathcal{G}_2N$ over a complex linear space $\mathbb{C}^{2N}$ is generated  by the generators $\theta_{1},\theta_{2},\dots,\theta_{2N}$, or Grassmann variables, that obey
+%\begin{equation}
+%\theta^{2}_i = 0, \qquad \theta_{i}\theta{j}+\theta_{j}\theta_{i}=0.
+%\end{equation}
+%Every element  $f\in\mathcal{G}_{2N}$ can be representend as a polynomial of the Grassman variables as
+%\begin{equation}
+%f(\theta) = \alpha_0+\sum_{p=1}^{2N} \sum_{1\leq a_1<\dots< a_p \leq 2N} \alpha_{a_1,\dots,a_p}\theta_{a_1}\dots \theta_{a_p}
+%\end{equation}
+%where the coefficients $\alpha_0$ and $\alpha_{a_1,\dots,a_p}$  are complex numbers.\\
+%When the representation of $f(\theta)$ involves only even powers of Grassmann variables, we call it an \textit{even operator}.
+
+
+
+
+
+
+
+
+
+\section{Fermionic Quadratic Hamiltonians}
+\label{ch:1}
+\subsection{Dirac Representation}
+The general \textit{Fermionic quadratic Hamiltonians} (f.q.h.) on a finite lattice of $N$ sites in the Dirac operators representation  can be written as
+
+\begin{equation}
+	\label{eq:Dirac-QFH}
+	\hat{H}=\sum_{i,j=1}^{N}\left(A_{i,j}a_{i}^{\dagger}a_{j}-\bar{A}_{i,j}a_{i}a_{j}^{\dagger}+B_{i,j}a_{i}a_{j}-\bar{B}_{i,j}a_{i}^{\dagger}a_{j}^{\dagger}\right),
+\end{equation}
+%
+where $A$ is a \textit{Hermitian} complex matrix, $A^{\dagger}=A$,  and $B$ is a \textit{skew-symmetric} complex matrix, $B^{T}=-B$ . \\
+Defining the matrix
+\begin{equation}
+\label{eq:H}
+H=\left(\begin{array}{cc}
+-\bar{A} & B\\
+-\bar{B} & A
+\end{array}\right),
+\end{equation}
+\\
+the \textit{compact form} of equation \eqref{eq:Dirac-QFH} reads
+\begin{equation}
+\label{eq:Dirac-QFH-h}
+\hat{H}= \vec{\alpha}^{\dagger}H\vec{\alpha}.
+\end{equation}
+We will call \textit{Hamiltonians} both $\hat{H}$ and $H$ as for a fixed choice of Dirac operators one completely identifies the other.
+%
+
+%%%%Majorana Representation
+\subsection{Majorana Representation}
+The Majorana representation of the generic f.q.h. reads as
+\begin{equation}
+\label{eq:Majorana-QFH}
+\hat{H}=i\sum_{i,j=1}^{N}\left(h^{xx}_{i,j} x_i x_j +h^{pp}_{i,j} p_i p_j +h^{xp}_{i,j} x_i p_j +h^{px}_{i,j} p_i x_j\right)  =i\vec{r}^{\dagger}h\vec{r},%= \frac{1}{2}\left(\vec{\alpha}^{\dagger}\Omega^{\dagger}\right)\Omega H_{a}\Omega^{\dagger}\left(\Omega\vec{\alpha}\right)
+\end{equation}
+%
+where
+\begin{equation}
+\label{eq:Majorana-QFH-ih}
+i h=\Omega H\Omega^{\dagger}=i \left(\begin{array}{cc}
+\Im\{A+B\} & \Re\{A+B\}\\
+\Re\{B-A\} & \Im\{A-B\}
+\end{array}\right)=i \left(\begin{array}{cc}
+h^{xx} &h^{xp}\\
+h^{px} & h^{pp}
+\end{array}\right).
+\end{equation}
+Where $\Im\{ \cdot \}$ and $\Re\{ \cdot \}$ are respectively the imaginary and the real part of their argument.\\
+Using the properties of matrices $A$ and $B$, it is easy to see that matrix $h$ is real and skew-symmetric.\\
+%
+
+
+%%Diagonalisation
+\subsection{Diagonalisation}
+\paragraph{Diagonal form of the Hamiltonian with Dirac operators}
+\label{Diag-Ham-Dirac}
+Given a particular f.q.h. $\hat{H}$ in the general form \eqref{eq:Dirac-QFH} it is always possible to find a new set of Dirac operators $\{b_k\}_{k=1}^N$ such that $\hat{H}$ in terms of $\{b_k\}_{k=1}^N$  reads as
+\begin{equation}
+\label{eq:Dirac-QFH-FreeFree}
+\hat{H} = \sum_{k=1}^{N} \epsilon_{k} (b\da_k b_k -b_k b\da_k),
+\end{equation}
+with $\epsilon_k \in \mathbb{R}$ for all  $k=1,2,\dots,N$ \cite{lieb1961}.
+\\
+We call Hamiltonians in this form free-free fermion Hamiltonians.
+\\
+In compact form
+\begin{equation}
+\label{eq:Dirac-QFH-FreeFree-Compact}
+\hat{H} = \vec{\beta}\da H_D \vec{\beta}
+\end{equation}
+with
+\begin{equation}
+\label{eq:Diagonal-HD}
+H_{D}=U\da H U =
+\left(\begin{array}{cccccc}
+-\epsilon_{1} & 0 & \dots &  & \dots & 0\\
+0 & \ddots & \ddots &  &  & \vdots\\
+\vdots & \ddots & -\epsilon_{N}\\
+ &  &  & \epsilon_{1} & \ddots & \vdots\\
+\vdots &  &  & \ddots & \ddots & 0\\
+0 & \dots &  &  & \dots0 & \epsilon_{N}
+\end{array}\right),
+\end{equation}
+where $\vec{\beta}$ is the collection of the Dirac operators $b_k,b_m\da$ ordered as in $\vec{\alpha}$, and $U$ is the Fermionic tranformation that diagonalises the Hamiltonian.\\
+We will always order the eigenvalues in descending order ($\epsilon_1 \geq \epsilon_2 \geq \dots \geq \epsilon_N\geq 0$).
+\paragraph{Diagonal form of the Hamiltonian with Majorana operators}
+In terms of Majorana operators the diagonal form of a generic f.q.h. reads as
+\begin{equation}
+\label{eq:Majorana-QFH-FreeFree}
+\hat{H}=i\sum_{i=1}^{N}\lambda_i(\tilde{x}_{i}\tilde{p}_{i}-\tilde{p}_{i}\tilde{x}_{i}).
+\end{equation}
+for a set of Majorana operators $\{\tilde{x}_i\}_i$, $\{\tilde{p}_i\}_i$.
+In compact form
+\begin{equation}
+\hat{H} = i \vec{s}\da h_D \vec{s},
+\end{equation}
+where $\vec{s}$ is the collection of the Majorana operators $\tilde{x}_i,\tilde{p}_j$ ordered as \eqref{eq:Majorana-s} and where
+\begin{equation}
+\label{eq:diagonal-Majorana-h}
+ h_D =O^{T} h O =  \bigoplus_{i=1}^{N} \begin{pmatrix}0 & \lambda_i \\ -\lambda_i & 0\end{pmatrix}
+\end{equation}
+is a block diagonal matrix and $O$ the orthogonal transformation that diagonalises the Hamiltonian in the Majorana operators representation. Substituting the definition of Majorana operators \eqref{eq:Majorana=Dirac} into equation \eqref{eq:Majorana-QFH-FreeFree} and confronting with equation \eqref{eq:Dirac-QFH-FreeFree} we note that $\epsilon_k=\lambda_k$.\\
+%
+\subsection{Numerical diagonalisation}
+\label{sec:Numerical-diagonalisation}
+As seen in subsection \ref{Diag-Ham-Dirac}, diagonalising a general f.q.h. $\hat{H}$ reduces to diagonalising (or to block diagonalise in the case of Majorana representation) the matrix $H$ of its compact form.\\
+We are thus interested in finding the Fermionic transformation $U$ that maps $H$ and the vector of Dirac operators $\vec{\alpha}$ respectively to the diagonal matrix $H_D=U\da H U$  and to the vector of Dirac operators $\vec{\beta}  = U \vec{\alpha}$ such that, in term of $\vec{\beta}$, the Hamiltonian is in the diagonal form \eqref{eq:Dirac-QFH-FreeFree}.
+\\
+Here we focus on the numerical approach, we diagonalise the Hamiltonian using standard matrix decomposition techniques. For a more physical approach we refer to \cite{lieb1961}.
+\\
+First step in the diagonalisation procedure is moving to the Majorana representation of $H$
+\begin{align}
+\hat{H} 	&  	= \vec{\alpha}^{\dagger}H\vec{\alpha}= \vec{\alpha}\da \Omega \da \Omega H\Omega\da \Omega \vec{\alpha}= \nonumber \\
+		&	=   i \vec{r}\da h \vec{r}.
+\end{align}
+The following theorem is a standard result in matrix theory \cite{zumino1962,horn2012}
+%%Theorem 1
+\begin{theorem}[Block diagonal form of skew-symmetric matrices]
+\label{thm:Block-Matrix}
+Let $h$ be $2N\times2N$ a real, skew-symmetric matrix. There exists a real special orthogonal matrix $O$ such that
+\begin{equation}
+\label{eq:Schur-Decomposition}
+h=O h_D O^{T},
+\end{equation}
+with $h_D$ a block diagonal matrix of the form
+\begin{equation}
+h_D = \bigoplus_{i=1}^{N} \begin{pmatrix}0 & \lambda_i \\ -\lambda_i & 0\end{pmatrix}
+\end{equation}
+for real, positive-definite $\left\{\lambda_i\right\}_{i=1,\dots,N}$.
+The non-zero eigenvalues of matrix $h$ are the imaginary numbers $\{\pm \im \lambda_i\}_{i=1,\dots,N}$.\\
+For a more general form of this theorem see appendix \ref{appendix:Shurd-Decomposition}.
+\end{theorem}
+
+Matrix $h$ in \eqref{eq:Majorana-QFH} is real, skew-symmetric, thus, using theorem \eqref{eq:Schur-Decomposition} we know there exists an orthogonal transformation $O$ that diagonalises the matrix
+\begin{align}
+\hat{H} &	= i\vec{r}^{\dagger}h\vec{r}
+		= i \vec{r}^{\dagger}O O\da h O O\da \vec{r} =\\
+	& 	=  i\vec{s}^{\dagger} \left( \bigoplus_{i=1}^{N} \begin{pmatrix}0 & \lambda_i \\ -\lambda_i & 0\end{pmatrix}  \right) \vec{s}
+		=  i\vec{s}^{\dagger} h_D \vec{s}
+\end{align}
+
+That is  $\hat{H}=i\sum_{i=0}^{N-1}\lambda_{i}(\tilde{x}_{i}\tilde{p}_{i}-\tilde{p}_{i}\tilde{x}_{i})$
+ once defined the new collection of Majorana operators $\vec{s}=O\vec{r}$  as
+\begin{equation}
+\label{eq:Majorana-s}
+\vec{s}=\left(\begin{array}{c}
+\tilde{x}_{0}\\
+\tilde{p}_{0}\\
+\tilde{x}_{1}\\
+\tilde{p}_{1}\\
+\vdots\\
+\tilde{x}_{N-1}\\
+\tilde{p}_{N-1}
+\end{array}\right).
+\end{equation}
+The vector of Majorana operators $\vec{s}$ has a different ordering with respect to the vector $\vec{r}$. We call the order of the operators in $\vec{s}$ an $xp$ ordering and the ordering of the operators in $\vec{r}$ and $xx$ ordering.
+The transformation matrix $\Omega\da$ maps a vector of Majorana operators in $xx$ ordering to a vector of Dirac operators, thus, before being able to move to the Dirac representation we have to reorder the element of vector $\vec{s}$. To do so we use the matrix
+\begin{equation}
+\label{eq:FxxTxp}
+F_{xp\rightarrow xx}=\begin{array}{c}
+i=0\\
+i=1\\
+\vdots\\
+\vdots\\
+i=N\\
+i=N+1\\
+\vdots\\
+i=2N+1
+\end{array}\left(\begin{array}{cccccccc}
+1 & 0 & 0 & 0 & \dots & \dots & 0 & 0\\
+0 & \vdots & 1 & \vdots &  &  & \vdots & \vdots\\
+\vdots & \vdots & \vdots & \vdots &  &  & 0 & \vdots\\
+\vdots & 0 & 0 & 0 &  &  & 1 & \vdots\\
+\vdots & 1 & 0 & 0 &  &  & 0 & \vdots\\
+\vdots & 0 & \vdots & 1 &  &  & \vdots & \vdots\\
+\vdots & \vdots & \vdots & 0 &  &  & \vdots & 0\\
+0 & 0 & 0 & \vdots & \dots & \dots & 0 & 1
+\end{array}\right)
+\end{equation}
+ that applied to a vector $\vec{s}$ with the $xp$ ordering returns a vector $\vec{\tilde{r}}=F_{xp\rightarrow xx} \vec{s}$ with $xx$ ordering.
+Mapping back to the Dirac representation we obtain the diagonal form of the Hamiltonian in the Dirac operators representation as
+ \begin{align}
+ \hat{H} & =  i \left(\vec{s}F_{xp\rightarrow xx}^{T} \Omega \right) \left( \Omega\da F_{xp\rightarrow xx} h_D F_{xp\rightarrow xx}^{T} \Omega \right) \left( \Omega\da F_{xp\rightarrow xx} \vec{s} \right) = \\
+ 	&	= \sum_{k=1}^{N} \epsilon_{k} (b\da_k b_k -b_k b\da_k) = \vec{\beta}\da H_D \vec{\beta}.
+ \end{align}
+The Fermionic transformation $U$ that diagonalises the Hamiltonian H in the form \eqref{eq:Diagonal-HD} is
+\begin{equation}
+U=\Omega^{\dagger}\cdot O\cdot F_{xp\rightarrow xx}^{\dagger}\cdot\Omega.
+\end{equation}
+%
+\begin{proposition}{\code{Diag\_h($H$)$\rightarrow  H_{D},U$}}{}
+This function diagonalises $H$. $H_D$ is the diagonal form with the first half diagonal negative and the second one positive ordered as \eqref{eq:Diagonal-HD}. $U$ is the Fermionic transformation such that: $H=UH_{D}U\da$. \\
+\end{proposition}
+
+
+%%%%Block-diagonal form of real skew-symmetric matrices
+\paragraph{Block-diagonal form of real skew-symmetric matrices}
+\label{Diag_Real_Skew}
+
+The matrix decomposition \eqref{eq:Schur-Decomposition}  of theorem \ref{thm:Block-Matrix} is numerically obtained in $3$ steps
+
+\begin{enumerate}
+
+\item Compute numerically a Schur decomposition (or Schur triangularisation as in  \cite{horn2012}) of the skew-symmetric matrix $h$ such that: $h=\tilde{O}\tilde{h}_D\tilde{O}^{T}$. The matrix $\tilde{h}_D$ should be a block-diagonal matrix with each block in the anti-diagonal form
+\begin{equation}
+\left(\begin{array}{cc}
+0 & \tilde{\lambda_{i}}\\
+-\tilde{\lambda_{i}} & 0
+\end{array}\right).
+\end{equation}
+It is not guaranteed that the $\tilde{\lambda_{i}}$ are positive for each $i$. It is necessary to reorder them as in step $2$.
+
+\item Build the orthogonal matrix $S=\bigoplus_{i=1}^{\lfloor N/2\rfloor}{s}_{i}$ with
+\begin{equation}
+s_{i}=\left(\begin{array}{cc}
+0 & 1\\
+1 & 0
+\end{array}\right)
+\end{equation}
+if $\tilde{\lambda_{i}}<0$ or
+\begin{equation}
+s_{i}=\left(\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right),
+\end{equation}
+if $\tilde{\lambda_{i}}>0$.
+
+\item The final orthogonal transformation is $O=\tilde{O}S$ such that $h=Oh_D O^{T}$.
+
+\end{enumerate}
+
+\begin{proposition}{\code{Diag\_real\_skew(h) $\rightarrow h_D,O$}}{}
+This function implements the algorithm for the block diagonalisation of $h$ a generic skew-symmetric real matrix. $h_D$ is the block-diagonal matrix of \eqref{eq:Schur-Decomposition} and has the following property: it is in the block diagonal form, each $2\times2$ block is skew-symmetric with the upper-right element positive and real and $h_D$ is in ascending order for the upper diagonal. $O$ is an orthogonal matrix such that: $h=O h_D O^{T}$.
+\end{proposition}
+
+
+
+
+%
+%%%%Fermionic Gaussian states
+\section{Fermionic Gaussian States}
+\subsection{Fermionic Gaussian states}
+
+\begin{definition}[Fermionic Gaussian state]{} A state $\rho$ is a Fermionic Gaussian state (f.g.s.) if it can be represented as
+\begin{equation}
+\label{eq:definizione-1_Fermionic_Gaussian_state}
+\rho = \frac{e^{-\hat{H}}}{Z} = \frac{e^{-\vec{\alpha}\da H \vec{\alpha}}}{Z}
+\end{equation}
+with $Z\coloneqq\Tr{e^{-\hat{H}}}$ a normalisation constant and $\hat{H}$ a Fermionic Gaussian Hamiltonian called parent Hamiltonian of $\rho$.\\  Every possible value of the norm of the Hamiltonian is admitted, $\norm{\hat{H}}_{1}\in [0,+\infty]$. Both extremum values are reached with a single sided limit procedure in the definition of $\rho$.\\
+All the information about the state is encoded in the $2N\times 2N$ matrix $H$ at the exponential.
+\end{definition}
+Fermionic Gaussian states have an immediate interpretation as thermal Gibbs states of f.q.h.. One can even rescale the parent Hamiltonian as $\hat{\tilde{H}}=\frac{1}{\beta}\hat{H}$ such that $\norm{\hat{\tilde{H}}}=1$ and $\beta=\frac{1}{\norm{\hat{H}}}$. In this way the state reads as $\rho=\frac{e^{-\beta \hat{\tilde{H}}}}{Z}$ with $\beta\in [0,+\infty]$.
+Since f.g.s are exponential of f.g.h. and f.g.h. are even operator, it follows that f.g.s are even operator.
+%%Bravyi2004 definisce anche GAUSSIANI ODD, per\UTF{00F2} fa vedere che questi sono sempre riconducibili a Gaussiani even aumentando di uno modo il sistema, quindi guassiani even vanno bene per tutto.
+
+
+\paragraph{Single mode Gaussian states}
+Consider the single mode parent Hamiltonian $\hat{H}_1=\epsilon(b\da b -b b\da)$ of the f.g.s. $\rho=\frac{1}{Z}e^{-\hat{H}_1}$. The explicit representation of $\rho$ on the basis $\{b\da|0\rangle,|0\rangle\}$ is
+\begin{equation}
+\rho = \begin{pmatrix}
+	1-f & 0 \\
+	0 & f
+\end{pmatrix}
+\end{equation}
+where $f=\langle 0| \rho | 0 \rangle$ and the two coherences are $0$ because we cannot have the odd terms $|0\rangle \langle 1 |$ and $|1\rangle \langle 0|$ in the expansion of the even operator $\rho$ (see \cite{friis2013a,friis2016} for a detailed and beautiful analysis of the admitted coherences). Using the polynomial expansion \eqref{eq:polynomial-representantion-|x><x|} we can see that $f=\Tr{\rho b\da b}\coloneqq \langle b\da b\rangle$, that is the occupation of the Fermionic mode, thus a single mode Gaussian state is completely characterised by the occupation $\langle b\da b\rangle$.
+
+
+\subsection{Correlation Matrix}
+\label{sec:Correlation-Matrix}
+We have seen that for any f.q.h. $H$ it is always possible to find a Fermionic transformation $U$ that diagonalises $H$ transforming the Dirac operators vector as $\vec{\beta}=U\vec{\alpha}$. Diagonalising the parent Hamiltonian of a f.g.s. $\rho$ we obtain its decomposition in terms of single-mode thermal states
+\begin{equation}
+\rho = \frac{e^{-\vec{\beta}\da H_D \vec{\beta}}}{Z} = \frac{1}{Z}\bigotimes_{k=1}^{N}e^{-  \epsilon_{k} (b\da_k b_k -b_k b\da_k)} =\bigotimes_{k=1}^{N}\frac{e^{-  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}{Z_k},
+\end{equation}
+where $Z_k = \Tr{e^{-  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}$.\\
+%To the Fermionic transformation $U$ corresponds a unitary operation $U_{\rho}$ on the Hilbert space of $\rho$ such that
+%\begin{equation}
+%\rho = U_{\rho}\bigotimes_{k=1}^{N}\frac{e^{-i  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}{Z_k} U_{\rho}\da.
+%\end{equation}
+Each single-mode thermal state is completely characterised by its occupation number, thus $\rho$ is completely characterised by the set of occupations $\{\langle b\da_{i} b_i\rangle\}_{i=1}^{N}$.
+Expressing the occupations in term of the operators $\vec{\alpha}=U\da \vec{\beta}$, we find that every f.g.s. is \textit{completely characterised} by the collection of all the correlators $\Gamma^{a\da a}_{i,j} \coloneqq \langle a\da_i a_j \rangle$ and $\Gamma^{aa}_{i,j} \coloneqq  \langle a_i a_j \rangle$. We collect these correlators in the so called \textit{correlation matrix}
+\begin{equation}
+\label{eq:Majorana}
+\Gamma \coloneqq \langle \vec{\alpha} \vec{\alpha}  \da \rangle= \begin{pmatrix}
+\Gamma^{a\da a} & \Gamma^{a\da a\da} \\
+\Gamma^{aa} & \Gamma^{a a\da}
+\end{pmatrix}
+\end{equation}
+with $\Gamma^{aa}_{i,j} = -\overline{\Gamma^{a\da a\da}_{i,j}}$ and $\Gamma^{a a\da}_{i,j}  =(\id - \Gamma^{a\da a})\da_{i,j}$, where $\overline{A}$ is the conjugate of $A$.
+The correlation matrix $\Gamma$ is Hermitian, $\Gamma^{aa}$ and $\Gamma^{a \da a \da}$ are skew-symmetric, and $\Gamma^{a\da a}$ and $\Gamma^{a a\da}$ are Hermitian.\\
+Expressed in term of Majorana operator the correlation matrix is defined as
+\begin{equation}
+\label{eq:Majorana-Gamma}
+{\Gamma}^{maj} \coloneqq \langle  \vec{r} \vec{r} \da \rangle = \Omega \Gamma \Omega\da.
+\end{equation}
+\\
+It is interesting observing that, since a f.g.s. is completely described by its correlation matrix, with the spirit of the maximum entropy principle (see \cite{jaynes1957a, jaynes1957}), it is possible to equivalently define Fermionic Gaussian states as the states that maximise	the von Neumann entropy	given the expectation values collected in the correlation matrix.
+
+
+
+\subsection{Covariance matrix}
+The \textit{covariance matrix} of a f.g.s. is the real, skew-symmetric matrix defined as
+\begin{equation}
+\gamma \coloneqq \im \text{Tr}\left[\rho[\vec{r}_{i},\vec{r}_{j}]\right],
+\end{equation}
+with $[\vec{r}_{i},\vec{r}_{j}]$ the commutator of the two Majorana operators $\vec{r}_{i}$ and $\vec{r}_{j}$.
+\\
+As for the correlation matrix, the covariance matrix of a f.g.s $\rho$ completely describes the states. In fact  $\gamma$ and $\Gamma$ are related by the equality
+\begin{equation}
+\gamma	=-\im \Omega\left(2\Gamma -\mathbb{I}\right)\Omega^\dag=-\im\left(2\Gamma^{maj}-\mathbb{I}\right).
+\end{equation}
+In this thesis we will use both the covariance matrix and the correlation matrix approach.
+
+\subsection{Wick's theorem}
+As mentioned, f.g.s. are fully characterised by their covariance matrix. This means that it must be possible to obtain the expectation value of every operator $X$ from $\gamma$ solely. To do so we just need to take the polynomial expansion \eqref{eq:Polynomial-Expansion-Clifford} of $X$ and apply the celebrated Wick's theorem \cite{molinari2017} to each monomial term.
+The Wick's theorem states that for a f.g.s. $\rho$ and a monomial of Majorana operators $r_{q_1}r_{q_2}\dots r_{q_p}$ one has
+\begin{equation}
+\Tr{\rho r_{q_1}r_{q_2}\dots r_{q_p}} = \text{Pf}(\gamma_{|_{q_1,q_2,...,q_p}})
+\end{equation}
+where $1\leq q_1 < q_2<\dots <q_p \leq 2N$ and $\gamma_{|_{q_1,q_2,...,q_p}}$ is the restriction of the covariance matrix to all the two points correlators involving just the Majorana operators $\{r_{q_1},r_{q_2},\dots,r_{q_p}\}$ and $\text{Pf}()$ is called the \textit{Pfaffian}.
+Since the Pfaffian is nonvanishing  only for a $2N\times2N$ skew-symmetric matrix \cite{vein1999}, it is clear that the expectation value of any odd operators is always zero.\\
+
+%\begin{example}
+\textbf{Example}\\
+Consider a system composed by $2$ Fermionic modes corresponding to the Dirac operators $a_1$ and $a_2$.
+The Majorana operators vector is $\vec{r}=(r_1,r_2,r_3,r_4)$ , thus the covariance matrix takes the form
+\begin{equation}
+\gamma =
+\begin{pmatrix}
+0 & \langle r_1, r_2  \rangle & \langle r_1, r_3  \rangle & \langle r_1, r_4  \rangle \\
+-\langle r_1, r_2  \rangle & 0 & \langle r_2, r_3  \rangle & \langle r_2, r_4  \rangle \\
+-\langle r_1, r_3  \rangle & -\langle r_2, r_3  \rangle & 0  & \langle r_3, r_4  \rangle \\
+-\langle r_1, r_4  \rangle & -\langle r_2, r_4  \rangle & -\langle r_3, r_4  \rangle & 0 \\
+\end{pmatrix}
+\end{equation}
+where $\langle r_i, r_j  \rangle \coloneqq \im \Tr{\rho [r_i, r_j] }$.
+Using Wick's theorem we have that
+\begin{align}
+\Tr{\rho r_1 r_2 r_3 r_4}  & = \text{Pf}\begin{pmatrix}
+0 & \langle r_1, r_2  \rangle & \langle r_1, r_3  \rangle & \langle r_1, r_4  \rangle \\
+-\langle r_1, r_2  \rangle & 0 & \langle r_2, r_3  \rangle & \langle r_2, r_4  \rangle \\
+-\langle r_1, r_3  \rangle & -\langle r_2, r_3  \rangle & 0  & \langle r_3, r_4  \rangle \\
+-\langle r_1, r_4  \rangle & -\langle r_2, r_4  \rangle & -\langle r_3, r_4  \rangle & 0 \\
+\end{pmatrix}=\\
+&= \langle r_1, r_2  \rangle \langle r_3, r_4  \rangle -\langle r_1, r_3 \rangle \langle r_2, r_4  \rangle +\langle r_2, r_3  \rangle \langle r_1, r_4  \rangle ,
+\end{align}
+and
+\begin{equation}
+\Tr{\rho r_2r_4} = \text{Pf}
+\begin{pmatrix}
+0  & \langle r_2, r_4  \rangle  \\
+-\langle r_2, r_4  \rangle & 0
+\end{pmatrix}= \langle r_2, r_4  \rangle ,
+\end{equation}
+and
+\begin{equation}
+\Tr{\rho r_1 r_2 r_4}  = \text{Pf}\begin{pmatrix}
+0 & \langle r_1, r_2  \rangle & \langle r_1, r_4  \rangle  \\
+-\langle r_1, r_2  \rangle & 0 & \langle r_2, r_4  \rangle  \\
+-\langle r_1, r_4  \rangle & -\langle r_2, r_4  \rangle & 0
+\end{pmatrix}=0.
+\end{equation}
+%If we consider the Dirac representation of the correlation matrix $\tilde{\Gamma}=\Gamma-\frac{1}{2}\mathbb{I}$, moving to the Majorana representation we obtain the skew-symmetric matrix (analogous of $ih$)
+%\begin{equation}
+%i\gamma\equiv\Omega\tilde{\Gamma}\Omega^{\dagger}=\Gamma^{maj}-\frac{1}{2}\mathbb{I}=\frac{1}{2}Tr\left[\rho\left[\vec{r}_{i},\vec{r}_{j}\right]\right]
+%\end{equation}
+%
+%
+%where in the last equality we just used the fact that $ Tr\left[\rho\vec{r}_{i}\vec{r}_{j}\right]=Tr\left[\rho\vec{r}_{j}\vec{r}_{i}\right]$ if $i\neq j$, and $Tr\left[\rho\vec{r}_{i}\vec{r}_{j}\right]=\frac{1}{2}$ if $i=j$ thus taking the anticommutator and dividing by $2$ just removes the constant diagonal.
+%
+%At any time we can change representation with this transformations
+%
+%
+%Someone refers to $\gamma$ as skew-symmetrised correlation matrix, someone else as covariance matrix. I will call it $\gamma$ or skew-symmetrised correlation matrix.
+%\end{example}
+
+
+%\subsection{Standard form}
+%La metto la standard form? pagina 67 del quaderno Legami
+
+\subsection{Diagonalisation of the correlation matrix}
+In subsection \ref{sec:Correlation-Matrix} we have seen that for any f.g.s. $\rho$  there exists a Fermionic transformation $U$ that diagonalises its parent Hamiltonian
+% and thus a unitary operator $U_{\rho}$ that diagonalise the density matrix $\rho$
+. With the new Dirac operators $\vec{\beta}$ the state can be expressed as a tensor product of single mode thermal states
+\begin{equation}
+ \frac{e^{-\vec{\beta}\da H_D \vec{\beta}}}{Z} =\frac{1}{Z}\bigotimes_{k=1}^{N}e^{-  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}=\bigotimes_{k=1}^{N}\frac{e^{-  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}{Z_k}.
+\end{equation}
+with $Z_k=\Tr{e^{-  \epsilon_{k} (b\da_k b_k -b_k b\da_k)}}$.\\
+Expressed with these operators the correlation matrix is diagonal. If we consider the Fock basis $\{|\vec{k}\rangle\}_{\vec{k}\in\{0,1\}^N}$ built with the action of the operators $\vec{\beta}$ on $|0\rangle$, we have that in this basis $\rho$ assumes a diagonal form. We call $U_{\rho}$ the unitary transformation that moves from the basis $\{|\vec{x}\rangle\}_{\vec{x}\in\{0,1\}^N}$ to the one of the modes $\{|\vec{k}\rangle\}_{\vec{k}\in\{0,1\}^N}$. \\
+It is easy to see that expressed on this basis $\rho$ has the diagonal form
+\begin{equation}
+\label{eq:Diagona-Correlation-Matrix}
+\rho^D = U_{\rho}\da \rho U_{\rho}=\bigotimes_{i=1}^{N}\left(\begin{array}{cc}
+\nu_{i} & 0\\
+0 & 1-\nu_{i}
+\end{array}\right).
+\end{equation}
+The same Fermionic transformation $U$ that diagonalises the parent Hamiltonian brings $\Gamma$ in the diagonal form
+\begin{equation}
+\Gamma^D = U\da \Gamma U =
+\left(\begin{array}{cccccc}
+\nu_{1} & 0 & \dots &  & \dots & 0\\
+0 & \ddots & \ddots &  &  & \vdots\\
+\vdots & \ddots & \nu_{N}\\
+ &  &  & 1-\nu_{1} & \ddots & \vdots\\
+\vdots &  &  & \ddots & \ddots & 0\\
+0 & \dots &  &  & \dots0 & 1-\nu_{N}
+\end{array}\right),
+\end{equation}
+with $\nu_i \in [0,1]$ the occupation number of the $i$-th free mode.
+To numerically obtain the diagonal form of the correlation matrix we notice that the covariance matrix $\gamma$ is a real, skew-symmetric matrix, thus using theorem \ref{thm:Block-Matrix} we know that we can find an orthogonal transformation $O$ such that
+\begin{equation}
+\gamma = O \gamma^D O^{T} =  O \left(  \bigoplus_{i=1}^{N} \begin{pmatrix}0 & \eta_i \\ -\eta_i & 0\end{pmatrix}  \right) O^{T}
+\end{equation}
+with $\eta_i \in [-\frac{1}{2},\frac{1}{2}]$.\\
+Following the same procedure of subsection \ref{sec:Numerical-diagonalisation}, we can write the diagonal elements of $\Gamma^D$ as
+\begin{equation}
+\nu_i = \frac{1}{2}-\eta_i.
+\end{equation}
+The elements of  $H_D$ and $\Gamma^D$  are related by the following formulas
+\begin{align}
+\epsilon_k =\frac{1}{2} \ln \left(\frac{1-\nu_k}{\nu_k} \right),\\
+\nu_k = \frac{1}{1+e^{2\epsilon_k}},
+\end{align}
+with $\nu_k\in[0,1]$ and $\epsilon_k\in[-\infty,+\infty]$, where the boundary values are taken with a limit. The complete calculation can be found in appendix \ref{appendix:Eigenvalues-Relations}.
+In \eqref{eq:Diagonal-HD} we defined all the $\epsilon_k$ to be positive, to use the same notation, one just has to exchange $b$ with $\tilde{b}\da$ and $b\da$ with $\tilde{b}$, that is exchanging occupations with vacancies for the mode with $\epsilon_k$ negative. This corresponds to switching $\nu_k$ with $1-\tilde{\nu}_k$ and $1-\nu_k$ with $\tilde{\nu}_k$.\\
+In general the correlation matrix $\Gamma$ and the parent Hamiltonian $H$ are related by the formula \cite{peschel2003a,vidal2003a,cheong2004,zhang2020}
+\begin{equation}
+\Gamma = \frac{1}{1+e^{2H}}.
+\end{equation}
+\begin{proposition}{\code{Diag\_gamma($\Gamma$)$\rightarrow  \Gamma^D, U$}}{}
+This function returns $\Gamma^D$, the diagonal form of the Dirac correlation matrix $\Gamma$ and $U$ the Fermionic transformation such that $\Gamma=U \Gamma^D U\dag $.
+\end{proposition}
+
+
+\subparagraph{Phisicality of a state}
+It is known that a matrix $\rho$ represents a valid physical density matrix if it is a positive semi-definite Hermitian matrix with trace equal to one.
+The condition for a matrix $\Gamma$ to represent a valid physical correlation matrix of a f.g.s. is
+\begin{equation}
+\Gamma^2-\Gamma \leq 0,
+\end{equation}
+or equivalently
+\begin{equation}
+\gamma\gamma\da \leq -\id.
+\end{equation}
+These conditions are equivalent to the request that all the eigenvalues $\nu_i$ of matrix $\Gamma$ have to belong to the interval $[0,1]$.
+
+\subparagraph{Ground states of Fermionic quadratic Hamiltonians}
+Suppose we have a f.q.h. $H$  and that we are interested in obtaining the correlation matrix $\Gamma_0$ associated to its ground state $|0\rangle$.
+In order to obtain $\Gamma_0$ we proceed by first finding the Fermionic transformation $U$ that diagonalise $H$. Since our algorithm associates to each free mode of the diagonalised Hamiltonian a positive energy, in the diagonal basis the ground state is $|0\rangle \langle 0|$.
+The correlation matrix associated to the state $|0\rangle$ is the block matrix:
+\begin{equation}
+\Gamma_{ |0\rangle \langle 0|}=
+\begin{pmatrix}
+0 & 0\\
+0 & \id_{N \times N}
+\end{pmatrix}.
+\end{equation}
+To obtain the ground state $\Gamma_0$ we just need to move back to the original basis, thus
+\begin{equation}
+\Gamma_0 = U \Gamma_{|0\rangle \langle 0|} U\da.
+\end{equation}
+\begin{proposition}{\code{GS\_gamma($H_D,U$)$\rightarrow  \Gamma_0$}}{}
+This function returns $\Gamma_0$, the ground state of the Hamiltonian $H=UH_DU\da$.
+\end{proposition}
+
+
+\subparagraph{Thermal state of Fermionic quadratic Hamiltonians}
+Suppose we have a f.q.h. $H$  and that we are interested in obtaining the correlation matrix $\Gamma_0$ associated to the thermal state $\rho_\beta = \frac{e^{-\beta H}}{\Tr{e^{-\beta H}}}$.
+
+As we did for computing the ground state, we move to the diagonal basis with the Fermionic transformation $U$.
+In the diagonal basis the thermal state has the correlation matrix
+\begin{equation}
+\Gamma_{\beta}^D = \begin{pmatrix}
+\frac{1}{1+e^{2\beta \epsilon_1}} & 0 & \dots &  & \dots & 0\\
+0 & \ddots & \ddots &  &  & \vdots\\
+\vdots & \ddots & \frac{1}{1+e^{2\beta \epsilon_N}} \\
+ &  &  & \frac{1}{1+e^{-2\beta \epsilon_1}}  & \ddots & \vdots\\
+\vdots &  &  & \ddots & \ddots & 0\\
+0 & \dots &  &  & \dots0 & \frac{1}{1+e^{-2\beta \epsilon_N}}
+\end{pmatrix}.
+\end{equation}
+To obtain the thermal state $\Gamma_{\beta}$ we just need to move back to the original basis, thus
+\begin{equation}
+\Gamma_{\beta} = U \Gamma_{\beta}^D U\da.
+\end{equation}
+\begin{proposition}{\code{Thermal\_fix\_beta($H_D,U,\beta$)$\rightarrow  \Gamma_0$}}{}
+This function returns $\Gamma_{\beta}$, the termal state at inverse temperature $\beta$ of the Hamiltonian $H=UH_DU\da$.
+\end{proposition}
+\begin{proposition}{\code{Thermal\_fix\_energy($H_D,U,E$)$\rightarrow  \Gamma_{\beta(E)}, \beta(E), \Delta(E)$}}{}
+This function variationally computes and then returns $\Gamma_{\beta(E)}$, the thermal state at inverse temperature $\beta(E)$ of the Hamiltonian $H=UH_DU\da$, and $\beta(E)$ the temperature such that $\Tr{\rho_{\beta(E)}H}=E$ and $\Delta(E)$ the difference between the required energy $E$ and the actual energy of the state $\Gamma_{\beta(E)}$.
+It outputs the precision $\Delta(E)$ and $\beta(E)$.
+\end{proposition}
+
+\subparagraph{Energy of a Fermionic Gaussian state}
+Consider a  f.q.h $H$ and a f.g.s. $\Gamma$. The energy of $\Gamma$ with respect to $H$ is the expectation value $\Tr{\hat{H}\rho}$ of the associated $\hat{H}$ computed on the associated state $\rho$.  \\
+In order to compute this expectation value one just needs to find the Fermionic transformation $U$ that diagonalises $H$. With this, one is able to find the energies $\epsilon_k$ and the occupations $\langle b_k\da b_k\rangle$ and $\langle b_k b_k\da\rangle$. The correlation matrix $\Gamma$ is not diagonal in the diagonal basis $\vec{\beta}$ of $H$, but we are just interested in its diagonal elements.\\
+The energy $E_{H}(\Gamma)$ of $\Gamma$ is thus
+\begin{equation}
+E_{H}(\Gamma) =  \sum_{k} \epsilon_k(\langle b_k\da b_k \rangle - \langle b_k b_k\da \rangle).
+\end{equation}
+
+\begin{proposition}{\code{Energy($\Gamma,H_D,U$)$\rightarrow E_{H}(\Gamma)$}}{}
+This function returns $E_{H}(\Gamma)$ the energy of the state $\Gamma$ calculated with $H$. Matrices $H_D$ and $U$ are the output of \code{Diag\_h(H)}.
+\end{proposition}
+
+%%%%Eigenvalues of rho and gamma
+\subsection{Eigenvalues of $\rho$ and eigenvalues of $\Gamma$}
+We have seen that the diagonal form of the correlation matrix $\Gamma$ and of the density matrix $\rho$ of a f.g.s. can be obtained respectively with a Fermionic transformation $U$ and a unitary operation $U_{\rho}$.
+The Fock basis in which $\rho$ is diagonal is the one generated by the set of operators that expresses $\Gamma$ in diagonal form. \\
+In these two basis $\rho$ and $\Gamma$ assume the forms
+\begin{align}
+ \label{eq:Rho_Gaussian_State}
+\Gamma^D & =
+\left(\begin{array}{cccccc}
+\nu_{1} & 0 & \dots &  & \dots & 0\\
+0 & \ddots & \ddots &  &  & \vdots\\
+\vdots & \ddots & \nu_{N}\\
+ &  &  & 1-\nu_{1} & \ddots & \vdots\\
+\vdots &  &  & \ddots & \ddots & 0\\
+0 & \dots &  &  & \dots0 & 1-\nu_{N}
+\end{array}\right), \nonumber \\
+\rho^D & =\bigotimes_{k=1}^{N}\left(\begin{array}{cc}
+\nu_{k} & 0\\
+0 & 1-\nu_{k}
+\end{array}\right) = \left(\begin{array}{cccccc}
+\pi_{\vec{0}} & 0&  \dots \\
+0 & \ddots &  \vdots\\
+\vdots &  \dots&  \pi_{\vec{1}}
+\end{array}\right).
+\end{align}
+%
+Thus if we denote each of the $2^{N}$ eigenvalues $\pi_{\vec{x}}$ of $\rho$ with a binary string $\vec{x}\in\left\{ 0,1\right\} ^{N}$ we have that 
+\begin{equation}
+\pi_{\vec{x}}=\prod_{k=1}^{N}\left(\vec{x}_{k}\nu_{i}+(1-\vec{x}_{k})(1-\nu_{k})\right).
+\end{equation}
+It is evocative changing the order of the Dirac operators in the representation of $\Gamma^D$
+\begin{equation}
+\label{eq:Ordering_dada_ndnd}
+\vec{\beta}=\left(\begin{array}{c}
+b_{0}^{\dagger}\\
+\vdots\\
+b_{N-1}^{\dagger}\\
+b_{0}\\
+\vdots\\
+b_{N-1}
+\end{array}\right) \qquad \rightarrow \qquad
+\vec{\tilde{\beta}}=\left(\begin{array}{c}
+b_{0}^{\dagger}\\
+b_{0}\\
+b_{1}\da\\
+b_{1}\\
+\vdots\\
+b_{N}\da\\
+b_{N}
+\end{array}\right),
+\end{equation}
+this can be easily done with the Fermionic transformation $\tilde{\Gamma}^D = F_{xp\rightarrow xx}\da \Gamma^D F_{xp\rightarrow xx}$.
+With this ordering we have
+\begin{equation}
+ \label{eq:Rho_Gaussian_State}
+\tilde{\Gamma}^D=\bigoplus _{k=1}^{N}\left(\begin{array}{cc}
+\nu_{k} & 0\\
+0 & 1-\nu_{k}
+\end{array}\right),\qquad
+\rho^D=\bigotimes_{k=1}^{N}\left(\begin{array}{cc}
+\nu_{k} & 0\\
+0 & 1-\nu_{k}
+\end{array}\right).
+\end{equation}
+To tensor product of density matrices corresponds a direct sum of correlation matrices.\\
+
+\begin{proposition}{\code{Eigenvalues\_of\_rho($\Gamma$)}$\rightarrow\vec{\nu}$}{}
+This function returns the eigenvalues of the correlation matrix $\rho$ associated to the Fermionic Gaussian state with Dirac correlation matrix $\Gamma$.
+\end{proposition}
+
+
+
+%%%%Reduced density matrix
+\subsection{Reduced density matrix and tensor product of Fermionic Gaussian states}
+\label{sec:Reducede-Density-Matrix}
+Trying to define a partial trace over Fermionic modes subspaces one soon faces what is often called the "partial trace ambiguity" \cite{friis2013a,friis2016} (see also the end of appendix \ref{appendix:Jordan-Wigner}).\\
+%
+In the case of Fermionic Gaussian states, though, this is a much simpler task. Any reduced state formalism has to satisfy the simple criterion that the reduced density operator must contain all the information about the subsystem that can be obtained from the global state when measurements are performed only on the respective subsystem alone \cite{friis2013a,friis2016}.\\
+%
+With Wick's theorem in mind it is easy to see that the correlation matrix of the reduced state on the modes ${i_1,\dots,i_m}$ is just the correlation matrix  $\left.\Gamma \right|_{\{i_1,\dots,i_m\}}$ and that the reduced state of a f.g.s. is a f.g.s. too.\\
+
+
+\begin{proposition}{ \code{Reduce\_gamma($\Gamma$,m,i\_1)}$\rightarrow  \left.\Gamma \right|_{\{i_1,\dots,i_m\}}$}{}
+This function takes a Dirac correlation matrix $\Gamma$, a dimension of the partition $m$ and the initial site of the partition $i_1$ and return  $\left.\Gamma \right|_{\{i_1,\dots,i_m\}}$, the reduced correlation matrix on the contiguous modes $\{i_1,\dots,i_m\}$ where $i_m=i_1+m$ and periodic boundary conditions are always assumed.\\
+ Examples: the green elements of the matrix $M_{6\times6}$ are the ones returned by the function calls.
+\begin{equation*}
+\mbox{\mbox{Reduce\_gamma}(\ensuremath{M_{6\times6}},2,1)\ensuremath{\rightarrow}}\begin{array}{cccccc}
+\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}
+\end{array}
+\end{equation*}
+\begin{equation*}
+\mbox{Reduce\_gamma(\ensuremath{M_{6\times6}},2,3)\ensuremath{\rightarrow}}\begin{array}{cccccc}
+\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
+\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{green} & \cellcolor{blue} & \cellcolor{green} & \cellcolor{green} & \cellcolor{blue} & \cellcolor{green}
+\end{array}
+\end{equation*}
+\end{proposition}
+
+The correlation matrix $\Gamma_{A,B}$ of the tensor product of two f.g.s. $\Gamma_A$ and $\Gamma_B$ is obtained simply by collecting all the elements of $\Gamma_{A}$ and $\Gamma_{B}$ in a single well ordered correlation matrix $\Gamma_{A,B}$.
+The code for obtaining $\Gamma_{A,B}$ from $\Gamma_A$ and $\Gamma_B$ is
+
+\lstinputlisting{src/JL_composition.jl}
+This code makes use of the function \code{Inject\_gamma}.
+
+
+\begin{proposition}{ \code{Inject\_gamma($\Gamma$, $\Gamma_{inj}$, i)}$\rightarrow  {\Gamma_{comp}} $}{}
+This function takes a $2N\times2N$ matrix $\Gamma$    and a $2n\times 2n$ matrix $\Gamma_{inj}$ with $n\leq N$. It returns the $2N\times 2N$ matrix $\Gamma_{comp}$ as shown in the pictures.
+\begin{equation*}
+\Gamma=\begin{array}{cccccc}
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}
+\end{array},\qquad
+\Gamma_{inj}=\begin{array}{cccc}
+\cellcolor{red} & \cellcolor{red} & \cellcolor{red} & \cellcolor{red} \\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{red} & \cellcolor{red} \\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{red} & \cellcolor{red} \\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{red} & \cellcolor{red}
+\end{array}
+\end{equation*}
+
+\begin{equation*}
+\mbox{\code{Inject\_gamma(}}\Gamma,\Gamma_{inj},\mbox{1)}\rightarrow \begin{array}{cccccc}
+\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}
+\end{array},
+\end{equation*}
+\begin{equation*}
+\mbox{\code{Inject\_gamma(}}\Gamma,\Gamma_{inj},\mbox{3)}\rightarrow \begin{array}{cccccc}
+\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
+\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}\\
+\cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue} & \cellcolor{blue}\\
+\cellcolor{red} & \cellcolor{blue} & \cellcolor{red} & \cellcolor{red} & \cellcolor{blue} & \cellcolor{red}
+\end{array}.
+\end{equation*}
+In the last example it is clear the systems behave with periodic boundary conditions.\\
+If $\Gamma$ is the correlation matrix of a f.g.s $\rho$ and $\Gamma_{inj}$ is the correlation matrix of a f.g.s $\rho_{inj}$ then $\Gamma_{comp}$ is the correlation matrix of the state $\mbox{Tr}_{\mbox{\code{i}},\dots,\mbox{\code{i+n-1}}}\left[\rho\right]\otimes\rho_{inj}$.
+\end{proposition}
+
+It is clear that with the ordering \eqref{eq:Ordering_dada_ndnd}, the tensor product of two f.g.s. corresponds to the direct sum of their correlation matrices
+\begin{equation}
+\rho_{A,B} = \rho_{A}\otimes \rho_{B} \mbox{ } \rightarrow \mbox{ } \tilde{\Gamma}_{A,B} = \tilde{\Gamma}_{A} \oplus \tilde{\Gamma}_{B}.
+\end{equation}
+
+
+
+\subsection{Correlation matrices of translational invariant states}
+\label{sec:Translational-Invariant-States}
+We consider a state $\rho$ of a system of $N$ sites and all its reduced density matrices $\rho_A$, where $A$ is any possible set of sites of the system. We denote with $A+m$ the set of sites $A+m=\{j=i+m | i$ is a site of $ A\}$, that is a translation of all site of $A$ by $m$ sites. When we will assume Periodic Boundary Conditions (PBC) we will allow for translations "over the border" of the system, in the sense that when $i+m>N$ (or $i+m<1$)  we will substitute it with $i+m \rightarrow \mbox{mod}(i+m-1,N+1)+1$. This is interpreted as connecting the first site with the last site of the system. Thus for PBC all translations are allowed. When we will assume Open Boundary Conditions (OBC) only translations within the system. This means that if $i\in A$ and $i+m>N$ (or $i+m<1$), then the subset $A+m$ is not an allowed subset of sites.\\
+
+\begin{figure}
+  \centerline{
+\includegraphics[width=0.5\textwidth]{figure/OBC.png} }
+  \captionof{figure}{System with Open Boundary Conditions. If the state is translational invariant, then the reduced density matrix on sites $1$ and $2$ is the same as the one on sites $3$ and $4$, but is different from the one on sites $5$ and $1$}
+\end{figure}
+
+  \begin{figure}
+    \centerline{
+\includegraphics[width=0.3\textwidth]{figure/PBC.png} }
+  \captionof{figure}{System with Periodic Boundary Conditions. If the state is translational invariant then the reduced density matrix on sites $1$ and $2$ or sites $3$ and $4$ or even sites $5$ and $1$ are all the same}
+  \label{fig:PBC}
+\end{figure}
+
+A \textit{translational invariant state} is a state such that for every $A$ we have $\rho_A=\rho_{A+m}$ for every allowed $m$.\\
+This property easily translates to correlation matrices of states. For the two point correlators of a translational invariant state we have that $\langle a_j\da a_l \rangle = \langle a_{j+m}\da a_{l+m}\rangle$ and $\langle a_j a_l \rangle = \langle a_{j+m} a_{l+m}\rangle$ for every $m$. The specific correlator is thus individuated just by the difference of the sites of the first and second operator $\Delta \coloneqq l-j $ with $\Delta \in [-(N-1),N-1]$. Using this, we substitute $\langle a_j\da a_l \rangle \rightarrow \langle a\da a \rangle_{\Delta}$ and analogously $\langle a_j a_l \rangle \rightarrow \langle a a \rangle_{\Delta}$.
+We now focus on $\Gamma^{a\da a}$, explicitly expressing it, we have
+\begin{equation}
+\Gamma^{a \da a}
+\begin{pmatrix}
+\langle a\da a \rangle_{0}	    	& \langle a\da a \rangle_{1} 	 	& \langle a\da a \rangle_{2} 		&\dots		& \langle a\da a \rangle_{N-1} 	\\
+\langle a\da a \rangle_{-1}	    	& \langle a\da a \rangle_{0} 	 	& \langle a\da a \rangle_{1}		&\dots		& \langle a\da a \rangle_{N-2}	\\
+\langle a\da a \rangle_{-2}	    	& \langle a\da a \rangle_{-1} 	 	&\langle a\da a \rangle_{0}		& \dots		& \langle a\da a \rangle_{N-3}	\\
+\vdots					& \vdots					 	&\vdots		 				& \ddots		& \vdots					\\
+\langle a\da a \rangle_{-(N-1)}  	& \langle a\da a \rangle_{-(N-2)} 	&\langle a\da a \rangle_{-(N-3)}		&\dots		&\langle a\da a \rangle_{0}
+\end{pmatrix}.
+\end{equation}
+Matrix with this structure are called \textit{Toeplitz matrices}.\\
+If we further require the system to have PBC, we have that the parameter $\Delta$ is restricted to the range $[0,N-1]$. Consider for example the specific instance of the correlator $\langle a\da a \rangle _{1-N} = \langle a_N\da a_1 \rangle$, because of the translational invariance property of the system and because of the PBC we know that $\langle a_N \da a_1 \rangle = \langle a_{N+1}\da a_{1+1} \rangle = \langle a_{1}\da a_2 \rangle = \langle a\da a \rangle _{1}$ (see figure \ref{fig:PBC}).\\
+With PBC, $\Gamma^{a \da a}$ has the form
+\begin{equation}
+\label{eq:GammaTL-Cyrculant}
+\Gamma^{a \da a} =
+\begin{pmatrix}
+\langle a\da a \rangle_{0}	    	& \langle a\da a \rangle_{1} 	 	& \langle a\da a \rangle_{2} 		&\dots		& \langle a\da a \rangle_{N-1} 	\\
+\langle a\da a \rangle_{N-1}	& \langle a\da a \rangle_{0} 	 	& \langle a\da a \rangle_{1}		&\dots		& \langle a\da a \rangle_{N-2}	\\
+\langle a\da a \rangle_{N-2}	& \langle a\da a \rangle_{N-1} 	 	&\langle a\da a \rangle_{0}		& \dots		& \langle a\da a \rangle_{N-3}	\\
+\vdots					& \vdots					 	&\vdots		 				& \ddots		& \vdots					\\
+\langle a\da a \rangle_{1}  		& \langle a\da a \rangle_{2} 		&\langle a\da a \rangle_{3}		&\dots		&\langle a\da a \rangle_{0}
+\end{pmatrix}.
+\end{equation}
+We see that $\Gamma^{a\da a}$ is the circulant matrix (see appendix \ref{appendix:Circulant-Matrices}) characterised by the circulant vector $\vec{\langle a\da a \rangle}= \left( \langle a\da a \rangle_{0}	, \langle a\da a \rangle_{1}, \langle a\da a \rangle_{2} ,\dots, \langle a\da a \rangle_{N-1} \right)$.  Following the same reasoning, we see that $\Gamma^{a a\da}$ is a circulant matrix characterised by the circulant vector $\vec{\langle a a\da \rangle}= \left( \langle a a\da \rangle_{0}, \langle a a\da \rangle_{1}, \langle a a\da \rangle_{2} ,\dots, \langle a a\da \rangle_{N-1} \right)$.  Matrices $\Gamma^{a a}$ and $\Gamma^{a\da a\da}$ are circulant skew-simmetric matrices, often called \textit{skew-circulant matrices}. If $N$ is even $\Gamma^{a a}$ and $\Gamma^{a\da a\da}$ are specified by the circulant vectors
+\[
+\vec{\langle a a \rangle}= \left( \langle a a \rangle_{0}	, \langle a a \rangle_{1}, \langle a a \rangle_{2} ,\dots,  \langle a a \rangle_{\frac{N}{2}-1}, 0,-\langle a a \rangle_{\frac{N}{2}-1},-\langle a a \rangle_{\frac{N}{2}-2},\dots,  \langle a a \rangle_{1} \right)
+\]
+and
+\[
+\vec{\langle a\da a\da \rangle}= \left( \langle a\da a\da \rangle_{0}	, \langle a\da a\da \rangle_{1}, \langle a\da a\da \rangle_{2} ,\dots,  \langle a\da a\da \rangle_{\frac{N}{2}-1}, 0,-\langle a\da a\da \rangle_{\frac{N}{2}-1},-\langle a\da a\da \rangle_{\frac{N}{2}-2},\dots,  \langle a\da a\da \rangle_{1} \right).
+\]
+If $N$ is odd $\Gamma^{a a}$ and $\Gamma^{a\da a\da}$ are specified by the circulant vectors
+\[
+\vec{\langle a a \rangle}= \left( \langle a a \rangle_{0}	, \langle a a \rangle_{1}, \langle a a \rangle_{2} ,\dots,  \langle a a \rangle_{\frac{N-1}{2}}, -\langle a a \rangle_{\frac{N-1}{2}-1},-\langle a a \rangle_{\frac{N-1}{2}-2},\dots,  \langle a a \rangle_{1} \right)
+\] and
+\[\vec{\langle a\da a\da \rangle}= \left( \langle a\da a\da \rangle_{0}	, \langle a\da a\da \rangle_{1}, \langle a\da a\da \rangle_{2} ,\dots,  \langle a\da a\da \rangle_{\frac{N-1}{2}}, -\langle a\da a\da \rangle_{\frac{N-1}{2}-1},-\langle a\da a\da \rangle_{\frac{N-1}{2}-2},\dots,  \langle a\da a\da \rangle_{1} \right).
+ \]
+\\
+
+\paragraph{Eigenvalues using the properties of circulant-matrices}
+In appendix \ref{appendix:Circulant-Matrices} we show the general form of the eigenvalues of a circulant matrix. For  $\Gamma^{a a}$,$\Gamma^{a\da a\da}$matrices $\Gamma^{a\da a}$,$\Gamma^{a a\da}$  we have that their respective eigenvalues $\lambda^{a\da a}_k$,$\lambda^{a a\da}_k$ are
+\begin{align}
+&\lambda^{a\da a}_k = \sum_{\Delta=0}^{N-1}e^{i\frac{2\pi}{N}\Delta k} \langle a\da a \rangle_{\Delta} & \lambda^{a a\da}_k = \sum_{\Delta=0}^{N-1}e^{i\frac{2\pi}{N}\Delta k} \langle a a\da \rangle_{\Delta}.\end{align}
+
+ For  matrices $\Gamma^{a a}$,$\Gamma^{a\da a\da}$  we have that their respective eigenvalues $\lambda^{a a}_k$,$\lambda^{a\da a\da}_k$ are
+ \begin{align}
+ &&&&&\lambda^{a a}_k &=& \begin{cases}
+ 2\sum_{\Delta=0}^{{\frac{N}{2}}-1}e^{i \frac{2\pi}{N}k\Delta} \langle a a \rangle_{\Delta}  & \mbox{ if $N$ even} \\
+ (1+e^{-i\frac{\pi}{N}})\sum_{\Delta=0}^{{\frac{N}{2}}-1}e^{i \frac{2\pi}{N}k\Delta} \langle a a \rangle_{\Delta} &  \mbox{ if $N$ odd}
+ \end{cases}, &&&&\nonumber\\
+ &&&&& \lambda^{a\da a\da}_k &=& \begin{cases}
+ 2\sum_{\Delta=0}^{{\frac{N}{2}}-1}e^{i \frac{2\pi}{N}k\Delta} \langle a\da a\da \rangle_{\Delta} & \mbox{ if $N$ even} \\
+ (1+e^{-i\frac{\pi}{N}})\sum_{\Delta=0}^{{\frac{N}{2}}-1}e^{i \frac{2\pi}{N}k\Delta} \langle a\da a\da \rangle_{\Delta}  & \mbox{ if $N$ odd}
+ \end{cases}.&&&&
+ \end{align}
+We notice that the eigenvalues of $\Gamma^{a a}$,$\Gamma^{a\da a\da}$ comes in pairs $\lambda^{a a}_k=-\lambda^{a a}_{k+\ceil{\frac{N}{2}}}$ and $\lambda^{a\da a\da}_k=-\lambda^{a\da a\da}_{k+\ceil{\frac{N}{2}}}$ as expected from the property of skew-symmetric matrices (see appendix \ref{appendix:Shurd-Decomposition}).
+
+\paragraph{Eigenvalues using the Fourier transform on a linear lattice}
+
+We introduce the Fourier transforms on a linear lattice
+\begin{equation}
+\label{eq:Fourier_f-to-a}
+	f_k = \frac{1}{\sqrt{N}}\sum_{j=1}^{N}e^{i\frac{2\pi}{N}kj}a_j, \qquad f_k\da = \frac{1}{\sqrt{N}}\sum_{j=1}^{N}e^{-i\frac{2\pi}{N}kj}a_j\da,
+\end{equation}
+with inverse transformations
+\label{eq:Fourier_a-to-f}
+\begin{equation}
+	a_j = \frac{1}{\sqrt{N}}\sum_{k=1}^{N}e^{-i\frac{2\pi}{N}kj}f_k, \qquad a_j\da = \frac{1}{\sqrt{N}}\sum_{k=1}^{N}e^{i\frac{2\pi}{N}kj}f_k\da.
+\end{equation}
+
+It is easy to see that the Fourier modes  $\{f_k,f\da_k \}_k$ obey to the CAR and are valid Dirac operators.\\
+Now we perform the substitutions \eqref{eq:Fourier_a-to-f} in the expression of $\Gamma^{a \da a}$ and we further exploit the translational invariance ($\langle a\da a\rangle{\Delta}=\frac{1}{N} \sum_{j=1}^{N} \langle a_j\da a_{j+\Delta} \rangle$) to obtain
+\begin{equation}
+\langle a\da a \rangle_{\Delta}= \frac{1}{N^2} \sum_{j}^{N} \sum_{k,k'}e^{i\frac{2\pi}{N}k'\Delta} e^{i\frac{2\pi}{N}(k-k')j}\langle  f_k\da f_{k'} \rangle.
+\end{equation}
+Collecting the Kronecker delta (see appendix \ref{appendix:Formulas}) we can express the elements of $\Gamma^{a\da a}$ as
+\begin{align}
+&\langle a\da a \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k\da f_k \rangle.
+\end{align}
+With the same procedure we obtain
+\begin{align}
+\label{eq:Translational-Invariant-State-a-to-f}
+&\langle a\da a \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k\da f_k \rangle, & \mbox{ } & \langle a a\da \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k f_k\da \rangle \nonumber \\
+&\langle a a \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k f_{N-k} \rangle, & \mbox{ } & \langle a\da a\da \rangle_{\Delta} = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_{N-k}\da f_k\da \rangle.
+\end{align}
+with inverse transformations
+\begin{align}
+&\langle f_k\da f_k \rangle =  \sum_{\Delta=1}^{N} e^{i\frac{2\pi}{N}k\Delta} \langle a\da a \rangle_{\Delta} , & \mbox{ } & \langle f_k f_k\da \rangle = \sum_{\Delta=1}^{N} e^{i\frac{2\pi}{N}k\Delta} \langle a a\da \rangle_{\Delta} \nonumber \\
+&\langle f_k f_{N-k} \rangle =  \sum_{\Delta=1}^{N} e^{i\frac{2\pi}{N}k\Delta} \langle a\da a \rangle_{\Delta} , & \mbox{ } & \langle f_k\da f_{N-k}\da \rangle = \sum_{\Delta=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle a a\da \rangle_{\Delta}.
+\end{align}
+We can easily identify
+\begin{align}
+& \lambda^{a\da a}_k = \langle f_k\da f_k \rangle, & \mbox{ } & \lambda^{a a\da}_k = \langle f_k f_k\da \rangle \nonumber \\
+& \lambda^{a a}_k = \langle f_k f_{N-k} \rangle, & \mbox{ } & \lambda^{a\da a\da}_k = \langle f_k\da f_{N-k}\da \rangle.
+\end{align}
+
+
+At last, we note that the Fourier transform does not mix creation and annihilation operators and can be implemented directly on the vector of Dirac operators $\vec{\alpha}$ with the Fermionic transformation $U_{\omega}$ that has the block diagonal form
+\begin{equation}
+\label{eq:Fermionic-Transformation-Fourier}
+U_{\omega} = \begin{pmatrix}
+W  & 0 \\
+0 & \bar{W}
+\end{pmatrix},
+\end{equation}
+where  $W$ is the matrix implementing the discrete Fourier transform  (see appendix \ref{appendix:Circulant-Matrices}) and it acts separately on the creation and annihilation operators sectors of $\vec{\alpha}$.
+
+For an example of diagonalisation of translational invariant matrices see e.g. subsection \ref{sec:Hopping-Model}
+\begin{proposition}{\code{Build\_Fourier\_matrix($N$)}$\rightarrow U_{\omega}$}{}
+This function returns the Fermionic transformation $U_{\omega}$ for a system of $N$ sites.
+\end{proposition}
+
+
+
+\subsection{Product Rule}
+\label{sec:Product-Rule}
+It will result useful to compute the product $\rho=\rho_1 \rho_2$ of the density matrices of two Fermionic Gaussian states.
+We observe that the commutator of two quadratic terms of Majorana operators $\vec{r}$ is always again a quadratic operator or zero
+\begin{equation}
+[r_i r_j,r_k r_l] = \delta_{k,i} r_l r_j+\delta_{k,j} r_i r_l-\delta_{i,l} r_k r_j-\delta_{l,j} r_i r_k.
+\end{equation}
+This is also valid for Dirac operators. We say that the commutator of two monomials of Dirac operators of degree at most $2$ is a polynomial of Dirac operators of degree at most $2$.
+Using this observation together with the Baker-Campbell-Hausdorff formula ( equation B.C.H.0 in appendix \ref{appendix:Formulas}), it is easy to see that $\rho$, the product of two f.g.s., is always a f.g.s.
+\begin{equation}
+\rho = \frac{e^{-\hat{H}}}{Z},
+\end{equation}
+with $\hat{H}$ given by the B.C.H.0.\\
+It is possible to derive the covariance matrix $\gamma$ of $\rho$ directly from the covariance matrices $\gamma_1$ and $\gamma_2$ of the states $\rho_1$ and $\rho_2$.
+This formula appears in \cite{fagotti2010a} where a more detailed description, considering even pathological cases, is given. If we assume that $\id-\gamma_1$ and $\id-\gamma_2$ are invertible then we have
+\begin{equation}
+\gamma = \id-(\id-\gamma_2)\frac{1}{\id+\gamma_1 \gamma_2} (\id-\gamma_1).
+\end{equation}
+\begin{proposition}{\code{Product($\Gamma_1,\Gamma_2$)}$\rightarrow \Gamma$}{}
+This function returns the correlation matrix $\Gamma$ corresponding to the f.g.s $\rho=\rho_1 \rho_2$, where $\rho_1$ and $\rho_2$ are characterised by the correlation matrices $\Gamma_1$ and $\Gamma_2$.
+\end{proposition}
+
+
+
+
+
+
+
+%%%%Information measures
+\subsection{Information measures}
+%%%%von Neumann Entropies
+\paragraph{Von Neumann Entropies}
+The von Neumann entropy of a quantum state described by the density matrix $\rho$ is
+\begin{equation}
+\label{eq:General_von_Neumann_Entropy}
+S(\rho) = -\Tr{\rho\ln(\rho)}.
+\end{equation}
+In terms of the eigenvalues $\lambda$ of $\rho$, the von Neumann entropy reads as
+\begin{equation}
+S(\rho) = -\sum_{\lambda} \lambda \ln(\lambda)
+\end{equation}
+If $\rho$ is a f.g.s. of a system with $N$ sites, since the von Neumann entropy is invariant under unitary transformation of the state, substituting in \eqref{eq:General_von_Neumann_Entropy} the product form \eqref{eq:Rho_Gaussian_State} and using the fact that the von Neumann entropy is additive for product states, the von Neumann entropy becomes a function of the eigenvalues $\nu_i$ of the correlation matrix $\Gamma$ and it is the sum of just $2N$ terms
+\begin{equation}
+\label{eq:VN_Entropy}
+S(\Gamma) \equiv S(\rho) = -\sum_{k=1}^{N} \left[\nu_k \ln(\nu_k)+(1-\nu_k) \ln(1-\nu_k) \right].
+\end{equation}
+
+\begin{proposition}{\code{VN\_entropy($\Gamma$)}$\rightarrow S$}{}
+This function returns $S$, the \code{Float64} value of the von Neumann Entropy of the state described by the Dirac correlation matrix $\Gamma$.
+\end{proposition}
+
+%%%%Purity
+\paragraph{Purity}
+A state is pure if its correlation matrix $\Gamma$ is such that \cite{bach1994a}
+\begin{equation}
+\Gamma^2 = \Gamma,
+\end{equation}
+or, equivalently,
+\begin{equation}
+\gamma^2 =-\id
+\end{equation}
+The purity of a state $\rho$ is defined as
+\begin{equation}
+\mbox{Purity}(\rho)\equiv Tr\left[\rho^{2}\right].
+\end{equation}
+We have that:
+\begin{equation}
+\mbox{Purity}(\rho)=\prod_{i=1}^{N-1}\frac{1}{2}\left(1+\tanh(\epsilon_i)^2\right),
+\end{equation}
+
+\begin{equation}
+\mbox{Purity}(\Gamma)=\prod_{i=1}^{N-1}(2\left(\nu_{i}-1\right)\nu_{i}+1),
+\end{equation}
+
+\begin{equation}
+\mbox{Purity}(\gamma)=\prod_{i=1}^{N-1}\left(2\eta_{i}^{2}+\frac{1}{2}\right),
+\end{equation}
+
+the value of the purity is the same if computed with any of these equations.
+For more details see appendix \ref{appendix:Purity}.
+
+\begin{proposition}{\code{Purity($\Gamma$)$\rightarrow  p$}}{}
+This function returns $p$ the purity of the Fermionic Gaussian state with Dirac correlation matrix $\Gamma$.
+\end{proposition}
+
+%%%%Entanglement Contour
+\paragraph{Entanglement Contour}
+\label{sec:entanglement-contour}
+In 2014 Chen and Vidal \cite{chen2014} introduced the entanglement contour "a tool for identifyng which real-space degrees of freedom contribute, and how much, to the entanglement of a region A with the rest of the system B".
+We consider the state of a system on a chain of $N$ sites, we divide the chain into two complementary partitions, partition $A$ and partition $B$. Now suppose partitions $A$ and $B$ are entangled and that there exists a measure $\mathcal{E}(A,B)$ that quantifies the amount of entanglement between $A$ and $B$. The entanglement contour $c_A(i)$ of partition $A$ tells us how much each site $i$ of partition $A$ contributes to the total amount of entanglement betwen $A$ and $B$. Furthermore summing $c_A(i)$ over all the sites of $A$ one should obtain exactly $\mathcal{E}(A,B)$. \\
+Chen and Vidal state five reasonable properties that define when a function is a contour function. In the same paper they show that these five properties do not identify a unique contour function, but instead a class of functions.
+In chapter \ref{sec:Ent-Cont-Gen} we presented these five properties and introduced the general concept of entanglement contour, here we are going to focus on a specific entanglement contour defined for Fermionic Gaussian states.
+%We will present here a specific form of entanglement contour, the one introduced by Chen and Vidal for Fermionic Gaussian states, for other kinds of contour function see i.e. \cite{coser2017,tonni2018}. \\
+First of all we restrict to pure states. For a pure state, it is known that a good measure of entanglement between two complementary partition $A$ and $B$ is the entanglement entropy, that is the von Neumann entropy $\mathcal{E}(A,B)=S(A)$ of the reduced state on $A$.\\
+We consider an Hilbert space $\mathcal{H}$ divided in the two complementary partitions $\mathcal{H}= \mathcal{H}_A\otimes \mathcal{H}_B$, each partition with $N_A$ and $N_B$ sites respectively. The Schmidt decomposition (see section \ref{sec:Schmidt-decomposition}) of a pure state $|\psi^{A,B}\rangle$ in $\mathcal{H}$ is
+\begin{equation}
+\label{eq:Schmidt-Decomposition}
+|\psi^{A,B}\rangle = \sum_{i} \sqrt{p_i}|\psi^{A}_i\rangle \otimes |\psi^B_i\rangle,
+\end{equation}
+with $p_i\geq0$, $\sum_{i} p_i = 1$ and
+\begin{equation}
+\rho^{A}\equiv Tr_{B}\left[ |\psi^{A,B}\rangle \langle \psi^{A,B}|\right] = \sum_{i} p_i |\psi^{A}_i \rangle \langle \psi^{A}_i|.
+\end{equation}
+The entanglement entropy for this choice of partition is thus $S(A)= -\sum_{i} p_i ln(p_i)$.\\
+Factorising the Hilbert space $\mathcal{H}_A$ in its tensor product structure $\mathcal{H}_A=\bigotimes_{j\in A}\mathcal{H}_j$, we individuate in each local Hilbert space $\mathcal{H}_j$ a site of the partition $A$.
+We remind that $\rho^A$ cannot be expressed as a product state over this factorisation of $\mathcal{H}_A$ and that the von Neumann entropy is not additive. Thus the von Neumann entropy computed on each site is not a good entanglement contour function.\\
+We know from \ref{sec:Reducede-Density-Matrix} that $\rho_A$ is a f.g.s., thus we can express the entanglement entropy $S(A)$ as the sum of the von Neumman entropy of each mode in $A$,
+\begin{equation}
+S(A) = \sum_{k=1}^{N_A} S_k = -\sum_{k=1}^{N_A}\left[\nu_k \ln(\nu_k)+(1-\nu_k)\ln(1-\nu_k) \right] .
+\end{equation}
+Each mode $k$, associated to the Dirac operators $\beta_k=b_k\da$, $\beta_{k+N_A}=b_k$, is connected to the real space modes associated the Dirac operators $\alpha_i=a_i\da$, $\alpha_{i+N_A}=a_i$ by the Fermionic transformation $U$ such that
+\begin{equation}
+\beta_k = \sum_{i=1}^{N_A} U_{k,i} \alpha_i.
+\end{equation}
+We want to use this equation to find how much a fixed mode $k$ contributes to a fixed site $i$. We call this contribution $p_i(k)$ and we define it as
+\begin{equation}
+p_i(k) \coloneqq \frac{1}{2}\left[|U_{k,i}|^2+|U_{k+N_A,i+N_A}|^2+|U_{k,i+N_A}|^2+|U_{k+N_A,i}|^2 \right].
+\end{equation}
+The entanglement contour for partition $A$ is thus defined as
+\begin{equation}
+c_A(i) \coloneqq \sum_{k=1}^{N_A} p_i(k) S_k.
+\end{equation}
+It is easy to see that each of the $p_i(k)$ is positive and that
+\begin{equation}
+\sum_{k=1}^{N_A} p_i(k) = 1,
+\end{equation}
+as
+\[
+\sum_{k=1}^{N_A} p_i(k)  = \frac{1}{2} \left[\sum_{l=1}^{2N_A} U_{i,l}U^{*}_{l,i} + U_{i+N_A,l}U^{*}_{l,i+N_A}\right] = \frac{1}{2} \left( (UU\da)_{i,i} + (UU\da)_{i+N_A,i+v}\right) = 1,
+\]
+since $U$ is unitary. Thus one has the desired property
+\begin{equation}
+\sum_{i=1}^{N_A} c_{A}(i) = S(A).
+\end{equation}
+
+\begin{proposition}{\code{Contour($\Gamma_A$)$\rightarrow  \vec{c_A}$}}{}
+This function returns the vector $\vec{c_A}_i = c_A(i)$ of the entanglement contour of the correlation matrix $\Gamma_A$.
+\end{proposition}
+
+
+
+
+
+
+
+\subsection{Examples}
+
+We will use the function
+\begin{proposition}{\code{Random\_NNHamiltonianr(N)$\rightarrow  H$}}{}
+Generate a random f.q.h. Hamiltonian for a system of $N$ sites with just nearest neighbour interactions.
+\end{proposition}
+
+\paragraph{Computing the energies of H}
+In this program we compute the energies $\epsilon_k$ of a random nearest neighbours Hamiltonian on a linear lattice of $N=64$ sites generated with the function \code{Random\_NNHamiltonianr(64)}. The program generates the output figure \ref{fig:JLCODE1}
+.
+\label{ex:JL-Energies-Of-H}
+%\inputminted{csharp}{JLCODE1.jl}
+\lstinputlisting{src/JLCODE1.jl}
+\begin{figure}
+\includegraphics[width=0.7\textwidth]{figure/JLCODE1.pdf}
+  \captionof{figure}{Output of examples \ref{ex:JL-Energies-Of-H}. In the plot are represented the eigenvalues of a random nearest-neighbour Hamiltonian computed with the code \code{Random\_NNHamiltonian(N)} for a system with $N=64$ sites.}
+  \label{fig:JLCODE1}
+\end{figure}
+
+
+
+\paragraph{Computing the entanglement contour of a partition of a ground state}
+In this program we compute the entanglement contour and the entropy of a partition of $N_A=32$ sites in the bulk of the ground state of a random nearest neighbours Hamiltonian on a linear lattice of $N=64$ sites. The program generates the output figure \ref{fig:JLCODE2}.
+\label{ex:JL-Contour-Partition-GS}
+\lstinputlisting{src/JLCODE2.jl}
+Output:
+
+\code{The energy of the ground state is: -83.1750144099933}
+
+\begin{figure}
+  \centerline{
+\includegraphics[width=0.7\textwidth]{figure/JLCODE2.pdf} }
+  \captionof{figure}{Output of examples \ref{ex:JL-Contour-Partition-GS}. In the plot it is represented the entanglement contour of the reduced density matrix of the first $32$ contiguous site of a linear chain, when the global state is the ground state of a nearest-neighbour Hamiltonian on a linear chain of $N=64$ sites. Note how for a nearest neighbour Hamiltonian, the contour is higher on the boundary of the partition.}
+  \label{fig:JLCODE2}
+  \end{figure}
+
+
+
+
+
+%
+%Knowing that $b_l\da b_j\hat{H} = (\hat{H}+2\Delta_{l,j})b_l\da b_j$, with $\Delta_{l,j}=\epsilon_j-\epsilon_l$, we have we  see that the time evolution of the operator $b_l\da b_j$ is
+%\begin{equation}
+%e^{-\hat{H} \tau} b_{l}^{\dag}b_{j} e^{-\hat{H} \tau} = \sum_{n=0}^{\infty} \frac{(-2(\hat{H}+\Delta_{l,j})\tau)^n}{n!} b_l\da b_j=e^{-2(\hat{H}+\Delta_{l,j})\tau}b_l\da b_j.
+%\end{equation}
+%For the other $3$ quadrants of the correlation matrix we have
+%\begin{align}
+%e^{-\hat{H} \tau} b_{l}b_{j}\da e^{-\hat{H} \tau} &= e^{-2(\hat{H}-\Delta_{l,j})\tau}b_l b_j\da, \\
+%e^{-\hat{H} \tau} b_{l}b_{j} e^{-\hat{H} \tau} &= e^{-2(\hat{H}+\nabla_{l,j})\tau}b_l b_j,\\
+%e^{-\hat{H} \tau} b_{l}\da b_{j}\da e^{-\hat{H} \tau} &= e^{-2(\hat{H}-\nabla_{l,j})\tau}b_l\da b_j\da,
+%\end{align}
+%with $\nabla_{i,j}=(\epsilon_i+\epsilon_j)$.
+
+%Computing the anticommutators in the expansion of the imaginary time evolution of the couple $b_{i}^{\dag}b_{j}$ we obtain
+%\begin{align}
+%e^{-\hat{H} \tau} b_{i}^{\dag}b_{j} e^{-\hat{H} \tau} = \left[ \sum_{n=0}^{\infty}  \frac{\tau^n}{n!} \sum_{k=0}^{n}  \binom{n}{k}\Delta_{i,j}^{n-k} \hat{H}^{k} \right]b_{i}^{\dag}b_{j},
+%\end{align}
+%with $\Delta_{i,j} = (\epsilon(j)-\epsilon(i))$ and $\binom{n}{k}=\frac{n!}{k!(n-k)!}$ the binomial coefficient.
+
+
+%The expansion of the anticommutators for each value of $n$ is not trivial. We computed the first terms in the expansion of the imaginary time evolution of the couple $b_{i}^{\dagger}b_j$:\\
+%\resizebox{\textwidth}{!}{%
+%$
+%\begin{array}{ccccccc}
+%	n & anticommutator & b_{i}^{\dagger}b_{j} & Hb_{i}^{\dagger}b_{j} & H^{2}b_{i}^{\dagger}b_{j} & H^{3}b_{i}^{\dagger}b_{j} & H^{4}b_{i}^{\dagger}b_{j}\\
+%	0 & \mathbb{I}& 1&0  &0 &0 &0 \\
+%	1 & \left\{ H,b_{i}^{\dagger}b_{j}\right\}  & \left(\epsilon_{j}-\epsilon_{i} \right)-\sigma & 1 & 0 & 0 & 0\\
+%	 2 &\left\{ H,\left\{ H,b_{i}^{\dagger}b_{j}\right\} \right\}  & \left((\epsilon_{j}-\epsilon_{i})-\sigma\right)^{2} & \left(2(\epsilon_{j}-\epsilon_{i})-\sigma\right) & 2 & 0 & 0\\
+%	3 &\left\{ H,\left\{ H,\left\{ H,b_{i}^{\dagger}b_{j}\right\} \right\} \right\}  & \left((\epsilon_{j}-\epsilon_{i})-\sigma \right)^{3} & \left((\epsilon_{j}-\epsilon_{i})-\sigma\right)^2+(\epsilon_{j}-\epsilon_{i})\left(2(\epsilon_{j}-\epsilon_{i})-\sigma\right) & \left(6(\epsilon_{j}-\epsilon_{i})-2\sigma \right) & 4 & 0 \\
+%	\vdots&\vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+%\end{array}.
+%$
+%}\\
+%
+%We associate to each line $n\in[0,\infty)$ of the table a vector $\vec{X}^n$ of coefficients $\{X_i^n\}_{i\in[0,\infty)}$ defining $\Delta_{l,j} = (\epsilon_{j}-\epsilon_{l})$ and $\sigma=\sum \frac{\epsilon_k}{2}$, we can write  $\vec{X}^n(l,j)$ as:
+%\begin{align}
+%\vec{X}^n(l,j)  = [&(\Delta_{l,j}-\sigma)^n, X_0^{n-1}(l,j)+\Delta_{l,j} X_1^{n-1}(l,j),2X_1^{n-1}(l,j)+\Delta_{l,j} X_2^{n-1}(l,j), \nonumber \\
+%& \dots,\underbrace{2X_{i,1}^{n-1}+\Delta X_{i}^{n-1}}_{i},\dots ]
+%\label{eq:coefficients}
+%\end{align}
+%with
+%\begin{equation}
+%X^{n}_i(l,j) =
+%\begin{cases*}
+%0  & if $ i<n$ \\
+%2^{(n-1)}        & if $i=n$\\
+%1 & if $i=n=0$
+%\end{cases*}.
+%\end{equation}
+%Using this we rewrite the imaginary time evolution as
+%\begin{equation}
+%e^{-H\tau}b_{l}^{\dagger}b_j e^{-H\tau} = \sum_{n=0}^{\infty}\sum_{i=0}^{n}\frac{\tau^n X^n_i(l,j)}{n!}H^i b_{l}^{\dagger}b_j.
+%\label{eq:Heisenberg-evolution-bibj}
+%\end{equation}
+%%This is complex to compute. (Is it like a cellular automata?).
+%Changing the order of these sums %(can I? it seems the sum it doesn't converge if I exchange)
+% as
+%\begin{equation}
+%e^{-H\tau}b_{l}^{\dagger}b_j e^{-H\tau} = \sum_{i=0}^{\infty}\sum_{n=i}^{\infty}\frac{\tau^n X^n_i(l,j)}{n!}H^i b_{l}^{\dagger}b_j,
+%\end{equation}
+%we can rewrite the imaginary time evolution of the operators $b_{l}^{\dagger}b_j$ in terms of the weighted Pascal's triangle terms $D^{n}_i$
+%\begin{align}
+%e^{-H\tau}b_{l}^{\dagger}b_j e^{-H\tau} &= \sum_{i=0}^{\infty}\sum_{n=i}^{\infty}\frac{\tau^{n+1} D^n_i(l,j)}{(n+1)!}H^{i+1} b_{l}^{\dagger}b_j+\nonumber \\
+%&+\sum_{i=0}^{\infty}\frac{\left(\tau(\Delta-\sigma)\right)^n}{n!}b_{l}^{\dagger}b_j.
+%\end{align}
+%
+%%%%%FIGURE 2
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.80\linewidth]{figure/Weighted-Pascal.pdf}
+%	\caption{The table of the coefficients \eqref{eq:coefficients} has this structure. The coefficients of $b_{i}^{\dagger}b_j$ are simple incremental power of $(\Delta-\sigma)$. From the second column on it has the structure of a weighted Pascal's triangle with $2$  as weight on the diagonal direction and $\Delta$ as weight on the vertical direction, thus for example we have $D^{2}_2=2D^{2}_{1}+\Delta D^{1}_{2}$.
+%	}
+%	\label{fig:Sectors_Fourier}
+%\end{figure}
+%%%%%
+%
+%It is possible to find a non-recursive form of the terms $D^{n}_{i}$, that is
+%\begin{equation}
+%D^{n}_{i}(l,j)=2^i \sum_{x=0}^{n}\Delta^{x}_{l,j}A_{l,j}(n-x)\binom{i-1+x}{i-1}.
+%\end{equation}
+%This form refers just to the fixed boundary terms.
+%Inserting the expansion of the boundary terms we obtain
+%\begin{align}
+%D^{n}_{i}(l,j)& =\frac{2^i \Delta^{n+1}_{l,j}}{\sigma}\binom{i+n}{i}+ \nonumber \\& -\frac{2^{i}(\Delta_{l,j}-\sigma)}{\sigma}\sum_{x=0}^{n}\binom{i-1+x}{i-1}\Delta^{x}_{l,j}(\Delta_{l,j}-\sigma)^{n-x}
+%\end{align}
+%%\begin{remark}Some observations on the expansion \eqref{eq:Heisenberg-evolution-bibj}
+%%	\begin{itemize}
+%%		%\item Since the Hamiltonian is Fermionic we have that the sum over $i$ in \eqref{eq:Heisenberg-evolution-bibj} run from $0$ to $N$, where $N$ is the number of considered Fermionic sites. In fact, if $i>N$ we would have $H^i=0$ because necessarily some Fermionic operator would be doubled.
+%%		\item If we exchange the summation in \eqref{eq:Heisenberg-evolution-bibj} (can we?) we obtain an approximation of $\langle b_i^{\dagger}b_j\rangle(t)$in terms of  $\langle H^ib_i^{\dagger}b_j\rangle$, thus in terms of $i-$points correlations. What does it mean to cut to some $i$?
+%%	\end{itemize}
+%%\end{remark}
+
+%
+%
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%IMAGINARY TIME EXPANSION%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subparagraph{Expansion of the imaginary time evolution with $\delta t$}
+%This method has been showed in \cite{kraus2010} to be equivalent to other variational methods and to be  usually an effective method.
+%
+%
+%In order to compute the expansion of the imaginary evolution in terms of $\delta t$ we start from the exact time derivative of eq \eqref{eq:rho(tau)}
+%\begin{equation}
+%\frac{d}{d\tau} \rho(\tau) = -\left\{ \hat{H},\rho(\tau) \right\}+2\rho(\tau)\langle \hat{H} \rangle.
+%\end{equation}
+%Using the last equation and exploiting the linearity of the trace, we can easily compute the time derivative of the evolution of a term of the correlation matrix
+%\begin{equation}
+%\frac{d}{dt}\Gamma^{[1]}_{i,j}(\tau)= -Tr\left[ \left\{ \hat{H},\rho(\tau)\right\}b_{i}^{\dagger}b_j\right]+2\langle \hat{H}\rangle \Gamma^{[1]}_{i,j}.
+%\label{eq:ddtau-Lambda_1}
+%\end{equation}
+%Considering the first term in the LHS we can proceed as follows.
+%\begin{align}
+%Tr\left[ \left\{ \hat{H},\rho(\tau)\right\}b_{i}^{\dagger}b_j\right] &=\Tr{\left\{ \hat{H},b_{i}^{\dagger}b_j\right\}\rho(\tau)}= \nonumber\\
+%& =\langle \hat{H} b_{i}^{\dagger}b_{j}\rangle + \langle b_{i}^{\dagger}b_{j} \hat{H} \rangle,
+%\label{eq:Term-1_LHS_ddt-Lambda}
+%\end{align}
+%using the Fermionic Wick Theorem (i.e. $\expv{abcd}=\expv{ab}\expv{cd}-\expv{ac}\expv{bd}+\expv{ad}\expv{bc}$)
+%\begin{align*}
+%\langle \hat{H} & b_{i}^{\dagger}b_{j}\rangle  =\sum_{k=1}^{N}\frac{\epsilon_k}{2}\left(\expv{b^{\dagger}_{k}b_{k}b_{i}^{\dagger}b_{j}}-\expv{b_{k}b_{k}^{\dagger}b_{i}^{\dagger}b_{j}} \right)= \nonumber\\
+%& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\sum_{k=1}^{N}\epsilon_k\left( \expv{b_{k}b_{i}^{\dagger}}\expv{b_{k}^{\dagger}b_{j}}-\expv{b_{k}^{\dagger}b_{i}^{\dagger}}\expv{b_{k}b_{j}} \right)=\nonumber \\
+%& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\sum_{k=1}^{N}\epsilon_k\left(\delta_{i,k}\Gamma^{[1]}_{k,j}-\Gamma^{[1]}_{i,k} \Gamma^{[1]}_{k,j}+\Gamma^{[2]}_{i,k}\Gamma^{[3]}_{kj}\right) =\nonumber \\
+%& = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\epsilon_i\Gamma^{[1]}_{i,j}+(\Gamma H_D \Gamma)_i,j
+%\end{align*}
+%where in the last step we used the specific diagonal  $H_D$ form of $H$ with negative entries on the first half of the diagonal and positive on the second half.\\
+%With the same procedure we find
+%\begin{align*}
+%\expv{b_{i}^{\dagger}b_{j}\hat{H}} = \expv{\hat{H}}\Gamma^{[1]}_{i,j}+\epsilon_{j}\Gamma^{[1]}_{i,j}+(\Gamma H_D \Gamma)_{i,j}.
+%\end{align*}
+%Inserting both terms first in \eqref{eq:Term-1_LHS_ddt-Lambda} and then in \eqref{eq:ddtau-Lambda_1} one obtains
+%\begin{equation*}
+%\frac{d}{d\tau}\Gamma^{[1]}_{i,j}(\tau)= -2(\Gamma H_D \Gamma)_{i,j}-(\epsilon_{i}+\epsilon_{j})\Gamma^{[1]}_{i,j}=-2(\Gamma H_D \Gamma)_{i,j}-\left[H_D,\Gamma\right]_{i,j},
+%\end{equation*}
+%and thus applying the same procedure for each quadrant of the correlation matrix one obtain the general form of the derivative of the imaginary time evolution of the correlation matrix
+%\begin{equation}
+%\frac{d}{d\tau}\Gamma(\tau) = 4\Gamma(\tau) H_D\Gamma(\tau) - 4 H_D\Gamma(\tau) .
+%\label{eq:ddtau-Lambda}
+%\end{equation}
+%It will result more convenient work in the Majorana formalism now. For Majorana fermions equation \eqref{eq:ddtau-Lambda} read as
+%\begin{equation}
+%\frac{d}{d\tau}\gamma(\tau) = 4\left((\gamma(\tau) \tilde{h}_d\gamma(\tau) - \tilde{h}_D,\gamma(\tau)\right) .
+%\end{equation}
+%
+%%\emph{Now we introduce an approximation}.\\
+%At first order in imaginary time we can write the derivative as
+%\begin{equation*}
+%\gamma(\tau+\delta \tau)-\gamma(\tau) = \left( 4\gamma(\tau)H_D\gamma(\tau) - 4 H_D,\gamma(\tau)\right)\delta \tau +\mathcal{O}(\delta \tau^2).
+%\end{equation*}
+%We want to find an orthogonal matrix $O_\tau$ such that
+%\begin{equation*}
+%\gamma(\tau+\delta \tau) = O_{\tau}(\delta \tau) \gamma(\tau) O_{\tau}^{T}( \delta \tau).
+%\end{equation*}
+%Requesting for it to be orthogonal is a necessary and sufficient condition for it to be a general transformation on Majorana Fermions preserving the anticommutation relations.
+%We write $O_{\tau}(\delta \tau) = e^{L_t \delta \tau}$ with $L_t^{T}=-L_t$ (every special orthogonal matrix can be written as the exponential of a skew-symmetric matrix, this is why here is more convenient working with Majoranas).% In fact a general transformation on Dirac Fermions is a matrix $U$ such that $U\Omega^{T}$ is orthogonal or such that $UU^{\dagger}=\{\{0,\mathbb{I}\},\{\mathbb{I},0\}\}$).
+%\\
+%At first order in time we would have
+%\begin{equation*}
+%\gamma(\tau+\delta \tau) = \gamma(t)+ \left[L_t,\gamma(t) \right] \delta t+ \mathcal{O}(\delta t^2).
+%\end{equation*}
+%In order to find $O_{\tau}(\delta \tau)$ at first order in time we have to solve
+%\begin{equation*}
+%\left[L_{\tau},\gamma(\tau) \right] = 4\gamma(\tau)H_D\gamma(\tau)-4H_d,\gamma(\tau).
+%\end{equation*}
+%%\emph{Here we insert a request.}\\
+%This equation has a simple solution if we restrict to the case of pure Fermionic Gaussian states that is  imposing to the correlation matrix to be idempotent, $\gamma=\gamma^2$.\\
+%For a pure state we have
+%\begin{equation*}
+%L_{\tau} = 2\left[H_d,\gamma(\tau) \right].
+%\end{equation*}
+%Thus the imaginary time evolution of the correlation matrix of a pure Fermionic Gaussian state with an approximation at first order in time is:
+%\begin{equation}
+%\gamma(\tau)(t+\delta t) = e^{2\left[H_D, \gamma(\tau)\right]}\gamma(\tau)e^{-2\left[H_D,\gamma(\tau) \right]}
+%\end{equation}
+%or for Dirac Fermions
+%\begin{equation}
+%\Gamma(\tau)(t+\delta t) = e^{2\left[H_D, \Gamma(\tau)\right]}\Gamma(\tau)e^{-2\left[H_D,\Gamma(\tau) \right]},
+%\end{equation}
+%where $H_D$ is the block diagonalised or diagonalised Hamiltonian for Majorana or Dirac.
+
+
+
+\subsection{Time Evolution}
+We learned about Hamiltonians and states. Now it is time to put these two ingredients together and finally talk about the unitary evolution of Fermionic Gaussian states.\\
+We start stating that \textit{the space of Fermionic Gaussian states is closed under evolution induced by Fermionic quadratic Hamiltonians}.\\
+The best way for seeing this is using the Majorana operators representation. We consider a general f.q.h. $\hat{H}$ and a generic f.g.s. $\rho=\frac{e^{-\hat{H}_{\rho}}}{Z}$ with both $\hat{H}$ and $\hat{H}_{\rho}$ of the form \eqref{eq:Majorana-QFH}.
+Using standard notation we call $\rho(t)$ the state $\rho$ at time $t$ defined as
+\begin{equation}
+\rho(t) \coloneqq e^{-it\hat{H}} \rho e^{it\hat{H}} = \frac{e^{-it\hat{H}} e^{-\hat{H}_{\rho}} e^{it\hat{H}}}{Z}.
+\end{equation}
+As already observed in subsection \ref{sec:Product-Rule}, the commutator of two quadratic monomial of Dirac operators is a polynomial at most quadratic in Dirac operators. Using this observation together with the Baker-Campbell-Hausdorff formula ( equation B.C.H.0 in appendix \ref{appendix:Formulas}), it is easy to see that $\rho(t)$ has the form
+\begin{equation}
+\rho(t) = \frac{e^{-\hat{H}_{\rho(t)}}}{Z},
+\end{equation}
+with $\hat{H}_{\rho(t)}$ a Fermionic quadratic Hamiltonian. Thus $\rho(t)$ is again a Gaussian state proving that the space of Gaussian states is closed under evolution induced by Fermionic quadratic Hamiltonians.\\
+We will now compute an explicit formula for the time evolution of the correlation matrix $\Gamma(t)$ of the f.g.s. state $\rho(t)$.
+The first step is computing the time evolution of the creation and annihilation operators in the Heisenberg picture. We denote with $\vec{\beta}$ the vector of Dirac operators that diagonalises $H$. The annihilation and creation operators $b_k$ and $b_k\da$ evolved at time $t$ are (see appendix \ref{appendix:Real-Heisenberg-Evolution})
+\begin{align}
+	b_k(t)&= e^{-i\hat{H}t} b_k e^{i\hat{H}t} = e^{-i 2 \epsilon_k t}b_k,\\
+	b_k\da(t) &= e^{-i\hat{H}t} b_k\da e^{i\hat{H}t} = e^{i 2 \epsilon_k t}b_k\da.
+\end{align}
+In compact form this can be written as
+\begin{equation}
+\vec{\beta}(t) = e^{i 2 H_Dt}\vec{\beta}.
+\end{equation}
+It is easy now to compute the time evolution of the correlators $\langle \vec{\beta}\vec{\beta}\da\rangle$
+\begin{equation}
+ \langle \vec{\beta}(t)\vec{\beta}\da(t) \rangle = \langle e^{i 2 H_Dt} \vec{\beta}\vec{\beta}\da e^{-i 2 H_Dt}\rangle.
+\end{equation}
+Thus, if $U$ is the Fermionic transformation such that $\vec{\beta} = U\vec{\alpha}$, the Fermionic transformation implementing the time evolution of $\vec{\alpha}$ is $U\da e^{i 2 H_Dt}U = e^{i 2 Ht}$. We finally obtain that the correlation matrix $\Gamma$ evolves with $H$ as
+\begin{equation}
+\Gamma(t) = e^{i 2 Ht}\Gamma e^{-i 2 Ht}.
+\end{equation}
+
+
+\begin{proposition}{\code{Evolve($\Gamma$, H\_D, U, t)$\rightarrow  \Gamma(t)$}}{}
+This function returns the correlation matrix $\Gamma$ evolved at time $t$ with $H$. Matrices $H_D$ and $U$ are the output of \code{Diag\_h(H)}.
+\end{proposition}
+
+
+
+\section{Hopping model}
+\label{sec:Hopping-Model}
+We consider the translational invariant hopping Hamiltonian for a system of $N$ sites
+\begin{equation}
+\label{eq:Hopping-Hamiltonian}
+\hat{H} = \sum_{i=1}^{N-1} [a_i\da a_{i+1} - a_i a_{i+1}\da]+\delta[a_{N}\da a_{1}-a_{N}a_{1}\da],
+\end{equation}
+with $\delta=1$ for periodic boundary conditions and $\delta=0$ for open boundary conditions.\\
+The compact form \eqref{eq:H} of $\hat{H}$ is specified by the two circulant matrices (see \ref{appendix:Circulant-Matrices})
+\begin{align}
+A = \begin{pmatrix}
+0				& \frac{1}{2}	& 0			& \dots 		& 0				& \delta \frac{1}{2}	\\
+\frac{1}{2} 			& 0 			& \frac{1}{2} 	& 0 			& \dots 			& 0 				\\
+0				& \frac{1}{2} 	& 0 			& \frac{1}{2} 	& 0 				& \dots 			 \\
+\vdots			& \vdots		&\ddots		& \ddots		& \ddots			& \vdots			\\
+\delta \frac{1}{2} 	& 0 			& 0 			& \dots 		& \frac{1}{2} 			& 0 \\
+\end{pmatrix} & \qquad
+&
+B = \begin{pmatrix}
+0 		& \dots 	& 0 		\\
+\vdots	& \ddots	& \vdots	\\
+0		& \dots	& 0
+\end{pmatrix}
+\end{align}
+As seen in subsection \ref{sec:Translational-Invariant-States} and appendix \ref{appendix:Circulant-Matrices}) we know that $H$ is diagonalised with a Fourier transformation.
+Indeed, if we express the hopping Hamiltonian \eqref{eq:Hopping-Hamiltonian} in term of the Fourier modes \eqref{eq:Fourier_a-to-f} we obtain
+\begin{equation}
+\label{eq:Hopping-Diagonal}
+\hat{H} = \sum_{k=1}^{N} \phi_k (f_k\da f_k-f_k f_k\da),
+\end{equation}
+where
+\begin{equation}
+\label{eq:Dispersion-Hopping}
+\phi_k=\cos(\frac{2\pi}{N}k).
+\end{equation}
+The Fermionic transformation that diagonalises the Hamiltonian is $U_{\omega}$ as defined in \eqref{eq:Fermionic-Transformation-Fourier}.
+
+\subsection{Numerical diagonalisation}
+In the following code we show how to initialise and diagonalise the hopping Hamiltonian using functions of \code{F-utilities}.  We perform these calculations using two different methods. The energies computed with both methods are reported in figure \ref{fig:JLCODE3}, the ground states correlations matrices are identical.
+
+\label{ex:JL-Hopping-Hamiltonian}
+\lstinputlisting{src/JLCODE3.jl}
+Output:\\
+\code{Energy GS Method Fourier:      -80.85277253991693}\\
+\code{En GS Method Diag\_h:           -80.85277253997737}
+
+\begin{figure}
+  \centerline{
+\includegraphics[width=0.7\textwidth]{figure/JLCODE3_1.pdf} }
+  \captionof{figure}{In this example we diagonalised the Hamiltonian with two different methods. Using the Fourier transform method we obtain the energies specified in \eqref{eq:Dispersion-Hopping}. These energies are both positive and negative. Using the \code{Diag\_h} method of \code{F\_utilities} we obtain just positive energies. The difference in the diagonal energies comes from the fact that \code{Diag\_h}, for every eigenmode with negative energy, substitutes creation and annihilation operators in order to redefine the energy as positive, and then reorders the modes in order to have the energies in descending order. If we diagonalise with the Fourier transform then the ground state is obtained filling all the modes with negative energy. If we diagonalise with \code{Diag\_h} then the ground state corresponds to the empty state.}
+  \label{fig:JLCODE3}
+  \end{figure}
+%
+%    \centerline{
+%\includegraphics[width=1\textwidth]{figure/JLCODE3_2.pdf} }
+%  \captionof{figure}{Here we plot the matrix elements of the real and imaginary part of the difference of correlation matrices of the ground state computed with the two methods. The coordinate $(x,y)$ correspond to the matrix element $M_{x,y}$. On the real space basis of $a,a\da$ the ground state must be the same.}
+%
+
+
+\begin{proposition}{\code{Build\_hopping\_Hamiltonian($N$, PBC=true)$\rightarrow  H$}}{}
+This functions return the Hamiltonian $H$ if dimension $2N \times 2N$ for the hopping model. If \code{PBC=false} it return the hopping Hamiltonian with open boundary conditions
+\end{proposition}
+
+For the numerical diagonalisation of the Hamiltonian we used two methods, the analytical one using the Fourier modes, and the numerical one introduced in the previous subsection.\\
+These methods return the hopping Hamiltonian in the diagonal forms
+\begin{equation}
+\label{eq:Diagonal-Hopping}
+\hat{H}_{\omega} = \sum_{k=1}^{N} \phi_k (f_k\da f_k-f_k f_k\da), \qquad \hat{H} = \sum_{k=1}^{N} \epsilon_k (b_k\da b_k -b_k b_k\da),
+\end{equation}
+where the differences in the energies are due to the fact that \code{Diag\_h} considers all the energies $\epsilon_k$ positive, thus defines $b_k = f_k\da$ and $b_k\da = f_k$ for each $k$ such that $\phi_k<0$ (that corresponds to flipping the sign of $\phi_k$ when it is negative, such that the corresponding $\epsilon_k=-\phi_k$), and then reorder the modes such that to modes with smaller $k$ correspond biggest energies.\\
+
+\subsection{Time Evolution}
+
+For the hopping model we analytically obtained the Fermionic transformation $U_{\omega}$ that diagonalises the Hamiltonian. This allows us to give an analytical expression for the time evolution of the correlation matrix.\\
+Expressing the correlation matrix $\Gamma$ in term of the operators $\vec{\phi}$ and computing the time evolution with the diagonal Hamiltonian \eqref{eq:Hopping-Diagonal} we obtain
+\begin{align}
+\langle a_l\da a_m\rangle (t) & = \frac{1}{N}\sum_{k,k'} \sum_{x,y} e^{i2(\phi_k-\phi_{k'})t}  e^{i\frac{2 \pi}{N} (k(l-x)-k'(m-y))} \langle a_x\da a_y \rangle \\ %% f non b
+\langle a_l a_m \rangle (t)     & = \frac{1}{N}\sum_{k,k'} \sum_{x,y} e^{-i2(\phi_{k}+\phi_{k'})t} e^{-i\frac{2 \pi}{N} (k(l-x)+k'(m-y))} \langle a_x a_y \rangle.
+\end{align}
+Because of the block diagonal structure of $U_{\omega}$ there is not mixing of the two types of correlators during the evolution of the correlation matrix.
+\paragraph{Time evolution of translational invariant states}
+Let us consider a translational invariant state $\Gamma$. In subsection \ref{sec:Translational-Invariant-States} we expressed $\Gamma$ in term of the Fourier modes $f_k\da,f_k$.
+Using the diagonal form \eqref{eq:Diagonal-Hopping} of the Hopping Hamiltonian to compute the time evolution of the correlators of $\Gamma$ expressed as in \eqref{eq:Translational-Invariant-State-a-to-f}
+we have that $\Gamma$ evolves as
+\begin{align}
+\label{eq:Time-ev_TI}
+&\langle a\da a \rangle_{\Delta}(t) = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k\da f_k \rangle, & \mbox{ } & \langle a a\da \rangle_{\Delta}(t) = \frac{1}{N} \sum_{k=1}^{N} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k f_k\da \rangle \nonumber \\
+&\langle a a \rangle_{\Delta}(t) = \frac{1}{N} \sum_{k=1}^{N}e^{i4\phi(k)t} e^{-i\frac{2\pi}{N}k\Delta} \langle f_k f_{N-k} \rangle, & \mbox{ } & \langle a\da a\da \rangle_{\Delta}(t) = \frac{1}{N} \sum_{k=1}^{N} e^{-i4\phi(k)t} e^{-i\frac{2\pi}{N}k\Delta} \langle f_{N-k}\da f_k\da \rangle.
+\end{align}
+in the following program we numerically compute the time evolution induced by a hopping Hamiltonian on a random  translational invariant gaussian state with exponentially decaying correlation functions. We consider a linear system of $N=50$ sites and evolve it for $N_{\mbox{steps}}=100$ steps of $\delta_{steps}=0.1$. The program generates the output figures \ref{fig:JLCODE4_1} and \ref{fig:JLCODE4_2}.
+
+\label{ex:JL-Evolution-Hopping-Hamiltonian}
+\lstinputlisting{src/JLCODE4.jl}
+Output:\\
+
+\begin{figure}
+  \centerline{
+\includegraphics[width=1\textwidth]{figure/JLCODE4_1.pdf} }
+  \captionof{figure}{This is a representation of the real and imaginary part (left and right plots) of the elements of the correlation matrix $\Gamma$ of a translational invariant state with exponentially decaying correlations. The element $(i,j)$ corresponds to $\Gamma_{i,j}$. The exponential decay of the correlation is evident from the fading of the colours moving to matrix elements farer from the diagonal.}
+  \label{fig:JLCODE4_1}
+  \end{figure}
+
+\begin{figure}
+    \centerline{
+\includegraphics[width=0.7\textwidth]{figure/JLCODE4_2.pdf} }
+  \captionof{figure}{The time evolution induced by the Hopping Hamiltonian of the real and imaginary part of $\langle a_1\da a_2 \rangle$ and $\langle a_1a_2\rangle$ of the translational invariant state specified in the code. The expectation values evolve as predicted by equations \eqref{eq:Time-ev_TI}.}
+  \label{fig:JLCODE4_2}
+  \end{figure}
+
+\section{Transverse Field Ising Model}
+
+\label{sec:Ising-model}
+
+The Hamiltonian of the Transverse Field Ising model (TFI) has the form
+\begin{equation}
+\label{eq:TFI}
+\hat{H}=-\sum_{n=1}^{N-1}\sigma_n^x\sigma_{n+1}^x-g_I \sigma_N^x\sigma_1^x-\cot(\theta)\sum_{n=1}^{N}\sigma_n^z,
+\end{equation}
+where $N$ is the number of sites, $\sigma_i^{\alpha}$ with $\alpha=x,y,z$ are the Pauli matrices at the $i$-th site and $\cot(\theta)$ is the magnetic field, with $0<\theta<\frac{\pi}{2}$.\\
+The parameter $g_I$ encodes the boundary conditions of the Ising model: here we consider $g_I=-1,0,+1$, corresponding, respectively, to anti-periodic, open and periodic boundary conditions.\\
+The model is called \textit{transverse} field Ising model because the field interacts with the spins with $\sigma_i^z$, while the spins interact between each others with $\sigma_i^x\sigma_{i+1}^x$.\\
+The TFI Hamiltonian can be exactly diagonalised using a Jordan-Wigner transformation (see appendix \ref{appendix:Jordan-Wigner}) mapping spin operators to spinless fermions \cite{lieb1961,schultz1964,pfeuty1970,mattis1976,cabrera1987,henkel1999,calabrese2012,suzuki2013}.\\
+In term of fermions the Hamiltonian has the form
+\begin{equation}
+\label{eq:TFI-Fermions}
+\hat{H} = -\sum_{n=1}^{N-1}(a_n\da-a_n)(a_{n+1}+a_{n+1}\da)+g_I P(a_N\da-a_N)(a_1+a_1\da)-\cot(\theta)\sum_{n=1}^{N}(a_n\da a_n-a_n a_n\da),
+\end{equation}
+where $P=\prod_{n=1}^{N}(1-2a_n\da a_n)$ is the parity operator introduced in \ref{sec:Clifford-Algebra}.\\
+We notice that becuase of the presence of the parity operator $P$, the TFI Hamiltonian cannot be directly mapped to a f.q.h..
+Nonetheless, since the Hamiltonian $\hat{H}$ commutes with the parity operator $P$ we can diagonalise $\hat{H}$ and $\hat{P}$ simultaneously. On the diagonal basis of $P$ we have that $\hat{H}$ has the block diagonal form $\hat{H}=\hat{H}_{e}\oplus \hat{H}_{o}$, where $\hat{H}_{e}$, called even sector Hamiltonian, corresponds to the eigenvalue $+1$ of $P$ and $\hat{H}_{o}$, the odd sector Hamiltonian, corresponds to the eigenvalue $-1$ of $P$. We can then proceed to diagonalise the Hamiltonian on the two sectors independently (see section \ref{sec:Symmetries} and figure \ref{fig:block-conserved}). \\
+The Hamiltonians of the two sectors are:
+\begin{equation}
+\hat{H}_{\bfrac{e}{o}} = -\sum_{n=1}^{N-1}(a_n\da-a_n)(a_{n+1}+a_{n+1}\da) \pm g_I(a_N\da-a_N)(a_1+a_1\da)-\cot(\theta)\sum_{n=1}^{N}(a_n\da a_n-a_n a_n\da).
+\end{equation}
+Finally, we see that on each parity sector the TFI Hamiltonian is mapped to a f.q.h.. \\
+A bit of confusion can raise from considering the boundary conditions. The boundary conditions of the TFI Hamiltonian do not correspond to the boundary conditions of the Fermionic Hamiltonian. In fact, let us consider the three f.q.h.
+\begin{equation}
+\label{eq:TFI-Fermions-BC}
+\hat{H}(g_F) = -\sum_{n=1}^{N-1}(a_n\da-a_n)(a_{n+1}+a_{n+1}\da) - g_F(a_N\da-a_N)(a_1+a_1\da)-\cot(\theta)\sum_{n=1}^{N}(a_n\da a_n-a_n a_n\da),
+\end{equation}
+where the boundary conditions are encoded by the parameter $g_F=-1,0.+1$ and corresponds respectively to antiperiodic, open and periodic boundary conditions of the Fermionic Hamiltonian.
+The correspondences between spin model and Fermionic model are collected in table \ref{tab:Spin-Fermions}.
+Written in compact form \eqref{eq:Dirac-QFH-h}, Hamiltonian \eqref{eq:TFI-Fermions-BC}, is specified by the matrices
+\begin{equation}
+A = -\tfrac{1}{2}\begin{pmatrix}
+2\cot(\theta)				& 1	& 0			& \dots 		& 0				& g_F	\\
+1			& 2\cot(\theta) 			& 1	& 0 			& \dots 			& 0 				\\
+0				& 1 	& 2\cot(\theta) 			& 1 	& 0 				& \dots 			 \\
+\vdots			& \vdots		&\ddots		& \ddots		& \ddots			& \vdots			\\
+g_F 	& 0 			& 0 			& \dots 		& 1			& 2\cot(\theta) \\
+\end{pmatrix}
+\end{equation}
+and
+\begin{equation}
+B = -\tfrac{1}{2}\begin{pmatrix}
+0				& -1	& 0			& \dots 		& 0				& g_F 	\\
+1			& 0			& -1	& 0 			& \dots 			& 0 				\\
+0				& 1 	& 0 			& -1 	& 0 				& \dots 			 \\
+\vdots			& \vdots		&\ddots		& \ddots		& \ddots			& \vdots			\\
+-g_F 	& 0 			& 0 			& \dots 		& 1			& 0 \\
+\end{pmatrix}.
+\end{equation}
+We already know how to numerically diagonalise this Hamiltonian.
+We will present here the standard method for analytical diagonalisation, introducing the Bogoliubov transformations, and we will compare the results with the numerical diagonalisation.
+\begin{table}
+\centering
+\begin{tabular}{ |l|l|l| }
+\hline
+\multirow{2}{*} {$g_I=1$ (TFI periodic)} 	& Even sector 	& $g_F=-1$,	(f.q.h. antiperiodic)\\ \cline{2-3}
+								& Odd Sector	& $g_F=+1$,	(f.q.h periodic)\\
+\hline
+$g_I=0$ (TFI open) 		& Even/Odd sector 	& $g_F=0$,	(f.q.h. open)\\
+\hline
+\multirow{2}{*} {$g_I=-1$ (TFI antiperiodic)} 	& Even sector 	& $g_F=+1$,	(f.q.h. periodic)\\ \cline{2-3}
+									& Odd Sector	& $g_F=-1$,	(f.q.h antiperiodic)\\
+\hline
+\end{tabular}
+\caption{Corrspondences between spin models and Fermionic models}
+\label{tab:Spin-Fermions}
+\end{table}
+
+
+
+
+
+\subsection{Analytical diagonalisation of the TFI Hamiltonian}
+In this subsection we will see how to diagonalise the three Hamiltonians \eqref{eq:TFI-Fermions-BC} analytically. For a complete and detailed treatment we refer to \cite{lieb1961,cabrera1987} or the more recent review \cite{suzuki2013}.\\
+\paragraph{Antiperiodic and periodic boundary condition Fermionic Hamiltonian}
+Let us first consider the case of antiperiodic and periodic boundary conditions, $g_F=-1,+1$ (APBC and PBC respectively). Both cases can be brought to the form:
+\begin{align}
+\label{eq:H-FTFI-PBC-APBC}
+\hat{H} 	 = 	& -2\sum_{k > 0} \left[(\cot(\theta)+\cos(\frac{2\pi}{N}k))(f_k\da f_k - f_k f_k\da)+ i \sin(\frac{2\pi}{N}k)(f_k\da f_{-k}\da-f_{-k} f_k)\right]+ \nonumber \\
+			& -(1+\cot(\theta))(f_0\da f_0 -f_0 f_0\da)-(\cot(\theta)-1)(f_{-\tfrac{N}{2}}\da f_{-\tfrac{N}{2}} -f_{-\tfrac{N}{2}} f_{-\tfrac{N}{2}}\da),
+\end{align}
+where
+\begin{equation}
+\label{eq:Fourier_f-to-a}
+	f_k = \frac{1}{\sqrt{N}}\sum_{j=1}^{N}e^{i\frac{2\pi}{N}kj}a_j, \qquad f_k\da = \frac{1}{\sqrt{N}}\sum_{j=1}^{N}e^{-i\frac{2\pi}{N}kj}a_j\da,
+\end{equation}
+with inverse transformations
+\label{eq:Fourier_a-to-f}
+\begin{equation}
+	a_j = \frac{1}{\sqrt{N}}\sum_{k}e^{-i\frac{2\pi}{N}kj}f_k, \qquad a_j\da = \frac{1}{\sqrt{N}}\sum_{k}e^{i\frac{2\pi}{N}kj}f_k\da.
+\end{equation}
+and
+\begin{align}
+k=\frac{-N+1}{2},\frac{-N+1}{2}+1,\dots,\frac{N-1}{2} & & \mbox{ for $g_F=-1$ and $N$ even or $g_F=1$ and $N$ odd} \nonumber \\
+k=\frac{-N}{2},\frac{-N}{2}+1,\dots,\frac{N}{2}-1 & & \mbox{ for $g_F=+1$ and $N$ even or $g_F=-1$ and $N$ odd}.
+\end{align}
+Terms with $f_0\da,f_0$ and $f_{-\tfrac{N}{2}}, f_{-\tfrac{N}{2}}\da$ in \eqref{eq:H-FTFI-PBC-APBC} are present just when $k=0$ and $k={-\tfrac{N}{2}}$ are allowed.\\
+The different quantisations of the $k$ in the two cases are justified in \cite{lieb1961} and can be understood by intuition noting that with the first quantisation one would have $a_{N+1}=-a_1$, while with the second $a_{N+1}=a_1$.
+We can write the Hamiltonian in the compact form
+\begin{equation}
+\hat{H}  =	 \sum_{k>0}\begin{pmatrix} f_k\da & f_{-k} \end{pmatrix} h_k \begin{pmatrix} f_k \\ f_{-k}\da \end{pmatrix} -(1+\cot(\theta)(f_0\da f_0 -f_0 f_0\da),
+\end{equation}
+with
+\begin{equation}
+h_k = \begin{pmatrix} -2(\cot(\theta)+\cos(\frac{2\pi}{N}k)) & 2\im \sin(\frac{2\pi}{N}k) \\ -2\im \sin(\frac{2\pi}{N}k) & 2(\cot(\theta)+\cos(\frac{2\pi}{N}k)) \end{pmatrix}.
+\end{equation}
+This divides the modes space in sectors that couple each $k$ with $-k$.
+For each of these sectors we have the unitary transformation
+\begin{equation}
+U_k =  \begin{pmatrix} s_k & -\im t_k \\ -\im t_k & s_k \end{pmatrix},
+\end{equation}
+such that it diagonalises $h_k$ as
+\begin{equation}
+U_k\da h_k U_k = \begin{pmatrix} \epsilon_k 	& 0 \\
+							0		& -\epsilon_k \end{pmatrix},
+\end{equation}
+with eigenvalues
+\begin{equation}
+\epsilon_k = 2 \sqrt{1+\cot(\theta)^2+2 \cot(\theta) \cos(\frac{2\pi}{N}k)}.
+\end{equation}
+
+The elements of  $U_k$ are defined as
+\begin{align}
+s_k	& = \frac{\sin(\frac{2\pi}{N}k)}{ \sqrt{\epsilon_k(\epsilon_k / 2+\cot(\theta)+\cos(\frac{2\pi}{N}k))} }, \\
+t_k 	& = \frac{ \epsilon_k / 2+\cot(\theta)+cos(\frac{2\pi}{N}k) } { \sqrt{ \epsilon_k(\epsilon_k / 2+\cot(\theta)+cos(\frac{2\pi}{N}k)) } }.
+\end{align}
+
+This defines the Fermionic transformation of all the Fourier modes that read as
+\begin{align}
+\label{eq:Bogoliubov-Trans}
+f_k		& = s_k b_k  - \im t_k b_{-k}\da, \\
+f_{-k}\da	& = s_k b_{-k}\da  - \im t_k b_k.
+\end{align}
+This transformation is called Bogoliubov-Valatin transformation \cite{bogoljubov1958,valatin1958}, and sometimes $s_k$ and $t_k$ are expressed respectively as $\cos(\phi_k)$ and $\sin(\phi_k)$, with $\phi_k$ called Bogoliubov angle. One has that for PBC and APBC each f.q.h. of the form \eqref{eq:H-FTFI-PBC-APBC} is characterised by the choice of the quantisation of $k$ and a particular Bogoliubov angle.\\
+We finally obtain the diagonal form of the Hamiltonian
+\begin{equation}
+\hat{H}=\sum_{k\neq -\frac{N}{2}, 0} \frac{\epsilon_k}{2}(b_k\da b_k -b_{k}b_{k}\da)-(1-\cot(\theta))(f_0\da f_0 -f_0 f_0\da)-(\cot(\theta)-1)(f_{-\tfrac{N}{2}}\da f_{-\tfrac{N}{2}} -f_{-\tfrac{N}{2}} f_{-\tfrac{N}{2}}\da).
+\end{equation}
+
+
+\paragraph{Open boundary condition Fermionic Hamiltonian}
+For the open boundary conditions (OBC) form of  Hamiltonian \eqref{eq:TFI-Fermions-BC} there is not a clear meaning for the term $a_{N+1}$, thus we will not apply any Fourier transform.
+We will not show here the procedure for the diagonalisation, we refer to \cite{lieb1961, cabrera1987} or the more recent \cite{he2017} for it.
+%\begin{align}
+%b_k = \sum_{n=1}^{N}( g_{k,n} a_n + h_{k,n} a_n\da), & & b_k\da = \sum_{n=1}^{N}(g_{k,n}a_n\da + h_{k,n}a_{n}),
+%\end{align}
+%where
+%\begin{align}
+%g_{k,n}	& = \frac{1}{2\sqrt{\sum_{n=1}^{N} u_{k,n}}} (u_{k,n}+u_{k,N-n+1}), \\
+%h_{k,n}	& = \frac{1}{2\sqrt{\sum_{n=1}^{N} u_{k,n}}} (u_{k,n}-u_{k,N-n+1}),
+%\end{align}
+%$u_{k,n}=\sin(n\phi_k)$ and
+We have that the energies $\epsilon_k$ of the Hamiltonian in diagonal form will be
+\begin{equation}
+\epsilon_k = \sqrt{1+\cot(\theta)^2+2\cot(\theta)\cos(\phi_k)}
+\end{equation}
+with  $\{\phi_k\}_{k=1}^{N}$ the roots of equation
+\begin{equation}
+\frac{\sin((N+1)\phi)}{\sin(N\phi)}=-\frac{1}{\cot(\theta)},
+\end{equation}
+in the interval $0\leq \phi_k \leq \pi$.
+
+\subsection{Ground state}
+In the case of OBC the ground state is easily found using the function \code{GS\_gamma()} with the Hamiltonian \eqref{eq:TFI-Fermions-BC} imposing $g_F=0$.\\
+For computing the ground state in the case of APBC or PBC we need to know if the ground state is even or odd or if it is a superposition of states with different parities.
+% For the APBC and PBC cases it is not clear yet how to find it. We don't know yet if the ground state is even or odd or if it is a superposition of states with different parities.
+It is known that, at finite dimension, with $N$ even, for the antiperiodic Ising model the ground state is in the odd sector, while for the periodic Ising model the ground state is in the even sector.
+When $N$ is odd, for the antiperiodic Ising model the ground state is in the even sector and for the periodic Ising model the ground state is in the odd sector \cite{calabrese2012}.\\
+In the thermodynamic limits, the energy difference between the two sectors goes to zero, the ground state becomes degenerate.
+Here we present a program for finding the correct sector of the ground state and for verifying that as $N$ grows the energy difference between the ground state of the two sectors goes to zero. The program generate the output figure \ref{fig:JLCODE5}.
+
+\paragraph{Analitical and Numerical energies}
+\label{sec:JLCODE5}
+\lstinputlisting{src/JLCODE5.jl}
+
+Output:\\
+\code{Ground State Energies}\\
+\code{G\_F=-1	:  -25.18934650837823}\\
+\code{G\_F=+1	:   -25.189223629491178}\\
+We have $N=10$ so the ground state is expected to be in the GF=-1 sector. The computed energies confirm this.
+
+\begin{figure}
+  \centerline{
+\includegraphics[width=0.9\textwidth]{figure/JLCODE5.pdf} }
+  \captionof{figure}{Output of the code \ref{sec:JLCODE5}. The three plots represent the analytical and numerical values of the free mode energies $\epsilon_k$ of the Hamiltonian \eqref{eq:TFI-Fermions-BC} computed with antiperiodic, periodic and free boundary conditions. We see that the energies computed with \code{F\_utilities} correspond to the one computed analytically.}
+  \labe{fig:JLCODE5}
+  \end{figure}
+
+\paragraph{Degenerancy of the ground state}
+In the following program we check that the ground state energies of the TFI hamiltonians \eqref{eq:TFI-Fermions-BC} with $g_F=\pm 1$ converge to the same value as the dimension of the system grows. The program generates the output figure \ref{
+\lstinputlisting{src/JLCODE6.jl}
+
+\begin{figure}
+  \centerline{
+\includegraphics[width=0.85\textwidth]{figure/JLCODE6.pdf} }
+  \captionof{figure}{The ground states of Hamiltonians \eqref{eq:TFI-Fermions-BC} for $g_F=\pm 1$ converge exponentially to the same value. The ground state of the antiperiodic and of the periodic transverse field Ising model is degenerate in the thermodynamic limit.}
+\label{fig:JLCODE6}
+\end{figure}
+
+
+%\begin{equation}
+%\begin{tikzcd}
+%	& |[alias=A]| \mbox{Even sector} \arrow[ to=B, rightarrow]  & |[alias=B]| g_F=1 \mbox{, Fermionic periodic}   \\
+%	|[alias=C]| \mbox{TFI periodic} \arrow[to=A, rightarrow] \arrow[to=D, rightarrow] && \\
+%	& |[alias=D]| \mbox{Odd sector} \arrow[to=E, rightarrow] & |[alias=E]| g_F=-1 \mbox{, Fermionic antiperiodic}
+%%\arrow[ to=B, leftrightarrow, bend left, "=" description,red] \arrow[to=D, "\textbf{A}" description, draw=none, xshift=2ex]&  	|[alias=B]| \rho_1^{G} \arrow[to=F, "\textbf{B}" description, draw=none]  \arrow[l, "P_{\mathcal{G}}" description] \arrow[r, "\mcut_{H}", to=C] \arrow[d,  "\Lambda" description, to=D]
+%%	&  &  	|[alias=C]| \mcut_{H}(\rho_1^{G}) \arrow[d,"\Lambda" description,to=F] \arrow[r, "P_{\mathcal{G}}" description] & 	|[alias=L]| \rho(\tilde{\mcut}_{H}(\Lambda(\rho_{1}^{G}))) \arrow[ to=C, leftrightarrow, bend right, "?=" description ,red] \arrow[to=F, "\textbf{C}" description, draw=none,xshift=-2ex] \\
+%%	& 	|[alias=D]|  \Lambda(\rho_{1}^{G}) \arrow[bend left, to=A, "\rho" description,yshift=0.5ex,xshift=1ex] \arrow[ to=A, leftarrow, bend left, "\Lambda"description ,yshift=-1ex, xshift=-1ex] \arrow[r,  "\tilde{\mcut}_{H}"]
+%%	& 	|[alias=E]| \tilde{\mcut}_{H}(\Lambda(\rho_{1}^{G})) \arrow[r, leftrightarrow,"="] & |[alias=F]| \Lambda( \mcut_{H}(\rho_1^{G}))  \arrow[bend right, to=L, "\rho" description ,yshift=1ex, xshift=-1ex]  \arrow[ to=L, leftarrow, bend right, "\Lambda"description ,yshift=-1ex, xshift=1ex] &
+%\end{tikzcd}.
+%\label{eq:comm_graph}
+%\end{equation}
+%\captionof{figure}{Commutative graph for the transformations between correlations matrices and density matrices. Since the initial state $\rho_1^{G}$ is Gaussian, the quadrant $\textbf{A}$ is completely commutative and all the elements are equivalent. The quadrant $\textbf{B}$ introduce the complete dephasing that is in general a non reversible mapping (exception made for the case in which $\rho_1^{G}$ is diagonal). The quadrant $\textbf{C}$ is in general not commutative since the complete dephasing doesn't always preserve the Gaussianity of the state. The proof of the equality in quadrant $\textbf{B}$ is in appendix \ref{appendix:Not-Gaussian}.}
+
+\subsection{Time Evolution}
+\label{sec:Time-Evolution-TFI}
+As in the case of the Hopping model, even for the Hamiltonian \eqref{eq:TFI-Fermions-BC} it is possible to explicitly compute the time evolution of the correlation matrix elements.
+We focus here on the case of $g_F=-1$ and $N$ even in order to simplify the analitical form.
+The principal difference with the Hopping model is that, in the case of the Fermionic TFI,
+the transformation that diagonalises the Hamiltonian is not a simple Fourier transform, but it is a composition of a Fourier transform and a Bogoliubov transformation.
+We exemplify how to obtain an analitical form for the time evolution of the term $\langle a_1\da a_1 \rangle$ of a translational invariant correlation matrix.
+As a first step, exploiting the translational invariance of the state and moving to the Fourier modes, we write
+\begin{align}
+\langle a_1\da a_1 \rangle & = \frac{1}{N} \sum_{n=1}^{N} \langle a_n\da a_n \rangle =
+ \frac{1}{N^2} \sum_{n=1}^{N}\sum_{k=\frac{-N+1}{2}}^{\frac{N+1}{2}}\sum_{k'=\frac{-N+1}{2}}^{\frac{N+1}{2}} e^{-i \frac{2\pi}{N}n(k-k')} \langle f_k\da f_{k'} \rangle = \nonumber \\
+  & = \frac{1}{N} \sum_{k=\frac{-N+1}{2}}^{\frac{N+1}{2}} \langle f_k\da f_k \rangle.
+\end{align}
+We then move to the Bogoliubov modes with the transformation \eqref{eq:Bogoliubov-Trans} obtaining
+\begin{align}
+\langle a_1\da a_1 \rangle & = \frac{1}{N} \sum_{k=\frac{-N+1}{2}}^{\frac{N+1}{2}} \left[s_k^2 \langle b_k\da b_k \rangle +t_k^2 \langle b_{-k} b_{-k}\da \rangle + \im s_k t_k (\langle b_{-k} b_k \rangle - \langle b_k\da b_{-k}\da \rangle ) \right].
+\end{align}
+In this basis the Hamiltonian is diagonal, thus the time evolution easily computed as
+\begin{equation}
+\label{eq:Evolution-occupation-TFI}
+\langle a_1\da a_1 \rangle (t) = \frac{1}{N} \sum_{k=\frac{-N+1}{2}}^{\frac{N+1}{2}} \left[s_k^2 \langle b_k\da b_k \rangle +t_k^2 \langle b_{-k} b_{-k}\da \rangle + \im s_k t_k (e^{i 2\epsilon_k t}\langle b_{-k} b_k \rangle - e^{-i 2\epsilon_k t}\langle b_k\da b_{-k}\da \rangle ) \right].
+\end{equation}
+To obtain the expression of $\langle a_1\da a_1 \rangle (t)$ in terms of correlators of the operators $a\da, a$ we just have to map the $b\da,b$ to $a\da,a$.
+
+
+
+\section{Benchmarking with Fermionic Gaussian states}
+\label{sec:Benchamarking-Fermions}
+Fermionic Gaussian states can be used as a tool for benchmarking algorithms. We will see how tools developed for general quantum states can be translated to the language of correlation matrices. To understand the idea behind the benchmarking, let us take an explicit example. In the next subsection we are going to see the imaginary time evolution of Fermionic Gaussian states. One usually uses the imaginary time evolution of a state for computing the ground state of an Hamiltonian. Of course, in the case of f.g.s., computing the ground state is not the main purpose, as we know already how to compute it for any f.q.h.. Knowing already the exact results allows us to compare the algorithm for the imaginary time evolution with the exact results and get good insight in what we should expect in a context where the exact result is not known. \\
+If we have an algorithm acting on some generic quantum state, we can try to translate it in the formalism of f.g.s. and benchmark it to the exact results.\\
+In this subsection we present the translation of some well known algorithm in the language of correlation matrices. The purpose of this subsection is not to benchmark these algorithm, but instead, to translate some important existing algorithms. This will provide us the translations of the possible building blocks of any novel and more complex experimental algorithm.
+
+\subsection{Imaginary-time evolution}
+In order to find the ground state of a non-degenerate Hamiltonian $H$ one can use the following equality
+\begin{equation}
+|GS\rangle = \lim_{\tau\rightarrow\infty} \frac{e^{-H\tau}|\psi\rangle}{||e^{-H\tau}|\psi\rangle||}
+\label{eq:Pure_state-ITE}
+\end{equation}
+starting from a generic state $|\psi\rangle$ with $\langle GS | \psi \rangle \neq 0$.\\
+To see this, let us consider the orthononormal basis $\{|E_i\rangle\}_{i}$ generated by the collection of the eigenvectors of $H$, with eigenvalues $\{E_i\}_i$ such that $0\leq E_0\lneqq E_1 \leq E_2 \leq $, where $\mathcal{H}$ is the Hilbert space on which $H$ act.\\
+Expanding $|\psi\rangle$ on this basis one obtains $|\psi\rangle = \sum_i c_i |E_i\rangle$, with $c_0\neq 0$ from the fact that $\langle GS | \psi \rangle \neq 0$.
+One can thus see that eq \eqref{eq:Pure_state-ITE} is just a projection to the ground state:
+\begin{align}
+ \lim_{\tau\rightarrow\infty} &  \frac{e^{-H\tau}|\psi\rangle}{||e^{-H\tau}|\psi\rangle||}  = \lim_{\tau\rightarrow\infty} \sum_i \frac{e^{-E_i \tau}c_i}{\sqrt{\sum_i e^{-2E_i \tau}|c_i|^2}}|E_i\rangle = \\
+ & = \lim_{\tau\rightarrow\infty} \sum_i \frac{e^{-\frac{E_i}{E_0} \tau}c_i}{\sqrt{\sum_i e^{-2\frac{E_i}{E_0} \tau}|c_i|^2}}|E_i\rangle = |E_0\rangle,
+\end{align}
+and thus that $\lim_{\tau\rightarrow \infty}\frac{e^{-H\tau}}{||e^{-H\tau}||}$ is the projector on the ground state:
+\begin{align}
+\lim_{\tau\rightarrow \infty} & \frac{e^{-H\tau}}{||e^{-H\tau}||} = \lim_{t\rightarrow \infty}\frac{\sum_{i} e^{-E_i \tau}|E_i\rangle \langle E_i |}{\sqrt{\sum_i e^{-2E_i \tau}}} = \\
+&= \lim_{\tau\rightarrow \infty}\frac{\sum_{i} e^{-\frac{E_i}{E_0} \tau}|E_i\rangle \langle E_i |}{\sqrt{\sum_i e^{-2\frac{E_i}{E_0} \tau}}} = |E_0\rangle \langle E_0 |.
+\end{align}
+The imaginary-time evolution is directly related to the power method presented in section \ref{sec:Power-Method}. The eigenvenvector associated to the smallest eigenvalue $E_0$ of $H$ is the eigenvector associated to the biggest eigenvalue of $e^{-H}$ and this can be approximately obtained using the power method by computing $(e^{-H})^N\ket{\psi}$, a procedure that in the limit of $N\to \infty$ is analogous to equation \eqref{eq:Pure_state-ITE}.\\
+Applying the same method to the density matrix one can obtain the ground state $\rho_{GS}$  of a non degenerate Hamiltonian $H$ from a general density matrix $\rho$ such that $Tr[\rho\rho_{GS}]\neq0$ as
+\begin{equation}
+\rho_{GS} = \lim_{\tau \rightarrow \infty} \frac{e^{-H\tau}\rho e^{-H\tau}}{Tr\left[\rho e^{-2H\tau}\right]}.
+\label{eq:Corr_matr-ITE}
+\end{equation}
+We refer to the method for obtaining the ground state using \eqref{eq:Pure_state-ITE} as performing an \emph{imaginary time evolution}. \\
+This is the case because, if for the time evolution operator $U(t)=e^{-iHt}$ for the Hamiltonian $H$,  we select $t=-i \tau$ we obtain the operator $e^{-H \tau }$ that is the one of eq \eqref{eq:Pure_state-ITE}. One can thus write in a non-formal way $|GS\rangle = \lim_{t \rightarrow -i \infty} \frac{|\psi(t)\rangle}{||\psi(t)\rangle||}$.\\
+It is important to keep in mind that the operator $e^{-H\tau}$ is not unitary and for this reason it does not preserve the norm of the state and one has to renormalise it.\\
+%Nevertheless in the rest of these notes we will always refer to this method as a time evolution ;-).
+%textdej{ \CID{2021}}.
+%We know already how to compute the ground state of any f.q.h., but it could result useful to be able to simulate an imaginary time evolution with f.g.s. in the case one is interested in benchmarking more complex algorithms.
+
+\subsection{Numerical Imaginary time evolution}
+In the numerical approach to imaginary time evolution one faces some difficulties.\\
+Almost in all cases one is forced to evolve the state step by step renormalising every time, performing a discrete imaginary time evolution.\\
+This procedure does not allow to reach infinite time in a finite amount of time steps, thus one has to find a criterion to stop the evolution when the convergence is accurate up to some confidence parameter. To check if the reached state is the expected state is tricky and theoretically impossible in most of the cases since one does not always have the exact value of the energy of the ground state.\\
+A method for checking the convergence is to check the energy difference between two steps of the discrete imaginary time evolution. Once the difference in energy between two steps is lower than an acceptable value $\epsilon$, one decides that the algorithm converged.\\
+It is not always the case though.  It is also possible that the approximate imaginary time evolution stops at some plateaux and thus it tricks the algorithm in believing in a false convergence to the ground state. \\
+%It seems the best way to deal with this is learning the art.
+%
+%\subsection{Numerical Imaginary time evolution for Fermionic Gaussian states}
+%The imaginary time evolution of Fermionic Gaussian state is one of the many cases for which it is not possible to compute an exact imaginary time evolution but one has to use an approximate one.\\
+%The reasons for which it is not possible to compute an exact imaginary time evolution for Fermionic Gaussian systems are mainly two.\\
+%Given a Gaussian Fermionic Hamiltonian $H$ one expects for its ground state $\rho_{GS}$ to be a Gaussian state characterised by the correlation matrix $\Gamma_{GS}$. Thus, starting with a Fermionic Gaussian states $\Lambda_0$, one evolve it for the imaginary time step $\delta t$ until the algorithm converges. \\
+%The first main problem is that the evolution of expression \eqref{eq:Corr_matr-ITE} does not preserve the Guassianity of the state \cite{kraus2009}, thus, in the  standard framework for Fermionic Gaussian state, that is the one of correlation matrices, finding the imaginary-time evolved form $\Gamma(t)$ of the initial state $\Gamma_0$ corresponds first evolve the initial state $\rho_{GS}$ and then projecting it again in the space of Gaussian states. This procedure introduces an approximation in the algorithm which makes the questions about convergence to the real ground state even harder.
+%
+%%%%%FIGURE 1
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.8\linewidth]{figure/Gaussian-Projection.pdf}
+%	\caption{Imaginary time evolution of the Guassian state $\rho_{0}$ with Hamiltonian $H$. In green is represented the exact imaginary time evolution. The red dotted lines represent projections into the the space of Gaussian states. If we compute the exact imaginary time evolution until the p oint of convergence we can reach the ground state $\rho_{GS}$ of $H$ within machine precision. With the numerical algorithm one has to project at each step the evolved state into the space of Gaussian states, possibly leading to a wrong approximation of the ground state $\tilde{\rho}_{GS}$.
+%	}
+%	\label{fig:Sectors_Fourier}
+%\end{figure}
+%%%%%
+%
+%The second main problem is that, as we will soon see, in the framework of Gaussian states it seems not even possible to compute the exact time evolution for each time step. We are thus forced to consider an approximate imaginary dynamic for each time step.\\
+\paragraph{Imaginary time evolution of  the correlation matrix}
+The imaginary time evolution of the correlation matrix is defined as
+\begin{align}
+\Gamma_{i,j}(\tau) & = Tr\left[\rho(\tau) \vec{\alpha}_{i}\vec{\alpha}_{j}^{\dagger}\right] = \\
+& = \frac{Tr \left[e^{-\hat{H}\tau} \rho e^{-\hat{H}\tau}\vec{\alpha}_{i}\vec{\alpha}_{j}^{\dagger}  \right]}{Tr\left[e^{-\hat{H}\tau} \rho e^{-\hat{H}\tau}\right]}.
+\label{eq:rho(tau)}
+\end{align}
+%\subparagraph{Heisenberg imaginary time evolution}
+Obtaining an explicit form for $\Gamma(\tau)$ just in term of $H$ and $\Gamma(0)$ is not easy.
+Following the reasoning made for the real time evolution, one can compute the imaginary time evolution in Heisenberg picture with $e^{-\hat{H}\tau}$ of  the operator $\vec{\alpha}_{i}\vec{\alpha}_{j}^{\dagger}$. Using the Baker-Campbell-Hausdorff formula (i.e. $e^{A}Be^{A}=\sum_{n=0}^{\infty}\frac{1}{n!}\underbrace{\{A,...\{A}_{n},B\underbrace{\}...\}}_{n}$ i.e. \emph{B.C.H.2} in Appendix \ref{appendix:Formulas}) and moving in the diagonal basis with Dirac operators  $\vec{\beta}$ one can write the Hamiltonian as $\hat{H}= \sum_k \epsilon(k) \left(b_k^{\dagger}b_k-b_kb_k^{\dagger}\right)$.\\
+Thus one has
+\begin{align}
+e^{-\hat{H}\tau}&\vec{\beta}_{l}\vec{\beta}_{j}^{\dagger}e^{-\hat{H}\tau} = \sum_{n=0}^{\infty} \frac{-\tau^n}{n!} \underbrace{\{\hat{H},...\{\hat{H}}_{n},\vec{\beta}_{l}\vec{\beta}_{j}^{\dagger}\underbrace{\}...\}}_{n}.
+\end{align}
+Since  $b_l\da b_j\hat{H} = (\hat{H}+2\Delta_{l,j})b_l\da b_j$, we cannot simplify this expression as in the case of real time evolution.\\
+To obtain a  numerical algorithm for the imaginary time evolution one has to realise that, for each value of $\tau$, $\Gamma(\tau)$ is just the correlation matrix of the f.g.s.
+\begin{equation}
+\rho(\tau) = \frac{e^{-\hat{H}\tau} \rho e^{-\hat{H}\tau}}{\Tr{e^{-\hat{H}\tau} \rho e^{-\hat{H}\tau}}},
+\end{equation}
+and this can be seen as the state obtained by correctly normalising the matrix product of the density matrices of three states.
+The trick for obtaining the correlation matrix $\Gamma(\tau)$ is thus using the product rule (see subsection \ref{sec:Product-Rule}) of the initial f.g.s. $\rho$ and the thermal state $\rho_{\beta=\tau}=\frac{e^{-{H}\tau}}{\Tr{e^{-\hat{H}\tau}}}$.
+This allows us to compute the imaginary time evolution of Fermionic Gaussian states.
+
+
+\begin{proposition}{\code{Evolve\_imag($\Gamma$, H\_D, U, $\tau$)$\rightarrow  \Gamma(\tau)$}}{}
+This function returns the correlation matrix $\Gamma$ evolved at imaginary time $\tau$ with $H$. Matrices $H_D$ and $U$ are the output of \code{Diag\_h(H)}.
+\end{proposition}
+
+\subsection{Fermionic Gaussian States with Fixed Bond Dimension}
+The compression of correlation matrices of f.g.s. in a similar fashion of matrix product states (MPS) has been introduced in \cite{fishman2015}. \\
+Let us consider a pure Fermionic Gaussian state completely described by the $N \times N$ matrix $\Lambda_{i,j}=\langle a_i\da a_j \rangle$.
+%A generalisation of this method to full correlation matrices $\Gamma$ is straightforward and we will show a numerical implementation of it at the end of the subsection.
+%Now let's stick to the correlation matrix $\Lambda$.
+Since $\Lambda$ is a pure state, its eigenvalues are either $1$ (the mode is occupied) or $0$ (the mode is unoccupied). This high degeneracy can be exploited mixing occupied (or unoccupied) eigenstate for finding a basis in which  these modes are localised.
+In systems with a limited entanglement structure we expect to be able to find a basis in which eigenstates are localised. This fact can be justified as follows.
+Let $\Lambda$ be the ground state of  a 1D local Hamiltonian.
+We consider the partition of the first $\ell$ sites of the system. The state of the partition is described by the $\ell \times \ell$ correlation matrix $\Lambda_{\ell}$.  In ground states of 1D local Hamiltonians, the entanglement of partitions of the systems of dimension $\ell$ grows at most as $\log(\ell)$. This means that for growing values of $\ell$ we expect to find eigenvalues of $\Lambda_\ell$ closer and closer to $1$ or $0$.
+Now suppose that diagonalising $\Lambda_{\ell}$, the eigenvalue associated to the eigenvector $\vec{v}$ is $\sim 1$.  This makes $\vec{v}$ also an approximate eingenvalue of $\Lambda$.
+
+  \centerline{\label{fig:prod-eigenvalues}
+\includegraphics[width=0.7\textwidth]{figure/Entropy_and_eigenvalues.pdf}}
+  \captionof{figure}{In blue the eigenvalues $\lambda_i$ of  the reduced state $\Lambda_{\ell=16}$ of the ground state of a hopping Hamiltonian with $N=500$. In orange the von Neumann entropy $S(\lambda_i)$ of the mode associated to each eigenvalue $\lambda_i$. The total von Neumann entropy of the partition $\Lambda_{\ell=16}$ is given by the sum of the entropies of each mode (see \eqref{eq:VN_Entropy}). Since the entropy of a partition $\Lambda_{\ell}$ is bounded by $\log(\ell)$, with growing $\ell$ the added modes must have associated eigenvalues close to $0$ or $1$.}
+
+
+  \centerline{\label{fig:prod-eigenvalues}
+\includegraphics[width=0.7\textwidth]{figure/prod-eigenvalues.pdf} }
+  \captionof{figure}{In blue the number of eigenvalues of $\Lambda_{\ell}$ that are $0$ or $1$ up to machine precision, in orange the total number of eigenvalues of $\Lambda_{\ell}$ in the ground state of a hopping Hamiltonian with $N=500$. When the dimension of the partition is $\ell>10$ the entanglement saturates and the number of eigenvalues equal to $1$ or $0$ starts growing linearly.}
+
+In  \cite{fishman2015}, developing on this idea, the authors are able to construct a compression algorithm for correlation matrices and directly map it to the MPS representation of the state.\\
+Here we will illustrate a method for obtaining the correlation matrix of a f.g.s. expressed as an MPS with fixed bond dimension $D$.\\
+%Let us consider a pure f.g.s. $|\psi\rangle$ on a system with $N$ sites with associated $2N\times 2N$ correlation matrix $\Gamma$. We denote with $|\psi^D \rangle$ the state obtained representing $|\psi\rangle$ with an MPS of fixed bond dimension $D$.  We are interested in the correlation matrix $\Gamma^D$ of the state $|\psi^D\rangle$.\\
+%To obtain $\Gamma^D$ we proceed as follows.  We consider $\Gamma_{1,\dots,\ell}$, the correlation matrix of the partition of the first $\ell$ sites. We diagonalise it as $\Gamma_{1,\dots,\ell} = U_1 D_{1,\dots,\ell} U_1\da$. Using the function \code{Diag\_gamma} of \code{F\_utilities} we obtain a $2\ell \times 2\ell$ diagonal matrix $D$ with diagonal elements $\{\lambda_{i}\}_{i=1,\dots,\ell} \in [0,0.5]$ in increasing order $0\leq \lambda_1\leq \lambda_2 \leq \dots \leq \lambda_{\ell} \leq 0.5$ and for each $i>\ell$, $\lambda_{i+\ell}=1-\lambda_{i}$.\\
+%
+%
+
+Let us consider a pure f.g.s. $|\psi\rangle$ on a system with $N$ sites with associated $N\times N$ correlation matrix $\Lambda$. We denote with $|\psi^D \rangle$ the state obtained representing $|\psi\rangle$ with an MPS of fixed bond dimension $D$.  We are interested in the correlation matrix $\Lambda^D$ of the state $|\psi^D\rangle$.\\
+For a bipartition having bond dimension $D$ corresponds to having Schmidt rank $D$ \cite{vidal2003a}. If a state $|\psi \rangle$ has bond dimension $D'>D$, we can approximate it at bond dimension $D$ by setting to $0$ the lower Schmidt coefficients and renormalising the state. With the formalism of correlation matrices we cannot directly manipulate the single Schmidt coefficients, but we can approximate low entangled modes with product modes. Approximating an entangled mode with a product mode corresponds to setting half of the Schmidt coefficients to zero. With this insight we can devise the following algorithm for obtaining $\Lambda^D$.\\
+We proceed as follows.  We consider $\Lambda_{1,\dots,{m+1}}$, the correlation matrix of the partition of the first $\ell$ sites, where $m = \ceil{\log_2(D)}$. We will refer to $m$ as the bond dimension of the correlation matrix.\\ We diagonalise it as $\Lambda_{1,\dots,m+1} = U_1 D^1_{1,\dots,{m+1}} U_1\da$, the diagonal elements of $D_{1,\dots,\ell}$ are organised such that, the top left element $\lambda^1_1$ is the closest to $0$ or $1$. Suppose $\lambda^1_1 \sim 1$. We expand $U_1$ to be $N \times N$ adding ones on the diagonal and we have that the top left element of $\Lambda^1= U_1\da \Lambda U_1$ is $\lambda^1_1$. We set the first column and first row of $\Lambda^1$ to $0$ and $(\Lambda^1)_{1,1}$ to $1$ (because $\lambda^1_1 \sim 1$). We then proceed diagonalising $\Lambda^1_{2,\dots,{m+2}}=U_2 D^2_{2,\dots,{m+2}} U_d\da$. Suppose this time the top left element of $D^2$ is $\lambda^2_1 \sim 0$ .  We set the second column and second row of $\Lambda^2=U_2\da \Lambda^1 U_2$ to $0$ and $(\Lambda^2)_{2,2}$ to $0$ (because $\lambda^2_1 \sim 0$). Iterating this procedure $N-\ell$ times we obtain a correlation matrix $\Lambda^{(N-m1)}$ with $N-m$ diagonal elements equal to $0$ or $1$. We proceed with the same procedure decreasing the dimension of the reduced system everytime until after $N$ steps we obtain a diagonal matrix with diagonal elements equal to $0$ or $1$.
+Returning to the original basis applying all the transformation $\{U_i\}_{i=1,\dots,N}$ to $\Lambda^{N}$ we obtain the correlation matrix associated to the state $|\psi^D\rangle$.
+We report a schematic representation of the algorithm in figures \ref{fig:RBD-123} and \ref{fig:RBD-46}.
+
+
+\begin{figure}
+\begin{subfigure}{.3\textwidth}
+  \includegraphics[width=1\linewidth]{figure/RBD-step1.pdf}\centering
+  \caption{Step 1: Diagonalise the subsystem $\Lambda^1_{1,\dots, {m+1}}$. The eigenvalues  are ordered such that $\min(|1-\lambda_1^1|,|\lambda_1^1|)\leq \min(|1-\lambda_2^1|,|\lambda_2^1|) \leq \dots \leq \min(|1-\lambda_{m+1}^1|,|\lambda_{m+1}^1|)$.}
+  \label{fig:sRBD-1}
+\end{subfigure}%
+\hspace{0.5em}
+\begin{subfigure}{.3\textwidth}\centering
+  \includegraphics[width=1\linewidth]{figure/RBD-step2.pdf}
+  \caption{Step 2: Since $\lambda_1^1\sim 1$ ($\lambda_1^1 \sim 0$)  we set it to $1$ ($0$). We set to zero all the other elements of the first row and first column of $\Lambda$. This will be the an eigenvalue of $\Lambda$.}
+  \label{fig:sRBD-2}
+\end{subfigure}
+\hspace{0.5em}
+\begin{subfigure}{.3\textwidth}\centering
+  \includegraphics[width=1\linewidth]{figure/RBD-step3.pdf}
+  \caption{Step 3: We move to the second subsystem $\Lambda^2_{2,\dots,{m+2}}$. We note that now the correalation matrix is represented in a mixed basis and the lower indices do not exactly represent the sites of the system. }
+  \label{fig:sRBD-3}
+\end{subfigure}%
+\caption{Steps of the algorithm for reducing the bond dimension of a Fermionic Gaussian state. The big squares represent the correlation matrix $\Lambda$. We repeat  this procedure $(N-m)$ times then we continue for $m$ steps reducing by one the dimension of the reduced system at each step. At the end one obtain a diagonal matrix with diagonal elements equal to $1$ or $0$.}
+\label{fig:RBD-123}
+\end{figure}
+
+\begin{figure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figure/RBD-step4.pdf}
+  \caption{Step 4: We diagonalise $\Lambda^2_{2,\dots,\ell+1}$ }
+  \label{fig:sRBD-4}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figure/RBD-step6.pdf}
+  \caption{Step6: After resetting $\lambda^2_1$, we move to $\Lambda^3_{3,\dots,m+3}$  }.
+  \label{fig:sRBD-6}
+\end{subfigure}%
+\caption{Steps $4$ and $6$ of the algorithm for reducing the bond dimension of a Fermionic Gaussian state.}
+\label{fig:RBD-46}
+\end{figure}
+
+In figure \ref{fig:eig-prod-RBD} we plot the number of eigenvalues different from $0$ and $1$ for different partitions of the system for the ground state $\Gamma$ of a hopping Hamiltonian of a system of $N=100$ sites, and for $\Gamma$ with bond dimension reduced to $m$.\\
+We know that for ground states of $1D$ local Hamiltonians the amount of entanglement (measured by the von Neumann entropy $S$) of any region of an MPS of bound dimension $D$ is bounded by $S \leq \log(D)$. In figure \ref{fig:entropies-RBD} we plot the value of the entropy of different regions of the ground state of a random Hamiltonian. The entropy is indeed bounded by  $S \leq \log(D)$ with $D=2^{m}$.\\
+Combining this method with the imaginary time evolution algorithm one can construct the time evolving block decimation algorithms on the space of correlations matrices.\\
+Together with the algorithm for reducing the bond dimension of one dimensional systems on the space of correlation matrices, in \code{F\_utilities} we include the algorithm for reducing the bond dimension of specific two dimensional systems. In particular we focussed on two dimensional systems where the Hamiltonian can be sectorised. This algorithm differs from the one for one dimensional systems in the way it handles the lowest Schmidt's coefficients of different sectors. Taking advantage of the sectorisation of the Hamiltonian, the algorithm becomes more complex, but at the same time more efficient. 
+
+\subsection{Reduction of the bond dimension of a two dimensional system divided in sectors}
+We consider the Fermionic quadratic Hamiltonian 
+\begin{equation}
+\label{eq:mom-sect-ham}
+\hat{H} = \sum_{x}\sum_{y} \left[a_{x,y}\da a_{x+1,y}+a_{x+1,y}\da a_{x,y} + (-1)^{x}\left(a_{x,y}\da a_{x,y+1}+a_{x,y+1}\da a_{x,y} \right)\right],
+\end{equation}
+defined on the on an $L\times L$ lattice on a cylinder with periodic boundary conditions along the $x$ direction and open boundary conditions along the $y$ direction as in figure \ref{fig:cylinder}.
+Because of the boundary conditions we have that $L$ must be even.\\
+Substituting the Fourier operators
+\begin{equation}
+a_{x,y}\da = \frac{1}{\sqrt{L}}\sum_{k}e^{-i\frac{2 \pi }{L}kx}c_{k,y}\da,
+\end{equation}
+where, because of the boundary conditions, we choose $k$ as
+\begin{equation}
+k=-\frac{L}{2}, -\frac{L}{2}+1, \dots, \frac{L}{2}-1,
+\end{equation}
+the Hamiltonian becomes as
+\begin{align}
+\hat{H} & = \sum_{k<0} \Big[\sum_{y} 2 \cos(\frac{2 \pi}{L}k) \left(c_{k,y}\da c_{k,y} -c_{k+\frac{L}{2},y}\da c_{k+\frac{L}{2},y} \right)+ \\ \nonumber
+ & + c_{k,y}\da c_{k+\frac{L}{2},y+1}+c_{k+\frac{L}{2},y}\da c_{x,y+1}+c_{k+\frac{L}{2},y+1}\da c_{k,y} +c_{k,y+1}\da c_{k+\frac{L}{2},y}\Big].
+\end{align}
+In this form the Hamiltonian is divided in $\frac{L}{2}$ sectors, each one corresponding to the couples of values of $\{k,k+\frac{L}{2}\}$. This means that the eigenstates of this Hamiltonain are product states of states defined on each $\{k,k+\frac{L}{2}\}$ sector. Thus, these eigenstates, instead of being described by a $2L^2\times2L^2$ correlation matrix, are instead described by just a collection of $\frac{L}{2}$ correlation matrices of dimension $2L \times 2L$, where each of these correlation matrices corresponds to a stripe of the cylinder in the $(k,y)$ space. \\
+We call states of this kind, sectorised states. 
+
+
+
+
+
+   \centerline{\label{fig:cylinder}
+\includegraphics[width=0.65\textwidth]{figure/cylinder.pdf}}
+  \captionof{figure}{Lattice with periodic boundary conditions along the $x$ direction. Red lines correspond to negative couplings, blue lines correspond to positive couplings. Two possible partitions $A$ and $B$ are higlighted in red and green respectively.}
+  
+  
+  
+  
+  
+Performing the reduction of the bond dimension of a sectorised state, one can expolit the sectorisation property in order to reduce the computational cost of the operation. \\
+Consider for example the ground state of Hamiltonian \eqref{eq:mom-sect-ham}. Once we move to the Fourier basis along the $x$ direction this becomes a sectorised state. Mimicking the encoding of this quantum state with a tensor network corresponds to fixing its Schmidt rank relatively to some iterative partition scheme. We choose a partition scheme that increasingly cuts the cylinder perpendularly to $y$. Since the Fourier transformation we applied mixes only Dirac operator corresponding to the same value of $y$, this partition scheme is a geometric partition scheme (it is equivalent on the $(x,y)$ space and the $(k,y)$ space). Step $l$ of the partition scheme divides the system in a partition $A$ consisting of all the elements corresponding to $y=\{1,\dots,l \}$ and a partition $B$ corresponding to all the elements corresponding to $y\in \{l+1,\dots, L\}$ analogously of the iterative partition scheme used for the one dimensional system of the last section.\\
+Choosing this partition scheme allows us to exploit a parallel implementation of the algorithm for the reduction of the bond dimension of the state. 
+In fact, instead of considering the full $2L^2\times2L^2$ correlation matrix describing the state we consider the $\frac{L}{2}$ correlation matrices of dimension $2L \times 2L$. The first step of the algorithm consists in partitioning the system at step $m+1$ of the partition scheme. These corresponds to taking the first $2(m+1)$ elements of each correlation matrix. One then proceed diagonalising these subsystem. This step is analogous to step $1$ of the one dimensional system presented in the last section, with the difference that now we are acting on $\frac{L}{2}$ correlation matrices simultaneously. This returns $L(m+1)$ eigenvalues from the $\frac{L}{2}$ sectors. Step $2$ consists in considering all these $L(m+1)$ eingenvalues \textit{together}, selecting the $2 \frac{L}{2}$ closest to $0$ or $1$ and then approximating them with $0$ or $1$ respectively in the respective correlation matrix and setting them to product state with the rest of the system analogously to what was done in step $2$ of the one dimensional case. Here the difference with the one dimensional case of the last section consists in the fact that we are setting to product state $L$ modes, not just one, and that we are choosing them from all the correlation matrices. Step $3$ consists in moving to the partition scheme $m+2$, enlarging the first partitions. Differently from the one dimensional case, here one has to keep track of the number of approximations performed in each sectors before diagonalising. As in the one dimensional case, the algorithm then proceed iteratively returning after at most $L$ steps, the correlation matrix $\Gamma(m)$ of a state with reduced bond dimension with the respect to the partitions along the chosen spatial direction. Considering larger values of $m$, the correlation matrix $\Gamma(m)$ converges towards $\Gamma$, the exact correlation matrix.
+
+
+\begin{proposition}{\code{RBD($\Gamma$, $m$)$\rightarrow  \Gamma(m)$}}{}
+This function returns the correlation matrix $\Gamma(m)$ obtained reducing the bond dimension of $\Gamma$ to $m$.
+\end{proposition}
+
+
+\begin{proposition}{\code{RBD\_csectors($\vec{\Gamma}$, $L_x$, $L_y$, $m$)$\rightarrow$  $\vec{\Gamma}(m)$}}{}
+This function returns the correlation matrices $\vec{\Gamma}(m)$ obtained reducing the bond dimension to $mL$ of the system on the $L_x \times L_y$ cylinder described by the correlation matrices $\vec{\Gamma}$. Each correlation matrix must cointains information of two values of $k$ and must be organised following the order $\vec{\alpha}=(a_{k,1}, a_{k+\frac{L}{2},1}, a_{k,2}, a_{k+\frac{L}{2},2}, \dots)$
+\end{proposition}
+
+
+\label{ex:JLCODE7}
+\lstinputlisting{src/JLCODE7.jl}
+
+Output:
+
+  \centerline{\label{fig:eig-prod-RBD}
+\includegraphics[width=0.8\textwidth]{figure/prod-eigenvalues_RBD.pdf}}
+  \captionof{figure}{Eigenvalues different from $0$ and $1$ for different partitions of the system for the ground state $\Gamma$ of a hopping Hamiltonian of a system of $N=100$ sites, and for $\Gamma$ with bond dimension reduced to $m$.  The blue dots correspond to partitions of $\Gamma$ with first site at the boundary of the system and with dimension $\ell$. The orange dots correspond to partitions of $\Gamma$ with first site at the boundary of the system and with dimension $\ell$. The green dots are anologous to the blue dots, but computed for the state $\Gamma(m=5)$  obtained reducing the bond dimension of $\Gamma$ to $m=5$. Red dots are anologous to the orange dots, but computed for $\Gamma(m=5)$. As expected the number of eigenvalues different from $0$ and $1$ are bounded as $\#eigenval(\neq0,1)\leq 2m$. }
+
+  \label{ex:JLCODE8}
+\lstinputlisting{src/JLCODE8.jl}
+
+Output:
+
+   \centerline{\label{fig:entropies-RBD}
+\includegraphics[width=0.95\textwidth]{figure/Entropies-JLCODE7.pdf}}
+  \captionof{figure}{The entropy of different regions of the ground state of a random Hamiltonian.  The blue dots correspond to partitions of dimension $\ell$ with first site at the boundary of the chain. The orange dots correspond to partitions of dimension $\ell$ with first site in the middle of the chain. The green dots are anologous to the blue dots but computed for the state $\Gamma(m=1)$  obtained reducing the bond dimension of $\Gamma$ to $m=1$. Red dots are anologous to the orange dots, but computed for $\Gamma(m=1)$. As expected since the Hamiltonian is random and long range, the entropy of the partitions almost always saturates. The red dash-dotted horizontal lines represent the upper bound for the entropy of a partition (starting at the border or not respectively for $\log(D)$ and $2\log(D)$). As we can see the entropy is always bounded by  $S \leq \log(D)$ with $D=2^{m}$ as expected.}
+
+%\bibliography{QFH}
+%\bibliographystyle{ieeetr}
+
+\end{document}
+
+
+
+
+
+%Questo qua sotto è se voglio importare un tex in questo subtex
+%\begin{figure}[ht]
+%
+%\subimport{../}{diagram.tex}
+%
+%\label{fig:tikzexample}
+%\caption{A nice simple diagram}
+%\end{figure}

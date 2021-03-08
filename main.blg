@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99d (TeX Live 2020/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: ieeetr.bst
+Database file #1: TesiTotale.bib
+Repeated entry---line 6306 of file TesiTotale.bib
+ : @article{jordan1928
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 7134 of file TesiTotale.bib
+ : @article{lieb1961
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 8231 of file TesiTotale.bib
+ : @article{peschel2003a
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 9625 of file TesiTotale.bib
+ : @article{schultz1964
+ :                     ,
+I'm skipping whatever remains of this entry
+Warning--empty year in nielsena
+You've used 37 entries,
+            1876 wiz_defined-function locations,
+            704 strings with 8368 characters,
+and the built_in function-call counts, 9993 in all, are:
+= -- 1076
+> -- 296
+< -- 0
++ -- 116
+- -- 79
+* -- 647
+:= -- 1333
+add.period$ -- 42
+call.type$ -- 37
+change.case$ -- 33
+chr.to.int$ -- 0
+cite$ -- 38
+duplicate$ -- 584
+empty$ -- 870
+format.name$ -- 79
+if$ -- 2510
+int.to.chr$ -- 0
+int.to.str$ -- 37
+missing$ -- 42
+newline$ -- 119
+num.names$ -- 37
+pop$ -- 81
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 512
+stack$ -- 0
+substring$ -- 609
+swap$ -- 317
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 93
+width$ -- 39
+write$ -- 365
+(There were 4 error messages)

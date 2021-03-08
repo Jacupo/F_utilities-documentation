@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{include}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}F\PYGZhy{}utilities.jl\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n}{N} \PYG{o}{=} \PYG{l+m+mi}{64}\PYG{p}{;}
+
+\PYG{c}{\PYGZsh{}Generate a random Hamiltonian}
+\PYG{n}{A} \PYG{o}{=} \PYG{n}{rand}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,}\PYG{n}{N}\PYG{p}{)}\PYG{o}{+}\PYG{n+nb}{im}\PYG{o}{*}\PYG{n}{rand}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,}\PYG{n}{N}\PYG{p}{);}
+\PYG{n}{B} \PYG{o}{=} \PYG{n}{rand}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,}\PYG{n}{N}\PYG{p}{)}\PYG{o}{+}\PYG{n+nb}{im}\PYG{o}{*}\PYG{n}{rand}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,}\PYG{n}{N}\PYG{p}{);}
+\PYG{n}{A} \PYG{o}{=} \PYG{p}{(}\PYG{n}{A}\PYG{o}{+}\PYG{n}{A}\PYG{o}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mf}{2.}\PYG{p}{;}
+\PYG{n}{B} \PYG{o}{=} \PYG{p}{(}\PYG{n}{B}\PYG{o}{\PYGZhy{}}\PYG{n}{transpose}\PYG{p}{(}\PYG{n}{B}\PYG{p}{))}\PYG{o}{/}\PYG{l+m+mf}{2.}\PYG{p}{;}
+\PYG{n}{H} \PYG{o}{=} \PYG{n}{zeros}\PYG{p}{(}\PYG{k+kt}{Complex}\PYG{p}{\PYGZob{}}\PYG{k+kt}{Float64}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{N}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{N}\PYG{p}{\PYGZcb{});}
+\PYG{n}{H}\PYG{p}{[(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{),(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{)]} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{conjugate}\PYG{p}{(}\PYG{n}{A}\PYG{p}{);}
+\PYG{n}{H}\PYG{p}{[(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{)}\PYG{o}{+}\PYG{n}{N}\PYG{p}{,(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{)]} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{conjugate}\PYG{p}{(}\PYG{n}{B}\PYG{p}{);}
+\PYG{n}{H}\PYG{p}{[(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{),(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{)}\PYG{o}{+}\PYG{n}{N}\PYG{p}{]} \PYG{o}{=} \PYG{n}{B}\PYG{p}{;}
+\PYG{n}{H}\PYG{p}{[(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{)}\PYG{o}{+}\PYG{n}{N}\PYG{p}{,(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N}\PYG{p}{)}\PYG{o}{+}\PYG{n}{N}\PYG{p}{]} \PYG{o}{=} \PYG{n}{A}\PYG{p}{;}
+
+\PYG{c}{\PYGZsh{}Diagonalise the hamiltonian}
+\PYG{n}{H\PYGZus{}D}\PYG{p}{,} \PYG{n}{U\PYGZus{}D} \PYG{o}{=} \PYG{n}{Diag\PYGZus{}ferm}\PYG{p}{(}\PYG{n}{H}\PYG{p}{)}
+\end{Verbatim}

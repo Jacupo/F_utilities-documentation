@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{using} \PYG{n}{F\PYGZus{}utilities}\PYG{p}{;}
+\PYG{k}{using} \PYG{n}{PyPlot}\PYG{p}{;}
+\PYG{k}{using} \PYG{n}{LinearAlgebra}\PYG{p}{;}
+
+\PYG{k+kd}{const} \PYG{n}{Fu} \PYG{o}{=} \PYG{n}{F\PYGZus{}utilities}\PYG{p}{;}
+
+\PYG{n}{N} \PYG{o}{=} \PYG{l+m+mi}{64}\PYG{p}{;}
+\PYG{n}{H} \PYG{o}{=} \PYG{n}{Fu}\PYG{o}{.}\PYG{n}{Random\PYGZus{}NNhamiltonian}\PYG{p}{(}\PYG{n}{N}\PYG{p}{);}
+\PYG{n}{H\PYGZus{}D}\PYG{p}{,} \PYG{n}{U\PYGZus{}D} \PYG{o}{=} \PYG{n}{Fu}\PYG{o}{.}\PYG{n}{Diag\PYGZus{}h}\PYG{p}{(}\PYG{n}{H}\PYG{p}{);}
+
+\PYG{n}{Γ} \PYG{o}{=} \PYG{n}{Fu}\PYG{o}{.}\PYG{n}{GS\PYGZus{}Gamma}\PYG{p}{(}\PYG{n}{H\PYGZus{}D}\PYG{p}{,} \PYG{n}{U\PYGZus{}D}\PYG{p}{);}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}The energy of the ground state is: \PYGZdq{}}\PYG{p}{,} \PYG{n}{Fu}\PYG{o}{.}\PYG{n}{Energy\PYGZus{}fermions}\PYG{p}{(}\PYG{n}{Γ}\PYG{p}{,}\PYG{n}{H\PYGZus{}D}\PYG{p}{,} \PYG{n}{U\PYGZus{}D}\PYG{p}{));}
+
+\PYG{n}{N\PYGZus{}A} \PYG{o}{=} \PYG{l+m+mi}{32}\PYG{p}{;}
+\PYG{c}{\PYGZsh{}I consider the reduced state over the sites 17,2,...,48}
+\PYG{n}{Γ\PYGZus{}A} \PYG{o}{=} \PYG{n}{Fu}\PYG{o}{.}\PYG{n}{Reduce\PYGZus{}gamma}\PYG{p}{(}\PYG{n}{Γ}\PYG{p}{,}\PYG{n}{N\PYGZus{}A}\PYG{p}{,}\PYG{l+m+mi}{17}\PYG{p}{);}
+\PYG{c}{\PYGZsh{}I compute the entangement entropy}
+\PYG{n}{S\PYGZus{}A} \PYG{o}{=} \PYG{n}{Fu}\PYG{o}{.}\PYG{n}{VN\PYGZus{}entropy}\PYG{p}{(}\PYG{n}{Γ\PYGZus{}A}\PYG{p}{);}
+\PYG{c}{\PYGZsh{}I compute the contour of partition A}
+\PYG{n}{c\PYGZus{}A} \PYG{o}{=} \PYG{n}{Fu}\PYG{o}{.}\PYG{n}{Contour}\PYG{p}{(}\PYG{n}{Γ\PYGZus{}A}\PYG{p}{);}
+
+\PYG{n}{lbl\PYGZus{}title}   \PYG{o}{=} \PYG{n}{string}\PYG{p}{(}\PYG{n}{L}\PYG{l+s}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}S}\PYG{l+s}{(A) = \PYGZdl{}\PYGZdq{}}\PYG{p}{,} \PYG{n}{S\PYGZus{}A}\PYG{p}{);}
+\PYG{n}{lbl\PYGZus{}legend}  \PYG{o}{=} \PYG{n}{string}\PYG{p}{(}\PYG{n}{L}\PYG{l+s}{\PYGZdq{}\PYGZdl{}\PYGZbs{}sum\PYGZus{}\PYGZob{}i=1\PYGZcb{}\PYGZca{}\PYGZob{}N\PYGZus{}A\PYGZcb{} c\PYGZus{}A(i) = \PYGZdl{}\PYGZdq{}}\PYG{p}{,} \PYG{n}{sum}\PYG{p}{(}\PYG{n}{c\PYGZus{}A}\PYG{p}{));}
+\PYG{n}{figure}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Contour of A\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{title}\PYG{p}{(}\PYG{n}{lbl\PYGZus{}title}\PYG{p}{)}
+\PYG{n}{plot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{N\PYGZus{}A}\PYG{p}{,} \PYG{n}{c\PYGZus{}A}\PYG{p}{,} \PYG{n}{marker}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}o\PYGZdq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{n}{lbl\PYGZus{}legend}\PYG{p}{);}
+\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}i\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{ylabel}\PYG{p}{(}\PYG{n}{L}\PYG{l+s}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}c\PYGZus{}A}\PYG{l+s}{(i)\PYGZdl{}\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{legend}\PYG{p}{();}
+\end{Verbatim}
